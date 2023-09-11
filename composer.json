@@ -1,0 +1,35 @@
+{
+    "name": "opencultureconsulting/traits",
+    "description": "This is a collection of useful traits for PHP projects.",
+    "type": "library",
+    "keywords": [
+        "trait",
+        "getter",
+        "setter",
+        "singleton"
+    ],
+    "homepage": "https://github.com/opencultureconsulting/php-traits",
+    "readme": "README.md",
+    "license": "GPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "Sebastian Meyer",
+            "email": "sebastian.meyer@opencultureconsulting.com",
+            "homepage": "https://www.opencultureconsulting.com",
+            "role": "maintainer"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/opencultureconsulting/php-traits/issues",
+        "source": "https://github.com/opencultureconsulting/php-traits",
+        "docs": "https://github.com/opencultureconsulting/php-traits/blob/master/README.md"
+    },
+    "require": {
+        "php": "^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "OCC\\Traits\\": "src/Traits/"
+        }
+    }
+}
