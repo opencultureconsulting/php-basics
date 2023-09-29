@@ -29,14 +29,14 @@ namespace OCC\Traits;
 trait Singleton
 {
     /**
-     * Holds the singleton instances.
+     * Holds the singleton instance.
      *
      * @access protected
      * @static
      *
-     * @var array
+     * @var self
      */
-    protected static $singleton = [];
+    protected static $singleton;
 
     /**
      * Get a singleton instance of this class.
@@ -49,11 +49,11 @@ trait Singleton
      */
     final public static function getInstance(): self
     {
-        if (!isset(self::$singleton[__CLASS__])) {
+        if (!isset(self::$singleton)) {
             $reflectionClass = new \ReflectionClass(__CLASS__);
-            self::$instance[__CLASS__] = $reflectionClass->newInstanceArgs(func_get_args());
+            self::$instance = $reflectionClass->newInstanceArgs(func_get_args());
         }
-        return self::$singleton[__CLASS__];
+        return self::$singleton;
     }
 
     /**
@@ -68,9 +68,9 @@ trait Singleton
     /**
      * This is a singleton class, thus cloning is prohibited.
      *
-     * @access protected
+     * @access private
      */
-    final protected function __clone()
+    final private function __clone()
     {
     }
 }
