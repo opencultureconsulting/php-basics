@@ -31,12 +31,12 @@ trait Singleton
     /**
      * Holds the singleton instance.
      *
-     * @access protected
+     * @access private
      * @static
      *
      * @var self
      */
-    protected static $singleton;
+    private static ?self $singleton;
 
     /**
      * Get a singleton instance of this class.
@@ -57,13 +57,13 @@ trait Singleton
     }
 
     /**
-     * This is a singleton class, thus the constructor is protected.
+     * This is a singleton class, thus the constructor is private.
      * (Get an instance of this class by calling self::getInstance())
      *
-     * @access protected
+     * @access private
      * @abstract
      */
-    abstract protected function __construct();
+    abstract private function __construct();
 
     /**
      * This is a singleton class, thus cloning is prohibited.
