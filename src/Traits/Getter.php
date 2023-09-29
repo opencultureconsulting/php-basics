@@ -65,6 +65,11 @@ trait Getter
      */
     final public function __isset(string $property): bool
     {
-        return !empty($this->__get($property));
+        try {
+            $value = $this->__get($property);
+        } catch (\InvalidArgumentException) {
+            $value = null;
+        }
+        return !empty($value);
     }
 }

@@ -68,6 +68,8 @@ trait Setter
      */
     final public function __unset(string $property): void
     {
-        $this->__set($property, null);
+        try {
+            $this->__set($property, null);
+        } catch (\InvalidArgumentException) {}
     }
 }
