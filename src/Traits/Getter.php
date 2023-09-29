@@ -63,7 +63,7 @@ trait Getter
      *
      * @return bool
      */
-    final public function __isset(string $property)
+    final public function __isset(string $property): bool
     {
         return !empty($this->__get($property));
     }
