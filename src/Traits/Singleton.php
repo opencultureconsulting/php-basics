@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * Useful PHP Traits
  * Copyright (C) 2023 Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
@@ -69,8 +69,10 @@ trait Singleton
      * This is a singleton class, thus cloning is prohibited.
      *
      * @access private
+     *
+     * @return void
      */
-    final private function __clone()
+    final private function __clone(): void
     {
     }
 }

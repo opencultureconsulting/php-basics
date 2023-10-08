@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * Useful PHP Traits
  * Copyright (C) 2023 Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
