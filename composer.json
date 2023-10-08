@@ -22,7 +22,7 @@
     "support": {
         "issues": "https://github.com/opencultureconsulting/php-traits/issues",
         "source": "https://github.com/opencultureconsulting/php-traits",
-        "docs": "https://github.com/opencultureconsulting/php-traits/blob/master/README.md"
+        "docs": "https://github.com/opencultureconsulting/php-traits/blob/main/README.md"
     },
     "require": {
         "php": "^8.0"
