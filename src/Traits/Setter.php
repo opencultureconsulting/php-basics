@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+
 /**
  * Useful PHP Traits
  * Copyright (C) 2023 Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
@@ -17,6 +18,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+declare(strict_types=1);
+
 namespace OCC\Traits;
 
 /**
@@ -24,18 +27,14 @@ namespace OCC\Traits;
  *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package opencultureconsulting/traits
- * @access public
  */
 trait Setter
 {
     /**
      * Write data to an inaccessible property.
      *
-     * @access public
-     * @final
-     *
-     * @param string $property
-     * @param mixed $value
+     * @param string $property The class property to set
+     * @param mixed $value The new value of the property
      *
      * @return void
      *
@@ -43,7 +42,7 @@ trait Setter
      */
     final public function __set(string $property, mixed $value): void
     {
-        $method = 'set' . ucfirst($property);
+        $method = '_set' . ucfirst($property);
         if (
             property_exists(__CLASS__, $property)
             && method_exists(__CLASS__, $method)
@@ -57,10 +56,7 @@ trait Setter
     /**
      * Unset an inaccessible property.
      *
-     * @access public
-     * @final
-     *
-     * @param string $property
+     * @param string $property The class property to unset
      *
      * @return void
      *

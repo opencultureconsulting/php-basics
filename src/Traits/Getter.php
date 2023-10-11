@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+
 /**
  * Useful PHP Traits
  * Copyright (C) 2023 Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
@@ -17,6 +18,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+declare(strict_types=1);
+
 namespace OCC\Traits;
 
 /**
@@ -24,25 +27,21 @@ namespace OCC\Traits;
  *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package opencultureconsulting/traits
- * @access public
  */
 trait Getter
 {
     /**
      * Read data from an inaccessible property.
      *
-     * @access public
-     * @final
+     * @param string $property The class property to get
      *
-     * @param string $property
-     *
-     * @return mixed
+     * @return mixed The class property's current value
      *
      * @throws \InvalidArgumentException
      */
     final public function __get(string $property): mixed
     {
-        $method = 'get' . ucfirst($property);
+        $method = '_get' . ucfirst($property);
         if (
             property_exists(__CLASS__, $property)
             && method_exists(__CLASS__, $method)
@@ -56,12 +55,9 @@ trait Getter
     /**
      * Check if an inaccessible property is set and not empty.
      *
-     * @access public
-     * @final
+     * @param string $property The class property to check
      *
-     * @param string $property
-     *
-     * @return bool
+     * @return bool Whether the class property is set and not empty
      */
     final public function __isset(string $property): bool
     {

@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+
 /**
  * Useful PHP Traits
  * Copyright (C) 2023 Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
@@ -17,35 +18,25 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+declare(strict_types=1);
+
 namespace OCC\Traits;
 
 /**
- * Allows just a single instance of a class.
+ * Allows just a single instance of the class using this trait.
  *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package opencultureconsulting/traits
- * @access public
  */
 trait Singleton
 {
     /**
-     * Holds the singleton instance.
-     *
-     * @access private
-     * @static
-     *
-     * @var self
+     * Holds the singleton instances.
      */
     private static ?self $singleton;
 
     /**
      * Get a singleton instance of this class.
-     *
-     * @access public
-     * @final
-     * @static
-     *
-     * @return self
      */
     final public static function getInstance(): self
     {
@@ -59,18 +50,11 @@ trait Singleton
     /**
      * This is a singleton class, thus the constructor is private.
      * (Get an instance of this class by calling self::getInstance())
-     *
-     * @access private
-     * @abstract
      */
     abstract private function __construct();
 
     /**
      * This is a singleton class, thus cloning is prohibited.
-     *
-     * @access private
-     *
-     * @return void
      */
     final private function __clone(): void
     {
