@@ -6,7 +6,8 @@
         "trait",
         "getter",
         "setter",
-        "singleton"
+        "singleton",
+        "queue"
     ],
     "homepage": "https://github.com/opencultureconsulting/php-traits",
     "readme": "README.md",
