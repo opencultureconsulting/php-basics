@@ -53,17 +53,17 @@ trait Queue /* implements \ArrayAccess, \Countable, \SeekableIterator */
      *  - "bool"
      *  - "callable"
      *  - "countable"
-     *  - "float" / "double"
-     *  - "int" / "integer" / "long"
+     *  - "float" or "double"
+     *  - "int" or "integer" or "long"
      *  - "iterable"
      *  - "null"
      *  - "numeric"
-     *  - "object" / FQCN
+     *  - "object" or FQCN
      *  - "resource"
      *  - "scalar"
      *  - "string"
-     *  Additionally, fully qualified class names can be specified to restrict
-     *  the types of objects.
+     *  Fully qualified class names (FQCN) can be specified instead of the
+     *  generic type "object".
      */
     protected array $allowedTypes = [];
 
