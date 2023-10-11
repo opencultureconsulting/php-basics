@@ -40,11 +40,11 @@ trait Singleton
      */
     final public static function getInstance(): self
     {
-        if (!isset(self::$singleton)) {
-            $reflectionClass = new \ReflectionClass(__CLASS__);
-            self::$instance = $reflectionClass->newInstanceArgs(func_get_args());
+        if (!isset(static::$singleton)) {
+            $reflectionClass = new \ReflectionClass(get_called_class());
+            static::$singleton = $reflectionClass->newInstanceArgs(func_get_args());
         }
-        return self::$singleton;
+        return static::$singleton;
     }
 
     /**

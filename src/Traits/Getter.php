@@ -43,12 +43,12 @@ trait Getter
     {
         $method = '_get' . ucfirst($property);
         if (
-            property_exists(__CLASS__, $property)
-            && method_exists(__CLASS__, $method)
+            property_exists(get_called_class(), $property)
+            && method_exists(get_called_class(), $method)
         ) {
             return $this->$method();
         } else {
-            throw new \InvalidArgumentException('Invalid property or missing getter method for property "' . __CLASS__ . '->' . $property . '".');
+            throw new \InvalidArgumentException('Invalid property or missing getter method for property "' . get_called_class() . '->' . $property . '".');
         }
     }
 

@@ -44,12 +44,12 @@ trait Setter
     {
         $method = '_set' . ucfirst($property);
         if (
-            property_exists(__CLASS__, $property)
-            && method_exists(__CLASS__, $method)
+            property_exists(get_called_class(), $property)
+            && method_exists(get_called_class(), $method)
         ) {
             $this->$method($value);
         } else {
-            throw new \InvalidArgumentException('Invalid property or missing setter method for property "' . __CLASS__ . '->' . $property . '".');
+            throw new \InvalidArgumentException('Invalid property or missing setter method for property "' . get_called_class() . '->' . $property . '".');
         }
     }
 
