@@ -38,7 +38,7 @@ trait Singleton
     /**
      * Get a singleton instance of this class.
      */
-    final public static function getInstance(): self
+    public static function getInstance(): self
     {
         if (!isset(static::$singleton)) {
             $reflectionClass = new \ReflectionClass(get_called_class());
@@ -56,7 +56,7 @@ trait Singleton
     /**
      * This is a singleton class, thus cloning is prohibited.
      */
-    final private function __clone(): void
+    private function __clone(): void
     {
     }
 }

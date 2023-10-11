@@ -39,7 +39,7 @@ trait Getter
      *
      * @throws \InvalidArgumentException
      */
-    final public function __get(string $property): mixed
+    public function __get(string $property): mixed
     {
         $method = '_get' . ucfirst($property);
         if (
@@ -59,7 +59,7 @@ trait Getter
      *
      * @return bool Whether the class property is set and not empty
      */
-    final public function __isset(string $property): bool
+    public function __isset(string $property): bool
     {
         try {
             $value = $this->__get($property);

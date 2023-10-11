@@ -40,7 +40,7 @@ trait Setter
      *
      * @throws \InvalidArgumentException
      */
-    final public function __set(string $property, mixed $value): void
+    public function __set(string $property, mixed $value): void
     {
         $method = '_set' . ucfirst($property);
         if (
@@ -62,7 +62,7 @@ trait Setter
      *
      * @throws \InvalidArgumentException
      */
-    final public function __unset(string $property): void
+    public function __unset(string $property): void
     {
         try {
             $this->__set($property, null);

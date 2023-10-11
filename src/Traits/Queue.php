@@ -74,7 +74,7 @@ trait Queue /* implements \ArrayAccess, \Countable, \SeekableIterator */
      *
      * @return bool Whether the variable is an allowed type
      */
-    final protected function isAllowedType(mixed $var): bool
+    protected function isAllowedType(mixed $var): bool
     {
         if (empty($this->allowedTypes)) {
             return true;
@@ -100,7 +100,7 @@ trait Queue /* implements \ArrayAccess, \Countable, \SeekableIterator */
      *
      * @return bool Whether the given index is in valid range
      */
-    final protected function isIndexInRange(int $offset, bool $allowAppend = false): bool
+    protected function isIndexInRange(int $offset, bool $allowAppend = false): bool
     {
         $options = [
             'options' => [
@@ -119,7 +119,7 @@ trait Queue /* implements \ArrayAccess, \Countable, \SeekableIterator */
      *
      * @return bool Whether the given index is valid
      */
-    final public function offsetExists(mixed $offset): bool
+    public function offsetExists(mixed $offset): bool
     {
         return isset($this->queue[$offset]);
     }
@@ -132,7 +132,7 @@ trait Queue /* implements \ArrayAccess, \Countable, \SeekableIterator */
      *
      * @return ?mixed The queue's element at given index or NULL
      */
-    final public function offsetGet(mixed $offset): mixed
+    public function offsetGet(mixed $offset): mixed
     {
         return $this->queue[$offset] ?? null;
     }
@@ -150,7 +150,7 @@ trait Queue /* implements \ArrayAccess, \Countable, \SeekableIterator */
      * @throws \InvalidArgumentException
      * @throws \OutOfRangeException
      */
-    final public function offsetSet(mixed $offset, mixed $value): void
+    public function offsetSet(mixed $offset, mixed $value): void
     {
         if (is_null($offset)) {
             $offset = count($this->queue);
@@ -171,7 +171,7 @@ trait Queue /* implements \ArrayAccess, \Countable, \SeekableIterator */
      *
      * @return void
      */
-    final public function offsetUnset(mixed $offset): void
+    public function offsetUnset(mixed $offset): void
     {
         if ($this->isIndexInRange($offset)) {
             array_splice($this->queue, $offset, 1, []);
@@ -187,7 +187,7 @@ trait Queue /* implements \ArrayAccess, \Countable, \SeekableIterator */
      *
      * @return int The number of items in the queue
      */
-    final public function count(): int
+    public function count(): int
     {
         return count($this->queue);
     }
@@ -198,7 +198,7 @@ trait Queue /* implements \ArrayAccess, \Countable, \SeekableIterator */
      *
      * @return mixed|null The queue's current element or NULL
      */
-    final public function current(): mixed
+    public function current(): mixed
     {
         return $this->queue[$this->index] ?? null;
     }
@@ -209,7 +209,7 @@ trait Queue /* implements \ArrayAccess, \Countable, \SeekableIterator */
      *
      * @return int The queue's current index
      */
-    final public function key(): int
+    public function key(): int
     {
         return $this->index;
     }
@@ -220,7 +220,7 @@ trait Queue /* implements \ArrayAccess, \Countable, \SeekableIterator */
      *
      * @return void
      */
-    final public function next(): void
+    public function next(): void
     {
         ++$this->index;
     }
@@ -231,7 +231,7 @@ trait Queue /* implements \ArrayAccess, \Countable, \SeekableIterator */
      *
      * @return void
      */
-    final public function rewind(): void
+    public function rewind(): void
     {
         $this->index = 0;
     }
@@ -242,7 +242,7 @@ trait Queue /* implements \ArrayAccess, \Countable, \SeekableIterator */
      *
      * @return bool Whether the queue's current index is valid
      */
-    final public function valid(): bool
+    public function valid(): bool
     {
         return isset($this->queue[$this->index]);
     }
@@ -257,7 +257,7 @@ trait Queue /* implements \ArrayAccess, \Countable, \SeekableIterator */
      *
      * @throws \OutOfBoundsException
      */
-    final public function seek(int $offset): void
+    public function seek(int $offset): void
     {
         if (!$this->isIndexInRange($offset)) {
             throw new \OutOfBoundsException('Invalid index to seek: ' . $offset);
@@ -271,7 +271,7 @@ trait Queue /* implements \ArrayAccess, \Countable, \SeekableIterator */
      *
      * @return array The list of the queue's allowed element types
      */
-    final protected function _getAllowedTypes(): array
+    protected function _getAllowedTypes(): array
     {
         return $this->allowedTypes;
     }
@@ -282,7 +282,7 @@ trait Queue /* implements \ArrayAccess, \Countable, \SeekableIterator */
      *
      * @param string[] $allowedTypes Allowed types of queue's elements
      */
-    final public function __construct(array $allowedTypes = [])
+    public function __construct(array $allowedTypes = [])
     {
         $this->allowedTypes = $allowedTypes;
     }
