@@ -41,7 +41,7 @@ trait Getter
      */
     public function __get(string $property): mixed
     {
-        $method = '_get' . ucfirst($property);
+        $method = 'magicGet' . ucfirst($property);
         if (
             property_exists(get_called_class(), $property)
             && method_exists(get_called_class(), $method)

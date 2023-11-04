@@ -108,7 +108,7 @@ trait Queue /* implements \ArrayAccess, \Countable, \SeekableIterator */
                 'max_range' => count($this->queue) - ($allowAppend ? 0 : 1)
             ]
         ];
-        return (filter_var($offset, FILTER_VALIDATE_INT, $options) !== false);
+        return filter_var($offset, FILTER_VALIDATE_INT, $options) !== false;
     }
 
     /**
@@ -271,7 +271,7 @@ trait Queue /* implements \ArrayAccess, \Countable, \SeekableIterator */
      *
      * @return array The list of the queue's allowed element types
      */
-    protected function _getAllowedTypes(): array
+    protected function magicGetAllowedTypes(): array
     {
         return $this->allowedTypes;
     }

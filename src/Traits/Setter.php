@@ -42,7 +42,7 @@ trait Setter
      */
     public function __set(string $property, mixed $value): void
     {
-        $method = '_set' . ucfirst($property);
+        $method = 'magicSet' . ucfirst($property);
         if (
             property_exists(get_called_class(), $property)
             && method_exists(get_called_class(), $method)
