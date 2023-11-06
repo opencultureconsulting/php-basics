@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Useful PHP Traits
+ * Useful PHP Basics
  * Copyright (C) 2023 Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -20,13 +20,15 @@
 
 declare(strict_types=1);
 
-namespace OCC\Traits;
+namespace OCC\Basics\Traits;
+
+use ReflectionClass;
 
 /**
  * Allows just a single instance of the class using this trait.
  *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
- * @package opencultureconsulting/traits
+ * @package opencultureconsulting/basics
  */
 trait Singleton
 {
@@ -41,7 +43,7 @@ trait Singleton
     public static function getInstance(): self
     {
         if (!isset(static::$singleton)) {
-            $reflectionClass = new \ReflectionClass(get_called_class());
+            $reflectionClass = new ReflectionClass(get_called_class());
             static::$singleton = $reflectionClass->newInstanceArgs(func_get_args());
         }
         return static::$singleton;

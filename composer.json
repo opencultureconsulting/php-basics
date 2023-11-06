@@ -1,6 +1,6 @@
 {
-    "name": "opencultureconsulting/traits",
-    "description": "This is a collection of useful traits for PHP projects.",
+    "name": "opencultureconsulting/basics",
+    "description": "This is a collection of generic Classes and useful Traits for PHP projects.",
     "type": "library",
     "keywords": [
         "trait",
@@ -9,7 +9,7 @@
         "singleton",
         "queue"
     ],
-    "homepage": "https://github.com/opencultureconsulting/php-traits",
+    "homepage": "https://github.com/opencultureconsulting/php-basics",
     "readme": "README.md",
     "license": "GPL-3.0-or-later",
     "authors": [
@@ -21,16 +21,16 @@
         }
     ],
     "support": {
-        "issues": "https://github.com/opencultureconsulting/php-traits/issues",
-        "source": "https://github.com/opencultureconsulting/php-traits",
-        "docs": "https://github.com/opencultureconsulting/php-traits/blob/main/README.md"
+        "issues": "https://github.com/opencultureconsulting/php-basics/issues",
+        "source": "https://github.com/opencultureconsulting/php-basics",
+        "docs": "https://github.com/opencultureconsulting/php-basics/blob/main/README.md"
     },
     "require": {
         "php": "^8.0"
     },
     "autoload": {
         "psr-4": {
-            "OCC\\Traits\\": "src/Traits/"
+            "OCC\\Basics\\": "src/"
         }
     }
 }

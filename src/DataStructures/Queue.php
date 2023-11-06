@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Useful PHP Traits
+ * Useful PHP Basics
  * Copyright (C) 2023 Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -20,18 +20,26 @@
 
 declare(strict_types=1);
 
-namespace OCC\Traits;
+namespace OCC\Basics\DataStructures;
+
+use ArrayAccess;
+use Countable;
+use InvalidArgumentException;
+use OCC\Basics\Traits\Getter;
+use OutOfBoundsException;
+use OutOfRangeException;
+use SeekableIterator;
 
 /**
- * Handles a queue of items - optionally type-sensitive.
+ * Handles an ordered queue of items - optionally type-sensitive.
  *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
- * @package opencultureconsulting/traits
- * @implements \ArrayAccess
- * @implements \Countable
- * @implements \SeekableIterator
+ * @package opencultureconsulting/basics
+ * @implements ArrayAccess
+ * @implements Countable
+ * @implements SeekableIterator
  */
-trait Queue /* implements \ArrayAccess, \Countable, \SeekableIterator */
+class Queue implements ArrayAccess, Countable, SeekableIterator
 {
     use Getter;
 
@@ -95,12 +103,12 @@ trait Queue /* implements \ArrayAccess, \Countable, \SeekableIterator */
     /**
      * Checks if a given index is in the range of valid indexes.
      *
-     * @param int $offset The index to check
+     * @param mixed $offset The index to check
      * @param bool $allowAppend Should the next free index be valid as well?
      *
      * @return bool Whether the given index is in valid range
      */
-    protected function isIndexInRange(int $offset, bool $allowAppend = false): bool
+    protected function isIndexInRange(mixed $offset, bool $allowAppend = false): bool
     {
         $options = [
             'options' => [
@@ -113,7 +121,7 @@ trait Queue /* implements \ArrayAccess, \Countable, \SeekableIterator */
 
     /**
      * Check if a given index exists on the queue.
-     * @see \ArrayAccess::offsetExists
+     * @see ArrayAccess::offsetExists
      *
      * @param int $offset The queue's index to check
      *
@@ -126,7 +134,7 @@ trait Queue /* implements \ArrayAccess, \Countable, \SeekableIterator */
 
     /**
      * Get the element with given index from the queue.
-     * @see \ArrayAccess::offsetGet
+     * @see ArrayAccess::offsetGet
      *
      * @param int $offset The queue's index to get
      *
@@ -139,33 +147,34 @@ trait Queue /* implements \ArrayAccess, \Countable, \SeekableIterator */
 
     /**
      * Set the element at given index in the queue.
-     * @see \ArrayAccess::offsetSet
+     * @see ArrayAccess::offsetSet
      *
      * @param ?int $offset The queue's index to set or NULL to append
-     *                     Must be between 0 and the length of the queue
+     *                     Must be between 0 and the length of the queue.
      * @param mixed $value The element to set at the given index
+     *                     Must be of an allowed type if applicable.
      *
      * @return void
      *
-     * @throws \InvalidArgumentException
-     * @throws \OutOfRangeException
+     * @throws InvalidArgumentException
+     * @throws OutOfRangeException
      */
     public function offsetSet(mixed $offset, mixed $value): void
     {
         if (is_null($offset)) {
             $offset = count($this->queue);
         } elseif (!$this->isIndexInRange($offset, true)) {
-            throw new \OutOfRangeException('Invalid index to set: ' . $offset);
+            throw new OutOfRangeException('Index must be an integer between 0 and the length of the queue (' . count($this->queue) . ') or NULL to append: ' . get_debug_type($offset) . (is_int($offset) ? ' ' . (string) $offset : '') . ' given.');
         }
         if (!$this->isAllowedType($value)) {
-            throw new \InvalidArgumentException('Invalid type of value: ' . gettype($value));
+            throw new InvalidArgumentException('Value must be one of ' . implode(', ', $this->allowedTypes) . ': ' . get_debug_type($value) . ' given.');
         }
-        $this->queue[$offset] = $value;
+        $this->queue[(int) $offset] = $value;
     }
 
     /**
      * Remove the element with given index from the queue.
-     * @see \ArrayAccess::offsetUnset
+     * @see ArrayAccess::offsetUnset
      *
      * @param int $offset The queue's index to unset
      *
@@ -174,8 +183,8 @@ trait Queue /* implements \ArrayAccess, \Countable, \SeekableIterator */
     public function offsetUnset(mixed $offset): void
     {
         if ($this->isIndexInRange($offset)) {
-            array_splice($this->queue, $offset, 1, []);
-            if ($offset <= $this->index) {
+            array_splice($this->queue, (int) $offset, 1);
+            if ((int) $offset <= $this->index) {
                 --$this->index;
             }
         }
@@ -183,7 +192,7 @@ trait Queue /* implements \ArrayAccess, \Countable, \SeekableIterator */
 
     /**
      * Get the number of elements in the queue.
-     * @see \Countable::count
+     * @see Countable::count
      *
      * @return int The number of items in the queue
      */
@@ -194,7 +203,7 @@ trait Queue /* implements \ArrayAccess, \Countable, \SeekableIterator */
 
     /**
      * Get the current element from the queue.
-     * @see \Iterator::current
+     * @see Iterator::current
      *
      * @return mixed|null The queue's current element or NULL
      */
@@ -205,7 +214,7 @@ trait Queue /* implements \ArrayAccess, \Countable, \SeekableIterator */
 
     /**
      * Get the current index from the queue.
-     * @see \Iterator::key
+     * @see Iterator::key
      *
      * @return int The queue's current index
      */
@@ -216,7 +225,7 @@ trait Queue /* implements \ArrayAccess, \Countable, \SeekableIterator */
 
     /**
      * Move the index to next element of the queue.
-     * @see \Iterator::next
+     * @see Iterator::next
      *
      * @return void
      */
@@ -227,7 +236,7 @@ trait Queue /* implements \ArrayAccess, \Countable, \SeekableIterator */
 
     /**
      * Reset the index to the first element of the queue.
-     * @see \Iterator::rewind
+     * @see Iterator::rewind
      *
      * @return void
      */
@@ -238,7 +247,7 @@ trait Queue /* implements \ArrayAccess, \Countable, \SeekableIterator */
 
     /**
      * Check if the queue's current index is valid.
-     * @see \Iterator::valid
+     * @see Iterator::valid
      *
      * @return bool Whether the queue's current index is valid
      */
@@ -249,25 +258,25 @@ trait Queue /* implements \ArrayAccess, \Countable, \SeekableIterator */
 
     /**
      * Sets the queue's current index.
-     * @see \SeekableIterator::seek
+     * @see SeekableIterator::seek
      *
      * @param int $offset The queue's new index
      *
      * @return void
      *
-     * @throws \OutOfBoundsException
+     * @throws OutOfBoundsException
      */
     public function seek(int $offset): void
     {
         if (!$this->isIndexInRange($offset)) {
-            throw new \OutOfBoundsException('Invalid index to seek: ' . $offset);
+            throw new OutOfBoundsException('Index must be an integer between 0 and the length of the queue (' . count($this->queue) . '): ' . (string) $offset . ' given.');
         }
         $this->index = $offset;
     }
 
     /**
      * Magic getter method for $this->allowedTypes.
-     * @see \OCC\Traits\Getter
+     * @see OCC\Traits\Getter
      *
      * @return array The list of the queue's allowed element types
      */
@@ -278,12 +287,17 @@ trait Queue /* implements \ArrayAccess, \Countable, \SeekableIterator */
 
     /**
      * Create a (type-sensitive) queue of elements.
-     * @see \OCC\Traits\Queue::allowedTypes
+     * @see OCC\Helper\Queue::allowedTypes
      *
      * @param string[] $allowedTypes Allowed types of queue's elements
+     *
+     * @throws InvalidArgumentException
      */
     public function __construct(array $allowedTypes = [])
     {
+        if (array_sum(array_map('is_string', $allowedTypes)) !== count($allowedTypes)) {
+            throw new InvalidArgumentException('Parameter 1 must be array of strings or empty array.');
+        }
         $this->allowedTypes = $allowedTypes;
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Useful PHP Traits
+ * Useful PHP Basics
  * Copyright (C) 2023 Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -20,13 +20,15 @@
 
 declare(strict_types=1);
 
-namespace OCC\Traits;
+namespace OCC\Basics\Traits;
+
+use InvalidArgumentException;
 
 /**
  * Reads data from inaccessible properties by using magic methods.
  *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
- * @package opencultureconsulting/traits
+ * @package opencultureconsulting/basics
  */
 trait Getter
 {
@@ -37,7 +39,7 @@ trait Getter
      *
      * @return mixed The class property's current value
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function __get(string $property): mixed
     {
@@ -48,7 +50,7 @@ trait Getter
         ) {
             return $this->$method();
         } else {
-            throw new \InvalidArgumentException('Invalid property or missing getter method for property "' . get_called_class() . '->' . $property . '".');
+            throw new InvalidArgumentException('Invalid property or missing getter method for property: ' . get_called_class() . '->' . $property . '.');
         }
     }
 
@@ -63,7 +65,7 @@ trait Getter
     {
         try {
             $value = $this->__get($property);
-        } catch (\InvalidArgumentException) {
+        } catch (InvalidArgumentException) {
             $value = null;
         } finally {
             return !empty($value);

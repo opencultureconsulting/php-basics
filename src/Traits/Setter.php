@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Useful PHP Traits
+ * Useful PHP Basics
  * Copyright (C) 2023 Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -20,13 +20,15 @@
 
 declare(strict_types=1);
 
-namespace OCC\Traits;
+namespace OCC\Basics\Traits;
+
+use InvalidArgumentException;
 
 /**
  * Writes data to inaccessible properties by using magic methods.
  *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
- * @package opencultureconsulting/traits
+ * @package opencultureconsulting/basics
  */
 trait Setter
 {
@@ -38,7 +40,7 @@ trait Setter
      *
      * @return void
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function __set(string $property, mixed $value): void
     {
@@ -49,7 +51,7 @@ trait Setter
         ) {
             $this->$method($value);
         } else {
-            throw new \InvalidArgumentException('Invalid property or missing setter method for property "' . get_called_class() . '->' . $property . '".');
+            throw new InvalidArgumentException('Invalid property or missing setter method for property: ' . get_called_class() . '->' . $property . '.');
         }
     }
 
@@ -60,12 +62,12 @@ trait Setter
      *
      * @return void
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function __unset(string $property): void
     {
         try {
             $this->__set($property, null);
-        } catch (\InvalidArgumentException) {}
+        } catch (InvalidArgumentException) {}
     }
 }
