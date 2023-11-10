@@ -27,7 +27,7 @@ use Iterator;
 use Serializable;
 
 /**
- * A (type-sensitive) destructive Last In, First Out Stack.
+ * A type-sensitive, destructive First In, First Out Queue.
  *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package opencultureconsulting/basics
@@ -35,50 +35,43 @@ use Serializable;
  * @implements \Iterator
  * @implements \Serializable
  */
-class StrictStack extends AbstractStrictList
+class Queue extends AbstractList
 {
     /**
-     * Get and remove the last item.
+     * Get the first item and remove it.
      * @see Iterator::current
-     *
-     * @return mixed The last item or NULL if empty
-     */
-    public function current(): mixed
-    {
-        return array_pop($this->items);
-    }
-
-    /**
-     * Get the last item without removing it.
      *
      * @return mixed The first item or NULL if empty
      */
-    public function peek(): mixed
+    public function current(): mixed
     {
-        return $this->items[array_key_last($this->items)] ?? null;
+        return array_shift($this->items);
     }
 
     /**
-     * Stack items.
-     * Alias of Stack::append
+     * Get a single item without removing it.
      *
-     * @param mixed ...$items One or more items to add
+     * @param ?int $offset Optional offset to peek, defaults to first
      *
-     * @return void
+     * @return mixed The item or NULL if empty
      */
-    public function stack(mixed ...$items): void
+    public function peek(?int $offset = null): mixed
     {
-        $this->append(...$items);
+        if (is_null($offset)) {
+            return reset($this->items) ?? null;
+        }
+        $item = array_slice($this->items, $offset, 1);
+        return $item[0] ?? null;
     }
 
     /**
-     * Unstack the last item.
-     * Alias of Stack::current
+     * Check if there is an item left on the queue.
+     * @see Iterator::valid
      *
-     * @return mixed The last item or NULL if empty
+     * @return bool Is there an item on the queue?
      */
-    public function unstack(): mixed
+    public function valid(): bool
     {
-        return $this->current();
+        return (bool) $this->count();
     }
 }

@@ -29,7 +29,7 @@ use OCC\Basics\Traits\Getter;
 use Serializable;
 
 /**
- * Abstract class for a type-sensitive list of items.
+ * A prototype for a type-sensitive, ordered list of items.
  *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package opencultureconsulting/basics
@@ -37,7 +37,7 @@ use Serializable;
  * @implements \Iterator
  * @implements \Serializable
  */
-abstract class AbstractStrictList implements Countable, Iterator, Serializable
+abstract class AbstractList implements Countable, Iterator, Serializable
 {
     use Getter;
 
@@ -47,9 +47,9 @@ abstract class AbstractStrictList implements Countable, Iterator, Serializable
     protected array $items = [];
 
     /**
-     * Count of iterations.
+     * Current position of iterator.
      */
-    protected int $iterations = 0;
+    protected int $position = 0;
 
     /**
      * Defines the allowed types for items.
@@ -79,13 +79,15 @@ abstract class AbstractStrictList implements Countable, Iterator, Serializable
      * @param mixed ...$items One or more items to add
      *
      * @return void
+     *
+     * @throws \InvalidArgumentException
      */
     public function append(mixed ...$items): void
     {
         if (!empty($this->allowedTypes)) {
             foreach ($items as $count => $item) {
                 if (!$this->isAllowedType($item)) {
-                    throw new InvalidArgumentException('Item ' . $count + 1 . ' must be an allowed type, ' . get_debug_type($item) . ' given.');
+                    throw new InvalidArgumentException('Parameter ' . $count + 1 . ' must be an allowed type, ' . get_debug_type($item) . ' given.');
                 }
             }
         }
@@ -115,12 +117,15 @@ abstract class AbstractStrictList implements Countable, Iterator, Serializable
     }
 
     /**
-     * Get and remove the current item.
+     * Get the current item.
      * @see Iterator::current
      *
      * @return mixed The current item or NULL if empty
      */
-    abstract public function current(): mixed;
+    public function current(): mixed
+    {
+        return $this->items[$this->position] ?? null;
+    }
 
     /**
      * Check if an item is an allowed type.
@@ -148,14 +153,14 @@ abstract class AbstractStrictList implements Countable, Iterator, Serializable
     }
 
     /**
-     * Get the number of the current iteration.
+     * Get the current iterator position.
      * @see Iterator::key
      *
-     * @return int The number of the current iteration
+     * @return int The current iterator position
      */
     public function key(): int
     {
-        return $this->iterations;
+        return $this->position;
     }
 
     /**
@@ -170,22 +175,15 @@ abstract class AbstractStrictList implements Countable, Iterator, Serializable
     }
 
     /**
-     * Count the next iteration.
+     * Move iterator to next position.
      * @see Iterator::next
      *
      * @return void
      */
     public function next(): void
     {
-        ++$this->iterations;
+        ++$this->position;
     }
-
-    /**
-     * Get the current item without removing it.
-     *
-     * @return mixed The current item or NULL if empty
-     */
-    abstract public function peek(): mixed;
 
     /**
      * Reset the iterator position.
@@ -195,7 +193,7 @@ abstract class AbstractStrictList implements Countable, Iterator, Serializable
      */
     public function rewind(): void
     {
-        $this->iterations = 0;
+        $this->position = 0;
     }
 
     /**
@@ -223,18 +221,18 @@ abstract class AbstractStrictList implements Countable, Iterator, Serializable
     }
 
     /**
-     * Check if there are any items.
+     * Check if there is an item at the current position.
      * @see Iterator::valid
      *
-     * @return bool Whether there are items
+     * @return bool Is there an item at the current position?
      */
     public function valid(): bool
     {
-        return (bool) $this->items;
+        return isset($this->items[$this->position]);
     }
 
     /**
-     * Reset iteration counter after cloning.
+     * Reset iterator position after cloning.
      *
      * @return void
      */
@@ -244,20 +242,21 @@ abstract class AbstractStrictList implements Countable, Iterator, Serializable
     }
 
     /**
-     * Create a (type-sensitive) traversable set of items.
+     * Create a type-sensitive traversable list of items.
      *
-     * @param array $items Initial set of items
+     * @param iterable $items Initial list of items
      * @param string[] $allowedTypes Allowed types of items (optional)
+     *
+     * @throws \InvalidArgumentException
      */
-    public function __construct(array $items = [], array $allowedTypes = [])
+    public function __construct(iterable $items = [], array $allowedTypes = [])
     {
-        if (!empty($allowedTypes)) {
-            if (array_sum(array_map('is_string', $allowedTypes)) !== count($allowedTypes)) {
-                throw new InvalidArgumentException('Allowed types must be array of strings or empty array.');
-            }
-            $this->allowedTypes = $allowedTypes;
+        if (array_sum(array_map('is_string', $allowedTypes)) !== count($allowedTypes)) {
+            throw new InvalidArgumentException('Allowed types must be array of strings or empty array.');
         }
+        $this->allowedTypes = $allowedTypes;
         $this->append(...$items);
+        $this->rewind();
     }
 
     /**
@@ -292,7 +291,6 @@ abstract class AbstractStrictList implements Countable, Iterator, Serializable
      */
     public function __unserialize(array $data): void
     {
-        $this->allowedTypes = $data['allowedTypes'] ?? [];
-        $this->items = $data['items'] ?? [];
+        $this->__construct($data['items'], $data['allowedTypes']);
     }
 }

@@ -27,7 +27,7 @@ use Iterator;
 use Serializable;
 
 /**
- * A (type-sensitive) destructive First In, First Out Queue.
+ * A (type-sensitive) destructive Last In, First Out Stack.
  *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package opencultureconsulting/basics
@@ -35,50 +35,43 @@ use Serializable;
  * @implements \Iterator
  * @implements \Serializable
  */
-class StrictQueue extends AbstractStrictList
+class StrictStack extends AbstractList
 {
     /**
-     * Get and remove the first item.
+     * Get the last item and remove it.
      * @see Iterator::current
      *
-     * @return mixed The first item or NULL if empty
+     * @return mixed The last item or NULL if empty
      */
     public function current(): mixed
     {
-        return array_shift($this->items);
+        return array_pop($this->items);
     }
 
     /**
-     * Dequeue the first item.
-     * Alias of Queue::current
+     * Get a single item without removing it.
      *
-     * @return mixed The first item or NULL if empty
+     * @param ?int $offset Optional offset to peek, defaults to last
+     *
+     * @return mixed The item or NULL if empty
      */
-    public function dequeue(): mixed
+    public function peek(?int $offset = null): mixed
     {
-        return $this->current();
+        if (is_null($offset)) {
+            return end($this->items) ?? null;
+        }
+        $item = array_slice($this->items, $offset, 1);
+        return $item[0] ?? null;
     }
 
     /**
-     * Enqueue items.
-     * Alias of Queue::append
+     * Check if there is an item left on the stack.
+     * @see Iterator::valid
      *
-     * @param mixed ...$items One or more items to add
-     *
-     * @return void
+     * @return bool Is there an item on the stack?
      */
-    public function enqueue(mixed ...$items): void
+    public function valid(): bool
     {
-        $this->append(...$items);
-    }
-
-    /**
-     * Get the first item without removing it.
-     *
-     * @return mixed The first item or NULL if empty
-     */
-    public function peek(): mixed
-    {
-        return $this->items[array_key_first($this->items)] ?? null;
+        return (bool) $this->count();
     }
 }
