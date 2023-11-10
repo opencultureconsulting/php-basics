@@ -31,7 +31,7 @@ namespace OCC\Basics\DataStructures;
  * @implements \Iterator
  * @implements \Serializable
  */
-class StrictStack extends AbstractList
+class Stack extends AbstractList
 {
     /**
      * Get the last item and remove it.
