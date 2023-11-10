@@ -25,7 +25,7 @@ namespace OCC\Basics\DataStructures;
 use InvalidArgumentException;
 
 /**
- * A type-sensitive, ordered set of items.
+ * A type-sensitive, ordered Set.
  *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package opencultureconsulting/basics

@@ -22,10 +22,6 @@ declare(strict_types=1);
 
 namespace OCC\Basics\DataStructures;
 
-use Countable;
-use Iterator;
-use Serializable;
-
 /**
  * A type-sensitive, destructive First In, First Out Queue.
  *

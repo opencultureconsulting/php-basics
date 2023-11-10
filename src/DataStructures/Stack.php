@@ -22,12 +22,8 @@ declare(strict_types=1);
 
 namespace OCC\Basics\DataStructures;
 
-use Countable;
-use Iterator;
-use Serializable;
-
 /**
- * A (type-sensitive) destructive Last In, First Out Stack.
+ * A type-sensitive, destructive Last In, First Out Stack.
  *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package opencultureconsulting/basics
