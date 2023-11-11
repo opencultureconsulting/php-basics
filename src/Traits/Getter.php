@@ -45,12 +45,12 @@ trait Getter
     {
         $method = 'magicGet' . ucfirst($property);
         if (
-            property_exists(get_called_class(), $property)
-            && method_exists(get_called_class(), $method)
+            property_exists(static::class, $property)
+            && method_exists(static::class, $method)
         ) {
             return $this->$method();
         } else {
-            throw new InvalidArgumentException('Invalid property or missing getter method for property: ' . get_called_class() . '->' . $property . '.');
+            throw new InvalidArgumentException('Invalid property or missing getter method for property: ' . static::class . '->' . $property . '.');
         }
     }
 

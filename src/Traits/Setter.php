@@ -46,12 +46,12 @@ trait Setter
     {
         $method = 'magicSet' . ucfirst($property);
         if (
-            property_exists(get_called_class(), $property)
-            && method_exists(get_called_class(), $method)
+            property_exists(static::class, $property)
+            && method_exists(static::class, $method)
         ) {
             $this->$method($value);
         } else {
-            throw new InvalidArgumentException('Invalid property or missing setter method for property: ' . get_called_class() . '->' . $property . '.');
+            throw new InvalidArgumentException('Invalid property or missing setter method for property: ' . static::class . '->' . $property . '.');
         }
     }
 

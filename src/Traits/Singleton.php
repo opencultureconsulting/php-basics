@@ -40,20 +40,22 @@ trait Singleton
      *
      * @param mixed ...$args Parameters for the constructor
      */
-    public static function getInstance(mixed ...$args): self
+    final public static function getInstance(mixed ...$args): static
     {
         $class = static::class;
         if (!isset(static::$singleton[$class])) {
-            static::$singleton[$class] = new $class(...$args);
+            static::$singleton[$class] = new static(...$args);
         }
         return static::$singleton[$class];
     }
 
     /**
-     * This is a singleton class, thus the constructor is protected.
+     * This is a singleton class, thus the constructor is private.
      * (Get an instance of this class by calling self::getInstance())
+     *
+     * @param mixed ...$args Parameters for the constructor
      */
-    abstract protected function __construct();
+    abstract private function __construct(mixed ...$args);
 
     /**
      * This is a singleton class, thus cloning is prohibited.
