@@ -22,8 +22,6 @@ declare(strict_types=1);
 
 namespace OCC\Basics\Traits;
 
-use ReflectionClass;
-
 /**
  * Allows just a single instance of the class using this trait.
  *
@@ -35,25 +33,27 @@ trait Singleton
     /**
      * Holds the singleton instances.
      */
-    private static ?self $singleton;
+    private static array $singleton = [];
 
     /**
      * Get a singleton instance of this class.
+     *
+     * @param mixed ...$args Parameters for the constructor
      */
-    public static function getInstance(): self
+    public static function getInstance(mixed ...$args): self
     {
-        if (!isset(static::$singleton)) {
-            $reflectionClass = new ReflectionClass(get_called_class());
-            static::$singleton = $reflectionClass->newInstanceArgs(func_get_args());
+        $class = static::class;
+        if (!isset(static::$singleton[$class])) {
+            static::$singleton[$class] = new $class(...$args);
         }
-        return static::$singleton;
+        return static::$singleton[$class];
     }
 
     /**
-     * This is a singleton class, thus the constructor is private.
+     * This is a singleton class, thus the constructor is protected.
      * (Get an instance of this class by calling self::getInstance())
      */
-    abstract private function __construct();
+    abstract protected function __construct();
 
     /**
      * This is a singleton class, thus cloning is prohibited.
