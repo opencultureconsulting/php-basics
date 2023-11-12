@@ -22,52 +22,48 @@ declare(strict_types=1);
 
 namespace OCC\Basics\DataStructures;
 
+use RuntimeException;
+
 /**
- * A type-sensitive, destructive First In, First Out Queue.
+ * A type-sensitive, taversable First In, First Out Queue (FIFO).
  *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package opencultureconsulting/basics
+ *
+ * @implements \ArrayAccess
  * @implements \Countable
  * @implements \Iterator
  * @implements \Serializable
  */
-class Queue extends AbstractList
+class StrictQueue extends StrictList
 {
     /**
-     * Get the first item and remove it.
-     * @see Iterator::current
+     * Set the mode of iteration.
+     * @see SplDoublyLinkedList::setIteratorMode
      *
-     * @return mixed The first item or NULL if empty
+     * @param int $mode The new iterator mode (0 or 1)
+     *
+     * @return int The set of flags and modes of iteration
+     *
+     * @throws \RuntimeException
      */
-    public function current(): mixed
+    public function setIteratorMode(int $mode): int
     {
-        return array_shift($this->items);
-    }
-
-    /**
-     * Get a single item without removing it.
-     *
-     * @param ?int $offset Optional offset to peek, defaults to first
-     *
-     * @return mixed The item or NULL if empty
-     */
-    public function peek(?int $offset = null): mixed
-    {
-        if (is_null($offset)) {
-            return reset($this->items) ?? null;
+        if ($mode > 1) {
+            throw new RuntimeException('Changing the iterator direction of ' . static::class . ' is prohibited.');
         }
-        $item = array_slice($this->items, $offset, 1);
-        return $item[0] ?? null;
+        return parent::setIteratorMode($mode);
     }
 
     /**
-     * Check if there is an item left on the queue.
-     * @see Iterator::valid
+     * Create a type-sensitive, traversable queue of items.
      *
-     * @return bool Is there an item on the queue?
+     * @param iterable $items Initial set of items
+     * @param string[] $allowedTypes Allowed types of items (optional)
      */
-    public function valid(): bool
+    public function __construct(iterable $items = [], array $allowedTypes = [])
     {
-        return (bool) $this->count();
+        parent::__construct($items, $allowedTypes);
+        $this->setIteratorMode(0);
     }
 }

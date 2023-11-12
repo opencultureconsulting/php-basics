@@ -22,34 +22,24 @@ declare(strict_types=1);
 
 namespace OCC\Basics\DataStructures;
 
-use Countable;
 use InvalidArgumentException;
-use Iterator;
+use SplDoublyLinkedList;
 use OCC\Basics\Traits\Getter;
-use Serializable;
 
 /**
- * A prototype for a type-sensitive, ordered list of items.
+ * A type-sensitive, taversable List.
  *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package opencultureconsulting/basics
+ *
+ * @implements \ArrayAccess
  * @implements \Countable
  * @implements \Iterator
  * @implements \Serializable
  */
-abstract class AbstractList implements Countable, Iterator, Serializable
+class StrictList extends SplDoublyLinkedList
 {
     use Getter;
-
-    /**
-     * The items.
-     */
-    protected array $items = [];
-
-    /**
-     * Current position of iterator.
-     */
-    protected int $position = 0;
 
     /**
      * Defines the allowed types for items.
@@ -74,9 +64,28 @@ abstract class AbstractList implements Countable, Iterator, Serializable
     protected array $allowedTypes = [];
 
     /**
-     * Append items.
+     * Add/insert a new item at the specified index.
+     * @see SplDoublyLinkedList::add
      *
-     * @param mixed ...$items One or more items to add
+     * @param int $index The index where the new item is to be inserted
+     * @param mixed $item The new item for the index
+     *
+     * @return void
+     *
+     * @throws \InvalidArgumentException
+     */
+    public function add(int $index, mixed $item): void
+    {
+        if (!$this->isAllowedType($item)) {
+            throw new InvalidArgumentException('Parameter 2 must be an allowed type, ' . get_debug_type($item) . ' given.');
+        }
+        parent::add($index, $item);
+    }
+
+    /**
+     * Append items at the end of the list.
+     *
+     * @param mixed ...$items One or more items to append
      *
      * @return void
      *
@@ -84,57 +93,34 @@ abstract class AbstractList implements Countable, Iterator, Serializable
      */
     public function append(mixed ...$items): void
     {
-        if (!empty($this->allowedTypes)) {
-            foreach ($items as $count => $item) {
-                if (!$this->isAllowedType($item)) {
-                    throw new InvalidArgumentException('Parameter ' . $count + 1 . ' must be an allowed type, ' . get_debug_type($item) . ' given.');
-                }
+        foreach ($items as $count => $item) {
+            if (!$this->isAllowedType($item)) {
+                throw new InvalidArgumentException('Parameter ' . $count + 1 . ' must be an allowed type, ' . get_debug_type($item) . ' given.');
             }
         }
-        $this->items = array_merge($this->items, $items);
+        foreach ($items as $item) {
+            parent::push($item);
+        }
     }
 
     /**
-     * Get the number of items.
-     * @see Countable::count
+     * Get the allowed item types.
      *
-     * @return int The number of items
+     * @return array The list of allowed item types
      */
-    public function count(): int
+    public function getAllowedTypes(): array
     {
-        return count($this->items);
+        return $this->allowedTypes;
     }
 
     /**
-     * Clear all items.
-     *
-     * @return void
-     */
-    public function clear(): void
-    {
-        $this->items = [];
-        $this->rewind();
-    }
-
-    /**
-     * Get the current item.
-     * @see Iterator::current
-     *
-     * @return mixed The current item or NULL if empty
-     */
-    public function current(): mixed
-    {
-        return $this->items[$this->position] ?? null;
-    }
-
-    /**
-     * Check if an item is an allowed type.
+     * Check if item is an allowed type.
      *
      * @param mixed $item The item to check
      *
      * @return bool Whether the item is an allowed type
      */
-    protected function isAllowedType(mixed $item): bool
+    public function isAllowedType(mixed $item): bool
     {
         if (empty($this->allowedTypes)) {
             return true;
@@ -153,17 +139,6 @@ abstract class AbstractList implements Countable, Iterator, Serializable
     }
 
     /**
-     * Get the current iterator position.
-     * @see Iterator::key
-     *
-     * @return int The current iterator position
-     */
-    public function key(): int
-    {
-        return $this->position;
-    }
-
-    /**
      * Magic getter method for $this->allowedTypes.
      * @see OCC\Basics\Traits\Getter
      *
@@ -175,34 +150,70 @@ abstract class AbstractList implements Countable, Iterator, Serializable
     }
 
     /**
-     * Move iterator to next position.
-     * @see Iterator::next
+     * Set the item at the specified index.
+     * @see ArrayAccess::offsetSet
+     *
+     * @param ?int $index The index being set or NULL to append
+     * @param mixed $item The new item for the index
      *
      * @return void
+     *
+     * @throws \InvalidArgumentException
      */
-    public function next(): void
+    public function offsetSet(mixed $index, mixed $item): void
     {
-        ++$this->position;
+        if (!$this->isAllowedType($item)) {
+            throw new InvalidArgumentException('Parameter 2 must be an allowed type, ' . get_debug_type($item) . ' given.');
+        }
+        parent::offsetSet($index, $item);
     }
 
     /**
-     * Reset the iterator position.
-     * @see Iterator::rewind
+     * Prepend items at the start of the list.
+     *
+     * @param mixed ...$items One or more items to prepend
      *
      * @return void
+     *
+     * @throws \InvalidArgumentException
      */
-    public function rewind(): void
+    public function prepend(mixed ...$items): void
     {
-        $this->position = 0;
+        foreach ($items as $count => $item) {
+            if (!$this->isAllowedType($item)) {
+                throw new InvalidArgumentException('Parameter ' . $count + 1 . ' must be an allowed type, ' . get_debug_type($item) . ' given.');
+            }
+        }
+        foreach ($items as $item) {
+            parent::unshift($item);
+        }
+    }
+
+    /**
+     * Push an item at the end of the list.
+     * @see SplDoublyLinkedList::push
+     *
+     * @param mixed $item The item to push
+     *
+     * @return void
+     *
+     * @throws \InvalidArgumentException
+     */
+    public function push(mixed $item): void
+    {
+        if (!$this->isAllowedType($item)) {
+            throw new InvalidArgumentException('Parameter 1 must be an allowed type, ' . get_debug_type($item) . ' given.');
+        }
+        parent::push($item);
     }
 
     /**
      * Get string representation of $this.
      * @see Serializable::serialize
      *
-     * @return ?string String representation
+     * @return string String representation
      */
-    public function serialize(): ?string
+    public function serialize(): string
     {
         return serialize($this->__serialize());
     }
@@ -221,30 +232,27 @@ abstract class AbstractList implements Countable, Iterator, Serializable
     }
 
     /**
-     * Check if there is an item at the current position.
-     * @see Iterator::valid
+     * Prepend the list with an item.
+     * @see SplDoublyLinkedList::unshift
      *
-     * @return bool Is there an item at the current position?
-     */
-    public function valid(): bool
-    {
-        return isset($this->items[$this->position]);
-    }
-
-    /**
-     * Reset iterator position after cloning.
+     * @param mixed $item The item to unshift
      *
      * @return void
+     *
+     * @throws \InvalidArgumentException
      */
-    public function __clone(): void
+    public function unshift(mixed $item): void
     {
-        $this->rewind();
+        if (!$this->isAllowedType($item)) {
+            throw new InvalidArgumentException('Parameter 1 must be an allowed type, ' . get_debug_type($item) . ' given.');
+        }
+        parent::unshift($item);
     }
 
     /**
-     * Create a type-sensitive traversable list of items.
+     * Create a type-sensitive, traversable list of items.
      *
-     * @param iterable $items Initial list of items
+     * @param iterable $items Initial set of items
      * @param string[] $allowedTypes Allowed types of items (optional)
      *
      * @throws \InvalidArgumentException
@@ -256,7 +264,6 @@ abstract class AbstractList implements Countable, Iterator, Serializable
         }
         $this->allowedTypes = $allowedTypes;
         $this->append(...$items);
-        $this->rewind();
     }
 
     /**
@@ -278,7 +285,8 @@ abstract class AbstractList implements Countable, Iterator, Serializable
     {
         return [
             'allowedTypes' => $this->allowedTypes,
-            'items' => $this->items
+            'splDoublyLinkedList::flags' => $this->getIteratorMode(),
+            'splDoublyLinkedList::dllist' => iterator_to_array($this)
         ];
     }
 
@@ -291,6 +299,7 @@ abstract class AbstractList implements Countable, Iterator, Serializable
      */
     public function __unserialize(array $data): void
     {
-        $this->__construct($data['items'], $data['allowedTypes']);
+        $this->__construct($data['splDoublyLinkedList::dllist'], $data['allowedTypes']);
+        $this->setIteratorMode($data['splDoublyLinkedList::flags']);
     }
 }
