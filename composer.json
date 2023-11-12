@@ -7,7 +7,10 @@
         "getter",
         "setter",
         "singleton",
-        "queue"
+        "list",
+        "queue",
+        "stack",
+        "errorhandler"
     ],
     "homepage": "https://github.com/opencultureconsulting/php-basics",
     "readme": "README.md",
