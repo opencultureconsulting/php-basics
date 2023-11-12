@@ -26,7 +26,7 @@ use ErrorException;
 
 /**
  * Handles an internal PHP error and throws it as ErrorException.
- * @example set_error_handler('\\OCC\\Basics\\Functions\\throwError', E_ALL);
+ * @example set_error_handler('\\OCC\\Basics\\Functions\\throwErrorException');
  *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package opencultureconsulting/basics
@@ -40,7 +40,7 @@ use ErrorException;
  *
  * @throws \ErrorException
  */
-function throwError(int $severity = E_ALL, string $message = '', ?string $filename = null, ?int $line = null): bool
+function throwErrorException(int $severity = E_ALL, string $message = '', ?string $filename = null, ?int $line = null): bool
 {
     if (error_reporting() & $severity) {
         throw new ErrorException($message, 0, $severity, $filename, $line);
