@@ -22,6 +22,8 @@ declare(strict_types=1);
 
 namespace OCC\Basics\Traits;
 
+use LogicException;
+
 /**
  * Allows just a single instance of the class using this trait.
  *
@@ -38,29 +40,31 @@ trait Singleton
     /**
      * Get a singleton instance of this class.
      *
-     * @param mixed ...$args Parameters for the constructor
+     * @param mixed ...$args Constructor parameters
      */
     final public static function getInstance(mixed ...$args): static
     {
-        $class = static::class;
-        if (!isset(static::$singleton[$class])) {
-            static::$singleton[$class] = new static(...$args);
+        if (!isset(static::$singleton[static::class])) {
+            static::$singleton[static::class] = new static(...$args);
         }
-        return static::$singleton[$class];
+        return static::$singleton[static::class];
     }
 
     /**
      * This is a singleton class, thus the constructor is private.
      * (Get an instance of this class by calling self::getInstance())
      *
-     * @param mixed ...$args Parameters for the constructor
+     * @param mixed ...$args Constructor parameters
      */
     abstract private function __construct(mixed ...$args);
 
     /**
      * This is a singleton class, thus cloning is prohibited.
+     *
+     * @throws \LogicException
      */
-    private function __clone(): void
+    final public function __clone(): void
     {
+        throw new LogicException('Cloning of a Singleton is prohibited.');
     }
 }
