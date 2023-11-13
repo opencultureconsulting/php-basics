@@ -47,7 +47,7 @@ class StrictQueue extends StrictList
      *
      * @throws \RuntimeException
      */
-    public function setIteratorMode(int $mode): int
+    final public function setIteratorMode(int $mode): int
     {
         if ($mode > 1) {
             throw new RuntimeException('Changing the iterator direction of ' . static::class . ' is prohibited.');
