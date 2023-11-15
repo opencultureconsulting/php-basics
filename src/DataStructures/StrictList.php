@@ -24,7 +24,7 @@ namespace OCC\Basics\DataStructures;
 
 use InvalidArgumentException;
 use SplDoublyLinkedList;
-use OCC\Basics\Traits\Getter;
+use OCC\Basics\Trait\Getter;
 
 /**
  * A type-sensitive, taversable List.
@@ -44,8 +44,7 @@ class StrictList extends SplDoublyLinkedList
     /**
      * Defines the allowed types for items.
      *
-     * If empty, all types are allowed.
-     * Possible values are:
+     * If empty, all types are allowed. Possible values are:
      * - "array"
      * - "bool"
      * - "callable"
@@ -59,6 +58,7 @@ class StrictList extends SplDoublyLinkedList
      * - "resource"
      * - "scalar"
      * - "string"
+     *
      * Fully qualified class names (FQCN) can be specified instead of the
      * generic type "object".
      */
@@ -141,7 +141,7 @@ class StrictList extends SplDoublyLinkedList
 
     /**
      * Magic getter method for $this->allowedTypes.
-     * @see OCC\Basics\Traits\Getter
+     * @see OCC\Basics\Trait\Getter
      *
      * @return array The list of allowed item types
      */

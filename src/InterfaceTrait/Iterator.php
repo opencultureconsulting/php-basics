@@ -20,7 +20,7 @@
 
 declare(strict_types=1);
 
-namespace OCC\Basics\Traits;
+namespace OCC\Basics\InterfaceTrait;
 
 /**
  * A generic implementation of the Iterator interface.

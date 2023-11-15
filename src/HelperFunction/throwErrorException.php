@@ -20,14 +20,14 @@
 
 declare(strict_types=1);
 
-namespace OCC\Basics\Functions;
+namespace OCC\Basics\HelperFunction;
 
 use ErrorException;
 
 /**
  * Converts an internal PHP error into an ErrorException.
  *
- * Usage: set_error_handler('\\OCC\\Basics\\Functions\\throwErrorException');
+ * Usage: set_error_handler('\\OCC\\Basics\\HelperFunction\\throwErrorException');
  *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package opencultureconsulting/basics

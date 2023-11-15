@@ -20,31 +20,33 @@
 
 declare(strict_types=1);
 
-namespace OCC\Basics\Traits;
+namespace OCC\Basics\InterfaceTrait;
+
+use ArrayIterator;
 
 /**
- * A generic implementation of the Countable interface.
+ * A generic implementation of the IteratorAggregate interface.
  *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package opencultureconsulting/basics
  *
- * @implements \Countable
+ * @implements \IteratorAggregate
  */
-trait Countable /* implements \Countable */
+trait IteratorAggregate /* implements \IteratorAggregate */
 {
     /**
-     * Holds the countable data.
+     * Holds the iterable data.
      */
     private array $data = [];
 
     /**
-     * Count the data items.
-     * @see \Countable::count()
+     * Retrieve an external iterator.
+     * @see \IteratorAggregate::getIterator()
      *
-     * @return int The number of data items
+     * @return \ArrayIterator
      */
-    public function count(): int
+    public function getIterator(): ArrayIterator
     {
-        return count($this->data);
+        return new ArrayIterator($this->data);
     }
 }

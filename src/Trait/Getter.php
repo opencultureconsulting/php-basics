@@ -20,54 +20,55 @@
 
 declare(strict_types=1);
 
-namespace OCC\Basics\Traits;
+namespace OCC\Basics\Trait;
 
 use InvalidArgumentException;
 
 /**
- * Writes data to inaccessible properties by using magic methods.
+ * Reads data from inaccessible properties by using magic methods.
  *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package opencultureconsulting/basics
  */
-trait Setter
+trait Getter
 {
     /**
-     * Write data to an inaccessible property.
+     * Read data from an inaccessible property.
      *
-     * @param string $property The class property to set
-     * @param mixed $value The new value of the property
+     * @param string $property The class property to get
      *
-     * @return void
+     * @return mixed The class property's current value
      *
      * @throws InvalidArgumentException
      */
-    public function __set(string $property, mixed $value): void
+    public function __get(string $property): mixed
     {
-        $method = 'magicSet' . ucfirst($property);
+        $method = 'magicGet' . ucfirst($property);
         if (
             property_exists(static::class, $property)
             && method_exists(static::class, $method)
         ) {
-            $this->$method($value);
+            return $this->$method();
         } else {
-            throw new InvalidArgumentException('Invalid property or missing setter method for property: ' . static::class . '->' . $property . '.');
+            throw new InvalidArgumentException('Invalid property or missing getter method for property: ' . static::class . '->' . $property . '.');
         }
     }
 
     /**
-     * Unset an inaccessible property.
+     * Check if an inaccessible property is set and not empty.
      *
-     * @param string $property The class property to unset
+     * @param string $property The class property to check
      *
-     * @return void
-     *
-     * @throws InvalidArgumentException
+     * @return bool Whether the class property is set and not empty
      */
-    public function __unset(string $property): void
+    public function __isset(string $property): bool
     {
         try {
-            $this->__set($property, null);
-        } catch (InvalidArgumentException) {}
+            $value = $this->__get($property);
+        } catch (InvalidArgumentException) {
+            $value = null;
+        } finally {
+            return !empty($value);
+        }
     }
 }
