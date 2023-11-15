@@ -52,7 +52,8 @@ trait Singleton
 
     /**
      * This is a singleton class, thus the constructor is private.
-     * (Get an instance of this class by calling self::getInstance())
+     *
+     * Usage: Get an instance of this class by calling self::getInstance()
      *
      * @param mixed ...$args Constructor parameters
      */

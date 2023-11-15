@@ -25,25 +25,26 @@ namespace OCC\Basics\Functions;
 use ErrorException;
 
 /**
- * Handles an internal PHP error and throws it as ErrorException.
- * @example set_error_handler('\\OCC\\Basics\\Functions\\throwErrorException');
+ * Converts an internal PHP error into an ErrorException.
+ *
+ * Usage: set_error_handler('\\OCC\\Basics\\Functions\\throwErrorException');
  *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package opencultureconsulting/basics
  *
  * @param int $severity The severity of the error
  * @param string $message The error message
- * @param ?string $filename The name of the file the error was raised in
- * @param ?int $line The number of the line the error was raised in
+ * @param ?string $file The name of the file the error was raised in
+ * @param ?int $line The line number the error was raised in
  *
  * @return bool Always returns FALSE when not throwing an exception
  *
  * @throws \ErrorException
  */
-function throwErrorException(int $severity = E_ALL, string $message = '', ?string $filename = null, ?int $line = null): bool
+function throwErrorException(int $severity = E_ALL, string $message = '', ?string $file = null, ?int $line = null): bool
 {
     if (error_reporting() & $severity) {
-        throw new ErrorException($message, 0, $severity, $filename, $line);
+        throw new ErrorException($message, 0, $severity, $file, $line);
     }
     return false;
 }

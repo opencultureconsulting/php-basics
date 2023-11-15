@@ -43,29 +43,30 @@ class StrictList extends SplDoublyLinkedList
 
     /**
      * Defines the allowed types for items.
-     *  If empty, all types are allowed.
-     *  Possible values are:
-     *  - "array"
-     *  - "bool"
-     *  - "callable"
-     *  - "countable"
-     *  - "float" or "double"
-     *  - "int" or "integer" or "long"
-     *  - "iterable"
-     *  - "null"
-     *  - "numeric"
-     *  - "object" or FQCN
-     *  - "resource"
-     *  - "scalar"
-     *  - "string"
-     *  Fully qualified class names (FQCN) can be specified instead of the
-     *  generic type "object".
+     *
+     * If empty, all types are allowed.
+     * Possible values are:
+     * - "array"
+     * - "bool"
+     * - "callable"
+     * - "countable"
+     * - "float" or "double"
+     * - "int" or "integer" or "long"
+     * - "iterable"
+     * - "null"
+     * - "numeric"
+     * - "object" or FQCN
+     * - "resource"
+     * - "scalar"
+     * - "string"
+     * Fully qualified class names (FQCN) can be specified instead of the
+     * generic type "object".
      */
     protected array $allowedTypes = [];
 
     /**
      * Add/insert a new item at the specified index.
-     * @see SplDoublyLinkedList::add
+     * @see SplDoublyLinkedList::add()
      *
      * @param int $index The index where the new item is to be inserted
      * @param mixed $item The new item for the index
@@ -151,7 +152,7 @@ class StrictList extends SplDoublyLinkedList
 
     /**
      * Set the item at the specified index.
-     * @see ArrayAccess::offsetSet
+     * @see ArrayAccess::offsetSet()
      *
      * @param ?int $index The index being set or NULL to append
      * @param mixed $item The new item for the index
@@ -191,7 +192,7 @@ class StrictList extends SplDoublyLinkedList
 
     /**
      * Push an item at the end of the list.
-     * @see SplDoublyLinkedList::push
+     * @see SplDoublyLinkedList::push()
      *
      * @param mixed $item The item to push
      *
@@ -209,7 +210,7 @@ class StrictList extends SplDoublyLinkedList
 
     /**
      * Get string representation of $this.
-     * @see Serializable::serialize
+     * @see Serializable::serialize()
      *
      * @return string String representation
      */
@@ -220,7 +221,7 @@ class StrictList extends SplDoublyLinkedList
 
     /**
      * Restore $this from string representation.
-     * @see Serializable::unserialize
+     * @see Serializable::unserialize()
      *
      * @param string $data String representation
      *
@@ -233,7 +234,7 @@ class StrictList extends SplDoublyLinkedList
 
     /**
      * Prepend the list with an item.
-     * @see SplDoublyLinkedList::unshift
+     * @see SplDoublyLinkedList::unshift()
      *
      * @param mixed $item The item to unshift
      *
