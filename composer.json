@@ -1,16 +1,19 @@
 {
     "name": "opencultureconsulting/basics",
-    "description": "This is a collection of generic Classes and useful Traits for PHP projects.",
+    "description": "This is a collection of generic Classes, Functions and useful Traits for PHP projects.",
     "type": "library",
     "keywords": [
-        "trait",
-        "getter",
-        "setter",
-        "singleton",
-        "list",
-        "queue",
-        "stack",
-        "errorhandler"
+        "ArrayAccess",
+        "Countable",
+        "Getter",
+        "Iterator",
+        "IteratorAggregate",
+        "Setter",
+        "Singleton",
+        "StrictList",
+        "StrictQueue",
+        "StrictStack",
+        "throwErrorException"
     ],
     "homepage": "https://github.com/opencultureconsulting/php-basics",
     "readme": "README.md",
