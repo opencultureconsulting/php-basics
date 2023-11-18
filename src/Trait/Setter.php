@@ -68,6 +68,7 @@ trait Setter
     {
         try {
             $this->__set($property, null);
-        } catch (InvalidArgumentException) {}
+        } catch (InvalidArgumentException) {
+        }
     }
 }
