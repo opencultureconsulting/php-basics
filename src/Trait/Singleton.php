@@ -62,7 +62,7 @@ trait Singleton
     /**
      * This is a singleton class, thus cloning is prohibited.
      *
-     * @throws \LogicException
+     * @throws LogicException
      */
     final public function __clone(): void
     {

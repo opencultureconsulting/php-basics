@@ -43,7 +43,7 @@ trait IteratorAggregate /* implements \IteratorAggregate */
      * Retrieve an external iterator.
      * @see \IteratorAggregate::getIterator()
      *
-     * @return \ArrayIterator
+     * @return ArrayIterator
      */
     public function getIterator(): ArrayIterator
     {

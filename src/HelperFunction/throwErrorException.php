@@ -39,7 +39,7 @@ use ErrorException;
  *
  * @return bool Always returns FALSE when not throwing an exception
  *
- * @throws \ErrorException
+ * @throws ErrorException
  */
 function throwErrorException(int $severity = E_ALL, string $message = '', ?string $file = null, ?int $line = null): bool
 {

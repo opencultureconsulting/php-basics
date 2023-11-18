@@ -73,7 +73,7 @@ class StrictList extends SplDoublyLinkedList
      *
      * @return void
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function add(int $index, mixed $item): void
     {
@@ -90,7 +90,7 @@ class StrictList extends SplDoublyLinkedList
      *
      * @return void
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function append(mixed ...$items): void
     {
@@ -159,7 +159,7 @@ class StrictList extends SplDoublyLinkedList
      *
      * @return void
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function offsetSet(mixed $index, mixed $item): void
     {
@@ -176,7 +176,7 @@ class StrictList extends SplDoublyLinkedList
      *
      * @return void
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function prepend(mixed ...$items): void
     {
@@ -198,7 +198,7 @@ class StrictList extends SplDoublyLinkedList
      *
      * @return void
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function push(mixed $item): void
     {
@@ -240,7 +240,7 @@ class StrictList extends SplDoublyLinkedList
      *
      * @return void
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function unshift(mixed $item): void
     {
@@ -256,7 +256,7 @@ class StrictList extends SplDoublyLinkedList
      * @param iterable $items Initial set of items
      * @param string[] $allowedTypes Allowed types of items (optional)
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function __construct(iterable $items = [], array $allowedTypes = [])
     {

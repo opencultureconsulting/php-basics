@@ -45,7 +45,7 @@ class StrictStack extends StrictList
      *
      * @return int The set of flags and modes of iteration
      *
-     * @throws \RuntimeException
+     * @throws RuntimeException
      */
     final public function setIteratorMode(int $mode): int
     {
