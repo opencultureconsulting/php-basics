@@ -20,7 +20,7 @@
 
 declare(strict_types=1);
 
-namespace OCC\Basics\Trait;
+namespace OCC\Basics\Traits;
 
 use LogicException;
 

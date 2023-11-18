@@ -24,7 +24,7 @@ namespace OCC\Basics\DataStructures;
 
 use InvalidArgumentException;
 use SplDoublyLinkedList;
-use OCC\Basics\Trait\Getter;
+use OCC\Basics\Traits\Getter;
 
 /**
  * A type-sensitive, taversable List.
@@ -141,7 +141,7 @@ class StrictList extends SplDoublyLinkedList
 
     /**
      * Magic getter method for $this->allowedTypes.
-     * @see OCC\Basics\Trait\Getter
+     * @see OCC\Basics\Traits\Getter
      *
      * @return array The list of allowed item types
      */

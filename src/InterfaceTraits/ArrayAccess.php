@@ -20,7 +20,7 @@
 
 declare(strict_types=1);
 
-namespace OCC\Basics\InterfaceTrait;
+namespace OCC\Basics\InterfaceTraits;
 
 /**
  * A generic implementation of the ArrayAccess interface.
