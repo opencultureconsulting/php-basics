@@ -50,7 +50,12 @@ class StrictStack extends StrictList
     final public function setIteratorMode(int $mode): int
     {
         if ($mode < 2) {
-            throw new RuntimeException('Changing the iterator direction of ' . static::class . ' is prohibited.');
+            throw new RuntimeException(
+                sprintf(
+                    'Changing the iterator direction of %s is prohibited.',
+                    static::class
+                )
+            );
         }
         return parent::setIteratorMode($mode);
     }

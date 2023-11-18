@@ -78,7 +78,12 @@ class StrictList extends SplDoublyLinkedList
     public function add(int $index, mixed $item): void
     {
         if (!$this->isAllowedType($item)) {
-            throw new InvalidArgumentException('Parameter 2 must be an allowed type, ' . get_debug_type($item) . ' given.');
+            throw new InvalidArgumentException(
+                sprintf(
+                    'Parameter 2 must be an allowed type, %s given.',
+                    get_debug_type($item)
+                )
+            );
         }
         parent::add($index, $item);
     }
@@ -96,8 +101,14 @@ class StrictList extends SplDoublyLinkedList
     {
         foreach ($items as $count => $item) {
             if (!$this->isAllowedType($item)) {
-                throw new InvalidArgumentException('Parameter ' . $count + 1 . ' must be an allowed type, ' . get_debug_type($item) . ' given.');
-            }
+                throw new InvalidArgumentException(
+                    sprintf(
+                        'Parameter %d must be an allowed type, %s given.',
+                        $count + 1,
+                        get_debug_type($item)
+                    )
+                );
+                }
         }
         foreach ($items as $item) {
             parent::push($item);
@@ -128,10 +139,10 @@ class StrictList extends SplDoublyLinkedList
         }
         foreach ($this->allowedTypes as $type) {
             $function = 'is_' . $type;
-            $fqcn = '\\' . ltrim($type, '\\');
             if (function_exists($function) && $function($item)) {
                 return true;
             }
+            $fqcn = '\\' . ltrim($type, '\\');
             if (is_object($item) && is_a($item, $fqcn)) {
                 return true;
             }
@@ -164,7 +175,12 @@ class StrictList extends SplDoublyLinkedList
     public function offsetSet(mixed $index, mixed $item): void
     {
         if (!$this->isAllowedType($item)) {
-            throw new InvalidArgumentException('Parameter 2 must be an allowed type, ' . get_debug_type($item) . ' given.');
+            throw new InvalidArgumentException(
+                sprintf(
+                    'Parameter 2 must be an allowed type, %s given.',
+                    get_debug_type($item)
+                )
+            );
         }
         parent::offsetSet($index, $item);
     }
@@ -182,7 +198,13 @@ class StrictList extends SplDoublyLinkedList
     {
         foreach ($items as $count => $item) {
             if (!$this->isAllowedType($item)) {
-                throw new InvalidArgumentException('Parameter ' . $count + 1 . ' must be an allowed type, ' . get_debug_type($item) . ' given.');
+                throw new InvalidArgumentException(
+                    sprintf(
+                        'Parameter %d must be an allowed type, %s given.',
+                        $count + 1,
+                        get_debug_type($item)
+                    )
+                );
             }
         }
         foreach ($items as $item) {
@@ -203,7 +225,12 @@ class StrictList extends SplDoublyLinkedList
     public function push(mixed $item): void
     {
         if (!$this->isAllowedType($item)) {
-            throw new InvalidArgumentException('Parameter 1 must be an allowed type, ' . get_debug_type($item) . ' given.');
+            throw new InvalidArgumentException(
+                sprintf(
+                    'Parameter 1 must be an allowed type, %s given.',
+                    get_debug_type($item)
+                )
+            );
         }
         parent::push($item);
     }
@@ -245,7 +272,12 @@ class StrictList extends SplDoublyLinkedList
     public function unshift(mixed $item): void
     {
         if (!$this->isAllowedType($item)) {
-            throw new InvalidArgumentException('Parameter 1 must be an allowed type, ' . get_debug_type($item) . ' given.');
+            throw new InvalidArgumentException(
+                sprintf(
+                    'Parameter 1 must be an allowed type, %s given.',
+                    get_debug_type($item)
+                )
+            );
         }
         parent::unshift($item);
     }

@@ -51,7 +51,13 @@ trait Setter
         ) {
             $this->$method($value);
         } else {
-            throw new InvalidArgumentException('Invalid property or missing setter method for property: ' . static::class . '->' . $property . '.');
+            throw new InvalidArgumentException(
+                sprintf(
+                    'Invalid property or missing setter method for property: %s->%s.',
+                    static::class,
+                    $property
+                )
+            );
         }
     }
 

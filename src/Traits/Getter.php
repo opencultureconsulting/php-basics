@@ -50,7 +50,13 @@ trait Getter
         ) {
             return $this->$method();
         } else {
-            throw new InvalidArgumentException('Invalid property or missing getter method for property: ' . static::class . '->' . $property . '.');
+            throw new InvalidArgumentException(
+                sprintf(
+                    'Invalid property or missing getter method for property: %s->%s.',
+                    static::class,
+                    $property
+                )
+            );
         }
     }
 

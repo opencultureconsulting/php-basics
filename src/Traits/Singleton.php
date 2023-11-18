@@ -66,6 +66,6 @@ trait Singleton
      */
     final public function __clone(): void
     {
-        throw new LogicException('Cloning of a Singleton is prohibited.');
+        throw new LogicException('Cloning a singleton is prohibited.');
     }
 }
