@@ -39,7 +39,7 @@ class StrictQueue extends StrictList
 {
     /**
      * Set the mode of iteration.
-     * @see SplDoublyLinkedList::setIteratorMode()
+     * @see \SplDoublyLinkedList::setIteratorMode()
      *
      * @param int $mode The new iterator mode (0 or 1)
      *

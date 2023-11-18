@@ -152,7 +152,7 @@ class StrictList extends SplDoublyLinkedList
 
     /**
      * Magic getter method for $this->allowedTypes.
-     * @see OCC\Basics\Traits\Getter
+     * @see Getter
      *
      * @return array The list of allowed item types
      */
@@ -163,7 +163,7 @@ class StrictList extends SplDoublyLinkedList
 
     /**
      * Set the item at the specified index.
-     * @see ArrayAccess::offsetSet()
+     * @see \ArrayAccess::offsetSet()
      *
      * @param ?int $index The index being set or NULL to append
      * @param mixed $item The new item for the index
@@ -237,7 +237,7 @@ class StrictList extends SplDoublyLinkedList
 
     /**
      * Get string representation of $this.
-     * @see Serializable::serialize()
+     * @see \Serializable::serialize()
      *
      * @return string String representation
      */
@@ -248,7 +248,7 @@ class StrictList extends SplDoublyLinkedList
 
     /**
      * Restore $this from string representation.
-     * @see Serializable::unserialize()
+     * @see \Serializable::unserialize()
      *
      * @param string $data String representation
      *
@@ -293,7 +293,9 @@ class StrictList extends SplDoublyLinkedList
     public function __construct(iterable $items = [], array $allowedTypes = [])
     {
         if (array_sum(array_map('is_string', $allowedTypes)) !== count($allowedTypes)) {
-            throw new InvalidArgumentException('Allowed types must be array of strings or empty array.');
+            throw new InvalidArgumentException(
+                'Allowed types must be array of strings or empty array.'
+            );
         }
         $this->allowedTypes = $allowedTypes;
         $this->append(...$items);
@@ -317,9 +319,9 @@ class StrictList extends SplDoublyLinkedList
     public function __serialize(): array
     {
         return [
-            'allowedTypes' => $this->allowedTypes,
-            'splDoublyLinkedList::flags' => $this->getIteratorMode(),
-            'splDoublyLinkedList::dllist' => iterator_to_array($this)
+            'StrictList::allowedTypes' => $this->allowedTypes,
+            'SplDoublyLinkedList::flags' => $this->getIteratorMode(),
+            'SplDoublyLinkedList::dllist' => iterator_to_array($this)
         ];
     }
 
@@ -332,7 +334,10 @@ class StrictList extends SplDoublyLinkedList
      */
     public function __unserialize(array $data): void
     {
-        $this->__construct($data['splDoublyLinkedList::dllist'], $data['allowedTypes']);
-        $this->setIteratorMode($data['splDoublyLinkedList::flags']);
+        $this->__construct(
+            $data['SplDoublyLinkedList::dllist'],
+            $data['StrictList::allowedTypes']
+        );
+        $this->setIteratorMode($data['SplDoublyLinkedList::flags']);
     }
 }
