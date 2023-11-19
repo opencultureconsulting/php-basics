@@ -41,7 +41,7 @@ use ErrorException;
  *
  * @throws ErrorException
  */
-function throwErrorException(int $severity = E_ALL, string $message = '', ?string $file = null, ?int $line = null): bool
+function throwErrorException(int $severity = E_USER_ERROR, string $message = '', ?string $file = null, ?int $line = null): bool
 {
     if (error_reporting() & $severity) {
         throw new ErrorException($message, 0, $severity, $file, $line);
