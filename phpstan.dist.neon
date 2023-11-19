@@ -7,7 +7,7 @@ includes:
     - vendor/phpstan/phpstan-strict-rules/rules.neon
 
 parameters:
-    level: 2
+    level: 9
     strictRules:
         noVariableVariables: false
     paths:

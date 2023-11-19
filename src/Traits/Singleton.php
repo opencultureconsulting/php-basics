@@ -41,6 +41,8 @@ trait Singleton
      * Get a singleton instance of this class.
      *
      * @param mixed ...$args Constructor parameters
+     *
+     * @return static
      */
     final public static function getInstance(mixed ...$args): static
     {
