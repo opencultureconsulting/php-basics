@@ -38,6 +38,32 @@ use RuntimeException;
 class StrictQueue extends StrictList
 {
     /**
+     * Dequeue an item from the queue.
+     * @see \SplQueue::dequeue()
+     *
+     * @return mixed The dequeued item
+     */
+    public function dequeue(): mixed
+    {
+        return parent::shift();
+    }
+
+    /**
+     * Add an item to the queue.
+     * @see \SplQueue::enqueue()
+     *
+     * @param mixed $item The item to enqueue
+     *
+     * @return void
+     *
+     * @throws \InvalidArgumentException
+     */
+    public function enqueue(mixed $item): void
+    {
+        parent::push($item);
+    }
+
+    /**
      * Set the mode of iteration.
      * @see \SplDoublyLinkedList::setIteratorMode()
      *

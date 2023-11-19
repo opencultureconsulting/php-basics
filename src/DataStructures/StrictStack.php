@@ -38,6 +38,30 @@ use RuntimeException;
 class StrictStack extends StrictList
 {
     /**
+     * Add an item to the stack.
+     *
+     * @param mixed $item The item to stack
+     *
+     * @return void
+     *
+     * @throws \InvalidArgumentException
+     */
+    public function stack(mixed $item): void
+    {
+        parent::push($item);
+    }
+
+    /**
+     * Unstack an item from the stack.
+     *
+     * @return mixed The unstacked item
+     */
+    public function unstack(): mixed
+    {
+        return parent::pop();
+    }
+
+    /**
      * Set the mode of iteration.
      * @see \SplDoublyLinkedList::setIteratorMode()
      *
