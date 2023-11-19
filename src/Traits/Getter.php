@@ -74,7 +74,7 @@ trait Getter
         } catch (InvalidArgumentException) {
             $value = null;
         } finally {
-            return !empty($value);
+            return (bool) $value !== false;
         }
     }
 }

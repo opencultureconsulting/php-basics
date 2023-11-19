@@ -108,7 +108,7 @@ class StrictList extends SplDoublyLinkedList
                         get_debug_type($item)
                     )
                 );
-                }
+            }
         }
         foreach ($items as $item) {
             parent::push($item);
@@ -134,7 +134,7 @@ class StrictList extends SplDoublyLinkedList
      */
     public function isAllowedType(mixed $item): bool
     {
-        if (empty($this->allowedTypes)) {
+        if (count($this->allowedTypes) === 0) {
             return true;
         }
         foreach ($this->allowedTypes as $type) {

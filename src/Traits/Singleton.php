@@ -54,10 +54,8 @@ trait Singleton
      * This is a singleton class, thus the constructor is private.
      *
      * Usage: Get an instance of this class by calling self::getInstance()
-     *
-     * @param mixed ...$args Constructor parameters
      */
-    abstract private function __construct(mixed ...$args);
+    abstract private function __construct();
 
     /**
      * This is a singleton class, thus cloning is prohibited.
