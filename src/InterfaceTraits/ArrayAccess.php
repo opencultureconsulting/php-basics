@@ -27,8 +27,6 @@ namespace OCC\Basics\InterfaceTraits;
  *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package opencultureconsulting/basics
- *
- * @implements \ArrayAccess
  */
 trait ArrayAccess /* implements \ArrayAccess */
 {

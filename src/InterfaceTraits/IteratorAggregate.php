@@ -29,8 +29,6 @@ use ArrayIterator;
  *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package opencultureconsulting/basics
- *
- * @implements \IteratorAggregate
  */
 trait IteratorAggregate /* implements \IteratorAggregate */
 {

@@ -31,11 +31,6 @@ use OCC\Basics\Traits\Getter;
  *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package opencultureconsulting/basics
- *
- * @implements \ArrayAccess
- * @implements \Countable
- * @implements \Iterator
- * @implements \Serializable
  */
 class StrictList extends SplDoublyLinkedList
 {

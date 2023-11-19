@@ -43,7 +43,7 @@ use ErrorException;
  */
 function throwErrorException(int $severity = E_USER_ERROR, string $message = '', ?string $file = null, ?int $line = null): bool
 {
-    if (error_reporting() & $severity) {
+    if ((error_reporting() & $severity) > 0) {
         throw new ErrorException($message, 0, $severity, $file, $line);
     }
     return false;

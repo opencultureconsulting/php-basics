@@ -29,11 +29,6 @@ use RuntimeException;
  *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package opencultureconsulting/basics
- *
- * @implements \ArrayAccess
- * @implements \Countable
- * @implements \Iterator
- * @implements \Serializable
  */
 class StrictQueue extends StrictList
 {
