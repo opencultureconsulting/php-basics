@@ -1,4 +1,4 @@
-name: PHPStan
+name: PHP Static Analyzer
 
 on:
   push:
@@ -6,20 +6,29 @@ on:
   pull_request:
     branches: [ "main" ]
 
+permissions:
+  contents: read
+
 jobs:
-  phpstan:
+  PHPStan:
+    name: Run PHPStan Scanner
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+      actions: read
+
     steps:
       - name: Checkout Source Code
         uses: actions/checkout@v4
 
-      - name: Install Dependencies
+      - name: Setup Environment
         uses: php-actions/composer@v6
         with:
           command: update
           php_version: "8.0"
 
-      - name: PHPStan Static Analysis
+      - name: Run PHPStan
         uses: php-actions/phpstan@v3
         with:
           path: src/

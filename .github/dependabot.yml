@@ -7,7 +7,6 @@ updates:
     assignees:
       - "sebastian-meyer"
     labels: [ ]
-
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
