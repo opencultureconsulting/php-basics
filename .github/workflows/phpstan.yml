@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   PHPStan:
-    name: Run PHPStan Scanner
+    name: PHPStan Scanner
     runs-on: ubuntu-latest
     permissions:
       contents: read
