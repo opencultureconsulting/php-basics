@@ -11,4 +11,4 @@ parameters:
     strictRules:
         noVariableVariables: false
     paths:
-        - src
+        - src/

@@ -1,0 +1,26 @@
+name: PHPStan
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  phpstan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Install Dependencies
+        uses: php-actions/composer@v6
+        with:
+          command: update
+          php_version: "8.0"
+
+      - name: PHPStan Static Analysis
+        uses: php-actions/phpstan@v3
+        with:
+          path: src/
+          configuration: phpstan.dist.neon
