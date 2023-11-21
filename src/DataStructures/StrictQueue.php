@@ -30,6 +30,8 @@ use RuntimeException;
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package opencultureconsulting/basics
  *
+ * @property-read string[] $allowedTypes
+ *
  * @template AllowedType
  * @extends StrictList<AllowedType>
  */

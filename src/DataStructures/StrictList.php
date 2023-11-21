@@ -32,6 +32,8 @@ use OCC\Basics\Traits\Getter;
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package opencultureconsulting/basics
  *
+ * @property-read string[] $allowedTypes
+ *
  * @template AllowedType
  * @extends SplDoublyLinkedList<AllowedType>
  */
