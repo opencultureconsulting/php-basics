@@ -30,15 +30,15 @@ use RuntimeException;
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package opencultureconsulting/basics
  *
- * @template AllowedTypes
- * @extends StrictList<AllowedTypes>
+ * @template AllowedType
+ * @extends StrictList<AllowedType>
  */
 class StrictStack extends StrictList
 {
     /**
      * Add an item to the stack.
      *
-     * @param AllowedTypes $item The item to stack
+     * @param AllowedType $item The item to stack
      *
      * @return void
      *
@@ -52,7 +52,7 @@ class StrictStack extends StrictList
     /**
      * Unstack an item from the stack.
      *
-     * @return AllowedTypes The unstacked item
+     * @return AllowedType The unstacked item
      */
     public function unstack(): mixed
     {
@@ -85,7 +85,7 @@ class StrictStack extends StrictList
     /**
      * Create a type-sensitive, traversable stack of items.
      *
-     * @param iterable<AllowedTypes> $items Initial set of items
+     * @param iterable<AllowedType> $items Initial set of items
      * @param string[] $allowedTypes Allowed types of items (optional)
      */
     public function __construct(iterable $items = [], array $allowedTypes = [])

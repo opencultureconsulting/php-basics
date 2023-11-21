@@ -30,8 +30,8 @@ use RuntimeException;
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package opencultureconsulting/basics
  *
- * @template AllowedTypes
- * @extends StrictList<AllowedTypes>
+ * @template AllowedType
+ * @extends StrictList<AllowedType>
  */
 class StrictQueue extends StrictList
 {
@@ -39,7 +39,7 @@ class StrictQueue extends StrictList
      * Dequeue an item from the queue.
      * @see \SplQueue::dequeue()
      *
-     * @return AllowedTypes The dequeued item
+     * @return AllowedType The dequeued item
      */
     public function dequeue(): mixed
     {
@@ -50,7 +50,7 @@ class StrictQueue extends StrictList
      * Add an item to the queue.
      * @see \SplQueue::enqueue()
      *
-     * @param AllowedTypes $item The item to enqueue
+     * @param AllowedType $item The item to enqueue
      *
      * @return void
      *
@@ -87,7 +87,7 @@ class StrictQueue extends StrictList
     /**
      * Create a type-sensitive, traversable queue of items.
      *
-     * @param iterable<AllowedTypes> $items Initial set of items
+     * @param iterable<AllowedType> $items Initial set of items
      * @param string[] $allowedTypes Allowed types of items (optional)
      */
     public function __construct(iterable $items = [], array $allowedTypes = [])

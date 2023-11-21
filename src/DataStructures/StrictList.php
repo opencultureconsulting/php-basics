@@ -32,8 +32,8 @@ use OCC\Basics\Traits\Getter;
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package opencultureconsulting/basics
  *
- * @template AllowedTypes
- * @extends SplDoublyLinkedList<AllowedTypes>
+ * @template AllowedType
+ * @extends SplDoublyLinkedList<AllowedType>
  */
 class StrictList extends SplDoublyLinkedList
 {
@@ -69,7 +69,7 @@ class StrictList extends SplDoublyLinkedList
      * @see SplDoublyLinkedList::add()
      *
      * @param int $index The index where the new item is to be inserted
-     * @param AllowedTypes $item The new item for the index
+     * @param AllowedType $item The new item for the index
      *
      * @return void
      *
@@ -91,7 +91,7 @@ class StrictList extends SplDoublyLinkedList
     /**
      * Append items at the end of the list.
      *
-     * @param AllowedTypes ...$items One or more items to append
+     * @param AllowedType ...$items One or more items to append
      *
      * @return void
      *
@@ -118,7 +118,7 @@ class StrictList extends SplDoublyLinkedList
     /**
      * Check if item is an allowed type.
      *
-     * @param AllowedTypes $item The item to check
+     * @param AllowedType $item The item to check
      *
      * @return bool Whether the item is an allowed type
      */
@@ -156,7 +156,7 @@ class StrictList extends SplDoublyLinkedList
      * @see \ArrayAccess::offsetSet()
      *
      * @param ?int $index The index being set or NULL to append
-     * @param AllowedTypes $item The new item for the index
+     * @param AllowedType $item The new item for the index
      *
      * @return void
      *
@@ -178,7 +178,7 @@ class StrictList extends SplDoublyLinkedList
     /**
      * Prepend items at the start of the list.
      *
-     * @param AllowedTypes ...$items One or more items to prepend
+     * @param AllowedType ...$items One or more items to prepend
      *
      * @return void
      *
@@ -206,7 +206,7 @@ class StrictList extends SplDoublyLinkedList
      * Push an item at the end of the list.
      * @see SplDoublyLinkedList::push()
      *
-     * @param AllowedTypes $item The item to push
+     * @param AllowedType $item The item to push
      *
      * @return void
      *
@@ -255,7 +255,7 @@ class StrictList extends SplDoublyLinkedList
      * Prepend the list with an item.
      * @see SplDoublyLinkedList::unshift()
      *
-     * @param AllowedTypes $item The item to unshift
+     * @param AllowedType $item The item to unshift
      *
      * @return void
      *
@@ -277,7 +277,7 @@ class StrictList extends SplDoublyLinkedList
     /**
      * Create a type-sensitive, traversable list of items.
      *
-     * @param iterable<AllowedTypes> $items Initial set of items
+     * @param iterable<AllowedType> $items Initial set of items
      * @param string[] $allowedTypes Allowed types of items (optional)
      *
      * @throws InvalidArgumentException
@@ -328,7 +328,7 @@ class StrictList extends SplDoublyLinkedList
     {
         /** @var string[] $allowedTypes */
         $allowedTypes = $data['StrictList::allowedTypes'];
-        /** @var iterable<AllowedTypes> $items */
+        /** @var iterable<AllowedType> $items */
         $items = $data['SplDoublyLinkedList::dllist'];
         $this->__construct($items, $allowedTypes);
         /** @var int $flags */
