@@ -116,16 +116,6 @@ class StrictList extends SplDoublyLinkedList
     }
 
     /**
-     * Get the allowed item types.
-     *
-     * @return string[] The list of allowed item types
-     */
-    public function getAllowedTypes(): array
-    {
-        return $this->allowedTypes;
-    }
-
-    /**
      * Check if item is an allowed type.
      *
      * @param AllowedTypes $item The item to check
