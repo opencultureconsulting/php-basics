@@ -20,31 +20,37 @@
 
 declare(strict_types=1);
 
-namespace OCC\Basics\Functions;
+namespace OCC\Basics\ErrorHandlers;
 
 use ErrorException;
 
 /**
- * Converts an internal PHP error into an ErrorException.
+ * Throw internal errors as exceptions.
  *
- * Usage: set_error_handler('\\OCC\\Basics\\Functions\\throwErrorException');
+ * Usage: set_error_handler(new ThrowErrorException());
  *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package opencultureconsulting/basics
- *
- * @param int $severity The severity of the error
- * @param string $message The error message
- * @param ?string $file The name of the file the error was raised in
- * @param ?int $line The line number the error was raised in
- *
- * @return bool Always returns FALSE when not throwing an exception
- *
- * @throws ErrorException
  */
-function throwErrorException(int $severity = E_USER_ERROR, string $message = '', ?string $file = null, ?int $line = null): bool
+class ThrowErrorException
 {
-    if ((error_reporting() & $severity) > 0) {
-        throw new ErrorException($message, 0, $severity, $file, $line);
+    /**
+     * Converts an internal PHP error into an ErrorException.
+     *
+     * @param int $severity The severity of the error
+     * @param string $message The error message
+     * @param ?string $file The name of the file the error was raised in
+     * @param ?int $line The line number the error was raised in
+     *
+     * @return bool Always returns FALSE when not throwing an exception
+     *
+     * @throws ErrorException
+     */
+    public function __invoke(int $severity = E_USER_ERROR, string $message = '', ?string $file = null, ?int $line = null): bool
+    {
+        if ((error_reporting() & $severity) > 0) {
+            throw new ErrorException($message, 0, $severity, $file, $line);
+        }
+        return false;
     }
-    return false;
 }
