@@ -37,19 +37,19 @@ class ThrowErrorException
     /**
      * Converts an internal PHP error into an ErrorException.
      *
-     * @param int $severity The severity of the error
-     * @param string $message The error message
-     * @param ?string $file The name of the file the error was raised in
-     * @param ?int $line The line number the error was raised in
+     * @param int $errno The severity of the error
+     * @param string $errstr The error message
+     * @param ?string $errfile The name of the file the error was raised in
+     * @param ?int $errline The line number the error was raised in
      *
      * @return bool Always returns FALSE when not throwing an exception
      *
      * @throws ErrorException
      */
-    public function __invoke(int $severity = E_USER_ERROR, string $message = '', ?string $file = null, ?int $line = null): bool
+    public function __invoke(int $errno = E_USER_ERROR, string $errstr = '', ?string $errfile = null, ?int $errline = null): bool
     {
-        if ((error_reporting() & $severity) > 0) {
-            throw new ErrorException($message, 0, $severity, $file, $line);
+        if ((error_reporting() & $errno) > 0) {
+            throw new ErrorException($errstr, 0, $errno, $errfile, $errline);
         }
         return false;
     }
