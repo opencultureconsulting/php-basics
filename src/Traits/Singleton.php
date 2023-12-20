@@ -34,6 +34,8 @@ trait Singleton
 {
     /**
      * Holds the singleton instances.
+     *
+     * @var array<static>
      */
     private static array $singleton = [];
 
@@ -42,7 +44,7 @@ trait Singleton
      *
      * @param mixed ...$args Constructor parameters
      *
-     * @return static
+     * @return static The singleton instance
      */
     final public static function getInstance(mixed ...$args): static
     {
@@ -55,7 +57,7 @@ trait Singleton
     /**
      * This is a singleton class, thus the constructor is private.
      *
-     * Usage: Get an instance of this class by calling self::getInstance()
+     * Usage: Get an instance of this class by calling getInstance()
      */
     abstract private function __construct();
 
