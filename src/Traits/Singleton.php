@@ -22,6 +22,7 @@ declare(strict_types=1);
 
 namespace OCC\Basics\Traits;
 
+use Exception;
 use LogicException;
 
 /**
@@ -45,11 +46,17 @@ trait Singleton
      * @param mixed ...$args Constructor parameters
      *
      * @return static The singleton instance
+     *
+     * @throws Exception
      */
     final public static function getInstance(mixed ...$args): static
     {
         if (!isset(static::$singleton[static::class])) {
-            static::$singleton[static::class] = new static(...$args);
+            try {
+                static::$singleton[static::class] = new static(...$args);
+            } catch (Exception $exception) {
+                throw $exception;
+            }
         }
         return static::$singleton[static::class];
     }
