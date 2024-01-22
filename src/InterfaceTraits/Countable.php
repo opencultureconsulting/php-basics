@@ -27,8 +27,10 @@ namespace OCC\Basics\InterfaceTraits;
  *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package opencultureconsulting/basics
+ *
+ * @phpstan-require-implements \Countable
  */
-trait Countable /* implements \Countable */
+trait Countable
 {
     /**
      * Holds the countable data.

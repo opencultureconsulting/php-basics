@@ -27,8 +27,10 @@ namespace OCC\Basics\InterfaceTraits;
  *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package opencultureconsulting/basics
+ *
+ * @phpstan-require-implements \Iterator
  */
-trait Iterator /* implements \Iterator */
+trait Iterator
 {
     /**
      * Holds the iterable data.

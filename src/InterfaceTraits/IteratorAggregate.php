@@ -29,8 +29,10 @@ use ArrayIterator;
  *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package opencultureconsulting/basics
+ *
+ * @phpstan-require-implements \IteratorAggregate
  */
-trait IteratorAggregate /* implements \IteratorAggregate */
+trait IteratorAggregate
 {
     /**
      * Holds the iterable data.
