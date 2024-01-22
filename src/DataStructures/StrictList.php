@@ -279,12 +279,11 @@ class StrictList extends SplDoublyLinkedList
     /**
      * Create a type-sensitive, traversable list of items.
      *
-     * @param iterable<AllowedType> $items Initial set of items
      * @param string[] $allowedTypes Allowed types of items (optional)
      *
      * @throws InvalidArgumentException
      */
-    public function __construct(iterable $items = [], array $allowedTypes = [])
+    public function __construct(array $allowedTypes = [])
     {
         if (array_sum(array_map('is_string', $allowedTypes)) !== count($allowedTypes)) {
             throw new InvalidArgumentException(
@@ -292,7 +291,6 @@ class StrictList extends SplDoublyLinkedList
             );
         }
         $this->allowedTypes = $allowedTypes;
-        $this->append(...$items);
     }
 
     /**
@@ -330,9 +328,10 @@ class StrictList extends SplDoublyLinkedList
     {
         /** @var string[] $allowedTypes */
         $allowedTypes = $data['StrictList::allowedTypes'];
+        $this->__construct($allowedTypes);
         /** @var iterable<AllowedType> $items */
         $items = $data['SplDoublyLinkedList::dllist'];
-        $this->__construct($items, $allowedTypes);
+        $this->append(...$items);
         /** @var int $flags */
         $flags = $data['SplDoublyLinkedList::flags'];
         $this->setIteratorMode($flags);

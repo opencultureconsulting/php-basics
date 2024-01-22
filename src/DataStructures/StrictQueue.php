@@ -89,12 +89,11 @@ class StrictQueue extends StrictList
     /**
      * Create a type-sensitive, traversable queue of items.
      *
-     * @param iterable<AllowedType> $items Initial set of items
      * @param string[] $allowedTypes Allowed types of items (optional)
      */
-    public function __construct(iterable $items = [], array $allowedTypes = [])
+    public function __construct(array $allowedTypes = [])
     {
-        parent::__construct($items, $allowedTypes);
+        parent::__construct($allowedTypes);
         $this->setIteratorMode(0);
     }
 }
