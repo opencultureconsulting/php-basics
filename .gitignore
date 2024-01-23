@@ -2,4 +2,5 @@
 /vendor/
 .php-cs-fixer.php
 composer.lock
+phpcs.xml
 phpstan.neon
