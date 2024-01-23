@@ -1,6 +1,8 @@
+/.phpdoc/cache/
 /.vscode/
 /vendor/
 .php-cs-fixer.php
 composer.lock
 phpcs.xml
+phpdoc.xml
 phpstan.neon
