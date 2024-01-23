@@ -1,8 +1,9 @@
 <?php
 
 /**
- * Useful PHP Basics
- * Copyright (C) 2023 Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
+ * PHP Basics
+ *
+ * Copyright (C) 2024 Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -11,11 +12,11 @@
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
 declare(strict_types=1);
@@ -29,12 +30,12 @@ use LogicException;
  * Allows just a single instance of the class using this trait.
  *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
- * @package opencultureconsulting/basics
+ * @package Basics\Traits
  */
 trait Singleton
 {
     /**
-     * Holds the singleton instances.
+     * Holds the singleton instance.
      *
      * @var array<static>
      */
@@ -64,7 +65,7 @@ trait Singleton
     /**
      * This is a singleton class, thus the constructor is private.
      *
-     * Usage: Get an instance of this class by calling getInstance()
+     * Usage: Get an instance of this class by calling static::getInstance()
      */
     abstract private function __construct();
 
@@ -72,6 +73,8 @@ trait Singleton
      * This is a singleton class, thus cloning is prohibited.
      *
      * @throws LogicException
+     *
+     * @internal
      */
     final public function __clone(): void
     {
