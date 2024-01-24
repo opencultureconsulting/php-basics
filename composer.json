@@ -13,7 +13,8 @@
         "StrictList",
         "StrictQueue",
         "StrictStack",
-        "ThrowErrorException"
+        "ThrowErrorException",
+        "TriggerExceptionError"
     ],
     "homepage": "https://github.com/opencultureconsulting/php-basics",
     "readme": "README.md",
