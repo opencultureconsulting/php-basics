@@ -28,6 +28,9 @@ use RuntimeException;
 /**
  * A type-sensitive, taversable Last In, First Out Stack (LIFO).
  *
+ * Extends [\SplStack](https://www.php.net/splstack) with an option to specify
+ * the allowed data types for list items.
+ *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package Basics\DataStructures
  *
@@ -64,7 +67,6 @@ class StrictStack extends StrictList
 
     /**
      * Set the mode of iteration.
-     * @see \SplDoublyLinkedList::setIteratorMode()
      *
      * @param int $mode The new iterator mode (2 or 3)
      *
@@ -88,7 +90,24 @@ class StrictStack extends StrictList
     /**
      * Create a type-sensitive, traversable stack of items.
      *
-     * @param string[] $allowedTypes Allowed types of items (optional)
+     * @param string[] $allowedTypes Allowed data types of items (optional)
+     *                               If empty, all types are allowed.
+     *                               Possible values are:
+     *                               - "array"
+     *                               - "bool"
+     *                               - "callable"
+     *                               - "countable"
+     *                               - "float" or "double"
+     *                               - "int" or "integer" or "long"
+     *                               - "iterable"
+     *                               - "null"
+     *                               - "numeric"
+     *                               - "object" or FQCN
+     *                               - "resource"
+     *                               - "scalar"
+     *                               - "string"
+     *
+     * @throws \InvalidArgumentException
      */
     public function __construct(array $allowedTypes = [])
     {

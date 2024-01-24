@@ -46,25 +46,7 @@ class StrictList extends SplDoublyLinkedList
     use Getter;
 
     /**
-     * Defines the allowed types for items.
-     *
-     * If empty, all types are allowed. Possible values are:
-     * - "array"
-     * - "bool"
-     * - "callable"
-     * - "countable"
-     * - "float" or "double"
-     * - "int" or "integer" or "long"
-     * - "iterable"
-     * - "null"
-     * - "numeric"
-     * - "object" or FQCN
-     * - "resource"
-     * - "scalar"
-     * - "string"
-     *
-     * Fully qualified class names (FQCN) can be specified instead of the
-     * generic type "object".
+     * Defines the allowed data types for items.
      *
      * @var string[]
      */
@@ -72,7 +54,6 @@ class StrictList extends SplDoublyLinkedList
 
     /**
      * Add/insert a new item at the specified index.
-     * @see SplDoublyLinkedList::add()
      *
      * @param int $index The index where the new item is to be inserted
      * @param AllowedType $item The new item for the index
@@ -122,11 +103,11 @@ class StrictList extends SplDoublyLinkedList
     }
 
     /**
-     * Check if item is an allowed type.
+     * Check if the item's data type is allowed on the list.
      *
      * @param AllowedType $item The item to check
      *
-     * @return bool Whether the item is an allowed type
+     * @return bool Whether the item's data type is allowed
      */
     public function isAllowedType(mixed $item): bool
     {
@@ -138,7 +119,7 @@ class StrictList extends SplDoublyLinkedList
             if (function_exists($function) && $function($item)) {
                 return true;
             }
-            $fqcn = '\\' . ltrim($type, '\\');
+            $fqcn = ltrim($type, '\\');
             if (is_object($item) && is_a($item, $fqcn)) {
                 return true;
             }
@@ -148,9 +129,8 @@ class StrictList extends SplDoublyLinkedList
 
     /**
      * Magic getter method for $this->allowedTypes.
-     * @see Getter
      *
-     * @return string[] The list of allowed item types
+     * @return string[] The list of allowed data types
      *
      * @internal
      */
@@ -161,7 +141,6 @@ class StrictList extends SplDoublyLinkedList
 
     /**
      * Set the item at the specified index.
-     * @see \ArrayAccess::offsetSet()
      *
      * @param ?int $index The index being set or NULL to append
      * @param AllowedType $item The new item for the index
@@ -212,7 +191,6 @@ class StrictList extends SplDoublyLinkedList
 
     /**
      * Push an item at the end of the list.
-     * @see SplDoublyLinkedList::push()
      *
      * @param AllowedType $item The item to push
      *
@@ -235,9 +213,8 @@ class StrictList extends SplDoublyLinkedList
 
     /**
      * Get string representation of $this.
-     * @see \Serializable::serialize()
      *
-     * @return string String representation
+     * @return string The string representation
      */
     public function serialize(): string
     {
@@ -246,9 +223,8 @@ class StrictList extends SplDoublyLinkedList
 
     /**
      * Restore $this from string representation.
-     * @see \Serializable::unserialize()
      *
-     * @param string $data String representation
+     * @param string $data The string representation
      *
      * @return void
      */
@@ -261,7 +237,6 @@ class StrictList extends SplDoublyLinkedList
 
     /**
      * Prepend the list with an item.
-     * @see SplDoublyLinkedList::unshift()
      *
      * @param AllowedType $item The item to unshift
      *
@@ -285,7 +260,22 @@ class StrictList extends SplDoublyLinkedList
     /**
      * Create a type-sensitive, traversable list of items.
      *
-     * @param string[] $allowedTypes Allowed types of items (optional)
+     * @param string[] $allowedTypes Allowed data types of items (optional)
+     *                               If empty, all types are allowed.
+     *                               Possible values are:
+     *                               - "array"
+     *                               - "bool"
+     *                               - "callable"
+     *                               - "countable"
+     *                               - "float" or "double"
+     *                               - "int" or "integer" or "long"
+     *                               - "iterable"
+     *                               - "null"
+     *                               - "numeric"
+     *                               - "object" or FQCN
+     *                               - "resource"
+     *                               - "scalar"
+     *                               - "string"
      *
      * @throws InvalidArgumentException
      */
@@ -302,7 +292,7 @@ class StrictList extends SplDoublyLinkedList
     /**
      * Get debug information for $this.
      *
-     * @return mixed[] Array of debug information
+     * @return mixed[] The debug information
      *
      * @internal
      */
@@ -314,7 +304,7 @@ class StrictList extends SplDoublyLinkedList
     /**
      * Get array representation of $this.
      *
-     * @return mixed[] Array representation
+     * @return mixed[] The array representation
      *
      * @internal
      */
@@ -330,7 +320,7 @@ class StrictList extends SplDoublyLinkedList
     /**
      * Restore $this from array representation.
      *
-     * @param mixed[] $data Array representation
+     * @param mixed[] $data The array representation
      *
      * @return void
      *

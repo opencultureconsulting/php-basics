@@ -40,7 +40,6 @@ trait Countable
 
     /**
      * Count the data items.
-     * @see \Countable::count()
      *
      * @return int The number of data items
      */

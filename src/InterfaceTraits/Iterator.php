@@ -40,7 +40,6 @@ trait Iterator
 
     /**
      * Return the current item.
-     * @see \Iterator::current()
      *
      * @return mixed The current item or FALSE if invalid
      */
@@ -51,7 +50,6 @@ trait Iterator
 
     /**
      * Return the current key.
-     * @see \Iterator::key()
      *
      * @return mixed The current key or NULL if invalid
      */
@@ -62,7 +60,6 @@ trait Iterator
 
     /**
      * Move forward to next item.
-     * @see \Iterator::next()
      *
      * @return void
      */
@@ -73,7 +70,6 @@ trait Iterator
 
     /**
      * Rewind the iterator to the first item.
-     * @see \Iterator::rewind()
      *
      * @return void
      */
@@ -84,7 +80,6 @@ trait Iterator
 
     /**
      * Checks if current position is valid.
-     * @see \Iterator::valid()
      *
      * @return bool Whether the current position is valid
      */

@@ -40,7 +40,6 @@ trait ArrayAccess
 
     /**
      * Whether the specified offset exists.
-     * @see \ArrayAccess::offsetExists()
      *
      * @param mixed $offset The offset to check for
      *
@@ -53,7 +52,6 @@ trait ArrayAccess
 
     /**
      * Retrieve data at the specified offset.
-     * @see \ArrayAccess::offsetGet()
      *
      * @param mixed $offset The offset to retrieve at
      *
@@ -66,7 +64,6 @@ trait ArrayAccess
 
     /**
      * Assign a value to the specified offset.
-     * @see \ArrayAccess::offsetSet()
      *
      * @param mixed $offset The offset to assign to or NULL to append
      * @param mixed $value The value to set
@@ -84,7 +81,6 @@ trait ArrayAccess
 
     /**
      * Unset the specified offset.
-     * @see \ArrayAccess::offsetUnset()
      *
      * @param mixed $offset The offset to unset
      *

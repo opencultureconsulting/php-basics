@@ -36,7 +36,7 @@ use ErrorException;
 class ThrowErrorException
 {
     /**
-     * Converts an internal PHP error into an ErrorException.
+     * Convert an internal PHP error into an ErrorException.
      *
      * @param int $errno The severity of the error
      * @param string $errstr The error message

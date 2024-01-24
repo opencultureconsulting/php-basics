@@ -28,6 +28,9 @@ use RuntimeException;
 /**
  * A type-sensitive, taversable First In, First Out Queue (FIFO).
  *
+ * Extends [\SplQueue](https://www.php.net/splqueue) with an option to specify
+ * the allowed data types for list items.
+ *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package Basics\DataStructures
  *
@@ -40,7 +43,6 @@ class StrictQueue extends StrictList
 {
     /**
      * Dequeue an item from the queue.
-     * @see \SplQueue::dequeue()
      *
      * @return AllowedType The dequeued item
      */
@@ -51,7 +53,6 @@ class StrictQueue extends StrictList
 
     /**
      * Add an item to the queue.
-     * @see \SplQueue::enqueue()
      *
      * @param AllowedType $item The item to enqueue
      *
@@ -66,7 +67,6 @@ class StrictQueue extends StrictList
 
     /**
      * Set the mode of iteration.
-     * @see \SplDoublyLinkedList::setIteratorMode()
      *
      * @param int $mode The new iterator mode (0 or 1)
      *
@@ -90,7 +90,24 @@ class StrictQueue extends StrictList
     /**
      * Create a type-sensitive, traversable queue of items.
      *
-     * @param string[] $allowedTypes Allowed types of items (optional)
+     * @param string[] $allowedTypes Allowed data types of items (optional)
+     *                               If empty, all types are allowed.
+     *                               Possible values are:
+     *                               - "array"
+     *                               - "bool"
+     *                               - "callable"
+     *                               - "countable"
+     *                               - "float" or "double"
+     *                               - "int" or "integer" or "long"
+     *                               - "iterable"
+     *                               - "null"
+     *                               - "numeric"
+     *                               - "object" or FQCN
+     *                               - "resource"
+     *                               - "scalar"
+     *                               - "string"
+     *
+     * @throws \InvalidArgumentException
      */
     public function __construct(array $allowedTypes = [])
     {

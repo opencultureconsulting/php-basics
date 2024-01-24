@@ -42,7 +42,6 @@ trait IteratorAggregate
 
     /**
      * Retrieve an external iterator.
-     * @see \IteratorAggregate::getIterator()
      *
      * @return ArrayIterator
      */
