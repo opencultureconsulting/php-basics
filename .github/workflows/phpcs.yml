@@ -23,6 +23,9 @@ jobs:
 
       - name: Setup Environment
         uses: php-actions/composer@v6
+        with:
+          command: update
+          php_version: "8.0"
 
       - name: Run PHPCS
         uses: php-actions/phpcs@v1
