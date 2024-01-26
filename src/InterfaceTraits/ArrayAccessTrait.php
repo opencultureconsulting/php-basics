@@ -23,25 +23,32 @@ declare(strict_types=1);
 
 namespace OCC\Basics\InterfaceTraits;
 
+use ArrayAccess;
+
 /**
  * A generic implementation of the ArrayAccess interface.
  *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package Basics\InterfaceTraits
  *
- * @phpstan-require-implements \ArrayAccess
+ * @template TKey of int|string
+ * @template TValue of mixed
+ * @implements ArrayAccess<TKey, TValue>
+ * @phpstan-require-implements ArrayAccess
  */
-trait ArrayAccess
+trait ArrayAccessTrait
 {
     /**
      * Holds the array-accessible data.
+     *
+     * @var array<TKey, TValue>
      */
-    private array $data = [];
+    protected array $data = [];
 
     /**
-     * Whether the specified offset exists.
+     * Check if the specified offset exists.
      *
-     * @param mixed $offset The offset to check for
+     * @param TKey $offset The offset to check for
      *
      * @return bool Whether the offset exists
      */
@@ -53,9 +60,9 @@ trait ArrayAccess
     /**
      * Retrieve data at the specified offset.
      *
-     * @param mixed $offset The offset to retrieve at
+     * @param TKey $offset The offset to retrieve at
      *
-     * @return mixed The value at the offset or NULL
+     * @return ?TValue The value at the offset or NULL
      */
     public function offsetGet(mixed $offset): mixed
     {
@@ -65,8 +72,8 @@ trait ArrayAccess
     /**
      * Assign a value to the specified offset.
      *
-     * @param mixed $offset The offset to assign to or NULL to append
-     * @param mixed $value The value to set
+     * @param ?TKey $offset The offset to assign to or NULL to append
+     * @param TValue $value The value to set
      *
      * @return void
      */
@@ -82,7 +89,7 @@ trait ArrayAccess
     /**
      * Unset the specified offset.
      *
-     * @param mixed $offset The offset to unset
+     * @param TKey $offset The offset to unset
      *
      * @return void
      */

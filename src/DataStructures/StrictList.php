@@ -23,108 +23,221 @@ declare(strict_types=1);
 
 namespace OCC\Basics\DataStructures;
 
+use ArrayAccess;
+use Countable;
 use InvalidArgumentException;
+use Iterator;
+use OutOfRangeException;
+use RuntimeException;
 use SplDoublyLinkedList;
 use OCC\Basics\Traits\Getter;
+use Serializable;
 
 /**
  * A type-sensitive, taversable list.
  *
  * Extends [\SplDoublyLinkedList](https://www.php.net/spldoublylinkedlist) with
- * an option to specify the allowed data types for list items.
+ * an option to specify the allowed data types for list values.
  *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package Basics\DataStructures
  *
- * @property-read string[] $allowedTypes
+ * @property-read string[] $allowedTypes The allowed data types for values.
+ *
+ * @api
  *
  * @template AllowedType of mixed
  * @extends SplDoublyLinkedList<AllowedType>
+ * @implements ArrayAccess<int, AllowedType>
+ * @implements Iterator<int, AllowedType>
  */
-class StrictList extends SplDoublyLinkedList
+class StrictList extends SplDoublyLinkedList implements ArrayAccess, Countable, Iterator, Serializable
 {
     use Getter;
 
     /**
-     * Defines the allowed data types for items.
+     * Queue style iterator mode (First In, First Out).
+     */
+    public const IT_MODE_FIFO = 0;
+
+    /**
+     * Stack style iterator mode (Last In, First Out).
+     */
+    public const IT_MODE_LIFO = 2;
+
+    /**
+     * Destructive iterator mode (delete values after iteration).
+     */
+    public const IT_MODE_DELETE = 1;
+
+    /**
+     * Preserving iterator mode (keep values after iteration).
+     */
+    public const IT_MODE_KEEP = 0;
+
+    /**
+     * The allowed data types for values.
      *
      * @var string[]
+     *
+     * @internal
      */
     protected array $allowedTypes = [];
 
     /**
-     * Add/insert a new item at the specified index.
+     * Add/insert a new value at the specified offset.
      *
-     * @param int $index The index where the new item is to be inserted
-     * @param AllowedType $item The new item for the index
+     * @param int $offset The offset where the new value is to be inserted
+     * @param AllowedType $value The new value for the offset
      *
      * @return void
      *
      * @throws InvalidArgumentException
+     *
+     * @api
      */
-    public function add(int $index, mixed $item): void
+    public function add(int $offset, mixed $value): void
     {
-        if (!$this->isAllowedType($item)) {
+        if (!$this->isAllowedType($value)) {
             throw new InvalidArgumentException(
                 sprintf(
                     'Parameter 2 must be an allowed type, %s given.',
-                    get_debug_type($item)
+                    get_debug_type($value)
                 )
             );
         }
-        parent::add($index, $item);
+        parent::add($offset, $value);
     }
 
     /**
-     * Append items at the end of the list.
+     * Append values at the end of the list.
      *
-     * @param AllowedType ...$items One or more items to append
+     * @param AllowedType ...$values One or more values to append
      *
      * @return void
      *
      * @throws InvalidArgumentException
+     *
+     * @api
      */
-    public function append(mixed ...$items): void
+    public function append(mixed ...$values): void
     {
-        foreach ($items as $count => $item) {
-            if (!$this->isAllowedType($item)) {
+        foreach ($values as $count => $value) {
+            if (!$this->isAllowedType($value)) {
                 throw new InvalidArgumentException(
                     sprintf(
                         'Parameter %d must be an allowed type, %s given.',
                         (int) $count + 1,
-                        get_debug_type($item)
+                        get_debug_type($value)
                     )
                 );
             }
         }
-        foreach ($items as $item) {
-            parent::push($item);
+        foreach ($values as $value) {
+            parent::push($value);
         }
     }
 
     /**
-     * Check if the item's data type is allowed on the list.
+     * Peek at the value at the beginning of the list.
      *
-     * @param AllowedType $item The item to check
+     * @return AllowedType The first value of the list
      *
-     * @return bool Whether the item's data type is allowed
+     * @throws RuntimeException
+     *
+     * @api
      */
-    public function isAllowedType(mixed $item): bool
+    public function bottom(): mixed
+    {
+        return parent::bottom();
+    }
+
+    /**
+     * Count the number of values on the list.
+     *
+     * @return int The current number of values
+     *
+     * @api
+     */
+    public function count(): int
+    {
+        return parent::count();
+    }
+
+    /**
+     * Get current list value.
+     *
+     * @return AllowedType The current value
+     *
+     * @api
+     */
+    public function current(): mixed
+    {
+        return parent::current();
+    }
+
+    /**
+     * Get the mode of iteration.
+     *
+     * @return int The set of flags and modes of iteration
+     *
+     * @api
+     */
+    public function getIteratorMode(): int
+    {
+        return parent::getIteratorMode();
+    }
+
+    /**
+     * Check if the value's data type is allowed on the list.
+     *
+     * @param AllowedType $value The value to check
+     *
+     * @return bool Whether the value's data type is allowed
+     *
+     * @api
+     */
+    public function isAllowedType(mixed $value): bool
     {
         if (count($this->allowedTypes) === 0) {
             return true;
         }
         foreach ($this->allowedTypes as $type) {
             $function = 'is_' . $type;
-            if (function_exists($function) && $function($item)) {
+            if (function_exists($function) && $function($value)) {
                 return true;
             }
+            /** @var class-string */
             $fqcn = ltrim($type, '\\');
-            if (is_object($item) && is_a($item, $fqcn)) {
+            if (is_object($value) && is_a($value, $fqcn)) {
                 return true;
             }
         }
         return false;
+    }
+
+    /**
+     * Check if the list is empty.
+     *
+     * @return bool Whether the list is empty
+     *
+     * @api
+     */
+    public function isEmpty(): bool
+    {
+        return parent::isEmpty();
+    }
+
+    /**
+     * Get the current value's offset.
+     *
+     * @return int The current offset
+     *
+     * @api
+     */
+    public function key(): int
+    {
+        return parent::key();
     }
 
     /**
@@ -140,85 +253,265 @@ class StrictList extends SplDoublyLinkedList
     }
 
     /**
-     * Set the item at the specified index.
-     *
-     * @param ?int $index The index being set or NULL to append
-     * @param AllowedType $item The new item for the index
+     * Move cursor to the next value on the list.
      *
      * @return void
      *
-     * @throws InvalidArgumentException
+     * @api
      */
-    public function offsetSet(mixed $index, mixed $item): void
+    public function next(): void
     {
-        if (!$this->isAllowedType($item)) {
-            throw new InvalidArgumentException(
-                sprintf(
-                    'Parameter 2 must be an allowed type, %s given.',
-                    get_debug_type($item)
-                )
-            );
-        }
-        parent::offsetSet($index, $item);
+        parent::next();
     }
 
     /**
-     * Prepend items at the start of the list.
+     * Check if the specified offset exists.
      *
-     * @param AllowedType ...$items One or more items to prepend
+     * @param int $offset The offset being checked
+     *
+     * @return bool Whether the offset exists
+     *
+     * @api
+     */
+    public function offsetExists(mixed $offset): bool
+    {
+        return parent::offsetExists($offset);
+    }
+
+    /**
+     * Get the value at the specified offset.
+     *
+     * @param int $offset The offset to get
+     *
+     * @return ?AllowedType The value at the offset or NULL
+     *
+     * @throws OutOfRangeException
+     *
+     * @api
+     */
+    public function offsetGet(mixed $offset): mixed
+    {
+        return parent::offsetGet($offset);
+    }
+
+    /**
+     * Set the value at the specified offset.
+     *
+     * @param ?int $offset The offset being set or NULL to append
+     * @param AllowedType $value The new value for the offset
      *
      * @return void
      *
      * @throws InvalidArgumentException
+     *
+     * @api
      */
-    public function prepend(mixed ...$items): void
+    public function offsetSet(mixed $offset, mixed $value): void
     {
-        foreach ($items as $count => $item) {
-            if (!$this->isAllowedType($item)) {
+        if (!$this->isAllowedType($value)) {
+            throw new InvalidArgumentException(
+                sprintf(
+                    'Parameter 2 must be an allowed type, %s given.',
+                    get_debug_type($value)
+                )
+            );
+        }
+        /** @psalm-suppress PossiblyNullArgument */
+        parent::offsetSet($offset, $value);
+    }
+
+    /**
+     * Unset the specified offset.
+     *
+     * @param int $offset The offset to unset
+     *
+     * @return void
+     *
+     * @throws OutOfRangeException
+     *
+     * @api
+     */
+    public function offsetUnset(mixed $offset): void
+    {
+        parent::offsetUnset($offset);
+    }
+
+    /**
+     * Pops an value from the end of the list.
+     *
+     * @return AllowedType The value from the end of the list
+     *
+     * @throws RuntimeException
+     *
+     * @api
+     */
+    public function pop(): mixed
+    {
+        return parent::pop();
+    }
+
+    /**
+     * Prepend values at the start of the list.
+     *
+     * @param AllowedType ...$values One or more values to prepend
+     *
+     * @return void
+     *
+     * @throws InvalidArgumentException
+     *
+     * @api
+     */
+    public function prepend(mixed ...$values): void
+    {
+        foreach ($values as $count => $value) {
+            if (!$this->isAllowedType($value)) {
                 throw new InvalidArgumentException(
                     sprintf(
                         'Parameter %d must be an allowed type, %s given.',
                         (int) $count + 1,
-                        get_debug_type($item)
+                        get_debug_type($value)
                     )
                 );
             }
         }
-        foreach ($items as $item) {
-            parent::unshift($item);
+        foreach ($values as $value) {
+            parent::unshift($value);
         }
     }
 
     /**
-     * Push an item at the end of the list.
+     * Move cursor to the previous value on the list.
      *
-     * @param AllowedType $item The item to push
+     * @return void
+     *
+     * @api
+     */
+    public function prev(): void
+    {
+        parent::prev();
+    }
+
+    /**
+     * Push an value at the end of the list.
+     *
+     * @param AllowedType $value The value to push
      *
      * @return void
      *
      * @throws InvalidArgumentException
+     *
+     * @api
      */
-    public function push(mixed $item): void
+    public function push(mixed $value): void
     {
-        if (!$this->isAllowedType($item)) {
+        if (!$this->isAllowedType($value)) {
             throw new InvalidArgumentException(
                 sprintf(
                     'Parameter 1 must be an allowed type, %s given.',
-                    get_debug_type($item)
+                    get_debug_type($value)
                 )
             );
         }
-        parent::push($item);
+        parent::push($value);
+    }
+
+    /**
+     * Move cursor back to the start of the list.
+     *
+     * @return void
+     *
+     * @api
+     */
+    public function rewind(): void
+    {
+        parent::rewind();
     }
 
     /**
      * Get string representation of $this.
      *
      * @return string The string representation
+     *
+     * @internal
      */
     public function serialize(): string
     {
         return serialize($this->__serialize());
+    }
+
+    /**
+     * Set allowed data types of list values.
+     *
+     * @param string[] $allowedTypes Allowed data types of values
+     *
+     * @return void
+     *
+     * @throws InvalidArgumentException
+     *
+     * @internal
+     */
+    protected function setAllowedTypes(array $allowedTypes = []): void
+    {
+        if (array_sum(array_map('is_string', $allowedTypes)) !== count($allowedTypes)) {
+            throw new InvalidArgumentException(
+                'Allowed types must be array of strings or empty array.'
+            );
+        }
+        $this->allowedTypes = $allowedTypes;
+    }
+
+    /**
+     * Set the mode of iteration.
+     *
+     * @param int $mode The new iterator mode (0, 1, 2 or 3)
+     *
+     *                  There are two orthogonal sets of modes that can be set.
+     *
+     *                  The direction of iteration (either one or the other):
+     *                  - StrictList::IT_MODE_FIFO (queue style)
+     *                  - StrictList::IT_MODE_LIFO (stack style)
+     *
+     *                  The behavior of the iterator (either one or the other):
+     *                  - StrictList::IT_MODE_DELETE (delete items)
+     *                  - StrictList::IT_MODE_KEEP (keep items)
+     *
+     *                  The default mode is: IT_MODE_FIFO | IT_MODE_KEEP
+     *
+     * @return int The set of flags and modes of iteration
+     *
+     * @api
+     */
+    public function setIteratorMode(int $mode): int
+    {
+        return parent::setIteratorMode($mode);
+    }
+
+    /**
+     * Shift an value from the beginning of the list.
+     *
+     * @return AllowedType The first value of the list
+     *
+     * @throws RuntimeException
+     *
+     * @api
+     */
+    public function shift(): mixed
+    {
+        return parent::shift();
+    }
+
+    /**
+     * Peek at the value at the end of the list.
+     *
+     * @return AllowedType The last value of the list
+     *
+     * @throws RuntimeException
+     *
+     * @api
+     */
+    public function top(): mixed
+    {
+        return parent::top();
     }
 
     /**
@@ -227,6 +520,8 @@ class StrictList extends SplDoublyLinkedList
      * @param string $data The string representation
      *
      * @return void
+     *
+     * @internal
      */
     public function unserialize($data): void
     {
@@ -236,31 +531,46 @@ class StrictList extends SplDoublyLinkedList
     }
 
     /**
-     * Prepend the list with an item.
+     * Prepend the list with an value.
      *
-     * @param AllowedType $item The item to unshift
+     * @param AllowedType $value The value to unshift
      *
      * @return void
      *
      * @throws InvalidArgumentException
+     *
+     * @api
      */
-    public function unshift(mixed $item): void
+    public function unshift(mixed $value): void
     {
-        if (!$this->isAllowedType($item)) {
+        if (!$this->isAllowedType($value)) {
             throw new InvalidArgumentException(
                 sprintf(
                     'Parameter 1 must be an allowed type, %s given.',
-                    get_debug_type($item)
+                    get_debug_type($value)
                 )
             );
         }
-        parent::unshift($item);
+        parent::unshift($value);
     }
 
     /**
-     * Create a type-sensitive, traversable list of items.
+     * Check if the list contains any more values.
      *
-     * @param string[] $allowedTypes Allowed data types of items (optional)
+     * @return bool Whether the list contains more values
+     *
+     * @api
+     */
+    public function valid(): bool
+    {
+        return parent::valid();
+    }
+
+    /**
+     * Create a type-sensitive, traversable list of values.
+     *
+     * @param string[] $allowedTypes Allowed data types of values (optional)
+     *
      *                               If empty, all types are allowed.
      *                               Possible values are:
      *                               - "array"
@@ -277,16 +587,13 @@ class StrictList extends SplDoublyLinkedList
      *                               - "scalar"
      *                               - "string"
      *
+     * @return void
+     *
      * @throws InvalidArgumentException
      */
     public function __construct(array $allowedTypes = [])
     {
-        if (array_sum(array_map('is_string', $allowedTypes)) !== count($allowedTypes)) {
-            throw new InvalidArgumentException(
-                'Allowed types must be array of strings or empty array.'
-            );
-        }
-        $this->allowedTypes = $allowedTypes;
+        $this->setAllowedTypes($allowedTypes);
     }
 
     /**
@@ -325,15 +632,17 @@ class StrictList extends SplDoublyLinkedList
      * @return void
      *
      * @internal
+     *
+     * @psalm-suppress MethodSignatureMismatch
      */
     public function __unserialize(array $data): void
     {
         /** @var string[] $allowedTypes */
         $allowedTypes = $data['StrictList::allowedTypes'];
-        $this->__construct($allowedTypes);
-        /** @var iterable<AllowedType> $items */
-        $items = $data['SplDoublyLinkedList::dllist'];
-        $this->append(...$items);
+        $this->setAllowedTypes($allowedTypes);
+        /** @var array<int, AllowedType> $values */
+        $values = $data['SplDoublyLinkedList::dllist'];
+        $this->append(...$values);
         /** @var int $flags */
         $flags = $data['SplDoublyLinkedList::flags'];
         $this->setIteratorMode($flags);

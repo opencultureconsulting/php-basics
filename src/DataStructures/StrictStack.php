@@ -23,10 +23,14 @@ declare(strict_types=1);
 
 namespace OCC\Basics\DataStructures;
 
+use ArrayAccess;
+use Countable;
+use Iterator;
 use RuntimeException;
+use Serializable;
 
 /**
- * A type-sensitive, taversable Last In, First Out Stack (LIFO).
+ * A type-sensitive, taversable Last In, First Out stack (LIFO).
  *
  * Extends [\SplStack](https://www.php.net/splstack) with an option to specify
  * the allowed data types for list items.
@@ -34,12 +38,14 @@ use RuntimeException;
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package Basics\DataStructures
  *
- * @property-read string[] $allowedTypes
+ * @api
  *
  * @template AllowedType of mixed
  * @extends StrictList<AllowedType>
+ * @implements ArrayAccess<int, AllowedType>
+ * @implements Iterator<int, AllowedType>
  */
-class StrictStack extends StrictList
+class StrictStack extends StrictList implements ArrayAccess, Countable, Iterator, Serializable
 {
     /**
      * Add an item to the stack.
@@ -70,6 +76,17 @@ class StrictStack extends StrictList
      *
      * @param int $mode The new iterator mode (2 or 3)
      *
+     *                  There are two orthogonal sets of modes that can be set.
+     *
+     *                  The direction of iteration (fixed for StrictStack):
+     *                  - StrictStack::IT_MODE_LIFO (stack style)
+     *
+     *                  The behavior of the iterator (either one or the other):
+     *                  - StrictStack::IT_MODE_DELETE (delete items)
+     *                  - StrictStack::IT_MODE_KEEP (keep items)
+     *
+     *                  The default mode is: IT_MODE_LIFO | IT_MODE_KEEP
+     *
      * @return int The set of flags and modes of iteration
      *
      * @throws RuntimeException
@@ -91,6 +108,7 @@ class StrictStack extends StrictList
      * Create a type-sensitive, traversable stack of items.
      *
      * @param string[] $allowedTypes Allowed data types of items (optional)
+     *
      *                               If empty, all types are allowed.
      *                               Possible values are:
      *                               - "array"
@@ -106,6 +124,8 @@ class StrictStack extends StrictList
      *                               - "resource"
      *                               - "scalar"
      *                               - "string"
+     *
+     * @return void
      *
      * @throws \InvalidArgumentException
      */

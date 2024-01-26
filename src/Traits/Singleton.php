@@ -37,7 +37,7 @@ trait Singleton
     /**
      * Holds the singleton instance.
      *
-     * @var array<static>
+     * @var array<string, static>
      */
     private static array $singleton = [];
 

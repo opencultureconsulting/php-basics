@@ -75,11 +75,12 @@ trait Getter
     public function __isset(string $property): bool
     {
         try {
+            /** @var mixed $value */
             $value = $this->__get($property);
         } catch (InvalidArgumentException) {
             $value = null;
         } finally {
-            return (bool) $value !== false;
+            return boolval($value ?? null) !== false;
         }
     }
 }

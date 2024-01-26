@@ -23,30 +23,35 @@ declare(strict_types=1);
 
 namespace OCC\Basics\InterfaceTraits;
 
-use ArrayIterator;
+use Countable;
 
 /**
- * A generic implementation of the IteratorAggregate interface.
+ * A generic implementation of the Countable interface.
  *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package Basics\InterfaceTraits
  *
- * @phpstan-require-implements \IteratorAggregate
+ * @template TKey of int|string
+ * @template TValue of mixed
+ * @implements Countable<TValue>
+ * @phpstan-require-implements Countable
  */
-trait IteratorAggregate
+trait CountableTrait
 {
     /**
-     * Holds the iterable data.
+     * Holds the countable data.
+     *
+     * @var array<TKey, TValue>
      */
-    private array $data = [];
+    protected array $data = [];
 
     /**
-     * Retrieve an external iterator.
+     * Count the data items.
      *
-     * @return ArrayIterator
+     * @return int The number of data items
      */
-    public function getIterator(): ArrayIterator
+    public function count(): int
     {
-        return new ArrayIterator($this->data);
+        return count($this->data);
     }
 }

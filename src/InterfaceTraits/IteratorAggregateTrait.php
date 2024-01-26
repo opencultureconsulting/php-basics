@@ -23,68 +23,36 @@ declare(strict_types=1);
 
 namespace OCC\Basics\InterfaceTraits;
 
+use ArrayIterator;
+use IteratorAggregate;
+
 /**
- * A generic implementation of the Iterator interface.
+ * A generic implementation of the IteratorAggregate interface.
  *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package Basics\InterfaceTraits
  *
- * @phpstan-require-implements \Iterator
+ * @template TKey of int|string
+ * @template TValue of mixed
+ * @implements IteratorAggregate<TKey, TValue>
+ * @phpstan-require-implements IteratorAggregate
  */
-trait Iterator
+trait IteratorAggregateTrait
 {
     /**
      * Holds the iterable data.
+     *
+     * @var array<TKey, TValue>
      */
-    private array $data = [];
+    protected array $data = [];
 
     /**
-     * Return the current item.
+     * Retrieve an external iterator.
      *
-     * @return mixed The current item or FALSE if invalid
+     * @return ArrayIterator<TKey, TValue> New array iterator for data array
      */
-    public function current(): mixed
+    public function getIterator(): ArrayIterator
     {
-        return current($this->data);
-    }
-
-    /**
-     * Return the current key.
-     *
-     * @return mixed The current key or NULL if invalid
-     */
-    public function key(): mixed
-    {
-        return key($this->data);
-    }
-
-    /**
-     * Move forward to next item.
-     *
-     * @return void
-     */
-    public function next(): void
-    {
-        next($this->data);
-    }
-
-    /**
-     * Rewind the iterator to the first item.
-     *
-     * @return void
-     */
-    public function rewind(): void
-    {
-        reset($this->data);
-    }
-
-    /**
-     * Checks if current position is valid.
-     *
-     * @return bool Whether the current position is valid
-     */
-    public function valid(): bool
-    {
-        return !is_null($this->key());
+        return new ArrayIterator($this->data);
     }
 }

@@ -32,6 +32,8 @@ use ErrorException;
  *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package Basics\ErrorHandlers
+ *
+ * @api
  */
 class ThrowErrorException
 {

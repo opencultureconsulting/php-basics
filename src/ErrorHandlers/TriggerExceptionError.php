@@ -32,6 +32,8 @@ use Throwable;
  *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package Basics\ErrorHandlers
+ *
+ * @api
  */
 class TriggerExceptionError
 {

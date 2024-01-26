@@ -23,10 +23,14 @@ declare(strict_types=1);
 
 namespace OCC\Basics\DataStructures;
 
+use ArrayAccess;
+use Countable;
+use Iterator;
 use RuntimeException;
+use Serializable;
 
 /**
- * A type-sensitive, taversable First In, First Out Queue (FIFO).
+ * A type-sensitive, taversable First In, First Out queue (FIFO).
  *
  * Extends [\SplQueue](https://www.php.net/splqueue) with an option to specify
  * the allowed data types for list items.
@@ -34,12 +38,14 @@ use RuntimeException;
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package Basics\DataStructures
  *
- * @property-read string[] $allowedTypes
+ * @api
  *
  * @template AllowedType of mixed
  * @extends StrictList<AllowedType>
+ * @implements ArrayAccess<int, AllowedType>
+ * @implements Iterator<int, AllowedType>
  */
-class StrictQueue extends StrictList
+class StrictQueue extends StrictList implements ArrayAccess, Countable, Iterator, Serializable
 {
     /**
      * Dequeue an item from the queue.
@@ -70,6 +76,17 @@ class StrictQueue extends StrictList
      *
      * @param int $mode The new iterator mode (0 or 1)
      *
+     *                  There are two orthogonal sets of modes that can be set.
+     *
+     *                  The direction of iteration (fixed for StrictQueue):
+     *                  - StrictQueue::IT_MODE_FIFO (queue style)
+     *
+     *                  The behavior of the iterator (either one or the other):
+     *                  - StrictQueue::IT_MODE_DELETE (delete items)
+     *                  - StrictQueue::IT_MODE_KEEP (keep items)
+     *
+     *                  The default mode is: IT_MODE_FIFO | IT_MODE_KEEP
+     *
      * @return int The set of flags and modes of iteration
      *
      * @throws RuntimeException
@@ -91,6 +108,7 @@ class StrictQueue extends StrictList
      * Create a type-sensitive, traversable queue of items.
      *
      * @param string[] $allowedTypes Allowed data types of items (optional)
+     *
      *                               If empty, all types are allowed.
      *                               Possible values are:
      *                               - "array"
@@ -106,6 +124,8 @@ class StrictQueue extends StrictList
      *                               - "resource"
      *                               - "scalar"
      *                               - "string"
+     *
+     * @return void
      *
      * @throws \InvalidArgumentException
      */
