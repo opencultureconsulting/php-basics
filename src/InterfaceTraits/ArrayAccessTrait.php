@@ -33,6 +33,7 @@ use ArrayAccess;
  *
  * @template TKey of int|string
  * @template TValue of mixed
+ * @template TData of array<TKey, TValue>
  * @implements ArrayAccess<TKey, TValue>
  * @phpstan-require-implements ArrayAccess
  */
@@ -41,7 +42,7 @@ trait ArrayAccessTrait
     /**
      * Holds the array-accessible data.
      *
-     * @var array<TKey, TValue>
+     * @var TData
      */
     protected array $data = [];
 

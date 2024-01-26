@@ -55,6 +55,8 @@ class StrictStack extends StrictList implements ArrayAccess, Countable, Iterator
      * @return void
      *
      * @throws \InvalidArgumentException
+     *
+     * @api
      */
     public function stack(mixed $item): void
     {
@@ -65,6 +67,8 @@ class StrictStack extends StrictList implements ArrayAccess, Countable, Iterator
      * Unstack an item from the stack.
      *
      * @return AllowedType The unstacked item
+     *
+     * @api
      */
     public function unstack(): mixed
     {
@@ -90,6 +94,8 @@ class StrictStack extends StrictList implements ArrayAccess, Countable, Iterator
      * @return int The set of flags and modes of iteration
      *
      * @throws RuntimeException
+     *
+     * @api
      */
     final public function setIteratorMode(int $mode): int
     {

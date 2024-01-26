@@ -6,7 +6,8 @@
     errorLevel="1"
     resolveFromConfigFile="true"
     findUnusedBaselineEntry="true"
-    findUnusedCode="false"
+    findUnusedCode="true"
+    findUnusedVariablesAndParams="true"
 >
     <issueHandlers>
         <RedundantCastGivenDocblockType errorLevel="suppress"/>

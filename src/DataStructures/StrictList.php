@@ -27,7 +27,6 @@ use ArrayAccess;
 use Countable;
 use InvalidArgumentException;
 use Iterator;
-use OutOfRangeException;
 use RuntimeException;
 use SplDoublyLinkedList;
 use OCC\Basics\Traits\Getter;
@@ -56,27 +55,7 @@ class StrictList extends SplDoublyLinkedList implements ArrayAccess, Countable, 
     use Getter;
 
     /**
-     * Queue style iterator mode (First In, First Out).
-     */
-    public const IT_MODE_FIFO = 0;
-
-    /**
-     * Stack style iterator mode (Last In, First Out).
-     */
-    public const IT_MODE_LIFO = 2;
-
-    /**
-     * Destructive iterator mode (delete values after iteration).
-     */
-    public const IT_MODE_DELETE = 1;
-
-    /**
-     * Preserving iterator mode (keep values after iteration).
-     */
-    public const IT_MODE_KEEP = 0;
-
-    /**
-     * The allowed data types for values.
+     * The allowed data types for list values.
      *
      * @var string[]
      *
@@ -153,27 +132,15 @@ class StrictList extends SplDoublyLinkedList implements ArrayAccess, Countable, 
     }
 
     /**
-     * Count the number of values on the list.
+     * Get allowed data types for list values.
      *
-     * @return int The current number of values
-     *
-     * @api
-     */
-    public function count(): int
-    {
-        return parent::count();
-    }
-
-    /**
-     * Get current list value.
-     *
-     * @return AllowedType The current value
+     * @return string[] The list of allowed data types
      *
      * @api
      */
-    public function current(): mixed
+    public function getAllowedTypes(): array
     {
-        return parent::current();
+        return $this->allowedTypes;
     }
 
     /**
@@ -217,30 +184,6 @@ class StrictList extends SplDoublyLinkedList implements ArrayAccess, Countable, 
     }
 
     /**
-     * Check if the list is empty.
-     *
-     * @return bool Whether the list is empty
-     *
-     * @api
-     */
-    public function isEmpty(): bool
-    {
-        return parent::isEmpty();
-    }
-
-    /**
-     * Get the current value's offset.
-     *
-     * @return int The current offset
-     *
-     * @api
-     */
-    public function key(): int
-    {
-        return parent::key();
-    }
-
-    /**
      * Magic getter method for $this->allowedTypes.
      *
      * @return string[] The list of allowed data types
@@ -249,49 +192,7 @@ class StrictList extends SplDoublyLinkedList implements ArrayAccess, Countable, 
      */
     protected function magicGetAllowedTypes(): array
     {
-        return $this->allowedTypes;
-    }
-
-    /**
-     * Move cursor to the next value on the list.
-     *
-     * @return void
-     *
-     * @api
-     */
-    public function next(): void
-    {
-        parent::next();
-    }
-
-    /**
-     * Check if the specified offset exists.
-     *
-     * @param int $offset The offset being checked
-     *
-     * @return bool Whether the offset exists
-     *
-     * @api
-     */
-    public function offsetExists(mixed $offset): bool
-    {
-        return parent::offsetExists($offset);
-    }
-
-    /**
-     * Get the value at the specified offset.
-     *
-     * @param int $offset The offset to get
-     *
-     * @return ?AllowedType The value at the offset or NULL
-     *
-     * @throws OutOfRangeException
-     *
-     * @api
-     */
-    public function offsetGet(mixed $offset): mixed
-    {
-        return parent::offsetGet($offset);
+        return $this->getAllowedTypes();
     }
 
     /**
@@ -304,7 +205,7 @@ class StrictList extends SplDoublyLinkedList implements ArrayAccess, Countable, 
      *
      * @throws InvalidArgumentException
      *
-     * @api
+     * @internal
      */
     public function offsetSet(mixed $offset, mixed $value): void
     {
@@ -318,22 +219,6 @@ class StrictList extends SplDoublyLinkedList implements ArrayAccess, Countable, 
         }
         /** @psalm-suppress PossiblyNullArgument */
         parent::offsetSet($offset, $value);
-    }
-
-    /**
-     * Unset the specified offset.
-     *
-     * @param int $offset The offset to unset
-     *
-     * @return void
-     *
-     * @throws OutOfRangeException
-     *
-     * @api
-     */
-    public function offsetUnset(mixed $offset): void
-    {
-        parent::offsetUnset($offset);
     }
 
     /**
@@ -380,18 +265,6 @@ class StrictList extends SplDoublyLinkedList implements ArrayAccess, Countable, 
     }
 
     /**
-     * Move cursor to the previous value on the list.
-     *
-     * @return void
-     *
-     * @api
-     */
-    public function prev(): void
-    {
-        parent::prev();
-    }
-
-    /**
      * Push an value at the end of the list.
      *
      * @param AllowedType $value The value to push
@@ -416,18 +289,6 @@ class StrictList extends SplDoublyLinkedList implements ArrayAccess, Countable, 
     }
 
     /**
-     * Move cursor back to the start of the list.
-     *
-     * @return void
-     *
-     * @api
-     */
-    public function rewind(): void
-    {
-        parent::rewind();
-    }
-
-    /**
      * Get string representation of $this.
      *
      * @return string The string representation
@@ -447,8 +308,6 @@ class StrictList extends SplDoublyLinkedList implements ArrayAccess, Countable, 
      * @return void
      *
      * @throws InvalidArgumentException
-     *
-     * @internal
      */
     protected function setAllowedTypes(array $allowedTypes = []): void
     {
@@ -552,18 +411,6 @@ class StrictList extends SplDoublyLinkedList implements ArrayAccess, Countable, 
             );
         }
         parent::unshift($value);
-    }
-
-    /**
-     * Check if the list contains any more values.
-     *
-     * @return bool Whether the list contains more values
-     *
-     * @api
-     */
-    public function valid(): bool
-    {
-        return parent::valid();
     }
 
     /**

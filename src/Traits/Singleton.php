@@ -23,7 +23,6 @@ declare(strict_types=1);
 
 namespace OCC\Basics\Traits;
 
-use Exception;
 use LogicException;
 
 /**
@@ -38,6 +37,8 @@ trait Singleton
      * Holds the singleton instance.
      *
      * @var array<string, static>
+     *
+     * @internal
      */
     private static array $singleton = [];
 
@@ -48,16 +49,12 @@ trait Singleton
      *
      * @return static The singleton instance
      *
-     * @throws Exception
+     * @api
      */
     final public static function getInstance(mixed ...$args): static
     {
         if (!isset(static::$singleton[static::class])) {
-            try {
-                static::$singleton[static::class] = new static(...$args);
-            } catch (Exception $exception) {
-                throw $exception;
-            }
+            static::$singleton[static::class] = new static(...$args);
         }
         return static::$singleton[static::class];
     }
@@ -66,11 +63,15 @@ trait Singleton
      * This is a singleton class, thus the constructor is private.
      *
      * Usage: Get an instance of this class by calling static::getInstance()
+     *
+     * @return void
      */
     abstract private function __construct();
 
     /**
      * This is a singleton class, thus cloning is prohibited.
+     *
+     * @return void
      *
      * @throws LogicException
      *

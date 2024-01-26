@@ -26,14 +26,14 @@
                 <ignore-tag>psalm-suppress</ignore-tag>
             </ignore-tags>
         </api>
-        <guide>
+        <guide format="rst">
             <source dsn=".">
                 <path>/.phpdoc/guide</path>
             </source>
             <output>guides</output>
         </guide>
     </version>
-    <setting name="graphs.enabled" value="true"/>
+    <setting name="graphs.enabled" value="false"/>
     <setting name="guides.enabled" value="true"/>
     <setting name="template.color" value="orange"/>
 </phpdocumentor>

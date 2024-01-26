@@ -33,6 +33,7 @@ use Iterator;
  *
  * @template TKey of int|string
  * @template TValue of mixed
+ * @template TData of array<TKey, TValue>
  * @implements Iterator<TKey, TValue>
  * @phpstan-require-implements Iterator
  */
@@ -41,7 +42,7 @@ trait IteratorTrait
     /**
      * Holds the iterable data.
      *
-     * @var array<TKey, TValue>
+     * @var TData
      */
     protected array $data = [];
 
@@ -73,6 +74,16 @@ trait IteratorTrait
     public function next(): void
     {
         next($this->data);
+    }
+
+    /**
+     * Move back to previous item.
+     *
+     * @return void
+     */
+    public function prev(): void
+    {
+        prev($this->data);
     }
 
     /**

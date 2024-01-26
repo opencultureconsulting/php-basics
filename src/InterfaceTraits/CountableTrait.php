@@ -33,6 +33,7 @@ use Countable;
  *
  * @template TKey of int|string
  * @template TValue of mixed
+ * @template TData of array<TKey, TValue>
  * @implements Countable<TValue>
  * @phpstan-require-implements Countable
  */
@@ -41,7 +42,7 @@ trait CountableTrait
     /**
      * Holds the countable data.
      *
-     * @var array<TKey, TValue>
+     * @var TData
      */
     protected array $data = [];
 

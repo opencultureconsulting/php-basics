@@ -51,6 +51,8 @@ class StrictQueue extends StrictList implements ArrayAccess, Countable, Iterator
      * Dequeue an item from the queue.
      *
      * @return AllowedType The dequeued item
+     *
+     * @api
      */
     public function dequeue(): mixed
     {
@@ -65,6 +67,8 @@ class StrictQueue extends StrictList implements ArrayAccess, Countable, Iterator
      * @return void
      *
      * @throws \InvalidArgumentException
+     *
+     * @api
      */
     public function enqueue(mixed $item): void
     {
@@ -90,6 +94,8 @@ class StrictQueue extends StrictList implements ArrayAccess, Countable, Iterator
      * @return int The set of flags and modes of iteration
      *
      * @throws RuntimeException
+     *
+     * @api
      */
     final public function setIteratorMode(int $mode): int
     {
