@@ -16,7 +16,7 @@
         "ThrowErrorException",
         "TriggerExceptionError"
     ],
-    "homepage": "https://github.com/opencultureconsulting/php-basics",
+    "homepage": "https://opencultureconsulting.github.io/php-basics/",
     "readme": "README.md",
     "license": "GPL-3.0-or-later",
     "authors": [
@@ -30,7 +30,7 @@
     "support": {
         "issues": "https://github.com/opencultureconsulting/php-basics/issues",
         "source": "https://github.com/opencultureconsulting/php-basics",
-        "docs": "https://github.com/opencultureconsulting/php-basics/blob/main/README.md"
+        "docs": "https://opencultureconsulting.github.io/php-basics/"
     },
     "require": {
         "php": "^8.0"
