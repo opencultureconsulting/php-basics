@@ -32,6 +32,8 @@ use IteratorAggregate;
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package Basics\InterfaceTraits
  *
+ * @api
+ *
  * @template TKey of int|string
  * @template TValue of mixed
  * @template TData of array<TKey, TValue>
@@ -51,6 +53,8 @@ trait IteratorAggregateTrait
      * Retrieve an external iterator.
      *
      * @return ArrayIterator<TKey, TValue> New array iterator for data array
+     *
+     * @api
      */
     public function getIterator(): ArrayIterator
     {

@@ -31,6 +31,8 @@ use ArrayAccess;
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package Basics\InterfaceTraits
  *
+ * @api
+ *
  * @template TKey of int|string
  * @template TValue of mixed
  * @template TData of array<TKey, TValue>
@@ -52,6 +54,8 @@ trait ArrayAccessTrait
      * @param TKey $offset The offset to check for
      *
      * @return bool Whether the offset exists
+     *
+     * @api
      */
     public function offsetExists(mixed $offset): bool
     {
@@ -64,6 +68,8 @@ trait ArrayAccessTrait
      * @param TKey $offset The offset to retrieve at
      *
      * @return ?TValue The value at the offset or NULL
+     *
+     * @api
      */
     public function offsetGet(mixed $offset): mixed
     {
@@ -77,6 +83,8 @@ trait ArrayAccessTrait
      * @param TValue $value The value to set
      *
      * @return void
+     *
+     * @api
      */
     public function offsetSet(mixed $offset, mixed $value): void
     {
@@ -93,6 +101,8 @@ trait ArrayAccessTrait
      * @param TKey $offset The offset to unset
      *
      * @return void
+     *
+     * @api
      */
     public function offsetUnset(mixed $offset): void
     {

@@ -31,6 +31,8 @@ use Countable;
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package Basics\InterfaceTraits
  *
+ * @api
+ *
  * @template TKey of int|string
  * @template TValue of mixed
  * @template TData of array<TKey, TValue>
@@ -50,6 +52,8 @@ trait CountableTrait
      * Count the data items.
      *
      * @return int The number of data items
+     *
+     * @api
      */
     public function count(): int
     {

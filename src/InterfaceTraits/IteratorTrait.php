@@ -31,6 +31,8 @@ use Iterator;
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package Basics\InterfaceTraits
  *
+ * @api
+ *
  * @template TKey of int|string
  * @template TValue of mixed
  * @template TData of array<TKey, TValue>
@@ -50,6 +52,8 @@ trait IteratorTrait
      * Return the current item.
      *
      * @return TValue|false The current item or FALSE if invalid
+     *
+     * @api
      */
     public function current(): mixed
     {
@@ -60,6 +64,8 @@ trait IteratorTrait
      * Return the current key.
      *
      * @return ?TKey The current key or NULL if invalid
+     *
+     * @api
      */
     public function key(): mixed
     {
@@ -70,6 +76,8 @@ trait IteratorTrait
      * Move forward to next item.
      *
      * @return void
+     *
+     * @api
      */
     public function next(): void
     {
@@ -80,6 +88,8 @@ trait IteratorTrait
      * Move back to previous item.
      *
      * @return void
+     *
+     * @api
      */
     public function prev(): void
     {
@@ -90,6 +100,8 @@ trait IteratorTrait
      * Rewind the iterator to the first item.
      *
      * @return void
+     *
+     * @api
      */
     public function rewind(): void
     {
@@ -100,6 +112,8 @@ trait IteratorTrait
      * Check if current position is valid.
      *
      * @return bool Whether the current position is valid
+     *
+     * @api
      */
     public function valid(): bool
     {

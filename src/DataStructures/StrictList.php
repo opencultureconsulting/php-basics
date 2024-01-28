@@ -205,7 +205,7 @@ class StrictList extends SplDoublyLinkedList implements ArrayAccess, Countable, 
      *
      * @throws InvalidArgumentException
      *
-     * @internal
+     * @api
      */
     public function offsetSet(mixed $offset, mixed $value): void
     {
