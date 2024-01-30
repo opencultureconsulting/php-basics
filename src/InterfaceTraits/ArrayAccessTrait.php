@@ -33,10 +33,8 @@ use ArrayAccess;
  *
  * @api
  *
- * @template TKey of int|string
  * @template TValue of mixed
- * @template TData of array<TKey, TValue>
- * @implements ArrayAccess<TKey, TValue>
+ * @implements ArrayAccess<array-key, TValue>
  * @phpstan-require-implements ArrayAccess
  */
 trait ArrayAccessTrait
@@ -44,18 +42,18 @@ trait ArrayAccessTrait
     /**
      * Holds the array-accessible data.
      *
-     * @var TData
+     * @var array<TValue>
      */
     protected array $data = [];
 
     /**
      * Check if the specified offset exists.
      *
-     * @param TKey $offset The offset to check for
+     * @param array-key $offset The offset to check for
      *
      * @return bool Whether the offset exists
      *
-     * @api
+     * @internal
      */
     public function offsetExists(mixed $offset): bool
     {
@@ -65,11 +63,11 @@ trait ArrayAccessTrait
     /**
      * Retrieve data at the specified offset.
      *
-     * @param TKey $offset The offset to retrieve at
+     * @param array-key $offset The offset to retrieve
      *
-     * @return ?TValue The value at the offset or NULL
+     * @return ?TValue The value at the offset or NULL if invalid
      *
-     * @api
+     * @internal
      */
     public function offsetGet(mixed $offset): mixed
     {
@@ -79,12 +77,12 @@ trait ArrayAccessTrait
     /**
      * Assign a value to the specified offset.
      *
-     * @param ?TKey $offset The offset to assign to or NULL to append
+     * @param ?array-key $offset The offset to assign to or NULL to append
      * @param TValue $value The value to set
      *
      * @return void
      *
-     * @api
+     * @internal
      */
     public function offsetSet(mixed $offset, mixed $value): void
     {
@@ -98,11 +96,11 @@ trait ArrayAccessTrait
     /**
      * Unset the specified offset.
      *
-     * @param TKey $offset The offset to unset
+     * @param array-key $offset The offset to unset
      *
      * @return void
      *
-     * @api
+     * @internal
      */
     public function offsetUnset(mixed $offset): void
     {

@@ -43,7 +43,7 @@ use Serializable;
  * @template AllowedType of mixed
  * @extends StrictList<AllowedType>
  * @implements ArrayAccess<int, AllowedType>
- * @implements Iterator<int, AllowedType>
+ * @implements Iterator<AllowedType>
  */
 class StrictQueue extends StrictList implements ArrayAccess, Countable, Iterator, Serializable
 {

@@ -34,10 +34,8 @@ use IteratorAggregate;
  *
  * @api
  *
- * @template TKey of int|string
  * @template TValue of mixed
- * @template TData of array<TKey, TValue>
- * @implements IteratorAggregate<TKey, TValue>
+ * @implements IteratorAggregate<TValue>
  * @phpstan-require-implements IteratorAggregate
  */
 trait IteratorAggregateTrait
@@ -45,16 +43,16 @@ trait IteratorAggregateTrait
     /**
      * Holds the iterable data.
      *
-     * @var TData
+     * @var array<TValue>
      */
     protected array $data = [];
 
     /**
      * Retrieve an external iterator.
      *
-     * @return ArrayIterator<TKey, TValue> New array iterator for data array
+     * @return ArrayIterator<array-key, TValue> New array iterator for data array
      *
-     * @api
+     * @internal
      */
     public function getIterator(): ArrayIterator
     {

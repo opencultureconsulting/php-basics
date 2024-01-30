@@ -48,7 +48,7 @@ use Serializable;
  * @template AllowedType of mixed
  * @extends SplDoublyLinkedList<AllowedType>
  * @implements ArrayAccess<int, AllowedType>
- * @implements Iterator<int, AllowedType>
+ * @implements Iterator<AllowedType>
  */
 class StrictList extends SplDoublyLinkedList implements ArrayAccess, Countable, Iterator, Serializable
 {
@@ -205,7 +205,7 @@ class StrictList extends SplDoublyLinkedList implements ArrayAccess, Countable, 
      *
      * @throws InvalidArgumentException
      *
-     * @api
+     * @internal
      */
     public function offsetSet(mixed $offset, mixed $value): void
     {

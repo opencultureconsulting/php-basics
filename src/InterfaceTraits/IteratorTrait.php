@@ -33,10 +33,8 @@ use Iterator;
  *
  * @api
  *
- * @template TKey of int|string
  * @template TValue of mixed
- * @template TData of array<TKey, TValue>
- * @implements Iterator<TKey, TValue>
+ * @implements Iterator<TValue>
  * @phpstan-require-implements Iterator
  */
 trait IteratorTrait
@@ -44,28 +42,32 @@ trait IteratorTrait
     /**
      * Holds the iterable data.
      *
-     * @var TData
+     * @var array<TValue>
      */
     protected array $data = [];
 
     /**
      * Return the current item.
      *
-     * @return TValue|false The current item or FALSE if invalid
+     * @return ?TValue The current item or NULL if invalid
      *
-     * @api
+     * @internal
      */
     public function current(): mixed
     {
-        return current($this->data);
+        if ($this->valid()) {
+            /** @var TValue */
+            return current($this->data);
+        }
+        return null;
     }
 
     /**
      * Return the current key.
      *
-     * @return ?TKey The current key or NULL if invalid
+     * @return ?array-key The current key or NULL if invalid
      *
-     * @api
+     * @internal
      */
     public function key(): mixed
     {
@@ -77,7 +79,7 @@ trait IteratorTrait
      *
      * @return void
      *
-     * @api
+     * @internal
      */
     public function next(): void
     {
@@ -85,23 +87,11 @@ trait IteratorTrait
     }
 
     /**
-     * Move back to previous item.
-     *
-     * @return void
-     *
-     * @api
-     */
-    public function prev(): void
-    {
-        prev($this->data);
-    }
-
-    /**
      * Rewind the iterator to the first item.
      *
      * @return void
      *
-     * @api
+     * @internal
      */
     public function rewind(): void
     {
@@ -113,7 +103,7 @@ trait IteratorTrait
      *
      * @return bool Whether the current position is valid
      *
-     * @api
+     * @internal
      */
     public function valid(): bool
     {

@@ -6,3 +6,4 @@ composer.lock
 phpcs.xml
 phpdoc.xml
 phpstan.neon
+psalm.xml

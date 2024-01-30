@@ -33,10 +33,7 @@ use Countable;
  *
  * @api
  *
- * @template TKey of int|string
  * @template TValue of mixed
- * @template TData of array<TKey, TValue>
- * @implements Countable<TValue>
  * @phpstan-require-implements Countable
  */
 trait CountableTrait
@@ -44,16 +41,16 @@ trait CountableTrait
     /**
      * Holds the countable data.
      *
-     * @var TData
+     * @var array<TValue>
      */
     protected array $data = [];
 
     /**
      * Count the data items.
      *
-     * @return int The number of data items
+     * @return int<0, max> The number of data items
      *
-     * @api
+     * @internal
      */
     public function count(): int
     {
