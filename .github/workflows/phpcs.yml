@@ -25,11 +25,11 @@ jobs:
         uses: php-actions/composer@v6
         with:
           command: update
-          php_version: "8.0"
+          php_version: "8.1"
 
       - name: Run PHPCS
         uses: php-actions/phpcs@v1
         with:
-          php_version: "8.0"
+          php_version: "8.1"
           path: src/
           standard: phpcs.xml.dist
