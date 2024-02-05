@@ -174,7 +174,7 @@ class StrictList extends SplDoublyLinkedList implements ArrayAccess, Countable, 
             if (function_exists($function) && $function($value)) {
                 return true;
             }
-            /** @var class-string */
+            /** @var class-string $fqcn */
             $fqcn = ltrim($type, '\\');
             if (is_object($value) && is_a($value, $fqcn)) {
                 return true;

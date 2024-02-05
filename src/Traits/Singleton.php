@@ -36,7 +36,7 @@ trait Singleton
     /**
      * Holds the singleton instance.
      *
-     * @var array<string, static>
+     * @var array<class-string, static>
      *
      * @internal
      */
@@ -77,7 +77,7 @@ trait Singleton
      *
      * @internal
      */
-    final public function __clone(): void
+    final public function __clone()
     {
         throw new LogicException('Cloning a singleton is prohibited.');
     }
