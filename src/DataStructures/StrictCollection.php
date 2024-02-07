@@ -32,7 +32,7 @@ use OCC\Basics\Traits\Getter;
 use Serializable;
 
 /**
- * A type-sensitive collection.
+ * A type-sensitive, unsorted collection.
  *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package Basics\DataStructures
