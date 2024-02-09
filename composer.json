@@ -1,6 +1,6 @@
 {
     "name": "opencultureconsulting/basics",
-    "description": "This is a collection of generic Classes and useful Traits for PHP projects.",
+    "description": "A collection of generic classes and useful traits for PHP projects.",
     "type": "library",
     "keywords": [
         "ArrayAccess",
