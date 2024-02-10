@@ -6,7 +6,7 @@
     {% for version in project.versions %}
         {% for toc in version.tableOfContents %}
         <section class="phpdocumentor-sidebar__category">
-            <h2 class="phpdocumentor-sidebar__category-header">{{ toc.name|capitalize }}</h2>
+            <h2 class="phpdocumentor-sidebar__category-header">{{ toc.name|title }}</h2>
                 {% for root in toc.roots %}
                     {{ toc(root, 'components/menu.html.twig', 1) }}
                 {% endfor %}
