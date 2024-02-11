@@ -29,6 +29,8 @@ use IteratorAggregate;
 /**
  * A generic implementation of the IteratorAggregate interface.
  *
+ * Internally it iterates over the protected `$_data` array.
+ *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package Basics\InterfaceTraits
  *
@@ -43,19 +45,21 @@ trait IteratorAggregateTrait
     /**
      * Holds the iterable data.
      *
-     * @var array<TValue>
+     * @var TValue[]
+     *
+     * @internal
      */
-    protected array $data = [];
+    protected array $_data = [];
 
     /**
      * Retrieve an external iterator.
      *
-     * @return ArrayIterator<array-key, TValue> New array iterator for data array
+     * @return ArrayIterator<array-key, TValue> New iterator for the data array
      *
-     * @internal
+     * @api
      */
     public function getIterator(): ArrayIterator
     {
-        return new ArrayIterator($this->data);
+        return new ArrayIterator($this->_data);
     }
 }

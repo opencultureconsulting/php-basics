@@ -28,6 +28,8 @@ use ArrayAccess;
 /**
  * A generic implementation of the ArrayAccess interface.
  *
+ * Internally it accesses the protected `$_data` array.
+ *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package Basics\InterfaceTraits
  *
@@ -42,9 +44,11 @@ trait ArrayAccessTrait
     /**
      * Holds the array-accessible data.
      *
-     * @var array<TValue>
+     * @var TValue[]
+     *
+     * @internal
      */
-    protected array $data = [];
+    protected array $_data = [];
 
     /**
      * Check if the specified offset exists.
@@ -53,11 +57,11 @@ trait ArrayAccessTrait
      *
      * @return bool Whether the offset exists
      *
-     * @internal
+     * @api
      */
     public function offsetExists(mixed $offset): bool
     {
-        return isset($this->data[$offset]);
+        return isset($this->_data[$offset]);
     }
 
     /**
@@ -67,11 +71,11 @@ trait ArrayAccessTrait
      *
      * @return ?TValue The value at the offset or NULL if invalid
      *
-     * @internal
+     * @api
      */
     public function offsetGet(mixed $offset): mixed
     {
-        return $this->data[$offset] ?? null;
+        return $this->_data[$offset] ?? null;
     }
 
     /**
@@ -82,14 +86,14 @@ trait ArrayAccessTrait
      *
      * @return void
      *
-     * @internal
+     * @api
      */
     public function offsetSet(mixed $offset, mixed $value): void
     {
         if (is_null($offset)) {
-            $this->data[] = $value;
+            $this->_data[] = $value;
         } else {
-            $this->data[$offset] = $value;
+            $this->_data[$offset] = $value;
         }
     }
 
@@ -100,10 +104,10 @@ trait ArrayAccessTrait
      *
      * @return void
      *
-     * @internal
+     * @api
      */
     public function offsetUnset(mixed $offset): void
     {
-        unset($this->data[$offset]);
+        unset($this->_data[$offset]);
     }
 }

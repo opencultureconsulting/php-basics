@@ -28,6 +28,8 @@ use Iterator;
 /**
  * A generic implementation of the Iterator interface.
  *
+ * Internally it iterates over the protected `$_data` array.
+ *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package Basics\InterfaceTraits
  *
@@ -42,22 +44,24 @@ trait IteratorTrait
     /**
      * Holds the iterable data.
      *
-     * @var array<TValue>
+     * @var TValue[]
+     *
+     * @internal
      */
-    protected array $data = [];
+    protected array $_data = [];
 
     /**
      * Return the current item.
      *
      * @return ?TValue The current item or NULL if invalid
      *
-     * @internal
+     * @api
      */
     public function current(): mixed
     {
         if ($this->valid()) {
             /** @var TValue */
-            return current($this->data);
+            return current($this->_data);
         }
         return null;
     }
@@ -67,11 +71,11 @@ trait IteratorTrait
      *
      * @return ?array-key The current key or NULL if invalid
      *
-     * @internal
+     * @api
      */
     public function key(): mixed
     {
-        return key($this->data);
+        return key($this->_data);
     }
 
     /**
@@ -79,11 +83,23 @@ trait IteratorTrait
      *
      * @return void
      *
-     * @internal
+     * @api
      */
     public function next(): void
     {
-        next($this->data);
+        next($this->_data);
+    }
+
+    /**
+     * Move back to previous item.
+     *
+     * @return void
+     *
+     * @api
+     */
+    public function prev(): void
+    {
+        prev($this->_data);
     }
 
     /**
@@ -91,11 +107,11 @@ trait IteratorTrait
      *
      * @return void
      *
-     * @internal
+     * @api
      */
     public function rewind(): void
     {
-        reset($this->data);
+        reset($this->_data);
     }
 
     /**
@@ -103,7 +119,7 @@ trait IteratorTrait
      *
      * @return bool Whether the current position is valid
      *
-     * @internal
+     * @api
      */
     public function valid(): bool
     {

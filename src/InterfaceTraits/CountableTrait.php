@@ -28,12 +28,15 @@ use Countable;
 /**
  * A generic implementation of the Countable interface.
  *
+ * Internally it counts the values of the protected `$_data` array.
+ *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package Basics\InterfaceTraits
  *
  * @api
  *
  * @template TValue of mixed
+ * @implements Countable
  * @phpstan-require-implements Countable
  */
 trait CountableTrait
@@ -41,19 +44,21 @@ trait CountableTrait
     /**
      * Holds the countable data.
      *
-     * @var array<TValue>
+     * @var TValue[]
+     *
+     * @internal
      */
-    protected array $data = [];
+    protected array $_data = [];
 
     /**
      * Count the data items.
      *
      * @return int<0, max> The number of data items
      *
-     * @internal
+     * @api
      */
     public function count(): int
     {
-        return count($this->data);
+        return count($this->_data);
     }
 }
