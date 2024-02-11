@@ -17,6 +17,7 @@
             <extensions>
                 <extension>php</extension>
             </extensions>
+            <visibility>internal</visibility>
             <default-package-name>Basics</default-package-name>
             <include-source>true</include-source>
             <ignore-tags>
