@@ -36,7 +36,7 @@ use Countable;
  * @api
  *
  * @template TValue of mixed
- * @implements Countable
+ * @implements Countable<TValue>
  * @phpstan-require-implements Countable
  */
 trait CountableTrait

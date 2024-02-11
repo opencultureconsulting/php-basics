@@ -26,7 +26,7 @@ namespace OCC\Basics\ErrorHandlers;
 use Throwable;
 
 /**
- * Trigger errors for uncaught exceptions.
+ * Triggers errors for uncaught exceptions.
  *
  * If registered as exception handler, this catches an uncaught exception and
  * converts it into an internal PHP error of severity `E_USER_ERROR`.

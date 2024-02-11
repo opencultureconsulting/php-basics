@@ -26,7 +26,7 @@ namespace OCC\Basics\ErrorHandlers;
 use ErrorException;
 
 /**
- * Throw internal errors as exceptions.
+ * Throws internal errors as exceptions.
  *
  * If registered as error handler, this converts an internal PHP error into an
  * `ErrorException`. It respects the `error_reporting` directive.
@@ -48,7 +48,7 @@ class ThrowErrorException
      *
      * @return bool Always returns FALSE when not throwing an exception
      *
-     * @throws ErrorException
+     * @throws ErrorException if `error_reporting` is set to report the error
      */
     public function __invoke(
         int $errno = E_USER_ERROR,
