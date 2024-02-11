@@ -28,12 +28,13 @@ use Throwable;
 /**
  * Trigger errors for uncaught exceptions.
  *
- * Usage: set_exception_handler(new TriggerExceptionError());
+ * If registered as exception handler, this catches an uncaught exception and
+ * convert it into an internal PHP error of severity `E_USER_ERROR`.
+ *
+ * > Usage: `set_exception_handler(new TriggerExceptionError());`
  *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package Basics\ErrorHandlers
- *
- * @api
  */
 class TriggerExceptionError
 {

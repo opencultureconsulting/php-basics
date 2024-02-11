@@ -28,12 +28,13 @@ use ErrorException;
 /**
  * Throw internal errors as exceptions.
  *
- * Usage: set_error_handler(new ThrowErrorException());
+ * If registered as error handler, this converts an internal PHP error into an
+ * `ErrorException`. It respects the `error_reporting` directive.
+ *
+ * > Usage: `set_error_handler(new ThrowErrorException());`
  *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package Basics\ErrorHandlers
- *
- * @api
  */
 class ThrowErrorException
 {
