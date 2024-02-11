@@ -28,7 +28,7 @@ use LogicException;
 /**
  * Allows just a single instance of the class using this trait.
  *
- * Get the singleton object by calling the static method `getInstance()`.
+ * Get the singleton by calling the static method `getInstance()`.
  *
  * If there is no object yet, the constructor is called with the same arguments
  * as `getInstance()`. Any later call will just return the already instantiated
@@ -72,6 +72,8 @@ trait Singleton
      * This is a singleton class, thus the constructor is private.
      *
      * @return void
+     *
+     * @see Singleton::getInstance() to get an singleton object of the class
      */
     abstract private function __construct();
 
@@ -80,7 +82,7 @@ trait Singleton
      *
      * @return void
      *
-     * @throws LogicException if trying to clone `$this`
+     * @throws LogicException when trying to clone the singleton object
      *
      * @internal
      */
