@@ -28,6 +28,15 @@ use LogicException;
 /**
  * Allows just a single instance of the class using this trait.
  *
+ * Get the singleton object by calling the static method `getInstance()`.
+ *
+ * If there is no object yet, the constructor is called with the same arguments
+ * as `getInstance()`. Any later call will just return the already instantiated
+ * object (irrespective of the given arguments).
+ *
+ * In order for this to work as expected, the constructor has to be implemented
+ * as `private` to prevent direct instantiation of the class.
+ *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package Basics\Traits
  */
@@ -40,12 +49,12 @@ trait Singleton
      *
      * @internal
      */
-    private static array $singleton = [];
+    private static array $_singleton = [];
 
     /**
      * Get a singleton instance of this class.
      *
-     * @param mixed ...$args Constructor parameters
+     * @param mixed ...$args Constructor arguments
      *
      * @return static The singleton instance
      *
@@ -53,16 +62,14 @@ trait Singleton
      */
     final public static function getInstance(mixed ...$args): static
     {
-        if (!isset(static::$singleton[static::class])) {
-            static::$singleton[static::class] = new static(...$args);
+        if (!isset(static::$_singleton[static::class])) {
+            static::$_singleton[static::class] = new static(...$args);
         }
-        return static::$singleton[static::class];
+        return static::$_singleton[static::class];
     }
 
     /**
      * This is a singleton class, thus the constructor is private.
-     *
-     * Usage: Get an instance of this class by calling static::getInstance()
      *
      * @return void
      */
