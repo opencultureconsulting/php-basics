@@ -28,6 +28,15 @@ use InvalidArgumentException;
 /**
  * Reads data from inaccessible properties by using magic methods.
  *
+ * To make a `protected` or `private` property readable, provide a method named
+ * `_magicGet{Property}()` which handles the reading. Replace `{Property}` in
+ * the method's name with the name of the actual property (with an uppercase
+ * first letter).
+ *
+ * > Example: If the property is named `$fooBar`, the "magic" method has to be
+ * > `_magicGetFooBar()`. This method is then called when `$fooBar` is read
+ * > from outside the class context.
+ *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package Basics\Traits
  */
@@ -40,17 +49,14 @@ trait Getter
      *
      * @return mixed The class property's current value
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException if the property does not exist
      *
      * @internal
      */
     public function __get(string $property): mixed
     {
-        $method = 'magicGet' . ucfirst($property);
-        if (
-            property_exists(static::class, $property)
-            && method_exists(static::class, $method)
-        ) {
+        $method = '_magicGet' . ucfirst($property);
+        if (property_exists(static::class, $property) && method_exists(static::class, $method)) {
             return $this->$method();
         } else {
             throw new InvalidArgumentException(

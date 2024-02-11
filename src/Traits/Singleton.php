@@ -80,7 +80,7 @@ trait Singleton
      *
      * @return void
      *
-     * @throws LogicException
+     * @throws LogicException if trying to clone `$this`
      *
      * @internal
      */

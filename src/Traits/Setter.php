@@ -28,6 +28,15 @@ use InvalidArgumentException;
 /**
  * Writes data to inaccessible properties by using magic methods.
  *
+ * To make a `protected` or `private` property writable, provide a method named
+ * `_magicSet{Property}()` which handles the writing. Replace `{Property}` in
+ * the method's name with the name of the actual property (with an uppercase
+ * first letter).
+ *
+ * > Example: If the property is named `$fooBar`, the "magic" method has to be
+ * > `_magicSetFooBar()`. This method is then called when `$fooBar` is written
+ * > to from outside the class context.
+ *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package Basics\Traits
  */
@@ -41,17 +50,14 @@ trait Setter
      *
      * @return void
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException if the property does not exist
      *
      * @internal
      */
     public function __set(string $property, mixed $value): void
     {
-        $method = 'magicSet' . ucfirst($property);
-        if (
-            property_exists(static::class, $property)
-            && method_exists(static::class, $method)
-        ) {
+        $method = '_magicSet' . ucfirst($property);
+        if (property_exists(static::class, $property) && method_exists(static::class, $method)) {
             $this->$method($value);
         } else {
             throw new InvalidArgumentException(
@@ -70,8 +76,6 @@ trait Setter
      * @param string $property The class property to unset
      *
      * @return void
-     *
-     * @throws InvalidArgumentException
      *
      * @internal
      */
