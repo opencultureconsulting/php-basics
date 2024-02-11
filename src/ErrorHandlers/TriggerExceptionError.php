@@ -29,7 +29,7 @@ use Throwable;
  * Trigger errors for uncaught exceptions.
  *
  * If registered as exception handler, this catches an uncaught exception and
- * convert it into an internal PHP error of severity `E_USER_ERROR`.
+ * converts it into an internal PHP error of severity `E_USER_ERROR`.
  *
  * > Usage: `set_exception_handler(new TriggerExceptionError());`
  *
