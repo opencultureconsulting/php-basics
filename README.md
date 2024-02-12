@@ -2,7 +2,7 @@
 
 ***A collection of generic classes and useful traits for PHP projects.***
 
-The package currently contains classes for [type-sensitive data structures](src/DataStructures/), [error and exception handlers](src/ErrorHandlers/), multiple [traits implementing standard interfaces](src/Interfaces/), and more generic [traits for common use cases](src/Traits/). They share the same design principles like property and method naming schema, highest [Psalm](https://psalm.dev/) and [PHPStan](https://phpstan.org/) coding standards and full [PSR-12](https://www.php-fig.org/psr/psr-12/) compliance to make sure they can be combined and easily re-used in other projects.
+The package currently contains classes for [type-sensitive data structures](src/DataStructures/), [error and exception handlers](src/ErrorHandlers/), multiple [traits implementing standard interfaces](src/Interfaces/), and more generic [traits for common use cases](src/Traits/). They share the same design principles like property and method naming schema, highest coding standards of [PHPStan](https://phpstan.org/) and [Psalm](https://psalm.dev/), and full [PSR-12](https://www.php-fig.org/psr/psr-12/) compliance to make sure they can be combined and easily re-used in other projects.
 
 ## Quick Start
 
