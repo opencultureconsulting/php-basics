@@ -34,8 +34,8 @@ use InvalidArgumentException;
  * first letter).
  *
  * > Example: If the property is named `$fooBar`, the "magic" method has to be
- * > `_magicGetFooBar()`. This method is then called when `$fooBar` is read
- * > from outside the class context.
+ * > `_magicGetFooBar()`. This method is then called when `$fooBar` is read in
+ * > a context where it normally would not be accessible.
  *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package Basics\Traits
@@ -49,9 +49,7 @@ trait Getter
      *
      * @return mixed The class property's current value
      *
-     * @throws InvalidArgumentException if the property does not exist
-     *
-     * @internal
+     * @throws InvalidArgumentException if the property or getter method do not exist
      */
     public function __get(string $property): mixed
     {
@@ -75,8 +73,6 @@ trait Getter
      * @param string $property The class property to check
      *
      * @return bool Whether the class property is set and not empty
-     *
-     * @internal
      */
     public function __isset(string $property): bool
     {

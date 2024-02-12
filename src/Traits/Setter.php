@@ -35,7 +35,7 @@ use InvalidArgumentException;
  *
  * > Example: If the property is named `$fooBar`, the "magic" method has to be
  * > `_magicSetFooBar()`. This method is then called when `$fooBar` is written
- * > to from outside the class context.
+ * > to in a context where it normally would not be accessible.
  *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package Basics\Traits
@@ -50,9 +50,7 @@ trait Setter
      *
      * @return void
      *
-     * @throws InvalidArgumentException if the property does not exist
-     *
-     * @internal
+     * @throws InvalidArgumentException if the property or setter method do not exist
      */
     public function __set(string $property, mixed $value): void
     {
@@ -76,8 +74,6 @@ trait Setter
      * @param string $property The class property to unset
      *
      * @return void
-     *
-     * @internal
      */
     public function __unset(string $property): void
     {

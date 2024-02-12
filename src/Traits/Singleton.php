@@ -83,8 +83,6 @@ trait Singleton
      * @return void
      *
      * @throws LogicException when trying to clone the singleton object
-     *
-     * @internal
      */
     final public function __clone()
     {

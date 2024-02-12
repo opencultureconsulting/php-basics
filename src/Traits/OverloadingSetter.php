@@ -29,7 +29,7 @@ namespace OCC\Basics\Traits;
  * Internally it writes the protected `$_data` array whose keys are interpreted
  * as property names.
  *
- * > Example: `Foo->bar = 42` will set `Foo->_data['bar']` to `42`.
+ * > Example: `Foo->bar = 42;` will set `$_data['bar']` to `42`.
  *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package Basics\Traits
@@ -46,14 +46,12 @@ trait OverloadingSetter
     protected array $_data = [];
 
     /**
-     * Write data to an inaccessible property.
+     * Write data to an overloaded property.
      *
      * @param string $property The class property to set
      * @param mixed $value The new value of the property
      *
      * @return void
-     *
-     * @internal
      */
     public function __set(string $property, mixed $value): void
     {
@@ -61,13 +59,11 @@ trait OverloadingSetter
     }
 
     /**
-     * Unset an inaccessible property.
+     * Unset an overloaded property.
      *
      * @param string $property The class property to unset
      *
      * @return void
-     *
-     * @internal
      */
     public function __unset(string $property): void
     {

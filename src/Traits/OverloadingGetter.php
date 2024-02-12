@@ -29,7 +29,7 @@ namespace OCC\Basics\Traits;
  * Internally it reads the protected `$_data` array whose keys are interpreted
  * as property names.
  *
- * > Example: Reading `Foo->bar` will return the value of `Foo->_data['bar']`.
+ * > Example: Reading `Foo->bar` will return the value of `$_data['bar']`.
  *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package Basics\Traits
@@ -46,13 +46,11 @@ trait OverloadingGetter
     protected array $_data = [];
 
     /**
-     * Read data from an inaccessible property.
+     * Read data from an overloaded property.
      *
      * @param string $property The class property to get
      *
      * @return mixed The property's current value or NULL if not set
-     *
-     * @internal
      */
     public function __get(string $property): mixed
     {
@@ -60,13 +58,11 @@ trait OverloadingGetter
     }
 
     /**
-     * Check if an inaccessible property is set and not empty.
+     * Check if an overloaded property is set and not empty.
      *
      * @param string $property The class property to check
      *
      * @return bool Whether the class property is set and not empty
-     *
-     * @internal
      */
     public function __isset(string $property): bool
     {
