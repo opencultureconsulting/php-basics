@@ -25,14 +25,22 @@ namespace OCC\Basics\DataStructures;
 
 use ArrayAccess;
 use Countable;
+use DomainException;
 use InvalidArgumentException;
-use OCC\Basics\InterfaceTraits\ArrayAccessTrait;
-use OCC\Basics\InterfaceTraits\CountableTrait;
+use OCC\Basics\Interfaces\ArrayAccessTrait;
+use OCC\Basics\Interfaces\CountableTrait;
 use OCC\Basics\Traits\Getter;
 use Serializable;
 
 /**
  * A type-sensitive, unsorted collection.
+ *
+ * Holds items as key/value pairs where keys have to be valid array keys while
+ * values can be of any type. To restrict allowed data types for items, provide
+ * the constructor with an array of atomic types or fully qualified class
+ * names.
+ *
+ * Internally it holds the items in the protected `$_data` array.
  *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package Basics\DataStructures
@@ -62,28 +70,29 @@ class StrictCollection implements ArrayAccess, Countable, Serializable
     protected array $allowedTypes = [];
 
     /**
+     * Holds the collection's items.
+     *
+     * @var AllowedType[]
+     *
+     * @internal
+     */
+    protected array $_data = [];
+
+    /**
      * Add/insert a new item at the specified index.
      *
-     * @param array-key $key The new item's index
-     * @param AllowedType $item The new item
+     * @param array-key $offset The new item's index
+     * @param AllowedType $value The new item
      *
      * @return void
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException if `$offset` is not of allowed type
      *
      * @api
      */
-    public function add(int|string $key, mixed $item): void
+    public function add(int|string $offset, mixed $value): void
     {
-        if (!$this->isAllowedType($item)) {
-            throw new InvalidArgumentException(
-                sprintf(
-                    'Parameter 2 must be an allowed type, %s given.',
-                    get_debug_type($item)
-                )
-            );
-        }
-        $this->data[$key] = $item;
+        $this->offsetSet($offset, $value);
     }
 
     /**
@@ -95,21 +104,21 @@ class StrictCollection implements ArrayAccess, Countable, Serializable
      */
     public function clear(): void
     {
-        $this->data = [];
+        $this->_data = [];
     }
 
     /**
      * Get the item at the specified index.
      *
-     * @param array-key $key The item's index
+     * @param array-key $offset The item's index
      *
      * @return ?AllowedType The item or NULL if key is invalid
      *
      * @api
      */
-    public function get(int|string $key): mixed
+    public function get(int|string $offset): mixed
     {
-        return $this->data[$key] ?? null;
+        return $this->offsetGet($offset);
     }
 
     /**
@@ -127,25 +136,25 @@ class StrictCollection implements ArrayAccess, Countable, Serializable
     /**
      * Check if the item's data type is allowed in the collection.
      *
-     * @param AllowedType $item The item to check
+     * @param AllowedType $value The item to check
      *
      * @return bool Whether the item's data type is allowed
      *
      * @api
      */
-    public function isAllowedType(mixed $item): bool
+    public function isAllowedType(mixed $value): bool
     {
         if (count($this->allowedTypes) === 0) {
             return true;
         }
         foreach ($this->allowedTypes as $type) {
             $function = 'is_' . $type;
-            if (function_exists($function) && $function($item)) {
+            if (function_exists($function) && $function($value)) {
                 return true;
             }
             /** @var class-string $fqcn */
             $fqcn = ltrim($type, '\\');
-            if (is_object($item) && is_a($item, $fqcn)) {
+            if (is_object($value) && is_a($value, $fqcn)) {
                 return true;
             }
         }
@@ -155,7 +164,7 @@ class StrictCollection implements ArrayAccess, Countable, Serializable
     /**
      * Check if collection is empty.
      *
-     * @return bool Whether the collection contains any items
+     * @return bool Whether the collection contains no items
      *
      * @api
      */
@@ -167,81 +176,92 @@ class StrictCollection implements ArrayAccess, Countable, Serializable
     /**
      * Check if this collection can be considered a list.
      *
+     * It is considered a list if all keys are consecutive integers starting
+     * from `0`.
+     *
      * @return bool Whether the collection is a list
      *
      * @api
+     *
+     * @see StrictCollection::toStrictList()
      */
     public function isList(): bool
     {
-        return array_is_list($this->data);
-    }
-
-    /**
-     * Magic getter method for $this->allowedTypes.
-     *
-     * @return string[] The list of allowed data types
-     *
-     * @internal
-     */
-    protected function magicGetAllowedTypes(): array
-    {
-        return $this->getAllowedTypes();
+        return array_is_list($this->_data);
     }
 
     /**
      * Set the item at the specified offset.
      *
      * @param ?array-key $offset The offset being set
-     * @param AllowedType $item The new item for the offset
+     * @param AllowedType $value The new item for the offset
      *
      * @return void
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException if `$offset` or `$value` is not of allowed type
      *
-     * @internal
+     * @api
      */
-    public function offsetSet(mixed $offset, mixed $item): void
+    public function offsetSet(mixed $offset, mixed $value): void
     {
-        if (is_null($offset)) {
-            throw new InvalidArgumentException(
-                'Parameter 1 must be an integer or string, NULL given.'
-            );
-        }
-        if (!$this->isAllowedType($item)) {
+        if (!is_integer($offset) && !is_string($offset)) {
             throw new InvalidArgumentException(
                 sprintf(
-                    'Parameter 2 must be an allowed type, %s given.',
-                    get_debug_type($item)
+                    'Parameter 1 must be an integer or string, %s given.',
+                    get_debug_type($offset)
                 )
             );
         }
-        $this->add($offset, $item);
+        if (!$this->isAllowedType($value)) {
+            throw new InvalidArgumentException(
+                sprintf(
+                    'Parameter 2 must be an allowed type, %s given.',
+                    get_debug_type($value)
+                )
+            );
+        }
+        $this->_data[$offset] = $value;
     }
 
     /**
      * Remove an item from the collection.
      *
-     * @param array-key $key The item's key
+     * @param array-key $offset The item's key
      *
      * @return void
      *
      * @api
      */
-    public function remove(int|string $key): void
+    public function remove(int|string $offset): void
     {
-        unset($this->data[$key]);
+        $this->offsetUnset($offset);
     }
 
     /**
      * Get string representation of $this.
      *
      * @return string The string representation
-     *
-     * @internal
      */
     public function serialize(): string
     {
         return serialize($this->__serialize());
+    }
+
+    /**
+     * Set an item at the specified index.
+     *
+     * @param array-key $offset The item's index
+     * @param AllowedType $value The item
+     *
+     * @return void
+     *
+     * @throws InvalidArgumentException if `$value` is not of allowed type
+     *
+     * @api
+     */
+    public function set(int|string $offset, mixed $value): void
+    {
+        $this->offsetSet($offset, $value);
     }
 
     /**
@@ -251,7 +271,7 @@ class StrictCollection implements ArrayAccess, Countable, Serializable
      *
      * @return void
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException if any value of `$allowedTypes` is not a string
      */
     protected function setAllowedTypes(array $allowedTypes = []): void
     {
@@ -266,13 +286,37 @@ class StrictCollection implements ArrayAccess, Countable, Serializable
     /**
      * Return array representation of collection.
      *
-     * @return array<AllowedType> Array of collection items
+     * @return AllowedType[] Array of collection items
      *
      * @api
      */
     public function toArray(): array
     {
-        return $this->data;
+        return $this->_data;
+    }
+
+    /**
+     * Turn collection into a type-sensitive list.
+     *
+     * @return StrictList<AllowedType> A type-sensitive list of the collection's items
+     *
+     * @throws DomainException if the collection is not a list
+     *
+     * @api
+     *
+     * @see StrictCollection::isList()
+     */
+    public function toStrictList(): StrictList
+    {
+        if (!$this->isList()) {
+            throw new DomainException(
+                'Cannot convert into list: collection contains non-integer and/or non-consecutive keys.'
+            );
+        }
+        $strictList = new StrictList($this->allowedTypes);
+        $items = $this->toArray();
+        $strictList->append(...$items);
+        return $strictList;
     }
 
     /**
@@ -281,14 +325,24 @@ class StrictCollection implements ArrayAccess, Countable, Serializable
      * @param string $data The string representation
      *
      * @return void
-     *
-     * @internal
      */
     public function unserialize($data): void
     {
         /** @var mixed[] $dataArray */
         $dataArray = unserialize($data);
         $this->__unserialize($dataArray);
+    }
+
+    /**
+     * Magic getter method for $this->allowedTypes.
+     *
+     * @return string[] The list of allowed data types
+     *
+     * @internal
+     */
+    protected function _magicGetAllowedTypes(): array
+    {
+        return $this->getAllowedTypes();
     }
 
     /**
@@ -314,7 +368,7 @@ class StrictCollection implements ArrayAccess, Countable, Serializable
      *
      * @return void
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException if any value of `$allowedTypes` is not a string
      */
     public function __construct(array $allowedTypes = [])
     {
@@ -344,7 +398,7 @@ class StrictCollection implements ArrayAccess, Countable, Serializable
     {
         return [
             'StrictCollection::allowedTypes' => $this->allowedTypes,
-            'StrictCollection::items' => $this->data
+            'StrictCollection::items' => $this->_data
         ];
     }
 
@@ -357,42 +411,17 @@ class StrictCollection implements ArrayAccess, Countable, Serializable
      *
      * @internal
      *
-     * @psalm-suppress MethodSignatureMismatch
+     * @hpsalm-suppress MethodSignatureMismatch
      */
     public function __unserialize(array $data): void
     {
         /** @var string[] $allowedTypes */
         $allowedTypes = $data['StrictCollection::allowedTypes'];
         $this->setAllowedTypes($allowedTypes);
-        /** @var array<AllowedType> $items */
+        /** @var AllowedType[] $items */
         $items = $data['StrictCollection::items'];
-        foreach ($items as $key => $item) {
-            $this->add($key, $item);
+        foreach ($items as $offset => $value) {
+            $this->offsetSet($offset, $value);
         }
-    }
-
-    /**
-     * Magic method to read collection items as properties.
-     *
-     * @param array-key $key The item's index
-     *
-     * @return ?AllowedType The item or NULL if key is invalid
-     */
-    public function __get(int|string $key): mixed
-    {
-        return $this->get($key);
-    }
-
-    /**
-     * Magic method to write collection items as properties.
-     *
-     * @param array-key $key The new item's index
-     * @param AllowedType $item The new item
-     *
-     * @return void
-     */
-    public function __set(int|string $key, mixed $item): void
-    {
-        $this->add($key, $item);
     }
 }

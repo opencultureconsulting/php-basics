@@ -27,6 +27,8 @@ use ArrayAccess;
 use Countable;
 use InvalidArgumentException;
 use Iterator;
+use OutOfRangeException;
+use RangeException;
 use RuntimeException;
 use SplDoublyLinkedList;
 use OCC\Basics\Traits\Getter;
@@ -36,7 +38,8 @@ use Serializable;
  * A type-sensitive, taversable list.
  *
  * Extends [\SplDoublyLinkedList](https://www.php.net/spldoublylinkedlist) with
- * an option to specify the allowed data types for list values.
+ * an option to restrict the allowed data types for list items by providing the
+ * constructor with an array of atomic types or fully qualified class names.
  *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package Basics\DataStructures
@@ -55,7 +58,7 @@ class StrictList extends SplDoublyLinkedList implements ArrayAccess, Countable, 
     use Getter;
 
     /**
-     * The allowed data types for list values.
+     * The allowed data types for list items.
      *
      * @var string[]
      *
@@ -64,49 +67,43 @@ class StrictList extends SplDoublyLinkedList implements ArrayAccess, Countable, 
     protected array $allowedTypes = [];
 
     /**
-     * Add/insert a new value at the specified offset.
+     * Add/insert a new item at the specified offset.
      *
-     * @param int $offset The offset where the new value is to be inserted
-     * @param AllowedType $value The new value for the offset
+     * @param int $offset The offset where the new item is to be inserted
+     * @param AllowedType $value The new item for the offset
      *
      * @return void
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException if `$value` is not of allowed type
+     * @throws OutOfRangeException when `$offset` is out of bounds
      *
      * @api
      */
     public function add(int $offset, mixed $value): void
     {
-        if (!$this->isAllowedType($value)) {
-            throw new InvalidArgumentException(
-                sprintf(
-                    'Parameter 2 must be an allowed type, %s given.',
-                    get_debug_type($value)
-                )
-            );
-        }
-        parent::add($offset, $value);
+        $this->offsetSet($offset, $value);
     }
 
     /**
-     * Append values at the end of the list.
+     * Append items at the end of the list.
      *
-     * @param AllowedType ...$values One or more values to append
+     * @param AllowedType ...$values One or more items to append
      *
      * @return void
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException if any `$values` is not of allowed type
      *
      * @api
      */
     public function append(mixed ...$values): void
     {
+        /** @var array<int, AllowedType> $values */
         foreach ($values as $count => $value) {
             if (!$this->isAllowedType($value)) {
                 throw new InvalidArgumentException(
                     sprintf(
                         'Parameter %d must be an allowed type, %s given.',
-                        (int) $count + 1,
+                        $count + 1,
                         get_debug_type($value)
                     )
                 );
@@ -118,11 +115,11 @@ class StrictList extends SplDoublyLinkedList implements ArrayAccess, Countable, 
     }
 
     /**
-     * Peek at the value at the beginning of the list.
+     * Peek at the item at the beginning of the list.
      *
-     * @return AllowedType The first value of the list
+     * @return AllowedType The first item of the list
      *
-     * @throws RuntimeException
+     * @throws RuntimeException if the list is empty
      *
      * @api
      */
@@ -132,7 +129,62 @@ class StrictList extends SplDoublyLinkedList implements ArrayAccess, Countable, 
     }
 
     /**
-     * Get allowed data types for list values.
+     * Clear the list of any items.
+     *
+     * @return void
+     *
+     * @api
+     */
+    public function clear(): void
+    {
+        while (!$this->isEmpty()) {
+            $this->pop();
+        }
+        $this->rewind();
+    }
+
+    /**
+     * Get the number of items on the list.
+     *
+     * @return int The number of items on the list
+     *
+     * @api
+     */
+    public function count(): int
+    {
+        return parent::count();
+    }
+
+    /**
+     * Get the current list item.
+     *
+     * @return AllowedType The current item
+     *
+     * @api
+     */
+    public function current(): mixed
+    {
+        return parent::current();
+    }
+
+    /**
+     * Get the item at the specified index.
+     *
+     * @param int $offset The item's index
+     *
+     * @return AllowedType The item
+     *
+     * @throws OutOfRangeException when `$offset` is out of bounds
+     *
+     * @api
+     */
+    public function get(int $offset): mixed
+    {
+        return $this->offsetGet($offset);
+    }
+
+    /**
+     * Get allowed data types for list items.
      *
      * @return string[] The list of allowed data types
      *
@@ -156,11 +208,11 @@ class StrictList extends SplDoublyLinkedList implements ArrayAccess, Countable, 
     }
 
     /**
-     * Check if the value's data type is allowed on the list.
+     * Check if the item's data type is allowed on the list.
      *
-     * @param AllowedType $value The value to check
+     * @param AllowedType $value The item to check
      *
-     * @return bool Whether the value's data type is allowed
+     * @return bool Whether the item's data type is allowed
      *
      * @api
      */
@@ -184,28 +236,95 @@ class StrictList extends SplDoublyLinkedList implements ArrayAccess, Countable, 
     }
 
     /**
-     * Magic getter method for $this->allowedTypes.
+     * Check if list is empty.
      *
-     * @return string[] The list of allowed data types
+     * @return bool Whether the list contains no items
      *
-     * @internal
+     * @api
      */
-    protected function magicGetAllowedTypes(): array
+    public function isEmpty(): bool
     {
-        return $this->getAllowedTypes();
+        return parent::isEmpty();
     }
 
     /**
-     * Set the value at the specified offset.
+     * Check if this can be considered a list.
      *
-     * @param ?int $offset The offset being set or NULL to append
-     * @param AllowedType $value The new value for the offset
+     * @return true Always TRUE (this exists only for compatibility reasons)
+     *
+     * @api
+     */
+    public function isList(): bool
+    {
+        return true;
+    }
+
+    /**
+     * Get the current list index.
+     *
+     * @return int The current list index
+     *
+     * @api
+     */
+    public function key(): int
+    {
+        return parent::key();
+    }
+
+    /**
+     * Move the cursor to the next list index.
      *
      * @return void
      *
-     * @throws InvalidArgumentException
+     * @api
+     */
+    public function next(): void
+    {
+        parent::next();
+    }
+
+    /**
+     * Check if the specified index exists and is not empty.
      *
-     * @internal
+     * @param int $offset The index to check
+     *
+     * @return bool Whether the index exists and is not empty
+     *
+     * @api
+     */
+    public function offsetExists(mixed $offset): bool
+    {
+        return parent::offsetExists($offset);
+    }
+
+    /**
+     * Get the item from the specified index.
+     *
+     * @param int $offset The item's index
+     *
+     * @return AllowedType The item
+     *
+     * @throws OutOfRangeException when `$offset` is out of bounds
+     *
+     * @api
+     */
+    public function offsetGet(mixed $offset): mixed
+    {
+        return parent::offsetGet($offset);
+    }
+
+    /**
+     * Set the item at the specified offset.
+     *
+     * @param ?int $offset The offset being set or NULL to append
+     * @param AllowedType $value The new item for the offset
+     *
+     * @return void
+     *
+     * @throws InvalidArgumentException if `$value` is not of allowed type
+     * @throws OutOfRangeException when `$offset` is out of bounds
+     *
+     * @api
      */
     public function offsetSet(mixed $offset, mixed $value): void
     {
@@ -222,11 +341,27 @@ class StrictList extends SplDoublyLinkedList implements ArrayAccess, Countable, 
     }
 
     /**
-     * Pops an value from the end of the list.
+     * Unset the item at the specified index.
      *
-     * @return AllowedType The value from the end of the list
+     * @param int $offset The item's index
      *
-     * @throws RuntimeException
+     * @return void
+     *
+     * @throws OutOfRangeException when `$offset` is out of bounds
+     *
+     * @api
+     */
+    public function offsetUnset(mixed $offset): void
+    {
+        parent::offsetUnset($offset);
+    }
+
+    /**
+     * Pops an item from the end of the list.
+     *
+     * @return AllowedType The item from the end of the list
+     *
+     * @throws RuntimeException if the list is empty
      *
      * @api
      */
@@ -236,24 +371,25 @@ class StrictList extends SplDoublyLinkedList implements ArrayAccess, Countable, 
     }
 
     /**
-     * Prepend values at the start of the list.
+     * Prepend items at the start of the list.
      *
-     * @param AllowedType ...$values One or more values to prepend
+     * @param AllowedType ...$values One or more items to prepend
      *
      * @return void
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException if `$value` is not of allowed type
      *
      * @api
      */
     public function prepend(mixed ...$values): void
     {
+        /** @var array<int, AllowedType> $values */
         foreach ($values as $count => $value) {
             if (!$this->isAllowedType($value)) {
                 throw new InvalidArgumentException(
                     sprintf(
                         'Parameter %d must be an allowed type, %s given.',
-                        (int) $count + 1,
+                        $count + 1,
                         get_debug_type($value)
                     )
                 );
@@ -265,13 +401,25 @@ class StrictList extends SplDoublyLinkedList implements ArrayAccess, Countable, 
     }
 
     /**
-     * Push an value at the end of the list.
-     *
-     * @param AllowedType $value The value to push
+     * Move the cursor to the previous list index.
      *
      * @return void
      *
-     * @throws InvalidArgumentException
+     * @api
+     */
+    public function prev(): void
+    {
+        parent::prev();
+    }
+
+    /**
+     * Push an item at the end of the list.
+     *
+     * @param AllowedType $value The item to push
+     *
+     * @return void
+     *
+     * @throws InvalidArgumentException if `$value` is not of allowed type
      *
      * @api
      */
@@ -289,6 +437,34 @@ class StrictList extends SplDoublyLinkedList implements ArrayAccess, Countable, 
     }
 
     /**
+     * Remove an item from the list.
+     *
+     * @param int $offset The item's index
+     *
+     * @return void
+     *
+     * @throws OutOfRangeException when `$offset` is out of bounds
+     *
+     * @api
+     */
+    public function remove(int $offset): void
+    {
+        $this->offsetUnset($offset);
+    }
+
+    /**
+     * Rewind the iterator's cursor.
+     *
+     * @return void
+     *
+     * @api
+     */
+    public function rewind(): void
+    {
+        parent::rewind();
+    }
+
+    /**
      * Get string representation of $this.
      *
      * @return string The string representation
@@ -301,13 +477,30 @@ class StrictList extends SplDoublyLinkedList implements ArrayAccess, Countable, 
     }
 
     /**
-     * Set allowed data types of list values.
+     * Set an item at the specified index.
      *
-     * @param string[] $allowedTypes Allowed data types of values
+     * @param int $offset The item's index
+     * @param AllowedType $value The item
      *
      * @return void
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException if `$value` is not of allowed type
+     *
+     * @api
+     */
+    public function set(int $offset, mixed $value): void
+    {
+        $this->offsetSet($offset, $value);
+    }
+
+    /**
+     * Set allowed data types of list items.
+     *
+     * @param string[] $allowedTypes Allowed data types of items
+     *
+     * @return void
+     *
+     * @throws InvalidArgumentException if any value of `$allowedTypes` is not a string
      */
     protected function setAllowedTypes(array $allowedTypes = []): void
     {
@@ -338,19 +531,29 @@ class StrictList extends SplDoublyLinkedList implements ArrayAccess, Countable, 
      *
      * @return int The set of flags and modes of iteration
      *
+     * @throws RangeException if an invalid `$mode` is given
+     *
      * @api
      */
     public function setIteratorMode(int $mode): int
     {
+        if (!in_array($mode, range(0, 3), true)) {
+            throw new RangeException(
+                sprintf(
+                    'Iterator mode must be an integer in range [0..3], %d given.',
+                    $mode
+                )
+            );
+        }
         return parent::setIteratorMode($mode);
     }
 
     /**
-     * Shift an value from the beginning of the list.
+     * Shift an item from the beginning of the list.
      *
-     * @return AllowedType The first value of the list
+     * @return AllowedType The first item of the list
      *
-     * @throws RuntimeException
+     * @throws RuntimeException if the list is empty
      *
      * @api
      */
@@ -360,11 +563,39 @@ class StrictList extends SplDoublyLinkedList implements ArrayAccess, Countable, 
     }
 
     /**
-     * Peek at the value at the end of the list.
+     * Return array representation of list.
      *
-     * @return AllowedType The last value of the list
+     * @return AllowedType[] Array of list items
      *
-     * @throws RuntimeException
+     * @api
+     */
+    public function toArray(): array
+    {
+        return iterator_to_array($this, true);
+    }
+
+    /**
+     * Turn list into a type-sensitive collection.
+     *
+     * @return StrictCollection<AllowedType> A type-sensitive collection of the list's items
+     *
+     * @api
+     */
+    public function toStrictCollection(): StrictCollection
+    {
+        $strictCollection = new StrictCollection($this->allowedTypes);
+        foreach ($this->toArray() as $offset => $value) {
+            $strictCollection[$offset] = $value;
+        }
+        return $strictCollection;
+    }
+
+    /**
+     * Peek at the item at the end of the list.
+     *
+     * @return AllowedType The last item of the list
+     *
+     * @throws RuntimeException if the list is empty
      *
      * @api
      */
@@ -390,13 +621,13 @@ class StrictList extends SplDoublyLinkedList implements ArrayAccess, Countable, 
     }
 
     /**
-     * Prepend the list with an value.
+     * Prepend the list with an item.
      *
-     * @param AllowedType $value The value to unshift
+     * @param AllowedType $value The item to unshift
      *
      * @return void
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException if `$value` is not of allowed type
      *
      * @api
      */
@@ -414,9 +645,33 @@ class StrictList extends SplDoublyLinkedList implements ArrayAccess, Countable, 
     }
 
     /**
-     * Create a type-sensitive, traversable list of values.
+     * Check if current cursor position is valid.
      *
-     * @param string[] $allowedTypes Allowed data types of values (optional)
+     * @return bool Whether the current cursor position is valid
+     *
+     * @api
+     */
+    public function valid(): bool
+    {
+        return parent::valid();
+    }
+
+    /**
+     * Magic getter method for $this->allowedTypes.
+     *
+     * @return string[] The list of allowed data types
+     *
+     * @internal
+     */
+    protected function _magicGetAllowedTypes(): array
+    {
+        return $this->getAllowedTypes();
+    }
+
+    /**
+     * Create a type-sensitive, traversable list of items.
+     *
+     * @param string[] $allowedTypes Allowed data types of items (optional)
      *
      *                               If empty, all types are allowed.
      *                               Possible values are:
@@ -436,7 +691,7 @@ class StrictList extends SplDoublyLinkedList implements ArrayAccess, Countable, 
      *
      * @return void
      *
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException if any value of `$allowedTypes` is not a string
      */
     public function __construct(array $allowedTypes = [])
     {

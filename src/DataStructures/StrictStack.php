@@ -25,15 +25,20 @@ namespace OCC\Basics\DataStructures;
 
 use ArrayAccess;
 use Countable;
+use InvalidArgumentException;
 use Iterator;
+use RangeException;
 use RuntimeException;
 use Serializable;
 
 /**
- * A type-sensitive, taversable Last In, First Out stack (LIFO).
+ * A type-sensitive, taversable stack (LIFO).
  *
- * Extends [\SplStack](https://www.php.net/splstack) with an option to specify
- * the allowed data types for list items.
+ * Extends [\SplDoublyLinkedList](https://www.php.net/spldoublylinkedlist) with
+ * an option to restrict the allowed data types for list items by providing the
+ * constructor with an array of atomic types or fully qualified class names. It
+ * also restricts the iterator direction to last-in, first-out (LIFO) exactly
+ * like [\SplStack](https://www.php.net/splstack).
  *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package Basics\DataStructures
@@ -50,17 +55,17 @@ class StrictStack extends StrictList implements ArrayAccess, Countable, Iterator
     /**
      * Add an item to the stack.
      *
-     * @param AllowedType $item The item to stack
+     * @param AllowedType $value The item to stack
      *
      * @return void
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException if `$value` is not of allowed type
      *
      * @api
      */
-    public function stack(mixed $item): void
+    public function stack(mixed $value): void
     {
-        parent::push($item);
+        parent::push($value);
     }
 
     /**
@@ -93,7 +98,8 @@ class StrictStack extends StrictList implements ArrayAccess, Countable, Iterator
      *
      * @return int The set of flags and modes of iteration
      *
-     * @throws RuntimeException
+     * @throws RangeException if an invalid `$mode` is given
+     * @throws RuntimeException if trying to change iterator direction
      *
      * @api
      */
@@ -133,7 +139,7 @@ class StrictStack extends StrictList implements ArrayAccess, Countable, Iterator
      *
      * @return void
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException if any value of `$allowedTypes` is not a string
      */
     public function __construct(array $allowedTypes = [])
     {
