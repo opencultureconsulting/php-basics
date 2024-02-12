@@ -9,3 +9,4 @@ Documentation
     :titlesonly:
 
     installation/index
+    changelog/index
