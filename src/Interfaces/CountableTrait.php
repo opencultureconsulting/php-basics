@@ -21,7 +21,7 @@
 
 declare(strict_types=1);
 
-namespace OCC\Basics\InterfaceTraits;
+namespace OCC\Basics\Interfaces;
 
 use Countable;
 
@@ -31,7 +31,7 @@ use Countable;
  * Internally it counts the values of the protected `$_data` array.
  *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
- * @package Basics\InterfaceTraits
+ * @package Basics\Interfaces
  *
  * @api
  *

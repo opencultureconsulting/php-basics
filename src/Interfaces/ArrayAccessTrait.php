@@ -21,7 +21,7 @@
 
 declare(strict_types=1);
 
-namespace OCC\Basics\InterfaceTraits;
+namespace OCC\Basics\Interfaces;
 
 use ArrayAccess;
 
@@ -31,7 +31,7 @@ use ArrayAccess;
  * Internally it accesses the protected `$_data` array.
  *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
- * @package Basics\InterfaceTraits
+ * @package Basics\Interfaces
  *
  * @api
  *
