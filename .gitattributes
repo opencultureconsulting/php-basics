@@ -89,9 +89,6 @@
 # https://github.com/gitattributes/gitattributes/blob/master/PHP.gitattributes
 ###
 
-# Auto detect text files and perform LF normalization
-*         text=auto
-
 # PHP files
 *.php     text eol=lf diff=php
 *.phpt    text eol=lf diff=php
@@ -116,7 +113,7 @@ psalm.xml    text eol=lf
 *.neon          text eol=lf
 
 # Generated documentation
-doc/*   linguist-generated=true
+doc/*           linguist-generated=true
 
 # Exclude files from exporting
 .github/*       export-ignore
