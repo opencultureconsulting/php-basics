@@ -37,7 +37,7 @@ v2.0.0
 * Added new trait :php:trait:`OCC\Basics\Traits\OverloadingGetter`
 * Added new trait :php:trait:`OCC\Basics\Traits\OverloadingSetter`
 * Extended API for all datastructures
-* Extended `documentation <https://opencultureconsulting.github.io/basics/>`_
+* Extended `documentation <https://opencultureconsulting.github.io/php-basics/>`_
 
 .. _v1-1-0:
 
