@@ -1,3 +1,5 @@
+.. title:: PHP Basics
+
 Documentation
 #############
 
@@ -8,5 +10,6 @@ Documentation
     :hidden:
     :titlesonly:
 
-    installation/index
-    changelog/index
+    overview/index
+    usage/index
+    changelog

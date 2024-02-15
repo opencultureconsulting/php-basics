@@ -270,9 +270,45 @@
     margin-right: var(--spacing-sm);
 }
 aside.phpdocumentor-sidebar
-    h2.phpdocumentor-sidebar__category-header
 {
-    text-transform: capitalize;
+    display: flex;
+    flex-direction: column;
+}
+
+aside.phpdocumentor-sidebar
+    section.-documentation
+{
+    order: 1;
+}
+
+aside.phpdocumentor-sidebar
+    section.-packages
+{
+    order: 2;
+}
+
+aside.phpdocumentor-sidebar
+    section.-namespaces
+{
+    order: 3;
+}
+
+aside.phpdocumentor-sidebar
+    section.-reports
+{
+    order: 4;
+}
+
+aside.phpdocumentor-sidebar
+    section.-index
+{
+    order: 5;
+}
+
+aside.phpdocumentor-sidebar
+    ul.phpdocumentor-list
+{
+    padding: 0 var(--spacing-md) !important;
 }
 
 code.prettyprint
@@ -284,6 +320,22 @@ code.prettyprint
     font-size: var(--text-sm);
     padding: var(--spacing-xxxs);
 }
+
+div.phpdocumentor-content
+    div.section
+        ul
+{
+    padding-left: var(--spacing-lg);
+}
+
+div.phpdocumentor-content
+    div.section
+        ul
+            li
+{
+    padding-bottom: 0;
+}
+
 
 dl.phpdocumentor-table-of-contents
     dt.phpdocumentor-table-of-contents__entry.-documentation:before
