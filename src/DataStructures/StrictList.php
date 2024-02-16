@@ -34,6 +34,36 @@ use SplDoublyLinkedList;
 use OCC\Basics\Traits\Getter;
 use Serializable;
 
+use function array_map;
+use function array_sum;
+use function count;
+use function function_exists;
+use function get_debug_type;
+use function in_array;
+use function is_a;
+use function is_array;
+use function is_bool;
+use function is_callable;
+use function is_countable;
+use function is_double;
+use function is_float;
+use function is_int;
+use function is_integer;
+use function is_iterable;
+use function is_long;
+use function is_null;
+use function is_numeric;
+use function is_resource;
+use function is_scalar;
+use function is_string;
+use function is_object;
+use function iterator_to_array;
+use function ltrim;
+use function range;
+use function serialize;
+use function sprintf;
+use function unserialize;
+
 /**
  * A type-sensitive, taversable list.
  *

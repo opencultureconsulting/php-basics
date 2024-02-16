@@ -25,6 +25,8 @@ namespace OCC\Basics\ErrorHandlers;
 
 use ErrorException;
 
+use function error_reporting;
+
 /**
  * Throws internal errors as exceptions.
  *

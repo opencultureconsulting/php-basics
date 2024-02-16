@@ -25,6 +25,13 @@ namespace OCC\Basics\Interfaces;
 
 use Iterator;
 
+use function current;
+use function is_null;
+use function key;
+use function next;
+use function prev;
+use function reset;
+
 /**
  * A generic implementation of the Iterator interface.
  *

@@ -25,6 +25,8 @@ namespace OCC\Basics\Interfaces;
 
 use Countable;
 
+use function count;
+
 /**
  * A generic implementation of the Countable interface.
  *

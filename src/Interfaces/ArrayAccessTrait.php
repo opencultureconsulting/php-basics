@@ -25,6 +25,8 @@ namespace OCC\Basics\Interfaces;
 
 use ArrayAccess;
 
+use function is_null;
+
 /**
  * A generic implementation of the ArrayAccess interface.
  *
