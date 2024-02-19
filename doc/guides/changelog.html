@@ -143,8 +143,8 @@
         <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/markers.html">Markers</a></h3>
     </section>
 
-    <section class="phpdocumentor-sidebar__category -index">
-        <h2 class="phpdocumentor-sidebar__category-header">Index</h2>
+    <section class="phpdocumentor-sidebar__category -indices">
+        <h2 class="phpdocumentor-sidebar__category-header">Indices</h2>
         <h3 class="phpdocumentor-sidebar__root-package"><a href="indices/files.html">Files</a></h3>
     </section>
 </aside>
@@ -153,44 +153,31 @@
                                         <div class="section" id="changelog">
     <h1>Changelog</h1>
 
-            
-
-<ul>
-    <li><a href="guides/changelog.html#v2-0-0">v2.0.0</a>
-</li>
-
-    <li><a href="guides/changelog.html#v1-1-0">v1.1.0</a>
-</li>
-
-    <li><a href="guides/changelog.html#v1-0-1">v1.0.1</a>
-</li>
-
-    <li><a href="guides/changelog.html#v1-0-0">v1.0.0</a>
-</li>
-
-</ul>
-
+            <div class="contents"><ul class="phpdocumentor-list"><li class="toc-item"><a href="guides/changelog.html#v2-0-0">v2.0.0</a></li><li class="toc-item"><a href="guides/changelog.html#v1-1-0">v1.1.0</a></li><li class="toc-item"><a href="guides/changelog.html#v1-0-1">v1.0.1</a></li><li class="toc-item"><a href="guides/changelog.html#v1-0-0">v1.0.0</a></li></ul></div>
             <div class="section" id="v2-0-0">
     <h2>v2.0.0</h2>
 
-            <a id="v2-0-0"></a>
             <p><strong>Breaking Changes:</strong></p>
             
 
 <ul>
-    <li>Raised minimum PHP version from 8.0 to 8.1</li>
+    <li>Raised minimum PHP version from 8.0 to 8.1 in order to use <a href="https://www.php.net/releases/8.1/">new features</a> like
+<a href="https://www.php.net/array_is_list">array_is_list()</a> and the spread operator on string-keyed arrays</li>
 
-    <li>Renamed traits for <a href="namespaces/occ-basics-interfaces.html"><abbr title="\OCC\Basics\Interfaces">Interfaces</abbr></a>
- and moved to different namespace</li>
+    <li><p><a href="namespaces/occ-basics-interfaces.html"><abbr title="\OCC\Basics\Interfaces">Interfaces</abbr></a>
+ traits renamed and moved to different namespace</p><pre><code class="language-">OCC\Basics\InterfaceTraits\ArrayAccess       -&gt; OCC\Basics\Interfaces\ArrayAccessTrait
+OCC\Basics\InterfaceTraits\Countable         -&gt; OCC\Basics\Interfaces\CountableTrait
+OCC\Basics\InterfaceTraits\IteratorAggregate -&gt; OCC\Basics\Interfaces\IteratorAggregateTrait
+OCC\Basics\InterfaceTraits\Iterator          -&gt; OCC\Basics\Interfaces\IteratorTrait</code></pre></li>
 
     <li><p>Renamed internal methods for <a href="classes/OCC-Basics-Traits-Getter.html"><abbr title="\OCC\Basics\Traits\Getter">Getter</abbr></a>
  and <a href="classes/OCC-Basics-Traits-Setter.html"><abbr title="\OCC\Basics\Traits\Setter">Setter</abbr></a>
  to avoid
-confusion with regular class method</p><pre><code class="language-php">// old methods
-protected function magicGet{PascalCasePropertyName}(): mixed
-protected function magicSet{PascalCasePropertyName}(mixed $value): void</code></pre><pre><code class="language-php">// new methods
-protected function _magicGet{PascalCasePropertyName}(): mixed
-protected function _magicSet{PascalCasePropertyName}(mixed $value): void</code></pre></li>
+confusion with regular class methods</p><pre><code class="language-php">// old methods
+function magicGet{PascalCasePropertyName}(): mixed
+function magicSet{PascalCasePropertyName}(mixed $value): void</code></pre><pre><code class="language-php">// new methods
+function _magicGet{PascalCasePropertyName}(): mixed
+function _magicSet{PascalCasePropertyName}(mixed $value): void</code></pre></li>
 
 </ul>
 
@@ -212,7 +199,7 @@ protected function _magicSet{PascalCasePropertyName}(mixed $value): void</code><
 
     <li>Extended API for all datastructures</li>
 
-    <li>Extended <a href="https://opencultureconsulting.github.io/basics/">documentation</a></li>
+    <li>Extended <a href="https://opencultureconsulting.github.io/php-basics/">documentation</a></li>
 
 </ul>
 
@@ -221,7 +208,6 @@ protected function _magicSet{PascalCasePropertyName}(mixed $value): void</code><
             <div class="section" id="v1-1-0">
     <h2>v1.1.0</h2>
 
-            <a id="v1-1-0"></a>
             <p><strong>Breaking Changes:</strong></p>
             
 
@@ -239,7 +225,6 @@ public function __construct(array $allowedTypes = [])</code></pre></li>
             <div class="section" id="v1-0-1">
     <h2>v1.0.1</h2>
 
-            <a id="v1-0-1"></a>
             <p><strong>New Features:</strong></p>
             
 
@@ -254,7 +239,6 @@ public function __construct(array $allowedTypes = [])</code></pre></li>
             <div class="section" id="v1-0-0">
     <h2>v1.0.0</h2>
 
-            <a id="v1-0-0"></a>
             <p><strong>Initial Release</strong></p>
     </div>
 
@@ -265,17 +249,6 @@ public function __construct(array $allowedTypes = [])</code></pre></li>
     <section class="phpdocumentor-search-results__dialog">
         <header class="phpdocumentor-search-results__header">
             <h2 class="phpdocumentor-search-results__title">Search results</h2>
-            <section data-search-form class="phpdocumentor-search">
-    <label>
-        <span class="visually-hidden">Search for</span>
-        <svg class="phpdocumentor-search__icon" width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="7.5" cy="7.5" r="6.5" stroke="currentColor" stroke-width="2"/>
-            <line x1="12.4892" y1="12.2727" x2="19.1559" y2="18.9393" stroke="currentColor" stroke-width="3"/>
-        </svg>
-        <input type="search" class="phpdocumentor-field phpdocumentor-search__field" placeholder="Loading .." disabled />
-    </label>
-</section>
-
             <button class="phpdocumentor-search-results__close"><i class="fas fa-times"></i></button>
         </header>
         <section class="phpdocumentor-search-results__body">

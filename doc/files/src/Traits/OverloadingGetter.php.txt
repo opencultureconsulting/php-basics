@@ -23,6 +23,8 @@ declare(strict_types=1);
 
 namespace OCC\Basics\Traits;
 
+use function boolval;
+
 /**
  * Overloads a class with readable magic properties.
  *

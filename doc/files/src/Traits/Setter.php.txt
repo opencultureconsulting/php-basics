@@ -25,6 +25,11 @@ namespace OCC\Basics\Traits;
 
 use InvalidArgumentException;
 
+use function method_exists;
+use function property_exists;
+use function sprintf;
+use function ucfirst;
+
 /**
  * Writes data to inaccessible properties by using magic methods.
  *

@@ -143,8 +143,8 @@
         <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/markers.html">Markers</a></h3>
     </section>
 
-    <section class="phpdocumentor-sidebar__category -index">
-        <h2 class="phpdocumentor-sidebar__category-header">Index</h2>
+    <section class="phpdocumentor-sidebar__category -indices">
+        <h2 class="phpdocumentor-sidebar__category-header">Indices</h2>
         <h3 class="phpdocumentor-sidebar__root-package"><a href="indices/files.html">Files</a></h3>
     </section>
 </aside>
@@ -153,7 +153,46 @@
                                         <div class="section" id="installation">
     <h1>Installation</h1>
 
-            <pre><code class="language-shell">composer require opencultureconsulting/basics</code></pre>
+            <div class="section" id="composer">
+    <h2>Composer</h2>
+
+            <p>The intended and recommended way of re-using this package is via <a href="https://getcomposer.org/">Composer</a>. The following
+command will get you the latest version and make it a dependency of your project. It will also register all classes and
+traits with the autoloader to make them available inside the application.</p>
+            <pre><code class="language-shell"># This will install the latest stable version suitable for your project
+composer require &quot;opencultureconsulting/basics&quot;</code></pre>
+            <p>If you want to use a specific version other than the latest available for your environment, you can do so by appending
+the desired version constraint:</p>
+            <pre><code class="language-shell"># This will install the latest patch level version of 2.0 (i. e. &gt;=2.0.0 &amp;&amp; &lt;2.1.0)
+composer require &quot;opencultureconsulting/basics:~2.0&quot;</code></pre>
+            <p>All available versions as well as further information about <a href="guides/usage/requirements.html">Requirements</a>
+ and dependencies can be found on
+<a href="https://packagist.org/packages/opencultureconsulting/basics">Packagist</a>.</p>
+    </div>
+
+            <div class="section" id="git">
+    <h2>Git</h2>
+
+            <p>Alternatively, you can fetch the files from <a href="https://github.com/opencultureconsulting/php-basics">GitHub</a> and add
+them to your project manually. The best way is by cloning the repository, because then you can easily update to a newer
+version by just pulling the changes and checking out a different version tag.</p>
+            <pre><code class="language-shell"># This will clone the repository into the &quot;basics&quot; directory
+git clone https://github.com/opencultureconsulting/php-basics.git basics</code></pre>
+            <p>If you want to use a specific version other than the latest development state, you have to specify the desired tag as
+well:</p>
+            <pre><code class="language-shell"># This will clone the repository state at version &quot;2.0.0&quot; into the &quot;basics&quot; directory
+git clone --branch=v2.0.0 https://github.com/opencultureconsulting/php-basics.git basics</code></pre>
+            <p>Be aware that you also need to make the classes and traits available in your application by either adding them to your
+autoloader or by including all files individually in PHP.</p>
+    </div>
+
+            <div class="section" id="download">
+    <h2>Download</h2>
+
+            <p>As a last resort you can also just download the files. You can find all available versions as well as the current
+development state on the <a href="https://github.com/opencultureconsulting/php-basics/releases">GitHub release page</a>.</p>
+    </div>
+
     </div>
 
                             </div>
@@ -161,17 +200,6 @@
     <section class="phpdocumentor-search-results__dialog">
         <header class="phpdocumentor-search-results__header">
             <h2 class="phpdocumentor-search-results__title">Search results</h2>
-            <section data-search-form class="phpdocumentor-search">
-    <label>
-        <span class="visually-hidden">Search for</span>
-        <svg class="phpdocumentor-search__icon" width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="7.5" cy="7.5" r="6.5" stroke="currentColor" stroke-width="2"/>
-            <line x1="12.4892" y1="12.2727" x2="19.1559" y2="18.9393" stroke="currentColor" stroke-width="3"/>
-        </svg>
-        <input type="search" class="phpdocumentor-field phpdocumentor-search__field" placeholder="Loading .." disabled />
-    </label>
-</section>
-
             <button class="phpdocumentor-search-results__close"><i class="fas fa-times"></i></button>
         </header>
         <section class="phpdocumentor-search-results__body">

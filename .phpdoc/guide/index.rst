@@ -4,12 +4,11 @@ Documentation
 #############
 
 .. meta::
-    :layout: landingpage
+  :layout: landingpage
 
 .. toctree::
-    :hidden:
-    :titlesonly:
+  :hidden:
 
-    overview/index
-    usage/index
-    changelog
+  overview/index
+  usage/index
+  changelog

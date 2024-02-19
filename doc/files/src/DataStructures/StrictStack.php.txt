@@ -31,6 +31,8 @@ use RangeException;
 use RuntimeException;
 use Serializable;
 
+use function sprintf;
+
 /**
  * A type-sensitive, taversable stack (LIFO).
  *

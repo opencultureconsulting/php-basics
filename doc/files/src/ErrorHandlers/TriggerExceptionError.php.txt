@@ -25,6 +25,9 @@ namespace OCC\Basics\ErrorHandlers;
 
 use Throwable;
 
+use function sprintf;
+use function trigger_error;
+
 /**
  * Triggers errors for uncaught exceptions.
  *

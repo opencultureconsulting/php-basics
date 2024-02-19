@@ -25,6 +25,12 @@ namespace OCC\Basics\Traits;
 
 use InvalidArgumentException;
 
+use function boolval;
+use function method_exists;
+use function property_exists;
+use function sprintf;
+use function ucfirst;
+
 /**
  * Reads data from inaccessible properties by using magic methods.
  *
