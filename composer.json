@@ -42,7 +42,7 @@
     "require-dev": {
         "phpstan/phpstan": "^1.10",
         "phpstan/phpstan-strict-rules": "^1.5",
-        "friendsofphp/php-cs-fixer": "^3.51",
+        "friendsofphp/php-cs-fixer": "^3.52",
         "squizlabs/php_codesniffer": "^3.9",
         "vimeo/psalm": "^5.23"
     },
