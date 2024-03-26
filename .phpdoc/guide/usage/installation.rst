@@ -3,6 +3,9 @@
 Installation
 ############
 
+.. sidebar:: Table of Contents
+  .. contents::
+
 Composer
 ========
 

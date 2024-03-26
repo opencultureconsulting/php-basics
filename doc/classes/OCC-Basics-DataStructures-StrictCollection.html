@@ -76,6 +76,24 @@
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
     <a href="guides/overview/index.html#overview" class="">Overview</a>
 </h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="guides/overview/datastructures.html#typed-datastructures" class="">Typed Datastructures</a>
+                
+            </li>
+                    <li>
+                <a href="guides/overview/errorhandlers.html#error-and-exception-handlers" class="">Error and Exception Handlers</a>
+                
+            </li>
+                    <li>
+                <a href="guides/overview/interfaces.html#interface-traits" class="">Interface Traits</a>
+                
+            </li>
+                    <li>
+                <a href="guides/overview/traits.html#traits" class="">Traits</a>
+                
+            </li>
+            </ul>
 
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
     <a href="guides/usage/index.html#user-guide" class="">User Guide</a>
@@ -175,7 +193,7 @@
     
             <span class="phpdocumentor-element__extends">
             Uses
-                            <a href="classes/OCC-Basics-Interfaces-ArrayAccessTrait.html"><abbr title="\OCC\Basics\Interfaces\ArrayAccessTrait">ArrayAccessTrait</abbr></a>,                             <a href="classes/OCC-Basics-Interfaces-CountableTrait.html"><abbr title="\OCC\Basics\Interfaces\CountableTrait">CountableTrait</abbr></a>,                             <a href="classes/OCC-Basics-Traits-Getter.html"><abbr title="\OCC\Basics\Traits\Getter">Getter</abbr></a>                    </span>
+                            <a href="classes/OCC-Basics-Interfaces-ArrayAccessTrait.html"><abbr title="\OCC\Basics\Interfaces\ArrayAccessTrait">ArrayAccessTrait</abbr></a>,                             <a href="classes/OCC-Basics-Interfaces-CountableTrait.html"><abbr title="\OCC\Basics\Interfaces\CountableTrait">CountableTrait</abbr></a>,                             <a href="classes/OCC-Basics-Traits-TypeChecker.html"><abbr title="\OCC\Basics\Traits\TypeChecker">TypeChecker</abbr></a>                    </span>
     </h2>
 
 <div class="phpdocumentor-label-line">
@@ -186,9 +204,9 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/DataStructures/StrictCollection.php"><a href="files/src-datastructures-strictcollection.html"><abbr title="src/DataStructures/StrictCollection.php">StrictCollection.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">83</span>
+    <span class="phpdocumentor-element-found-in__line">63</span>
 
-            <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#source-view.83" class="phpdocumentor-element-found-in__source" data-line="83" data-modal="source-view" data-src="files/src/DataStructures/StrictCollection.php.txt"></a>
+            <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#source-view.63" class="phpdocumentor-element-found-in__source" data-line="63" data-modal="source-view" data-src="files/src/DataStructures/StrictCollection.php.txt"></a>
     </aside>
 
             <p class="phpdocumentor-summary">A type-sensitive, unsorted collection.</p>
@@ -250,19 +268,6 @@ names.</p>
 
 
 
-<h4 id="toc-properties">
-    Properties
-    <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
-
-</h4>
-<dl class="phpdocumentor-table-of-contents">
-            <dt class="phpdocumentor-table-of-contents__entry -property -public">
-    <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#property_allowedTypes">$allowedTypes</a>
-    <span>
-                        &nbsp;: array&lt;string|int, string&gt;            </span>
-</dt>
-
-    </dl>
 
 <h4 id="toc-methods">
     Methods
@@ -278,25 +283,11 @@ names.</p>
 <dd>Create a type-sensitive collection of items.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/OCC-Basics-Traits-Getter.html#method___get">__get()</a>
-    <span>
-                                &nbsp;: mixed    </span>
-</dt>
-<dd>Read data from an inaccessible property.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/OCC-Basics-Traits-Getter.html#method___isset">__isset()</a>
-    <span>
-                                &nbsp;: bool    </span>
-</dt>
-<dd>Check if an inaccessible property is set and not empty.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#method_add">add()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
-<dd>Add/insert a new item at the specified index.</dd>
+<dd>Add/insert a item at the specified index.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#method_clear">clear()</a>
@@ -315,23 +306,30 @@ names.</p>
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#method_get">get()</a>
     <span>
-                                &nbsp;: <abbr title="\OCC\Basics\DataStructures\AllowedType">AllowedType</abbr>|null    </span>
+                                &nbsp;: <abbr title="\OCC\Basics\DataStructures\AllowedType">AllowedType</abbr>    </span>
 </dt>
 <dd>Get the item at the specified index.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#method_getAllowedTypes">getAllowedTypes()</a>
+    <a href="classes/OCC-Basics-Traits-TypeChecker.html#method_getAllowedTypes">getAllowedTypes()</a>
     <span>
                                 &nbsp;: array&lt;string|int, string&gt;    </span>
 </dt>
-<dd>Get allowed data types for collection items.</dd>
+<dd>Get allowed data types.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#method_isAllowedType">isAllowedType()</a>
+    <a href="classes/OCC-Basics-Traits-TypeChecker.html#method_hasAllowedType">hasAllowedType()</a>
     <span>
                                 &nbsp;: bool    </span>
 </dt>
-<dd>Check if the item&#039;s data type is allowed in the collection.</dd>
+<dd>Check if a value&#039;s data type is allowed.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/OCC-Basics-Traits-TypeChecker.html#method_isAllowedType">isAllowedType()</a>
+    <span>
+                                &nbsp;: bool    </span>
+</dt>
+<dd>Check if a data type is allowed.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#method_isEmpty">isEmpty()</a>
@@ -397,6 +395,13 @@ names.</p>
 <dd>Set an item at the specified index.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/OCC-Basics-Traits-TypeChecker.html#method_setAllowedTypes">setAllowedTypes()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Set allowed data types.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#method_toArray">toArray()</a>
     <span>
                                 &nbsp;: array&lt;string|int, <abbr title="\OCC\Basics\DataStructures\AllowedType">AllowedType</abbr>&gt;    </span>
@@ -417,13 +422,6 @@ names.</p>
 </dt>
 <dd>Restore $this from string representation.</dd>
 
-            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#method_setAllowedTypes">setAllowedTypes()</a>
-    <span>
-                                &nbsp;: void    </span>
-</dt>
-<dd>Set allowed data types of collection items.</dd>
-
     </dl>
 
 
@@ -432,49 +430,6 @@ names.</p>
         
 
         
-    <section class="phpdocumentor-properties">
-        <h3 class="phpdocumentor-elements__header" id="properties">
-            Properties
-            <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
-
-        </h3>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -public
-                                                -read-only        "
->
-    <h4 class="phpdocumentor-element__name" id="property_allowedTypes">
-        $allowedTypes
-        <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#property_allowedTypes" class="headerlink"><i class="fas fa-link"></i></a>
-
-        <span class="phpdocumentor-element__modifiers">
-                        <small class="phpdocumentor-element__modifier">read-only</small>        </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/DataStructures/StrictCollection.php"><a href="files/src-datastructures-strictcollection.html"><abbr title="src/DataStructures/StrictCollection.php">StrictCollection.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">0</span>
-
-            <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#source-view.0" class="phpdocumentor-element-found-in__source" data-line="0" data-modal="source-view" data-src="files/src/DataStructures/StrictCollection.php.txt"></a>
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">array&lt;string|int, string&gt;</span>
-    <span class="phpdocumentor-signature__name">$allowedTypes</span>
-    </code>
-
-        <section class="phpdocumentor-description"><p>The allowed data types for items.</p>
-</section>
-
-    
-    
-
-</article>
-            </section>
 
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
@@ -496,9 +451,9 @@ names.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/DataStructures/StrictCollection.php"><a href="files/src-datastructures-strictcollection.html"><abbr title="src/DataStructures/StrictCollection.php">StrictCollection.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">401</span>
+    <span class="phpdocumentor-element-found-in__line">325</span>
 
-            <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#source-view.401" class="phpdocumentor-element-found-in__source" data-line="401" data-modal="source-view" data-src="files/src/DataStructures/StrictCollection.php.txt"></a>
+            <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#source-view.325" class="phpdocumentor-element-found-in__source" data-line="325" data-modal="source-view" data-src="files/src/DataStructures/StrictCollection.php.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Create a type-sensitive collection of items.</p>
@@ -567,129 +522,6 @@ Possible values are:</p>
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method___get">
-        __get()
-        <a href="classes/OCC-Basics-Traits-Getter.html#method___get" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Traits/Getter.php"><a href="files/src-traits-getter.html"><abbr title="src/Traits/Getter.php">Getter.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">60</span>
-
-            <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#source-view.60" class="phpdocumentor-element-found-in__source" data-line="60" data-modal="source-view" data-src="files/src/Traits/Getter.php.txt"></a>
-    </aside>
-
-        <p class="phpdocumentor-summary">Read data from an inaccessible property.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__get</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$property</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$property</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The class property to get</p>
-</section>
-
-            </dd>
-            </dl>
-
-    
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
-        Tags
-        <a href="classes/OCC-Basics-Traits-Getter.html#method___get#tags" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h5>
-    <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">throws</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><abbr title="\InvalidArgumentException">InvalidArgumentException</abbr></span>
-                                                            
-                                                 <section class="phpdocumentor-description"><p>if the property or getter method do not exist</p>
-</section>
-
-                                    </dd>
-                                            </dl>
-
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">mixed</span>
-                    &mdash;
-                <section class="phpdocumentor-description"><p>The class property's current value</p>
-</section>
-
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method___isset">
-        __isset()
-        <a href="classes/OCC-Basics-Traits-Getter.html#method___isset" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Traits/Getter.php"><a href="files/src-traits-getter.html"><abbr title="src/Traits/Getter.php">Getter.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">83</span>
-
-            <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#source-view.83" class="phpdocumentor-element-found-in__source" data-line="83" data-modal="source-view" data-src="files/src/Traits/Getter.php.txt"></a>
-    </aside>
-
-        <p class="phpdocumentor-summary">Check if an inaccessible property is set and not empty.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__isset</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$property</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$property</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The class property to check</p>
-</section>
-
-            </dd>
-            </dl>
-
-    
-
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">bool</span>
-                    &mdash;
-                <section class="phpdocumentor-description"><p>Whether the class property is set and not empty</p>
-</section>
-
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
     <h4 class="phpdocumentor-element__name" id="method_add">
         add()
         <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#method_add" class="headerlink"><i class="fas fa-link"></i></a>
@@ -698,12 +530,12 @@ Possible values are:</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/DataStructures/StrictCollection.php"><a href="files/src-datastructures-strictcollection.html"><abbr title="src/DataStructures/StrictCollection.php">StrictCollection.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">121</span>
+    <span class="phpdocumentor-element-found-in__line">94</span>
 
-            <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#source-view.121" class="phpdocumentor-element-found-in__source" data-line="121" data-modal="source-view" data-src="files/src/DataStructures/StrictCollection.php.txt"></a>
+            <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#source-view.94" class="phpdocumentor-element-found-in__source" data-line="94" data-modal="source-view" data-src="files/src/DataStructures/StrictCollection.php.txt"></a>
     </aside>
 
-        <p class="phpdocumentor-summary">Add/insert a new item at the specified index.</p>
+        <p class="phpdocumentor-summary">Add/insert a item at the specified index.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -721,7 +553,7 @@ Possible values are:</p>
                 : <span class="phpdocumentor-signature__argument__return-type">string|int</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The new item's index</p>
+                    <section class="phpdocumentor-description"><p>The item's index</p>
 </section>
 
             </dd>
@@ -730,7 +562,7 @@ Possible values are:</p>
                 : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\OCC\Basics\DataStructures\AllowedType">AllowedType</abbr></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The new item</p>
+                    <section class="phpdocumentor-description"><p>The item</p>
 </section>
 
             </dd>
@@ -747,9 +579,9 @@ Possible values are:</p>
                     <span class="phpdocumentor-tag__name">throws</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><abbr title="\InvalidArgumentException">InvalidArgumentException</abbr></span>
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/OCC-Basics-DataStructures-Exceptions-InvalidDataTypeException.html"><abbr title="\OCC\Basics\DataStructures\Exceptions\InvalidDataTypeException">InvalidDataTypeException</abbr></a></span>
                                                             
-                                                 <section class="phpdocumentor-description"><p>if <code class="prettyprint">$offset</code> is not of allowed type</p>
+                                                 <section class="phpdocumentor-description"><p>if <code class="prettyprint">$value</code> is not of allowed type</p>
 </section>
 
                                     </dd>
@@ -771,9 +603,9 @@ Possible values are:</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/DataStructures/StrictCollection.php"><a href="files/src-datastructures-strictcollection.html"><abbr title="src/DataStructures/StrictCollection.php">StrictCollection.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">133</span>
+    <span class="phpdocumentor-element-found-in__line">106</span>
 
-            <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#source-view.133" class="phpdocumentor-element-found-in__source" data-line="133" data-modal="source-view" data-src="files/src/DataStructures/StrictCollection.php.txt"></a>
+            <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#source-view.106" class="phpdocumentor-element-found-in__source" data-line="106" data-modal="source-view" data-src="files/src/DataStructures/StrictCollection.php.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Clear the collection of any items.</p>
@@ -849,16 +681,16 @@ Possible values are:</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/DataStructures/StrictCollection.php"><a href="files/src-datastructures-strictcollection.html"><abbr title="src/DataStructures/StrictCollection.php">StrictCollection.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">147</span>
+    <span class="phpdocumentor-element-found-in__line">122</span>
 
-            <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#source-view.147" class="phpdocumentor-element-found-in__source" data-line="147" data-modal="source-view" data-src="files/src/DataStructures/StrictCollection.php.txt"></a>
+            <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#source-view.122" class="phpdocumentor-element-found-in__source" data-line="122" data-modal="source-view" data-src="files/src/DataStructures/StrictCollection.php.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Get the item at the specified index.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">get</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string|int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$offset</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\OCC\Basics\DataStructures\AllowedType">AllowedType</abbr>|null</span></code>
+                    <span class="phpdocumentor-signature__name">get</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string|int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$offset</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\OCC\Basics\DataStructures\AllowedType">AllowedType</abbr></span></code>
 
     <div class="phpdocumentor-label-line">
             <div class="phpdocumentor-label phpdocumentor-label--success"><span>API</span><span>Yes</span></div>
@@ -879,12 +711,29 @@ Possible values are:</p>
             </dl>
 
     
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#method_get#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\OutOfRangeException">OutOfRangeException</abbr></span>
+                                                            
+                                                 <section class="phpdocumentor-description"><p>when <code class="prettyprint">$offset</code> is out of bounds</p>
+</section>
+
+                                    </dd>
+                                            </dl>
 
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><abbr title="\OCC\Basics\DataStructures\AllowedType">AllowedType</abbr>|null</span>
+        <span class="phpdocumentor-signature__response_type"><abbr title="\OCC\Basics\DataStructures\AllowedType">AllowedType</abbr></span>
                     &mdash;
-                <section class="phpdocumentor-description"><p>The item or NULL if key is invalid</p>
+                <section class="phpdocumentor-description"><p>The item</p>
 </section>
 
             </section>
@@ -898,18 +747,18 @@ Possible values are:</p>
 >
     <h4 class="phpdocumentor-element__name" id="method_getAllowedTypes">
         getAllowedTypes()
-        <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#method_getAllowedTypes" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/OCC-Basics-Traits-TypeChecker.html#method_getAllowedTypes" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/DataStructures/StrictCollection.php"><a href="files/src-datastructures-strictcollection.html"><abbr title="src/DataStructures/StrictCollection.php">StrictCollection.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Traits/TypeChecker.php"><a href="files/src-traits-typechecker.html"><abbr title="src/Traits/TypeChecker.php">TypeChecker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">159</span>
+    <span class="phpdocumentor-element-found-in__line">83</span>
 
-            <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#source-view.159" class="phpdocumentor-element-found-in__source" data-line="159" data-modal="source-view" data-src="files/src/DataStructures/StrictCollection.php.txt"></a>
+            <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#source-view.83" class="phpdocumentor-element-found-in__source" data-line="83" data-modal="source-view" data-src="files/src/Traits/TypeChecker.php.txt"></a>
     </aside>
 
-        <p class="phpdocumentor-summary">Get allowed data types for collection items.</p>
+        <p class="phpdocumentor-summary">Get allowed data types.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -939,24 +788,24 @@ Possible values are:</p>
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_isAllowedType">
-        isAllowedType()
-        <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#method_isAllowedType" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_hasAllowedType">
+        hasAllowedType()
+        <a href="classes/OCC-Basics-Traits-TypeChecker.html#method_hasAllowedType" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/DataStructures/StrictCollection.php"><a href="files/src-datastructures-strictcollection.html"><abbr title="src/DataStructures/StrictCollection.php">StrictCollection.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Traits/TypeChecker.php"><a href="files/src-traits-typechecker.html"><abbr title="src/Traits/TypeChecker.php">TypeChecker.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">173</span>
+    <span class="phpdocumentor-element-found-in__line">97</span>
 
-            <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#source-view.173" class="phpdocumentor-element-found-in__source" data-line="173" data-modal="source-view" data-src="files/src/DataStructures/StrictCollection.php.txt"></a>
+            <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#source-view.97" class="phpdocumentor-element-found-in__source" data-line="97" data-modal="source-view" data-src="files/src/Traits/TypeChecker.php.txt"></a>
     </aside>
 
-        <p class="phpdocumentor-summary">Check if the item&#039;s data type is allowed in the collection.</p>
+        <p class="phpdocumentor-summary">Check if a value&#039;s data type is allowed.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">isAllowedType</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\OCC\Basics\DataStructures\AllowedType">AllowedType</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$value</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+                    <span class="phpdocumentor-signature__name">hasAllowedType</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$value</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
     <div class="phpdocumentor-label-line">
             <div class="phpdocumentor-label phpdocumentor-label--success"><span>API</span><span>Yes</span></div>
@@ -967,10 +816,10 @@ Possible values are:</p>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$value</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\OCC\Basics\DataStructures\AllowedType">AllowedType</abbr></span>
+                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The item to check</p>
+                    <section class="phpdocumentor-description"><p>The value to check</p>
 </section>
 
             </dd>
@@ -982,7 +831,62 @@ Possible values are:</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">bool</span>
                     &mdash;
-                <section class="phpdocumentor-description"><p>Whether the item's data type is allowed</p>
+                <section class="phpdocumentor-description"><p>Whether the value's data type is allowed</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_isAllowedType">
+        isAllowedType()
+        <a href="classes/OCC-Basics-Traits-TypeChecker.html#method_isAllowedType" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Traits/TypeChecker.php"><a href="files/src-traits-typechecker.html"><abbr title="src/Traits/TypeChecker.php">TypeChecker.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">125</span>
+
+            <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#source-view.125" class="phpdocumentor-element-found-in__source" data-line="125" data-modal="source-view" data-src="files/src/Traits/TypeChecker.php.txt"></a>
+    </aside>
+
+        <p class="phpdocumentor-summary">Check if a data type is allowed.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">isAllowedType</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$type</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+
+    <div class="phpdocumentor-label-line">
+            <div class="phpdocumentor-label phpdocumentor-label--success"><span>API</span><span>Yes</span></div>
+
+        </div>
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$type</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The type to check</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">bool</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Whether the data type is allowed</p>
 </section>
 
             </section>
@@ -1002,9 +906,9 @@ Possible values are:</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/DataStructures/StrictCollection.php"><a href="files/src-datastructures-strictcollection.html"><abbr title="src/DataStructures/StrictCollection.php">StrictCollection.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">199</span>
+    <span class="phpdocumentor-element-found-in__line">144</span>
 
-            <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#source-view.199" class="phpdocumentor-element-found-in__source" data-line="199" data-modal="source-view" data-src="files/src/DataStructures/StrictCollection.php.txt"></a>
+            <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#source-view.144" class="phpdocumentor-element-found-in__source" data-line="144" data-modal="source-view" data-src="files/src/DataStructures/StrictCollection.php.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Check if collection is empty.</p>
@@ -1045,9 +949,9 @@ Possible values are:</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/DataStructures/StrictCollection.php"><a href="files/src-datastructures-strictcollection.html"><abbr title="src/DataStructures/StrictCollection.php">StrictCollection.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">216</span>
+    <span class="phpdocumentor-element-found-in__line">161</span>
 
-            <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#source-view.216" class="phpdocumentor-element-found-in__source" data-line="216" data-modal="source-view" data-src="files/src/DataStructures/StrictCollection.php.txt"></a>
+            <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#source-view.161" class="phpdocumentor-element-found-in__source" data-line="161" data-modal="source-view" data-src="files/src/DataStructures/StrictCollection.php.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Check if this collection can be considered a list.</p>
@@ -1216,9 +1120,9 @@ from <code class="prettyprint">0</code>.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/DataStructures/StrictCollection.php"><a href="files/src-datastructures-strictcollection.html"><abbr title="src/DataStructures/StrictCollection.php">StrictCollection.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">233</span>
+    <span class="phpdocumentor-element-found-in__line">179</span>
 
-            <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#source-view.233" class="phpdocumentor-element-found-in__source" data-line="233" data-modal="source-view" data-src="files/src/DataStructures/StrictCollection.php.txt"></a>
+            <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#source-view.179" class="phpdocumentor-element-found-in__source" data-line="179" data-modal="source-view" data-src="files/src/DataStructures/StrictCollection.php.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Set the item at the specified offset.</p>
@@ -1265,9 +1169,19 @@ from <code class="prettyprint">0</code>.</p>
                     <span class="phpdocumentor-tag__name">throws</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/OCC-Basics-DataStructures-Exceptions-InvalidDataTypeException.html"><abbr title="\OCC\Basics\DataStructures\Exceptions\InvalidDataTypeException">InvalidDataTypeException</abbr></a></span>
+                                                            
+                                                 <section class="phpdocumentor-description"><p>if <code class="prettyprint">$value</code> is not of allowed type</p>
+</section>
+
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
                                                                 <span class="phpdocumentor-tag-link"><abbr title="\InvalidArgumentException">InvalidArgumentException</abbr></span>
                                                             
-                                                 <section class="phpdocumentor-description"><p>if <code class="prettyprint">$offset</code> or <code class="prettyprint">$value</code> is not of allowed type</p>
+                                                 <section class="phpdocumentor-description"><p>if <code class="prettyprint">$offset</code> is not a valid array key</p>
 </section>
 
                                     </dd>
@@ -1336,9 +1250,9 @@ from <code class="prettyprint">0</code>.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/DataStructures/StrictCollection.php"><a href="files/src-datastructures-strictcollection.html"><abbr title="src/DataStructures/StrictCollection.php">StrictCollection.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">263</span>
+    <span class="phpdocumentor-element-found-in__line">211</span>
 
-            <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#source-view.263" class="phpdocumentor-element-found-in__source" data-line="263" data-modal="source-view" data-src="files/src/DataStructures/StrictCollection.php.txt"></a>
+            <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#source-view.211" class="phpdocumentor-element-found-in__source" data-line="211" data-modal="source-view" data-src="files/src/DataStructures/StrictCollection.php.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Remove an item from the collection.</p>
@@ -1366,6 +1280,23 @@ from <code class="prettyprint">0</code>.</p>
             </dl>
 
     
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#method_remove#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\OutOfRangeException">OutOfRangeException</abbr></span>
+                                                            
+                                                 <section class="phpdocumentor-description"><p>when <code class="prettyprint">$offset</code> is out of bounds</p>
+</section>
+
+                                    </dd>
+                                            </dl>
 
     
 </article>
@@ -1383,9 +1314,9 @@ from <code class="prettyprint">0</code>.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/DataStructures/StrictCollection.php"><a href="files/src-datastructures-strictcollection.html"><abbr title="src/DataStructures/StrictCollection.php">StrictCollection.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">273</span>
+    <span class="phpdocumentor-element-found-in__line">229</span>
 
-            <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#source-view.273" class="phpdocumentor-element-found-in__source" data-line="273" data-modal="source-view" data-src="files/src/DataStructures/StrictCollection.php.txt"></a>
+            <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#source-view.229" class="phpdocumentor-element-found-in__source" data-line="229" data-modal="source-view" data-src="files/src/DataStructures/StrictCollection.php.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Get string representation of $this.</p>
@@ -1424,9 +1355,9 @@ from <code class="prettyprint">0</code>.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/DataStructures/StrictCollection.php"><a href="files/src-datastructures-strictcollection.html"><abbr title="src/DataStructures/StrictCollection.php">StrictCollection.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">290</span>
+    <span class="phpdocumentor-element-found-in__line">246</span>
 
-            <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#source-view.290" class="phpdocumentor-element-found-in__source" data-line="290" data-modal="source-view" data-src="files/src/DataStructures/StrictCollection.php.txt"></a>
+            <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#source-view.246" class="phpdocumentor-element-found-in__source" data-line="246" data-modal="source-view" data-src="files/src/DataStructures/StrictCollection.php.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Set an item at the specified index.</p>
@@ -1473,9 +1404,73 @@ from <code class="prettyprint">0</code>.</p>
                     <span class="phpdocumentor-tag__name">throws</span>
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><abbr title="\InvalidArgumentException">InvalidArgumentException</abbr></span>
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/OCC-Basics-DataStructures-Exceptions-InvalidDataTypeException.html"><abbr title="\OCC\Basics\DataStructures\Exceptions\InvalidDataTypeException">InvalidDataTypeException</abbr></a></span>
                                                             
                                                  <section class="phpdocumentor-description"><p>if <code class="prettyprint">$value</code> is not of allowed type</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_setAllowedTypes">
+        setAllowedTypes()
+        <a href="classes/OCC-Basics-Traits-TypeChecker.html#method_setAllowedTypes" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Traits/TypeChecker.php"><a href="files/src-traits-typechecker.html"><abbr title="src/Traits/TypeChecker.php">TypeChecker.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">141</span>
+
+            <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#source-view.141" class="phpdocumentor-element-found-in__source" data-line="141" data-modal="source-view" data-src="files/src/Traits/TypeChecker.php.txt"></a>
+    </aside>
+
+        <p class="phpdocumentor-summary">Set allowed data types.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">setAllowedTypes</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, string&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$allowedTypes</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">[]</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+            <div class="phpdocumentor-label phpdocumentor-label--success"><span>API</span><span>Yes</span></div>
+
+        </div>
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$allowedTypes</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, string&gt;</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">[]</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Allowed data types</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/OCC-Basics-Traits-TypeChecker.html#method_setAllowedTypes#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\InvalidArgumentException">InvalidArgumentException</abbr></span>
+                                                            
+                                                 <section class="phpdocumentor-description"><p>if any value of <code class="prettyprint">$allowedTypes</code> is not a string</p>
 </section>
 
                                     </dd>
@@ -1497,9 +1492,9 @@ from <code class="prettyprint">0</code>.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/DataStructures/StrictCollection.php"><a href="files/src-datastructures-strictcollection.html"><abbr title="src/DataStructures/StrictCollection.php">StrictCollection.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">321</span>
+    <span class="phpdocumentor-element-found-in__line">258</span>
 
-            <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#source-view.321" class="phpdocumentor-element-found-in__source" data-line="321" data-modal="source-view" data-src="files/src/DataStructures/StrictCollection.php.txt"></a>
+            <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#source-view.258" class="phpdocumentor-element-found-in__source" data-line="258" data-modal="source-view" data-src="files/src/DataStructures/StrictCollection.php.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Return array representation of collection.</p>
@@ -1540,9 +1535,9 @@ from <code class="prettyprint">0</code>.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/DataStructures/StrictCollection.php"><a href="files/src-datastructures-strictcollection.html"><abbr title="src/DataStructures/StrictCollection.php">StrictCollection.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">337</span>
+    <span class="phpdocumentor-element-found-in__line">274</span>
 
-            <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#source-view.337" class="phpdocumentor-element-found-in__source" data-line="337" data-modal="source-view" data-src="files/src/DataStructures/StrictCollection.php.txt"></a>
+            <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#source-view.274" class="phpdocumentor-element-found-in__source" data-line="274" data-modal="source-view" data-src="files/src/DataStructures/StrictCollection.php.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Turn collection into a type-sensitive list.</p>
@@ -1608,9 +1603,9 @@ from <code class="prettyprint">0</code>.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/DataStructures/StrictCollection.php"><a href="files/src-datastructures-strictcollection.html"><abbr title="src/DataStructures/StrictCollection.php">StrictCollection.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">357</span>
+    <span class="phpdocumentor-element-found-in__line">293</span>
 
-            <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#source-view.357" class="phpdocumentor-element-found-in__source" data-line="357" data-modal="source-view" data-src="files/src/DataStructures/StrictCollection.php.txt"></a>
+            <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#source-view.293" class="phpdocumentor-element-found-in__source" data-line="293" data-modal="source-view" data-src="files/src/DataStructures/StrictCollection.php.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Restore $this from string representation.</p>
@@ -1636,68 +1631,6 @@ from <code class="prettyprint">0</code>.</p>
             </dl>
 
     
-
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -protected
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_setAllowedTypes">
-        setAllowedTypes()
-        <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#method_setAllowedTypes" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/DataStructures/StrictCollection.php"><a href="files/src-datastructures-strictcollection.html"><abbr title="src/DataStructures/StrictCollection.php">StrictCollection.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">304</span>
-
-            <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#source-view.304" class="phpdocumentor-element-found-in__source" data-line="304" data-modal="source-view" data-src="files/src/DataStructures/StrictCollection.php.txt"></a>
-    </aside>
-
-        <p class="phpdocumentor-summary">Set allowed data types of collection items.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-                    <span class="phpdocumentor-signature__name">setAllowedTypes</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, string&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$allowedTypes</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">[]</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$allowedTypes</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, string&gt;</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">[]</span>            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>Allowed data types of items</p>
-</section>
-
-            </dd>
-            </dl>
-
-    
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
-        Tags
-        <a href="classes/OCC-Basics-DataStructures-StrictCollection.html#method_setAllowedTypes#tags" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h5>
-    <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">throws</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><abbr title="\InvalidArgumentException">InvalidArgumentException</abbr></span>
-                                                            
-                                                 <section class="phpdocumentor-description"><p>if any value of <code class="prettyprint">$allowedTypes</code> is not a string</p>
-</section>
-
-                                    </dd>
-                                            </dl>
 
     
 </article>
@@ -1806,30 +1739,22 @@ from <code class="prettyprint">0</code>.</p>
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                            <li><a href="classes/OCC-Basics-DataStructures-StrictCollection.html#toc-properties">Properties</a></li>
-                                                            <li><a href="classes/OCC-Basics-DataStructures-StrictCollection.html#toc-methods">Methods</a></li>
+                                                                                <li><a href="classes/OCC-Basics-DataStructures-StrictCollection.html#toc-methods">Methods</a></li>
                                     </ul>
             </li>
             
-                            <li class="phpdocumentor-on-this-page-section__title">Properties</li>
-                <li>
-                    <ul class="phpdocumentor-list -clean">
-                                                    <li><a href="classes/OCC-Basics-DataStructures-StrictCollection.html#property_allowedTypes">$allowedTypes<a href="classes/OCC-Basics-DataStructures-StrictCollection.html"></li>
-                                            </ul>
-                </li>
             
                         <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
                                             <li><a href="classes/OCC-Basics-DataStructures-StrictCollection.html#method___construct">__construct()</a></li>
-                                            <li><a href="classes/OCC-Basics-Traits-Getter.html#method___get">__get()</a></li>
-                                            <li><a href="classes/OCC-Basics-Traits-Getter.html#method___isset">__isset()</a></li>
                                             <li><a href="classes/OCC-Basics-DataStructures-StrictCollection.html#method_add">add()</a></li>
                                             <li><a href="classes/OCC-Basics-DataStructures-StrictCollection.html#method_clear">clear()</a></li>
                                             <li><a href="classes/OCC-Basics-Interfaces-CountableTrait.html#method_count">count()</a></li>
                                             <li><a href="classes/OCC-Basics-DataStructures-StrictCollection.html#method_get">get()</a></li>
-                                            <li><a href="classes/OCC-Basics-DataStructures-StrictCollection.html#method_getAllowedTypes">getAllowedTypes()</a></li>
-                                            <li><a href="classes/OCC-Basics-DataStructures-StrictCollection.html#method_isAllowedType">isAllowedType()</a></li>
+                                            <li><a href="classes/OCC-Basics-Traits-TypeChecker.html#method_getAllowedTypes">getAllowedTypes()</a></li>
+                                            <li><a href="classes/OCC-Basics-Traits-TypeChecker.html#method_hasAllowedType">hasAllowedType()</a></li>
+                                            <li><a href="classes/OCC-Basics-Traits-TypeChecker.html#method_isAllowedType">isAllowedType()</a></li>
                                             <li><a href="classes/OCC-Basics-DataStructures-StrictCollection.html#method_isEmpty">isEmpty()</a></li>
                                             <li><a href="classes/OCC-Basics-DataStructures-StrictCollection.html#method_isList">isList()</a></li>
                                             <li><a href="classes/OCC-Basics-Interfaces-ArrayAccessTrait.html#method_offsetExists">offsetExists()</a></li>
@@ -1839,10 +1764,10 @@ from <code class="prettyprint">0</code>.</p>
                                             <li><a href="classes/OCC-Basics-DataStructures-StrictCollection.html#method_remove">remove()</a></li>
                                             <li><a href="classes/OCC-Basics-DataStructures-StrictCollection.html#method_serialize">serialize()</a></li>
                                             <li><a href="classes/OCC-Basics-DataStructures-StrictCollection.html#method_set">set()</a></li>
+                                            <li><a href="classes/OCC-Basics-Traits-TypeChecker.html#method_setAllowedTypes">setAllowedTypes()</a></li>
                                             <li><a href="classes/OCC-Basics-DataStructures-StrictCollection.html#method_toArray">toArray()</a></li>
                                             <li><a href="classes/OCC-Basics-DataStructures-StrictCollection.html#method_toStrictList">toStrictList()</a></li>
                                             <li><a href="classes/OCC-Basics-DataStructures-StrictCollection.html#method_unserialize">unserialize()</a></li>
-                                            <li><a href="classes/OCC-Basics-DataStructures-StrictCollection.html#method_setAllowedTypes">setAllowedTypes()</a></li>
                                     </ul>
             </li>
                     </ul>

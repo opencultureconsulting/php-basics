@@ -3,7 +3,8 @@
 Changelog
 #########
 
-.. contents::
+.. sidebar:: Table of Contents
+  .. contents::
 
 v2.0.0
 ======
@@ -39,7 +40,9 @@ v2.0.0
 * Added new error handler :php:class:`OCC\Basics\ErrorHandlers\TriggerExceptionError`
 * Added new trait :php:trait:`OCC\Basics\Traits\OverloadingGetter`
 * Added new trait :php:trait:`OCC\Basics\Traits\OverloadingSetter`
-* Extended API for all datastructures
+* Added new trait :php:trait:`OCC\Basics\Traits\TypeChecker`
+* Extended API for all datastructures (see :php:trait:`OCC\Basics\DataStructures\Traits\StrictSplDatastructureTrait`)
+* Introduced :php:class:`OCC\Basics\DataStructures\Exceptions\InvalidDataTypeException` for strict datastructures
 * Extended `documentation <https://opencultureconsulting.github.io/php-basics/>`_
 
 v1.1.0

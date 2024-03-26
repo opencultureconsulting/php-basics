@@ -3,11 +3,8 @@
 Documentation
 #############
 
-.. meta::
-  :layout: landingpage
-
 .. toctree::
-  :hidden:
+  :maxdepth: 2
 
   overview/index
   usage/index

@@ -40,6 +40,8 @@ aside.phpdocumentor-sidebar
     padding: 0 var(--spacing-md) !important;
 }
 
+p > code,
+li > code,
 code.prettyprint
 {
     background-color: var(--code-background-color);
@@ -48,6 +50,38 @@ code.prettyprint
     box-sizing: border-box;
     font-size: var(--text-sm);
     padding: var(--spacing-xxxs);
+}
+
+@media (max-width: 999px) {
+div.admonition-wrapper
+{
+    display: none;
+}
+}
+
+@media (min-width: 1000px) {
+div.admonition-wrapper
+{
+    display: block;
+    float: right;
+    padding: var(--spacing-md);
+    margin: 0 0 var(--spacing-md) var(--spacing-md);
+    width: auto;
+    font-size: var(--text-sm);
+    border: 1px solid var(--primary-color-lighten);
+}
+}
+
+div.admonition-wrapper
+    p.sidebar-title
+{
+    font-weight: bold;
+}
+
+div.contents
+    ul.phpdocumentor-list
+{
+    margin-bottom: 0;
 }
 
 div.phpdocumentor-content

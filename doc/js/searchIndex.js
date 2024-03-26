@@ -1,6 +1,11 @@
 Search.appendIndex(
     [
                 {
+            "fqsen": "\\OCC\\Basics\\DataStructures\\Exceptions\\InvalidDataTypeException",
+            "name": "InvalidDataTypeException",
+            "summary": "Common\u0020exception\u0020for\u0020type\u002Dsensitive\u0020datastructures.",
+            "url": "classes/OCC-Basics-DataStructures-Exceptions-InvalidDataTypeException.html"
+        },                {
             "fqsen": "\\OCC\\Basics\\DataStructures\\StrictCollection",
             "name": "StrictCollection",
             "summary": "A\u0020type\u002Dsensitive,\u0020unsorted\u0020collection.",
@@ -8,7 +13,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\OCC\\Basics\\DataStructures\\StrictCollection\u003A\u003Aadd\u0028\u0029",
             "name": "add",
-            "summary": "Add\/insert\u0020a\u0020new\u0020item\u0020at\u0020the\u0020specified\u0020index.",
+            "summary": "Add\/insert\u0020a\u0020item\u0020at\u0020the\u0020specified\u0020index.",
             "url": "classes/OCC-Basics-DataStructures-StrictCollection.html#method_add"
         },                {
             "fqsen": "\\OCC\\Basics\\DataStructures\\StrictCollection\u003A\u003Aclear\u0028\u0029",
@@ -20,16 +25,6 @@ Search.appendIndex(
             "name": "get",
             "summary": "Get\u0020the\u0020item\u0020at\u0020the\u0020specified\u0020index.",
             "url": "classes/OCC-Basics-DataStructures-StrictCollection.html#method_get"
-        },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\StrictCollection\u003A\u003AgetAllowedTypes\u0028\u0029",
-            "name": "getAllowedTypes",
-            "summary": "Get\u0020allowed\u0020data\u0020types\u0020for\u0020collection\u0020items.",
-            "url": "classes/OCC-Basics-DataStructures-StrictCollection.html#method_getAllowedTypes"
-        },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\StrictCollection\u003A\u003AisAllowedType\u0028\u0029",
-            "name": "isAllowedType",
-            "summary": "Check\u0020if\u0020the\u0020item\u0027s\u0020data\u0020type\u0020is\u0020allowed\u0020in\u0020the\u0020collection.",
-            "url": "classes/OCC-Basics-DataStructures-StrictCollection.html#method_isAllowedType"
         },                {
             "fqsen": "\\OCC\\Basics\\DataStructures\\StrictCollection\u003A\u003AisEmpty\u0028\u0029",
             "name": "isEmpty",
@@ -61,11 +56,6 @@ Search.appendIndex(
             "summary": "Set\u0020an\u0020item\u0020at\u0020the\u0020specified\u0020index.",
             "url": "classes/OCC-Basics-DataStructures-StrictCollection.html#method_set"
         },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\StrictCollection\u003A\u003AsetAllowedTypes\u0028\u0029",
-            "name": "setAllowedTypes",
-            "summary": "Set\u0020allowed\u0020data\u0020types\u0020of\u0020collection\u0020items.",
-            "url": "classes/OCC-Basics-DataStructures-StrictCollection.html#method_setAllowedTypes"
-        },                {
             "fqsen": "\\OCC\\Basics\\DataStructures\\StrictCollection\u003A\u003AtoArray\u0028\u0029",
             "name": "toArray",
             "summary": "Return\u0020array\u0020representation\u0020of\u0020collection.",
@@ -91,200 +81,15 @@ Search.appendIndex(
             "summary": "A\u0020type\u002Dsensitive,\u0020taversable\u0020list.",
             "url": "classes/OCC-Basics-DataStructures-StrictList.html"
         },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\StrictList\u003A\u003Aadd\u0028\u0029",
-            "name": "add",
-            "summary": "Add\/insert\u0020a\u0020new\u0020item\u0020at\u0020the\u0020specified\u0020offset.",
-            "url": "classes/OCC-Basics-DataStructures-StrictList.html#method_add"
-        },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\StrictList\u003A\u003Aappend\u0028\u0029",
-            "name": "append",
-            "summary": "Append\u0020items\u0020at\u0020the\u0020end\u0020of\u0020the\u0020list.",
-            "url": "classes/OCC-Basics-DataStructures-StrictList.html#method_append"
-        },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\StrictList\u003A\u003Abottom\u0028\u0029",
-            "name": "bottom",
-            "summary": "Peek\u0020at\u0020the\u0020item\u0020at\u0020the\u0020beginning\u0020of\u0020the\u0020list.",
-            "url": "classes/OCC-Basics-DataStructures-StrictList.html#method_bottom"
-        },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\StrictList\u003A\u003Aclear\u0028\u0029",
-            "name": "clear",
-            "summary": "Clear\u0020the\u0020list\u0020of\u0020any\u0020items.",
-            "url": "classes/OCC-Basics-DataStructures-StrictList.html#method_clear"
-        },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\StrictList\u003A\u003Acount\u0028\u0029",
-            "name": "count",
-            "summary": "Get\u0020the\u0020number\u0020of\u0020items\u0020on\u0020the\u0020list.",
-            "url": "classes/OCC-Basics-DataStructures-StrictList.html#method_count"
-        },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\StrictList\u003A\u003Acurrent\u0028\u0029",
-            "name": "current",
-            "summary": "Get\u0020the\u0020current\u0020list\u0020item.",
-            "url": "classes/OCC-Basics-DataStructures-StrictList.html#method_current"
-        },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\StrictList\u003A\u003Aget\u0028\u0029",
-            "name": "get",
-            "summary": "Get\u0020the\u0020item\u0020at\u0020the\u0020specified\u0020index.",
-            "url": "classes/OCC-Basics-DataStructures-StrictList.html#method_get"
-        },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\StrictList\u003A\u003AgetAllowedTypes\u0028\u0029",
-            "name": "getAllowedTypes",
-            "summary": "Get\u0020allowed\u0020data\u0020types\u0020for\u0020list\u0020items.",
-            "url": "classes/OCC-Basics-DataStructures-StrictList.html#method_getAllowedTypes"
-        },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\StrictList\u003A\u003AgetIteratorMode\u0028\u0029",
-            "name": "getIteratorMode",
-            "summary": "Get\u0020the\u0020mode\u0020of\u0020iteration.",
-            "url": "classes/OCC-Basics-DataStructures-StrictList.html#method_getIteratorMode"
-        },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\StrictList\u003A\u003AisAllowedType\u0028\u0029",
-            "name": "isAllowedType",
-            "summary": "Check\u0020if\u0020the\u0020item\u0027s\u0020data\u0020type\u0020is\u0020allowed\u0020on\u0020the\u0020list.",
-            "url": "classes/OCC-Basics-DataStructures-StrictList.html#method_isAllowedType"
-        },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\StrictList\u003A\u003AisEmpty\u0028\u0029",
-            "name": "isEmpty",
-            "summary": "Check\u0020if\u0020list\u0020is\u0020empty.",
-            "url": "classes/OCC-Basics-DataStructures-StrictList.html#method_isEmpty"
-        },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\StrictList\u003A\u003AisList\u0028\u0029",
-            "name": "isList",
-            "summary": "Check\u0020if\u0020this\u0020can\u0020be\u0020considered\u0020a\u0020list.",
-            "url": "classes/OCC-Basics-DataStructures-StrictList.html#method_isList"
-        },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\StrictList\u003A\u003Akey\u0028\u0029",
-            "name": "key",
-            "summary": "Get\u0020the\u0020current\u0020list\u0020index.",
-            "url": "classes/OCC-Basics-DataStructures-StrictList.html#method_key"
-        },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\StrictList\u003A\u003Anext\u0028\u0029",
-            "name": "next",
-            "summary": "Move\u0020the\u0020cursor\u0020to\u0020the\u0020next\u0020list\u0020index.",
-            "url": "classes/OCC-Basics-DataStructures-StrictList.html#method_next"
-        },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\StrictList\u003A\u003AoffsetExists\u0028\u0029",
-            "name": "offsetExists",
-            "summary": "Check\u0020if\u0020the\u0020specified\u0020index\u0020exists\u0020and\u0020is\u0020not\u0020empty.",
-            "url": "classes/OCC-Basics-DataStructures-StrictList.html#method_offsetExists"
-        },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\StrictList\u003A\u003AoffsetGet\u0028\u0029",
-            "name": "offsetGet",
-            "summary": "Get\u0020the\u0020item\u0020from\u0020the\u0020specified\u0020index.",
-            "url": "classes/OCC-Basics-DataStructures-StrictList.html#method_offsetGet"
-        },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\StrictList\u003A\u003AoffsetSet\u0028\u0029",
-            "name": "offsetSet",
-            "summary": "Set\u0020the\u0020item\u0020at\u0020the\u0020specified\u0020offset.",
-            "url": "classes/OCC-Basics-DataStructures-StrictList.html#method_offsetSet"
-        },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\StrictList\u003A\u003AoffsetUnset\u0028\u0029",
-            "name": "offsetUnset",
-            "summary": "Unset\u0020the\u0020item\u0020at\u0020the\u0020specified\u0020index.",
-            "url": "classes/OCC-Basics-DataStructures-StrictList.html#method_offsetUnset"
-        },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\StrictList\u003A\u003Apop\u0028\u0029",
-            "name": "pop",
-            "summary": "Pops\u0020an\u0020item\u0020from\u0020the\u0020end\u0020of\u0020the\u0020list.",
-            "url": "classes/OCC-Basics-DataStructures-StrictList.html#method_pop"
-        },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\StrictList\u003A\u003Aprepend\u0028\u0029",
-            "name": "prepend",
-            "summary": "Prepend\u0020items\u0020at\u0020the\u0020start\u0020of\u0020the\u0020list.",
-            "url": "classes/OCC-Basics-DataStructures-StrictList.html#method_prepend"
-        },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\StrictList\u003A\u003Aprev\u0028\u0029",
-            "name": "prev",
-            "summary": "Move\u0020the\u0020cursor\u0020to\u0020the\u0020previous\u0020list\u0020index.",
-            "url": "classes/OCC-Basics-DataStructures-StrictList.html#method_prev"
-        },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\StrictList\u003A\u003Apush\u0028\u0029",
-            "name": "push",
-            "summary": "Push\u0020an\u0020item\u0020at\u0020the\u0020end\u0020of\u0020the\u0020list.",
-            "url": "classes/OCC-Basics-DataStructures-StrictList.html#method_push"
-        },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\StrictList\u003A\u003Aremove\u0028\u0029",
-            "name": "remove",
-            "summary": "Remove\u0020an\u0020item\u0020from\u0020the\u0020list.",
-            "url": "classes/OCC-Basics-DataStructures-StrictList.html#method_remove"
-        },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\StrictList\u003A\u003Arewind\u0028\u0029",
-            "name": "rewind",
-            "summary": "Rewind\u0020the\u0020iterator\u0027s\u0020cursor.",
-            "url": "classes/OCC-Basics-DataStructures-StrictList.html#method_rewind"
-        },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\StrictList\u003A\u003Aset\u0028\u0029",
-            "name": "set",
-            "summary": "Set\u0020an\u0020item\u0020at\u0020the\u0020specified\u0020index.",
-            "url": "classes/OCC-Basics-DataStructures-StrictList.html#method_set"
-        },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\StrictList\u003A\u003AsetAllowedTypes\u0028\u0029",
-            "name": "setAllowedTypes",
-            "summary": "Set\u0020allowed\u0020data\u0020types\u0020of\u0020list\u0020items.",
-            "url": "classes/OCC-Basics-DataStructures-StrictList.html#method_setAllowedTypes"
-        },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\StrictList\u003A\u003AsetIteratorMode\u0028\u0029",
-            "name": "setIteratorMode",
-            "summary": "Set\u0020the\u0020mode\u0020of\u0020iteration.",
-            "url": "classes/OCC-Basics-DataStructures-StrictList.html#method_setIteratorMode"
-        },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\StrictList\u003A\u003Ashift\u0028\u0029",
-            "name": "shift",
-            "summary": "Shift\u0020an\u0020item\u0020from\u0020the\u0020beginning\u0020of\u0020the\u0020list.",
-            "url": "classes/OCC-Basics-DataStructures-StrictList.html#method_shift"
-        },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\StrictList\u003A\u003AtoArray\u0028\u0029",
-            "name": "toArray",
-            "summary": "Return\u0020array\u0020representation\u0020of\u0020list.",
-            "url": "classes/OCC-Basics-DataStructures-StrictList.html#method_toArray"
-        },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\StrictList\u003A\u003AtoStrictCollection\u0028\u0029",
-            "name": "toStrictCollection",
-            "summary": "Turn\u0020list\u0020into\u0020a\u0020type\u002Dsensitive\u0020collection.",
-            "url": "classes/OCC-Basics-DataStructures-StrictList.html#method_toStrictCollection"
-        },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\StrictList\u003A\u003Atop\u0028\u0029",
-            "name": "top",
-            "summary": "Peek\u0020at\u0020the\u0020item\u0020at\u0020the\u0020end\u0020of\u0020the\u0020list.",
-            "url": "classes/OCC-Basics-DataStructures-StrictList.html#method_top"
-        },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\StrictList\u003A\u003Aunshift\u0028\u0029",
-            "name": "unshift",
-            "summary": "Prepend\u0020the\u0020list\u0020with\u0020an\u0020item.",
-            "url": "classes/OCC-Basics-DataStructures-StrictList.html#method_unshift"
-        },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\StrictList\u003A\u003Avalid\u0028\u0029",
-            "name": "valid",
-            "summary": "Check\u0020if\u0020current\u0020cursor\u0020position\u0020is\u0020valid.",
-            "url": "classes/OCC-Basics-DataStructures-StrictList.html#method_valid"
-        },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\StrictList\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "Create\u0020a\u0020type\u002Dsensitive,\u0020traversable\u0020list\u0020of\u0020items.",
-            "url": "classes/OCC-Basics-DataStructures-StrictList.html#method___construct"
-        },                {
             "fqsen": "\\OCC\\Basics\\DataStructures\\StrictQueue",
             "name": "StrictQueue",
             "summary": "A\u0020type\u002Dsensitive,\u0020taversable\u0020queue\u0020\u0028FIFO\u0029.",
             "url": "classes/OCC-Basics-DataStructures-StrictQueue.html"
         },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\StrictQueue\u003A\u003Adequeue\u0028\u0029",
-            "name": "dequeue",
-            "summary": "Dequeue\u0020an\u0020item\u0020from\u0020the\u0020queue.",
-            "url": "classes/OCC-Basics-DataStructures-StrictQueue.html#method_dequeue"
-        },                {
             "fqsen": "\\OCC\\Basics\\DataStructures\\StrictQueue\u003A\u003Aenqueue\u0028\u0029",
             "name": "enqueue",
             "summary": "Add\u0020an\u0020item\u0020to\u0020the\u0020queue.",
             "url": "classes/OCC-Basics-DataStructures-StrictQueue.html#method_enqueue"
-        },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\StrictQueue\u003A\u003AsetIteratorMode\u0028\u0029",
-            "name": "setIteratorMode",
-            "summary": "Set\u0020the\u0020mode\u0020of\u0020iteration.",
-            "url": "classes/OCC-Basics-DataStructures-StrictQueue.html#method_setIteratorMode"
-        },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\StrictQueue\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "Create\u0020a\u0020type\u002Dsensitive,\u0020traversable\u0020queue\u0020of\u0020items.",
-            "url": "classes/OCC-Basics-DataStructures-StrictQueue.html#method___construct"
         },                {
             "fqsen": "\\OCC\\Basics\\DataStructures\\StrictStack",
             "name": "StrictStack",
@@ -301,15 +106,80 @@ Search.appendIndex(
             "summary": "Unstack\u0020an\u0020item\u0020from\u0020the\u0020stack.",
             "url": "classes/OCC-Basics-DataStructures-StrictStack.html#method_unstack"
         },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\StrictStack\u003A\u003AsetIteratorMode\u0028\u0029",
-            "name": "setIteratorMode",
-            "summary": "Set\u0020the\u0020mode\u0020of\u0020iteration.",
-            "url": "classes/OCC-Basics-DataStructures-StrictStack.html#method_setIteratorMode"
+            "fqsen": "\\OCC\\Basics\\DataStructures\\Traits\\StrictSplDatastructureTrait",
+            "name": "StrictSplDatastructureTrait",
+            "summary": "The\u0020common\u0020interface\u0020of\u0020all\u0020type\u002Dsensitive,\u0020SPL\u002Dbased\u0020datastructures.",
+            "url": "classes/OCC-Basics-DataStructures-Traits-StrictSplDatastructureTrait.html"
         },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\StrictStack\u003A\u003A__construct\u0028\u0029",
+            "fqsen": "\\OCC\\Basics\\DataStructures\\Traits\\StrictSplDatastructureTrait\u003A\u003Aadd\u0028\u0029",
+            "name": "add",
+            "summary": "Add\/insert\u0020a\u0020new\u0020item\u0020at\u0020the\u0020specified\u0020offset.",
+            "url": "classes/OCC-Basics-DataStructures-Traits-StrictSplDatastructureTrait.html#method_add"
+        },                {
+            "fqsen": "\\OCC\\Basics\\DataStructures\\Traits\\StrictSplDatastructureTrait\u003A\u003Aappend\u0028\u0029",
+            "name": "append",
+            "summary": "Append\u0020items\u0020at\u0020the\u0020end\u0020of\u0020the\u0020list.",
+            "url": "classes/OCC-Basics-DataStructures-Traits-StrictSplDatastructureTrait.html#method_append"
+        },                {
+            "fqsen": "\\OCC\\Basics\\DataStructures\\Traits\\StrictSplDatastructureTrait\u003A\u003Aclear\u0028\u0029",
+            "name": "clear",
+            "summary": "Clear\u0020the\u0020list\u0020of\u0020any\u0020items.",
+            "url": "classes/OCC-Basics-DataStructures-Traits-StrictSplDatastructureTrait.html#method_clear"
+        },                {
+            "fqsen": "\\OCC\\Basics\\DataStructures\\Traits\\StrictSplDatastructureTrait\u003A\u003Aget\u0028\u0029",
+            "name": "get",
+            "summary": "Get\u0020the\u0020item\u0020at\u0020the\u0020specified\u0020index.",
+            "url": "classes/OCC-Basics-DataStructures-Traits-StrictSplDatastructureTrait.html#method_get"
+        },                {
+            "fqsen": "\\OCC\\Basics\\DataStructures\\Traits\\StrictSplDatastructureTrait\u003A\u003AisList\u0028\u0029",
+            "name": "isList",
+            "summary": "Check\u0020if\u0020this\u0020can\u0020be\u0020considered\u0020a\u0020list.",
+            "url": "classes/OCC-Basics-DataStructures-Traits-StrictSplDatastructureTrait.html#method_isList"
+        },                {
+            "fqsen": "\\OCC\\Basics\\DataStructures\\Traits\\StrictSplDatastructureTrait\u003A\u003AoffsetSet\u0028\u0029",
+            "name": "offsetSet",
+            "summary": "Set\u0020the\u0020item\u0020at\u0020the\u0020specified\u0020offset.",
+            "url": "classes/OCC-Basics-DataStructures-Traits-StrictSplDatastructureTrait.html#method_offsetSet"
+        },                {
+            "fqsen": "\\OCC\\Basics\\DataStructures\\Traits\\StrictSplDatastructureTrait\u003A\u003Aprepend\u0028\u0029",
+            "name": "prepend",
+            "summary": "Prepend\u0020items\u0020at\u0020the\u0020start\u0020of\u0020the\u0020list.",
+            "url": "classes/OCC-Basics-DataStructures-Traits-StrictSplDatastructureTrait.html#method_prepend"
+        },                {
+            "fqsen": "\\OCC\\Basics\\DataStructures\\Traits\\StrictSplDatastructureTrait\u003A\u003Apush\u0028\u0029",
+            "name": "push",
+            "summary": "Push\u0020an\u0020item\u0020at\u0020the\u0020end\u0020of\u0020the\u0020list.",
+            "url": "classes/OCC-Basics-DataStructures-Traits-StrictSplDatastructureTrait.html#method_push"
+        },                {
+            "fqsen": "\\OCC\\Basics\\DataStructures\\Traits\\StrictSplDatastructureTrait\u003A\u003Aremove\u0028\u0029",
+            "name": "remove",
+            "summary": "Remove\u0020an\u0020item\u0020from\u0020the\u0020list.",
+            "url": "classes/OCC-Basics-DataStructures-Traits-StrictSplDatastructureTrait.html#method_remove"
+        },                {
+            "fqsen": "\\OCC\\Basics\\DataStructures\\Traits\\StrictSplDatastructureTrait\u003A\u003Aset\u0028\u0029",
+            "name": "set",
+            "summary": "Set\u0020an\u0020item\u0020at\u0020the\u0020specified\u0020index.",
+            "url": "classes/OCC-Basics-DataStructures-Traits-StrictSplDatastructureTrait.html#method_set"
+        },                {
+            "fqsen": "\\OCC\\Basics\\DataStructures\\Traits\\StrictSplDatastructureTrait\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "Return\u0020array\u0020representation\u0020of\u0020list.",
+            "url": "classes/OCC-Basics-DataStructures-Traits-StrictSplDatastructureTrait.html#method_toArray"
+        },                {
+            "fqsen": "\\OCC\\Basics\\DataStructures\\Traits\\StrictSplDatastructureTrait\u003A\u003AtoStrictCollection\u0028\u0029",
+            "name": "toStrictCollection",
+            "summary": "Turn\u0020list\u0020into\u0020a\u0020type\u002Dsensitive\u0020collection.",
+            "url": "classes/OCC-Basics-DataStructures-Traits-StrictSplDatastructureTrait.html#method_toStrictCollection"
+        },                {
+            "fqsen": "\\OCC\\Basics\\DataStructures\\Traits\\StrictSplDatastructureTrait\u003A\u003Aunshift\u0028\u0029",
+            "name": "unshift",
+            "summary": "Prepend\u0020the\u0020list\u0020with\u0020an\u0020item.",
+            "url": "classes/OCC-Basics-DataStructures-Traits-StrictSplDatastructureTrait.html#method_unshift"
+        },                {
+            "fqsen": "\\OCC\\Basics\\DataStructures\\Traits\\StrictSplDatastructureTrait\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "Create\u0020a\u0020type\u002Dsensitive,\u0020traversable\u0020stack\u0020of\u0020items.",
-            "url": "classes/OCC-Basics-DataStructures-StrictStack.html#method___construct"
+            "summary": "Create\u0020a\u0020type\u002Dsensitive,\u0020traversable\u0020list\u0020of\u0020items.",
+            "url": "classes/OCC-Basics-DataStructures-Traits-StrictSplDatastructureTrait.html#method___construct"
         },                {
             "fqsen": "\\OCC\\Basics\\ErrorHandlers\\ThrowErrorException",
             "name": "ThrowErrorException",
@@ -491,10 +361,40 @@ Search.appendIndex(
             "summary": "This\u0020is\u0020a\u0020singleton\u0020class,\u0020thus\u0020cloning\u0020is\u0020prohibited.",
             "url": "classes/OCC-Basics-Traits-Singleton.html#method___clone"
         },                {
+            "fqsen": "\\OCC\\Basics\\Traits\\TypeChecker",
+            "name": "TypeChecker",
+            "summary": "A\u0020generic\u0020data\u0020type\u0020checker.",
+            "url": "classes/OCC-Basics-Traits-TypeChecker.html"
+        },                {
+            "fqsen": "\\OCC\\Basics\\Traits\\TypeChecker\u003A\u003AgetAllowedTypes\u0028\u0029",
+            "name": "getAllowedTypes",
+            "summary": "Get\u0020allowed\u0020data\u0020types.",
+            "url": "classes/OCC-Basics-Traits-TypeChecker.html#method_getAllowedTypes"
+        },                {
+            "fqsen": "\\OCC\\Basics\\Traits\\TypeChecker\u003A\u003AhasAllowedType\u0028\u0029",
+            "name": "hasAllowedType",
+            "summary": "Check\u0020if\u0020a\u0020value\u0027s\u0020data\u0020type\u0020is\u0020allowed.",
+            "url": "classes/OCC-Basics-Traits-TypeChecker.html#method_hasAllowedType"
+        },                {
+            "fqsen": "\\OCC\\Basics\\Traits\\TypeChecker\u003A\u003AisAllowedType\u0028\u0029",
+            "name": "isAllowedType",
+            "summary": "Check\u0020if\u0020a\u0020data\u0020type\u0020is\u0020allowed.",
+            "url": "classes/OCC-Basics-Traits-TypeChecker.html#method_isAllowedType"
+        },                {
+            "fqsen": "\\OCC\\Basics\\Traits\\TypeChecker\u003A\u003AsetAllowedTypes\u0028\u0029",
+            "name": "setAllowedTypes",
+            "summary": "Set\u0020allowed\u0020data\u0020types.",
+            "url": "classes/OCC-Basics-Traits-TypeChecker.html#method_setAllowedTypes"
+        },                {
             "fqsen": "\\",
             "name": "\\",
             "summary": "",
             "url": "namespaces/default.html"
+        },                {
+            "fqsen": "\\OCC\\Basics\\DataStructures\\Exceptions",
+            "name": "Exceptions",
+            "summary": "",
+            "url": "namespaces/occ-basics-datastructures-exceptions.html"
         },                {
             "fqsen": "\\OCC\\Basics\\DataStructures",
             "name": "DataStructures",
@@ -510,6 +410,11 @@ Search.appendIndex(
             "name": "OCC",
             "summary": "",
             "url": "namespaces/occ.html"
+        },                {
+            "fqsen": "\\OCC\\Basics\\DataStructures\\Traits",
+            "name": "Traits",
+            "summary": "",
+            "url": "namespaces/occ-basics-datastructures-traits.html"
         },                {
             "fqsen": "\\OCC\\Basics\\ErrorHandlers",
             "name": "ErrorHandlers",

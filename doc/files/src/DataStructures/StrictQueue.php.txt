@@ -23,24 +23,16 @@ declare(strict_types=1);
 
 namespace OCC\Basics\DataStructures;
 
-use ArrayAccess;
-use Countable;
-use InvalidArgumentException;
-use Iterator;
-use RangeException;
-use RuntimeException;
-use Serializable;
-
-use function sprintf;
+use OCC\Basics\DataStructures\Exceptions\InvalidDataTypeException;
+use OCC\Basics\DataStructures\Traits\StrictSplDatastructureTrait;
+use SplQueue;
 
 /**
  * A type-sensitive, taversable queue (FIFO).
  *
- * Extends [\SplDoublyLinkedList](https://www.php.net/spldoublylinkedlist) with
- * an option to restrict the allowed data types for list items by providing the
- * constructor with an array of atomic types or fully qualified class names. It
- * also restricts the iterator direction to first-in, first-out (FIFO) exactly
- * like [\SplQueue](https://www.php.net/splqueue).
+ * Extends [\SplQueue](https://www.php.net/splqueue) with an option to restrict
+ * the allowed data types for list items by providing the constructor with an
+ * array of atomic types or fully qualified class names.
  *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package Basics\DataStructures
@@ -48,23 +40,12 @@ use function sprintf;
  * @api
  *
  * @template AllowedType of mixed
- * @extends StrictList<AllowedType>
- * @implements ArrayAccess<int, AllowedType>
- * @implements Iterator<AllowedType>
+ * @extends SplQueue<AllowedType>
  */
-class StrictQueue extends StrictList implements ArrayAccess, Countable, Iterator, Serializable
+class StrictQueue extends SplQueue
 {
-    /**
-     * Dequeue an item from the queue.
-     *
-     * @return AllowedType The dequeued item
-     *
-     * @api
-     */
-    public function dequeue(): mixed
-    {
-        return parent::shift();
-    }
+    /** @use StrictSplDatastructureTrait<AllowedType> */
+    use StrictSplDatastructureTrait;
 
     /**
      * Add an item to the queue.
@@ -73,79 +54,12 @@ class StrictQueue extends StrictList implements ArrayAccess, Countable, Iterator
      *
      * @return void
      *
-     * @throws InvalidArgumentException if `$value` is not of allowed type
+     * @throws InvalidDataTypeException if `$value` is not of allowed type
      *
      * @api
      */
     public function enqueue(mixed $value): void
     {
-        parent::push($value);
-    }
-
-    /**
-     * Set the mode of iteration.
-     *
-     * @param int $mode The new iterator mode (0 or 1)
-     *
-     *                  There are two orthogonal sets of modes that can be set.
-     *
-     *                  The direction of iteration (fixed for StrictQueue):
-     *                  - StrictQueue::IT_MODE_FIFO (queue style)
-     *
-     *                  The behavior of the iterator (either one or the other):
-     *                  - StrictQueue::IT_MODE_DELETE (delete items)
-     *                  - StrictQueue::IT_MODE_KEEP (keep items)
-     *
-     *                  The default mode is: IT_MODE_FIFO | IT_MODE_KEEP
-     *
-     * @return int The set of flags and modes of iteration
-     *
-     * @throws RangeException if an invalid `$mode` is given
-     * @throws RuntimeException if trying to change iterator direction
-     *
-     * @api
-     */
-    final public function setIteratorMode(int $mode): int
-    {
-        if ($mode > 1) {
-            throw new RuntimeException(
-                sprintf(
-                    'Changing the iterator direction of %s is prohibited.',
-                    static::class
-                )
-            );
-        }
-        return parent::setIteratorMode($mode);
-    }
-
-    /**
-     * Create a type-sensitive, traversable queue of items.
-     *
-     * @param string[] $allowedTypes Allowed data types of items (optional)
-     *
-     *                               If empty, all types are allowed.
-     *                               Possible values are:
-     *                               - "array"
-     *                               - "bool"
-     *                               - "callable"
-     *                               - "countable"
-     *                               - "float" or "double"
-     *                               - "int" or "integer" or "long"
-     *                               - "iterable"
-     *                               - "null"
-     *                               - "numeric"
-     *                               - "object" or FQCN
-     *                               - "resource"
-     *                               - "scalar"
-     *                               - "string"
-     *
-     * @return void
-     *
-     * @throws InvalidArgumentException if any value of `$allowedTypes` is not a string
-     */
-    public function __construct(array $allowedTypes = [])
-    {
-        parent::__construct($allowedTypes);
-        $this->setIteratorMode(0);
+        $this->push($value);
     }
 }
