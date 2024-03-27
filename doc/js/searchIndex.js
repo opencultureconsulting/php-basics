@@ -6,6 +6,11 @@ Search.appendIndex(
             "summary": "Common\u0020exception\u0020for\u0020type\u002Dsensitive\u0020datastructures.",
             "url": "classes/OCC-Basics-DataStructures-Exceptions-InvalidDataTypeException.html"
         },                {
+            "fqsen": "\\OCC\\Basics\\DataStructures\\StrictArray",
+            "name": "StrictArray",
+            "summary": "A\u0020type\u002Dsensitive,\u0020traversable\u0020array.",
+            "url": "classes/OCC-Basics-DataStructures-StrictArray.html"
+        },                {
             "fqsen": "\\OCC\\Basics\\DataStructures\\StrictCollection",
             "name": "StrictCollection",
             "summary": "A\u0020type\u002Dsensitive,\u0020unsorted\u0020collection.",

@@ -37,6 +37,7 @@ v2.0.0
 **New Features:**
 
 * Added new datastructure :php:class:`OCC\Basics\DataStructures\StrictCollection`
+* Added new datastructure :php:class:`OCC\Basics\DataStructures\StrictArray`
 * Added new error handler :php:class:`OCC\Basics\ErrorHandlers\TriggerExceptionError`
 * Added new trait :php:trait:`OCC\Basics\Traits\OverloadingGetter`
 * Added new trait :php:trait:`OCC\Basics\Traits\OverloadingSetter`
