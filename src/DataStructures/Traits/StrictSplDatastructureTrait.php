@@ -28,6 +28,7 @@ use OCC\Basics\DataStructures\Exceptions\InvalidDataTypeException;
 use OCC\Basics\DataStructures\StrictCollection;
 use OCC\Basics\Traits\TypeChecker;
 use OutOfRangeException;
+use SplDoublyLinkedList;
 
 use function get_debug_type;
 use function iterator_to_array;
@@ -46,6 +47,7 @@ use function unserialize;
  * @package Basics\DataStructures
  *
  * @template AllowedType of mixed
+ * @phpstan-require-extends SplDoublyLinkedList
  */
 trait StrictSplDatastructureTrait
 {
