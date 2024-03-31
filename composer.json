@@ -13,12 +13,14 @@
         "OverloadingSetter",
         "Setter",
         "Singleton",
+        "StrictArray",
         "StrictCollection",
         "StrictList",
         "StrictQueue",
         "StrictStack",
         "ThrowErrorException",
-        "TriggerExceptionError"
+        "TriggerExceptionError",
+        "TypeChecker"
     ],
     "homepage": "https://opencultureconsulting.github.io/php-basics/",
     "readme": "README.md",
