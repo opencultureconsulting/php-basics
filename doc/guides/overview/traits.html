@@ -173,73 +173,186 @@
 
             <div class="admonition-wrapper">
     <div class="admonition admonition-sidebar"><p class="sidebar-title">Table of Contents</p>
-        <div class="contents"><ul class="phpdocumentor-list"><li class="toc-item"><a href="guides/overview/traits.html#getter">Getter</a></li><li class="toc-item"><a href="guides/overview/traits.html#overloadinggetter">OverloadingGetter</a></li><li class="toc-item"><a href="guides/overview/traits.html#overloadingsetter">OverloadingSetter</a></li><li class="toc-item"><a href="guides/overview/traits.html#setter">Setter</a></li><li class="toc-item"><a href="guides/overview/traits.html#singleton">Singleton</a></li><li class="toc-item"><a href="guides/overview/traits.html#typechecker">TypeChecker</a></li></ul></div>
+        <div class="contents"><ul class="phpdocumentor-list"><li class="toc-item"><a href="guides/overview/traits.html#getter">Getter</a></li><li class="toc-item"><a href="guides/overview/traits.html#setter">Setter</a></li><li class="toc-item"><a href="guides/overview/traits.html#overloadinggetter">OverloadingGetter</a></li><li class="toc-item"><a href="guides/overview/traits.html#overloadingsetter">OverloadingSetter</a></li><li class="toc-item"><a href="guides/overview/traits.html#singleton">Singleton</a></li><li class="toc-item"><a href="guides/overview/traits.html#typechecker">TypeChecker</a></li></ul></div>
+    </div>
+</div>
+
+            <p>This package provides a number of generic traits like different getter and setter methods, an implementation of the
+singleton design pattern and some little helpers. Those traits are too small to justify their own packages and most of them
+are dependencies of the <a href="guides/overview/datastructures.html">Typed Datastructures</a>
+ and <a href="guides/overview/interfaces.html">Interface Traits</a>
+ anyway.</p>
+            <div class="admonition-wrapper">
+    <div class="admonition admonition-sidebar"><p class="sidebar-title">API Documentation</p>
+        
+
+<ul>
+    <li><a href="classes/OCC-Basics-Traits-Getter.html"><abbr title="\OCC\Basics\Traits\Getter">Getter</abbr></a>
+</li>
+
+</ul>
+
     </div>
 </div>
 
             <div class="section" id="getter">
     <h2>Getter</h2>
 
-            <p>Reads data from inaccessible properties by using magic methods.</p>
-            <p>To make a <code>protected</code> or <code>private</code> property readable, provide a method named
-<code>_magicGet{Property}()</code> which handles the reading. Replace <code>{Property}</code> in
-the method&#039;s name with the name of the actual property (with an uppercase
-first letter).</p>
-            <p>&gt; Example: If the property is named <code>$fooBar</code>, the &quot;magic&quot; method has to be
-&gt; <code>_magicGetFooBar()</code>. This method is then called when <code>$fooBar</code> is read in
-&gt; a context where it normally would not be accessible.</p>
+            <p><em>Reads data from inaccessible properties by using magic methods.</em></p>
+            <p>To make a <code>protected</code> or <code>private</code> property readable, provide a method named <code>_magicGet{Property}()</code> which handles the
+reading. Replace <code>{Property}</code> in the method&#039;s name with the name of the actual property (with an uppercase first
+letter).</p>
+            <p>Trying to access an undefined property or a property without corresponding &quot;magic&quot; getter method will result in an
+<a href="https://www.php.net/invalidargumentexception">\InvalidArgumentException</a>.</p>
+            <blockquote><p>Example: If the property is named <code>$fooBar</code>, the &quot;magic&quot; method has to be <code>_magicGetFooBar()</code>. This method is then
+called when <code>$fooBar</code> is read in a context where it normally would not be accessible.</p></blockquote>
+
+            <div class="admonition-wrapper">
+    <div class="admonition admonition-sidebar"><p class="sidebar-title">API Documentation</p>
+        
+
+<ul>
+    <li><a href="classes/OCC-Basics-Traits-Setter.html"><abbr title="\OCC\Basics\Traits\Setter">Setter</abbr></a>
+</li>
+
+</ul>
+
     </div>
+</div>
 
-            <div class="section" id="overloadinggetter">
-    <h2>OverloadingGetter</h2>
-
-            <p>Overloads a class with readable magic properties.</p>
-            <p>Internally it reads the protected <code>$_data</code> array whose keys are interpreted
-as property names.</p>
-            <p>&gt; Example: Reading <code>Foo-&gt;bar</code> will return the value of <code>$_data[&#039;bar&#039;]</code>.</p>
-    </div>
-
-            <div class="section" id="overloadingsetter">
-    <h2>OverloadingSetter</h2>
-
-            <p>Overloads a class with writable magic properties.</p>
-            <p>Internally it writes the protected <code>$_data</code> array whose keys are interpreted
-as property names.</p>
-            <p>&gt; Example: <code>Foo-&gt;bar = 42;</code> will set <code>$_data[&#039;bar&#039;]</code> to <code>42</code>.</p>
     </div>
 
             <div class="section" id="setter">
     <h2>Setter</h2>
 
-            <p>Writes data to inaccessible properties by using magic methods.</p>
-            <p>To make a <code>protected</code> or <code>private</code> property writable, provide a method named
-<code>_magicSet{Property}()</code> which handles the writing. Replace <code>{Property}</code> in
-the method&#039;s name with the name of the actual property (with an uppercase
-first letter).</p>
-            <p>&gt; Example: If the property is named <code>$fooBar</code>, the &quot;magic&quot; method has to be
-&gt; <code>_magicSetFooBar()</code>. This method is then called when <code>$fooBar</code> is written
-&gt; to in a context where it normally would not be accessible.</p>
+            <p><em>Writes data to inaccessible properties by using magic methods.</em></p>
+            <p>To make a <code>protected</code> or <code>private</code> property writable, provide a method named <code>_magicSet{Property}()</code> which handles the
+writing. Replace <code>{Property}</code> in the method&#039;s name with the name of the actual property (with an uppercase first
+letter).</p>
+            <p>Trying to access an undefined property or a property without corresponding &quot;magic&quot; setter method will result in an
+<a href="https://www.php.net/invalidargumentexception">\InvalidArgumentException</a>.</p>
+            <blockquote><p>Example: If the property is named <code>$fooBar</code>, the &quot;magic&quot; method has to be <code>_magicSetFooBar()</code>. This method is then
+called when <code>$fooBar</code> is written to in a context where it normally would not be accessible.</p></blockquote>
+
+            <div class="admonition-wrapper">
+    <div class="admonition admonition-sidebar"><p class="sidebar-title">API Documentation</p>
+        
+
+<ul>
+    <li><a href="classes/OCC-Basics-Traits-OverloadingGetter.html"><abbr title="\OCC\Basics\Traits\OverloadingGetter">OverloadingGetter</abbr></a>
+</li>
+
+</ul>
+
+    </div>
+</div>
+
+    </div>
+
+            <div class="section" id="overloadinggetter">
+    <h2>OverloadingGetter</h2>
+
+            <p><em>Overloads a class with readable virtual properties.</em></p>
+            <p>It reads a protected internal array whose keys are interpreted as property names.</p>
+            <p>Trying to access an undefined virtual property will not issue any warning or error, but return <code>NULL</code> instead.</p>
+            <blockquote><p>Example: Reading <code>Foo-&gt;bar</code> will return the value of <code>Foo::$_data[&#039;bar&#039;]</code>.</p></blockquote>
+
+            <div class="phpdocumentor-admonition note">
+            <svg class="phpdocumentor-admonition__icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path></svg>
+                    <article>
+        <p>Internally it uses the <code>$_data</code> array, the same as some <a href="guides/overview/datastructures.html">Typed Datastructures</a>
+ and all <a href="guides/overview/interfaces.html">Interface Traits</a>
+ of this
+package.</p>
+    </article>
+</div>
+
+            <div class="admonition-wrapper">
+    <div class="admonition admonition-sidebar"><p class="sidebar-title">API Documentation</p>
+        
+
+<ul>
+    <li><a href="classes/OCC-Basics-Traits-OverloadingSetter.html"><abbr title="\OCC\Basics\Traits\OverloadingSetter">OverloadingSetter</abbr></a>
+</li>
+
+</ul>
+
+    </div>
+</div>
+
+    </div>
+
+            <div class="section" id="overloadingsetter">
+    <h2>OverloadingSetter</h2>
+
+            <p><em>Overloads a class with writable virtual properties.</em></p>
+            <p>It writes a protected internal array whose keys are interpreted as property names.</p>
+            <p>Trying to access a previously undefined virtual property will create a new one with the given name.</p>
+            <blockquote><p>Example: <code>Foo-&gt;bar = 42;</code> will set <code>Foo::$_data[&#039;bar&#039;]</code> to <code>42</code>.</p></blockquote>
+
+            <div class="phpdocumentor-admonition note">
+            <svg class="phpdocumentor-admonition__icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path></svg>
+                    <article>
+        <p>Internally it uses the <code>$_data</code> array, the same as some <a href="guides/overview/datastructures.html">Typed Datastructures</a>
+ and all <a href="guides/overview/interfaces.html">Interface Traits</a>
+ of this
+package.</p>
+    </article>
+</div>
+
+            <div class="admonition-wrapper">
+    <div class="admonition admonition-sidebar"><p class="sidebar-title">API Documentation</p>
+        
+
+<ul>
+    <li><a href="classes/OCC-Basics-Traits-Singleton.html"><abbr title="\OCC\Basics\Traits\Singleton">Singleton</abbr></a>
+</li>
+
+</ul>
+
+    </div>
+</div>
+
     </div>
 
             <div class="section" id="singleton">
     <h2>Singleton</h2>
 
-            <p>Allows just a single instance of the class using this trait.</p>
-            <p>Get the singleton by calling the static method <code>getInstance()</code>.</p>
-            <p>If there is no object yet, the constructor is called with the same arguments
-as <code>getInstance()</code>. Any later call will just return the already instantiated
-object (irrespective of the given arguments).</p>
-            <p>In order for this to work as expected, the constructor has to be implemented
-as <code>private</code> to prevent direct instantiation of the class.</p>
+            <p><em>Allows just a single instance of the class using this trait.</em></p>
+            <p>Get the singleton by calling the static method <code>getInstance()</code>. If there is no object yet, the constructor is called
+with the same arguments as <code>getInstance()</code>. Any later call will just return the already instantiated object
+(irrespective of the given arguments).</p>
+            <div class="phpdocumentor-admonition caution">
+                <svg class="phpdocumentor-admonition__icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                <article>
+        <p>In order for this to work as expected, the constructor has to be implemented as <code>private</code> to prevent direct
+instantiation of the class.</p>
+    </article>
+</div>
+
+            <div class="admonition-wrapper">
+    <div class="admonition admonition-sidebar"><p class="sidebar-title">API Documentation</p>
+        
+
+<ul>
+    <li><a href="classes/OCC-Basics-Traits-TypeChecker.html"><abbr title="\OCC\Basics\Traits\TypeChecker">TypeChecker</abbr></a>
+</li>
+
+</ul>
+
+    </div>
+</div>
+
     </div>
 
             <div class="section" id="typechecker">
     <h2>TypeChecker</h2>
 
-            <p>A generic data type checker.</p>
-            <p>This allows to set a list of allowed atomic data types and fully qualified
-class names. It also provides a method to check if a value&#039;s data type matches
-at least one of these types.</p>
+            <p><em>A generic data type checker.</em></p>
+            <p>This allows to set a list of allowed atomic data types and fully qualified class names. It also provides a method to
+check if a value&#039;s data type matches at least one of these types.</p>
+            <p>Available atomic types are <code>array</code>, <code>bool</code>, <code>callable</code>, <code>countable</code>, <code>float</code> / <code>double</code>, <code>int</code> / <code>integer</code> / <code>long</code>,
+<code>iterable</code>, <code>null</code>, <code>numeric</code>, <code>object</code>, <code>resource</code>, <code>scalar</code> and <code>string</code>.</p>
     </div>
 
     </div>

@@ -65,7 +65,7 @@ trait Setter
         } else {
             throw new InvalidArgumentException(
                 sprintf(
-                    'Invalid property or missing setter method for property: %s->%s.',
+                    'Invalid property or missing setter method for property: %s::$%s.',
                     static::class,
                     $property
                 )

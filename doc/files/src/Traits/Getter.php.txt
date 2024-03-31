@@ -65,7 +65,7 @@ trait Getter
         } else {
             throw new InvalidArgumentException(
                 sprintf(
-                    'Invalid property or missing getter method for property: %s->%s.',
+                    'Invalid property or missing getter method for property: %s::$%s.',
                     static::class,
                     $property
                 )

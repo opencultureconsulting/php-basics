@@ -21,18 +21,18 @@ v2.0.0
     OCC\Basics\InterfaceTraits\IteratorAggregate -> OCC\Basics\Interfaces\IteratorAggregateTrait
     OCC\Basics\InterfaceTraits\Iterator          -> OCC\Basics\Interfaces\IteratorTrait
 
-* Renamed internal methods for :php:trait:`OCC\Basics\Traits\Getter` and :php:trait:`OCC\Basics\Traits\Setter` to avoid
-  confusion with regular class methods
+* Prefixed internal methods for :php:trait:`OCC\Basics\Traits\Getter` and :php:trait:`OCC\Basics\Traits\Setter` with
+  `_` to avoid confusion with regular class methods
 
   .. code-block:: php
     // old methods
-    function magicGet{PascalCasePropertyName}(): mixed
-    function magicSet{PascalCasePropertyName}(mixed $value): void
+    function magicGet{Property}(): mixed
+    function magicSet{Property}(mixed $value): void
 
   .. code-block:: php
     // new methods
-    function _magicGet{PascalCasePropertyName}(): mixed
-    function _magicSet{PascalCasePropertyName}(mixed $value): void
+    function _magicGet{Property}(): mixed
+    function _magicSet{Property}(mixed $value): void
 
 **New Features:**
 

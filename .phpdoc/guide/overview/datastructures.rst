@@ -20,7 +20,7 @@ Trying to add an item with a data type not on the list of allowed types to a str
 
 All strict datastructures inherit the implementation of the `\ArrayAccess <https://www.php.net/arrayaccess>`_,
 `\Countable <https://www.php.net/countable>`_ and `\Serializable <https://www.php.net/serializable>`_ interfaces. All
-but `StrictCollection` also implement the `\Traversable <https://www.php.net/traversable>`_ interface.
+but `StrictCollection` also implement a `\Traversable <https://www.php.net/traversable>`_ interface.
 
   Examples:
 
@@ -28,14 +28,15 @@ but `StrictCollection` also implement the `\Traversable <https://www.php.net/tra
     // create a collection of strings
     $stringCollection = new StrictCollection(['string']);
 
+  .. code-block:: php
     // create a queue of PSR-15 middlewares
     $middlewareQueue = new StrictQueue(['Psr\Http\Server\MiddlewareInterface']);
 
-StrictCollection
-================
-
 .. sidebar:: API Documentation
   * :php:class:`OCC\Basics\DataStructures\StrictCollection`
+
+StrictCollection
+================
 
 *A type-sensitive, unsorted collection of items.*
 
@@ -43,14 +44,14 @@ Holds items as key/value pairs where keys identify the items and have to be vali
 controlled type. The collection can be accessed like an array, but not traversed because it has no particular order.
 
 .. note::
-  Internally it holds the items in the `$_data` array, the same as most :php:namespace:`OCC\Basics\Interfaces` and
-  :php:namespace:`OCC\Basics\Traits` of this package.
-
-StrictArray
-================
+  Internally it holds the items in the `$_data` array, the same as most :doc:`interfaces` and :doc:`traits` of this
+  package.
 
 .. sidebar:: API Documentation
   * :php:class:`OCC\Basics\DataStructures\StrictArray`
+
+StrictArray
+================
 
 *A type-sensitive, traversable array of items.*
 
@@ -58,25 +59,25 @@ Holds items as key/value pairs where keys identify the items and have to be vali
 controlled type. The array can be accessed and traversed just like any other array.
 
 .. note::
-  Internally it holds the items in the `$_data` array, the same as most :php:namespace:`OCC\Basics\Interfaces` and
-  :php:namespace:`OCC\Basics\Traits` of this package.
-
-StrictList
-==========
+  Internally it holds the items in the `$_data` array, the same as most :doc:`interfaces` and :doc:`traits` of this
+  package.
 
 .. sidebar:: API Documentation
   * :php:class:`OCC\Basics\DataStructures\StrictList`
+
+StrictList
+==========
 
 *A type-sensitive, taversable list of items.*
 
 Extends `\SplDoublyLinkedList <https://www.php.net/spldoublylinkedlist>`_ with an option to restrict the allowed data
 types for list items. The list can be accessed and traversed like an array, but has only consecutive numerical keys.
 
-StrictQueue
-===========
-
 .. sidebar:: API Documentation
   * :php:class:`OCC\Basics\DataStructures\StrictQueue`
+
+StrictQueue
+===========
 
 *A type-sensitive, taversable queue (FIFO) of items.*
 
@@ -87,11 +88,11 @@ first-in, first-out (FIFO) principle meaning that items are returned in the same
 It is recommended to use the `StrictQueue::enqueue()` and `StrictQueue::dequeue()` alias methods when working with a
 queue, because those will ensure proper FIFO behavior and remove items while traversing.
 
-StrictStack
-===========
-
 .. sidebar:: API Documentation
   * :php:class:`OCC\Basics\DataStructures\StrictStack`
+
+StrictStack
+===========
 
 *A type-sensitive, taversable stack (LIFO) of items.*
 

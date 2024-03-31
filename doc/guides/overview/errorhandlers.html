@@ -172,27 +172,57 @@
     <h1>Error and Exception Handlers</h1>
 
             <div class="admonition-wrapper">
-    <div class="admonition admonition-sidebar"><p class="sidebar-title">Table of Contents</p>
-        <div class="contents"><ul class="phpdocumentor-list"><li class="toc-item"><a href="guides/overview/errorhandlers.html#throwerrorexception">ThrowErrorException</a></li><li class="toc-item"><a href="guides/overview/errorhandlers.html#triggerexceptionerror">TriggerExceptionError</a></li></ul></div>
+    <div class="admonition admonition-sidebar"><p class="sidebar-title">API Documentation</p>
+        
+
+<ul>
+    <li><a href="classes/OCC-Basics-ErrorHandlers-ThrowErrorException.html"><abbr title="\OCC\Basics\ErrorHandlers\ThrowErrorException">ThrowErrorException</abbr></a>
+</li>
+
+</ul>
+
     </div>
 </div>
 
             <div class="section" id="throwerrorexception">
     <h2>ThrowErrorException</h2>
 
-            <p>Throws internal errors as exceptions.</p>
-            <p>If registered as error handler, this converts an internal PHP error into an
-<code>ErrorException</code>. It respects the <code>error_reporting</code> directive.</p>
-            <p>&gt; Usage: <code>set_error_handler(new ThrowErrorException());</code></p>
+            <p><em>Throws internal errors as exceptions.</em></p>
+            <p>If registered as error handler, this handles an internal PHP error by converting it into an <a href="https://www.php.net/errorexception">\ErrorException</a>. It respects the <a href="https://www.php.net/error_reporting">error_reporting</a>
+directive by only throwing an exception if the severity of the internal error is the same or higher than the setting.</p>
+            <blockquote><p>Usage:</p><pre><code class="language-php">set_error_handler(new ThrowErrorException());</code></pre></blockquote>
+
+            <div class="phpdocumentor-admonition caution">
+                <svg class="phpdocumentor-admonition__icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                <article>
+        <p>By design user-defined error handlers can&#039;t handle errors of severity <code>E_ERROR</code>, <code>E_PARSE</code>, <code>E_CORE_ERROR</code>,
+<code>E_CORE_WARNING</code>, <code>E_COMPILE_ERROR</code>, <code>E_COMPILE_WARNING</code> and most of <code>E_STRICT</code>.</p>
+    </article>
+</div>
+
+            <div class="admonition-wrapper">
+    <div class="admonition admonition-sidebar"><p class="sidebar-title">API Documentation</p>
+        
+
+<ul>
+    <li><a href="classes/OCC-Basics-ErrorHandlers-TriggerExceptionError.html"><abbr title="\OCC\Basics\ErrorHandlers\TriggerExceptionError">TriggerExceptionError</abbr></a>
+</li>
+
+</ul>
+
+    </div>
+</div>
+
     </div>
 
             <div class="section" id="triggerexceptionerror">
     <h2>TriggerExceptionError</h2>
 
-            <p>Triggers errors for uncaught exceptions.</p>
-            <p>If registered as exception handler, this catches an uncaught exception and
-converts it into an internal PHP error of severity <code>E_USER_ERROR</code>.</p>
-            <p>&gt; Usage: <code>set_exception_handler(new TriggerExceptionError());</code></p>
+            <p><em>Triggers errors for uncaught exceptions.</em></p>
+            <p>If registered as exception handler, this catches an uncaught exception and converts it into an internal PHP error of
+severity <code>E_USER_ERROR</code>.</p>
+            <blockquote><p>Usage:</p><pre><code class="language-php">set_exception_handler(new TriggerExceptionError());</code></pre></blockquote>
+
     </div>
 
     </div>

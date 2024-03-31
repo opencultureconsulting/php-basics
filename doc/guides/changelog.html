@@ -193,14 +193,14 @@ OCC\Basics\InterfaceTraits\Countable         -&gt; OCC\Basics\Interfaces\Countab
 OCC\Basics\InterfaceTraits\IteratorAggregate -&gt; OCC\Basics\Interfaces\IteratorAggregateTrait
 OCC\Basics\InterfaceTraits\Iterator          -&gt; OCC\Basics\Interfaces\IteratorTrait</code></pre></li>
 
-    <li><p>Renamed internal methods for <a href="classes/OCC-Basics-Traits-Getter.html"><abbr title="\OCC\Basics\Traits\Getter">Getter</abbr></a>
+    <li><p>Prefixed internal methods for <a href="classes/OCC-Basics-Traits-Getter.html"><abbr title="\OCC\Basics\Traits\Getter">Getter</abbr></a>
  and <a href="classes/OCC-Basics-Traits-Setter.html"><abbr title="\OCC\Basics\Traits\Setter">Setter</abbr></a>
- to avoid
-confusion with regular class methods</p><pre><code class="language-php">// old methods
-function magicGet{PascalCasePropertyName}(): mixed
-function magicSet{PascalCasePropertyName}(mixed $value): void</code></pre><pre><code class="language-php">// new methods
-function _magicGet{PascalCasePropertyName}(): mixed
-function _magicSet{PascalCasePropertyName}(mixed $value): void</code></pre></li>
+ with
+<code>_</code> to avoid confusion with regular class methods</p><pre><code class="language-php">// old methods
+function magicGet{Property}(): mixed
+function magicSet{Property}(mixed $value): void</code></pre><pre><code class="language-php">// new methods
+function _magicGet{Property}(): mixed
+function _magicSet{Property}(mixed $value): void</code></pre></li>
 
 </ul>
 
