@@ -6,6 +6,18 @@ Changelog
 .. sidebar:: Table of Contents
   .. contents::
 
+v2.1.0
+======
+
+**Breaking Changes:**
+
+* :php:namespace:`OCC\Basics\DataStructures\Traits` for datastructures renamed to
+  :php:trait:`OCC\Basics\DataStructures\Traits\StrictSplDoublyLinkedListTrait`
+
+**New Features:**
+
+* Extended API for :php:class:`OCC\Basics\DataStructures\StrictArray`
+
 v2.0.0
 ======
 
