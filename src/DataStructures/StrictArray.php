@@ -24,7 +24,9 @@ declare(strict_types=1);
 namespace OCC\Basics\DataStructures;
 
 use Iterator;
+use OCC\Basics\DataStructures\Exceptions\InvalidDataTypeException;
 use OCC\Basics\Interfaces\IteratorTrait;
+use RuntimeException;
 
 /**
  * A type-sensitive, traversable array.
@@ -49,4 +51,130 @@ class StrictArray extends StrictCollection implements Iterator
 {
     /** @use IteratorTrait<AllowedType> */
     use IteratorTrait;
+
+    /**
+     * Peek at the first item of the array.
+     *
+     * @return AllowedType The first item of the array
+     *
+     * @throws RuntimeException if the array is empty
+     *
+     * @api
+     */
+    public function bottom(): mixed
+    {
+        $key = array_key_first($this->_data);
+        if (is_null($key)) {
+            throw new RuntimeException(
+                'Cannot return bottom item: array is empty.'
+            );
+        }
+        return $this->_data[$key];
+    }
+
+    /**
+     * Pop the item from the end of the array.
+     *
+     * @return AllowedType The last item of the array
+     *
+     * @throws RuntimeException if the array is empty
+     *
+     * @api
+     */
+    public function pop(): mixed
+    {
+        if (count($this->_data) === 0) {
+            throw new RuntimeException(
+                'Cannot return last item: array is empty.'
+            );
+        }
+        return array_pop($this->_data);
+    }
+
+    /**
+     * Push an item at the end of the array.
+     *
+     * @param AllowedType $value The item to push
+     *
+     * @return void
+     *
+     * @throws InvalidDataTypeException if `$value` is not of allowed type
+     *
+     * @api
+     */
+    public function push(mixed $value): void
+    {
+        if (!$this->hasAllowedType($value)) {
+            throw new InvalidDataTypeException(
+                sprintf(
+                    'Parameter 1 must be an allowed type, %s given.',
+                    get_debug_type($value)
+                )
+            );
+        }
+        array_push($this->_data, $value);
+    }
+
+    /**
+     * Shift the item from the beginning of the array.
+     *
+     * @return AllowedType The first item of the array
+     *
+     * @throws RuntimeException if the array is empty
+     *
+     * @api
+     */
+    public function shift(): mixed
+    {
+        if (count($this->_data) === 0) {
+            throw new RuntimeException(
+                'Cannot return first item: array is empty.'
+            );
+        }
+        return array_shift($this->_data);
+    }
+
+    /**
+     * Peek at the last item of the array.
+     *
+     * @return AllowedType The last item of the array
+     *
+     * @throws RuntimeException if the array is empty
+     *
+     * @api
+     */
+    public function top(): mixed
+    {
+        $key = array_key_last($this->_data);
+        if (is_null($key)) {
+            throw new RuntimeException(
+                'Cannot return top item: array is empty.'
+            );
+        }
+        return $this->_data[$key];
+    }
+
+    /**
+     * Prepend the array with an item.
+     *
+     * @param AllowedType $value The item to unshift
+     *
+     * @return void
+     *
+     * @throws InvalidDataTypeException if `$value` is not of allowed type
+     *
+     * @api
+     */
+    public function unshift(mixed $value): void
+    {
+        if (!$this->hasAllowedType($value)) {
+            throw new InvalidDataTypeException(
+                sprintf(
+                    'Parameter 1 must be an allowed type, %s given.',
+                    get_debug_type($value)
+                )
+            );
+        }
+        array_unshift($this->_data, $value);
+    }
 }
