@@ -24,7 +24,7 @@ declare(strict_types=1);
 namespace OCC\Basics\DataStructures;
 
 use OCC\Basics\DataStructures\Exceptions\InvalidDataTypeException;
-use OCC\Basics\DataStructures\Traits\StrictSplDatastructureTrait;
+use OCC\Basics\DataStructures\Traits\StrictSplDoublyLinkedListTrait;
 use RuntimeException;
 use SplStack;
 
@@ -45,8 +45,8 @@ use SplStack;
  */
 class StrictStack extends SplStack
 {
-    /** @use StrictSplDatastructureTrait<AllowedType> */
-    use StrictSplDatastructureTrait;
+    /** @use StrictSplDoublyLinkedListTrait<AllowedType> */
+    use StrictSplDoublyLinkedListTrait;
 
     /**
      * Add an item to the stack.
@@ -69,7 +69,7 @@ class StrictStack extends SplStack
      *
      * @return AllowedType The unstacked item
      *
-     * @throws RuntimeException if the list is empty
+     * @throws RuntimeException if the stack is empty
      *
      * @api
      */

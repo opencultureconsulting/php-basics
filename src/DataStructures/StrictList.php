@@ -23,7 +23,7 @@ declare(strict_types=1);
 
 namespace OCC\Basics\DataStructures;
 
-use OCC\Basics\DataStructures\Traits\StrictSplDatastructureTrait;
+use OCC\Basics\DataStructures\Traits\StrictSplDoublyLinkedListTrait;
 use SplDoublyLinkedList;
 
 /**
@@ -43,6 +43,6 @@ use SplDoublyLinkedList;
  */
 class StrictList extends SplDoublyLinkedList
 {
-    /** @use StrictSplDatastructureTrait<AllowedType> */
-    use StrictSplDatastructureTrait;
+    /** @use StrictSplDoublyLinkedListTrait<AllowedType> */
+    use StrictSplDoublyLinkedListTrait;
 }
