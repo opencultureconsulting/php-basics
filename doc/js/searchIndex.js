@@ -11,6 +11,36 @@ Search.appendIndex(
             "summary": "A\u0020type\u002Dsensitive,\u0020traversable\u0020array.",
             "url": "classes/OCC-Basics-DataStructures-StrictArray.html"
         },                {
+            "fqsen": "\\OCC\\Basics\\DataStructures\\StrictArray\u003A\u003Abottom\u0028\u0029",
+            "name": "bottom",
+            "summary": "Peek\u0020at\u0020the\u0020first\u0020item\u0020of\u0020the\u0020array.",
+            "url": "classes/OCC-Basics-DataStructures-StrictArray.html#method_bottom"
+        },                {
+            "fqsen": "\\OCC\\Basics\\DataStructures\\StrictArray\u003A\u003Apop\u0028\u0029",
+            "name": "pop",
+            "summary": "Pop\u0020the\u0020item\u0020from\u0020the\u0020end\u0020of\u0020the\u0020array.",
+            "url": "classes/OCC-Basics-DataStructures-StrictArray.html#method_pop"
+        },                {
+            "fqsen": "\\OCC\\Basics\\DataStructures\\StrictArray\u003A\u003Apush\u0028\u0029",
+            "name": "push",
+            "summary": "Push\u0020an\u0020item\u0020at\u0020the\u0020end\u0020of\u0020the\u0020array.",
+            "url": "classes/OCC-Basics-DataStructures-StrictArray.html#method_push"
+        },                {
+            "fqsen": "\\OCC\\Basics\\DataStructures\\StrictArray\u003A\u003Ashift\u0028\u0029",
+            "name": "shift",
+            "summary": "Shift\u0020the\u0020item\u0020from\u0020the\u0020beginning\u0020of\u0020the\u0020array.",
+            "url": "classes/OCC-Basics-DataStructures-StrictArray.html#method_shift"
+        },                {
+            "fqsen": "\\OCC\\Basics\\DataStructures\\StrictArray\u003A\u003Atop\u0028\u0029",
+            "name": "top",
+            "summary": "Peek\u0020at\u0020the\u0020last\u0020item\u0020of\u0020the\u0020array.",
+            "url": "classes/OCC-Basics-DataStructures-StrictArray.html#method_top"
+        },                {
+            "fqsen": "\\OCC\\Basics\\DataStructures\\StrictArray\u003A\u003Aunshift\u0028\u0029",
+            "name": "unshift",
+            "summary": "Prepend\u0020the\u0020array\u0020with\u0020an\u0020item.",
+            "url": "classes/OCC-Basics-DataStructures-StrictArray.html#method_unshift"
+        },                {
             "fqsen": "\\OCC\\Basics\\DataStructures\\StrictCollection",
             "name": "StrictCollection",
             "summary": "A\u0020type\u002Dsensitive,\u0020unsorted\u0020collection.",
@@ -91,6 +121,11 @@ Search.appendIndex(
             "summary": "A\u0020type\u002Dsensitive,\u0020taversable\u0020queue\u0020\u0028FIFO\u0029.",
             "url": "classes/OCC-Basics-DataStructures-StrictQueue.html"
         },                {
+            "fqsen": "\\OCC\\Basics\\DataStructures\\StrictQueue\u003A\u003Adequeue\u0028\u0029",
+            "name": "dequeue",
+            "summary": "Dequeue\u0020an\u0020item\u0020from\u0020the\u0020queue.",
+            "url": "classes/OCC-Basics-DataStructures-StrictQueue.html#method_dequeue"
+        },                {
             "fqsen": "\\OCC\\Basics\\DataStructures\\StrictQueue\u003A\u003Aenqueue\u0028\u0029",
             "name": "enqueue",
             "summary": "Add\u0020an\u0020item\u0020to\u0020the\u0020queue.",
@@ -111,80 +146,80 @@ Search.appendIndex(
             "summary": "Unstack\u0020an\u0020item\u0020from\u0020the\u0020stack.",
             "url": "classes/OCC-Basics-DataStructures-StrictStack.html#method_unstack"
         },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\Traits\\StrictSplDatastructureTrait",
-            "name": "StrictSplDatastructureTrait",
+            "fqsen": "\\OCC\\Basics\\DataStructures\\Traits\\StrictSplDoublyLinkedListTrait",
+            "name": "StrictSplDoublyLinkedListTrait",
             "summary": "The\u0020common\u0020interface\u0020of\u0020all\u0020type\u002Dsensitive,\u0020SPL\u002Dbased\u0020datastructures.",
-            "url": "classes/OCC-Basics-DataStructures-Traits-StrictSplDatastructureTrait.html"
+            "url": "classes/OCC-Basics-DataStructures-Traits-StrictSplDoublyLinkedListTrait.html"
         },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\Traits\\StrictSplDatastructureTrait\u003A\u003Aadd\u0028\u0029",
+            "fqsen": "\\OCC\\Basics\\DataStructures\\Traits\\StrictSplDoublyLinkedListTrait\u003A\u003Aadd\u0028\u0029",
             "name": "add",
             "summary": "Add\/insert\u0020a\u0020new\u0020item\u0020at\u0020the\u0020specified\u0020offset.",
-            "url": "classes/OCC-Basics-DataStructures-Traits-StrictSplDatastructureTrait.html#method_add"
+            "url": "classes/OCC-Basics-DataStructures-Traits-StrictSplDoublyLinkedListTrait.html#method_add"
         },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\Traits\\StrictSplDatastructureTrait\u003A\u003Aappend\u0028\u0029",
+            "fqsen": "\\OCC\\Basics\\DataStructures\\Traits\\StrictSplDoublyLinkedListTrait\u003A\u003Aappend\u0028\u0029",
             "name": "append",
             "summary": "Append\u0020items\u0020at\u0020the\u0020end\u0020of\u0020the\u0020list.",
-            "url": "classes/OCC-Basics-DataStructures-Traits-StrictSplDatastructureTrait.html#method_append"
+            "url": "classes/OCC-Basics-DataStructures-Traits-StrictSplDoublyLinkedListTrait.html#method_append"
         },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\Traits\\StrictSplDatastructureTrait\u003A\u003Aclear\u0028\u0029",
+            "fqsen": "\\OCC\\Basics\\DataStructures\\Traits\\StrictSplDoublyLinkedListTrait\u003A\u003Aclear\u0028\u0029",
             "name": "clear",
             "summary": "Clear\u0020the\u0020list\u0020of\u0020any\u0020items.",
-            "url": "classes/OCC-Basics-DataStructures-Traits-StrictSplDatastructureTrait.html#method_clear"
+            "url": "classes/OCC-Basics-DataStructures-Traits-StrictSplDoublyLinkedListTrait.html#method_clear"
         },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\Traits\\StrictSplDatastructureTrait\u003A\u003Aget\u0028\u0029",
+            "fqsen": "\\OCC\\Basics\\DataStructures\\Traits\\StrictSplDoublyLinkedListTrait\u003A\u003Aget\u0028\u0029",
             "name": "get",
             "summary": "Get\u0020the\u0020item\u0020at\u0020the\u0020specified\u0020index.",
-            "url": "classes/OCC-Basics-DataStructures-Traits-StrictSplDatastructureTrait.html#method_get"
+            "url": "classes/OCC-Basics-DataStructures-Traits-StrictSplDoublyLinkedListTrait.html#method_get"
         },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\Traits\\StrictSplDatastructureTrait\u003A\u003AisList\u0028\u0029",
+            "fqsen": "\\OCC\\Basics\\DataStructures\\Traits\\StrictSplDoublyLinkedListTrait\u003A\u003AisList\u0028\u0029",
             "name": "isList",
             "summary": "Check\u0020if\u0020this\u0020can\u0020be\u0020considered\u0020a\u0020list.",
-            "url": "classes/OCC-Basics-DataStructures-Traits-StrictSplDatastructureTrait.html#method_isList"
+            "url": "classes/OCC-Basics-DataStructures-Traits-StrictSplDoublyLinkedListTrait.html#method_isList"
         },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\Traits\\StrictSplDatastructureTrait\u003A\u003AoffsetSet\u0028\u0029",
+            "fqsen": "\\OCC\\Basics\\DataStructures\\Traits\\StrictSplDoublyLinkedListTrait\u003A\u003AoffsetSet\u0028\u0029",
             "name": "offsetSet",
             "summary": "Set\u0020the\u0020item\u0020at\u0020the\u0020specified\u0020offset.",
-            "url": "classes/OCC-Basics-DataStructures-Traits-StrictSplDatastructureTrait.html#method_offsetSet"
+            "url": "classes/OCC-Basics-DataStructures-Traits-StrictSplDoublyLinkedListTrait.html#method_offsetSet"
         },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\Traits\\StrictSplDatastructureTrait\u003A\u003Aprepend\u0028\u0029",
+            "fqsen": "\\OCC\\Basics\\DataStructures\\Traits\\StrictSplDoublyLinkedListTrait\u003A\u003Aprepend\u0028\u0029",
             "name": "prepend",
             "summary": "Prepend\u0020items\u0020at\u0020the\u0020start\u0020of\u0020the\u0020list.",
-            "url": "classes/OCC-Basics-DataStructures-Traits-StrictSplDatastructureTrait.html#method_prepend"
+            "url": "classes/OCC-Basics-DataStructures-Traits-StrictSplDoublyLinkedListTrait.html#method_prepend"
         },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\Traits\\StrictSplDatastructureTrait\u003A\u003Apush\u0028\u0029",
+            "fqsen": "\\OCC\\Basics\\DataStructures\\Traits\\StrictSplDoublyLinkedListTrait\u003A\u003Apush\u0028\u0029",
             "name": "push",
             "summary": "Push\u0020an\u0020item\u0020at\u0020the\u0020end\u0020of\u0020the\u0020list.",
-            "url": "classes/OCC-Basics-DataStructures-Traits-StrictSplDatastructureTrait.html#method_push"
+            "url": "classes/OCC-Basics-DataStructures-Traits-StrictSplDoublyLinkedListTrait.html#method_push"
         },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\Traits\\StrictSplDatastructureTrait\u003A\u003Aremove\u0028\u0029",
+            "fqsen": "\\OCC\\Basics\\DataStructures\\Traits\\StrictSplDoublyLinkedListTrait\u003A\u003Aremove\u0028\u0029",
             "name": "remove",
             "summary": "Remove\u0020an\u0020item\u0020from\u0020the\u0020list.",
-            "url": "classes/OCC-Basics-DataStructures-Traits-StrictSplDatastructureTrait.html#method_remove"
+            "url": "classes/OCC-Basics-DataStructures-Traits-StrictSplDoublyLinkedListTrait.html#method_remove"
         },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\Traits\\StrictSplDatastructureTrait\u003A\u003Aset\u0028\u0029",
+            "fqsen": "\\OCC\\Basics\\DataStructures\\Traits\\StrictSplDoublyLinkedListTrait\u003A\u003Aset\u0028\u0029",
             "name": "set",
             "summary": "Set\u0020an\u0020item\u0020at\u0020the\u0020specified\u0020index.",
-            "url": "classes/OCC-Basics-DataStructures-Traits-StrictSplDatastructureTrait.html#method_set"
+            "url": "classes/OCC-Basics-DataStructures-Traits-StrictSplDoublyLinkedListTrait.html#method_set"
         },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\Traits\\StrictSplDatastructureTrait\u003A\u003AtoArray\u0028\u0029",
+            "fqsen": "\\OCC\\Basics\\DataStructures\\Traits\\StrictSplDoublyLinkedListTrait\u003A\u003AtoArray\u0028\u0029",
             "name": "toArray",
             "summary": "Return\u0020array\u0020representation\u0020of\u0020list.",
-            "url": "classes/OCC-Basics-DataStructures-Traits-StrictSplDatastructureTrait.html#method_toArray"
+            "url": "classes/OCC-Basics-DataStructures-Traits-StrictSplDoublyLinkedListTrait.html#method_toArray"
         },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\Traits\\StrictSplDatastructureTrait\u003A\u003AtoStrictCollection\u0028\u0029",
+            "fqsen": "\\OCC\\Basics\\DataStructures\\Traits\\StrictSplDoublyLinkedListTrait\u003A\u003AtoStrictCollection\u0028\u0029",
             "name": "toStrictCollection",
             "summary": "Turn\u0020list\u0020into\u0020a\u0020type\u002Dsensitive\u0020collection.",
-            "url": "classes/OCC-Basics-DataStructures-Traits-StrictSplDatastructureTrait.html#method_toStrictCollection"
+            "url": "classes/OCC-Basics-DataStructures-Traits-StrictSplDoublyLinkedListTrait.html#method_toStrictCollection"
         },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\Traits\\StrictSplDatastructureTrait\u003A\u003Aunshift\u0028\u0029",
+            "fqsen": "\\OCC\\Basics\\DataStructures\\Traits\\StrictSplDoublyLinkedListTrait\u003A\u003Aunshift\u0028\u0029",
             "name": "unshift",
             "summary": "Prepend\u0020the\u0020list\u0020with\u0020an\u0020item.",
-            "url": "classes/OCC-Basics-DataStructures-Traits-StrictSplDatastructureTrait.html#method_unshift"
+            "url": "classes/OCC-Basics-DataStructures-Traits-StrictSplDoublyLinkedListTrait.html#method_unshift"
         },                {
-            "fqsen": "\\OCC\\Basics\\DataStructures\\Traits\\StrictSplDatastructureTrait\u003A\u003A__construct\u0028\u0029",
+            "fqsen": "\\OCC\\Basics\\DataStructures\\Traits\\StrictSplDoublyLinkedListTrait\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
             "summary": "Create\u0020a\u0020type\u002Dsensitive,\u0020traversable\u0020list\u0020of\u0020items.",
-            "url": "classes/OCC-Basics-DataStructures-Traits-StrictSplDatastructureTrait.html#method___construct"
+            "url": "classes/OCC-Basics-DataStructures-Traits-StrictSplDoublyLinkedListTrait.html#method___construct"
         },                {
             "fqsen": "\\OCC\\Basics\\ErrorHandlers\\ThrowErrorException",
             "name": "ThrowErrorException",

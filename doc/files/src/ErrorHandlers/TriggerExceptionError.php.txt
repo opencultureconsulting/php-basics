@@ -57,6 +57,6 @@ class TriggerExceptionError
             $exception->getLine(),
             $exception->getMessage()
         );
-        trigger_error($message, E_USER_ERROR);
+        trigger_error($message, \E_USER_ERROR);
     }
 }

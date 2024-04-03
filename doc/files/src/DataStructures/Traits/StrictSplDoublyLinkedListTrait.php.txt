@@ -49,7 +49,7 @@ use function unserialize;
  * @template AllowedType of mixed
  * @phpstan-require-extends SplDoublyLinkedList
  */
-trait StrictSplDatastructureTrait
+trait StrictSplDoublyLinkedListTrait
 {
     use TypeChecker {
         setAllowedTypes as protected;
