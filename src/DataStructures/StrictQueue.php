@@ -24,7 +24,7 @@ declare(strict_types=1);
 namespace OCC\Basics\DataStructures;
 
 use OCC\Basics\DataStructures\Exceptions\InvalidDataTypeException;
-use OCC\Basics\DataStructures\Traits\StrictSplDatastructureTrait;
+use OCC\Basics\DataStructures\Traits\StrictSplDoublyLinkedListTrait;
 use SplQueue;
 
 /**
@@ -44,8 +44,8 @@ use SplQueue;
  */
 class StrictQueue extends SplQueue
 {
-    /** @use StrictSplDatastructureTrait<AllowedType> */
-    use StrictSplDatastructureTrait;
+    /** @use StrictSplDoublyLinkedListTrait<AllowedType> */
+    use StrictSplDoublyLinkedListTrait;
 
     /**
      * Add an item to the queue.
