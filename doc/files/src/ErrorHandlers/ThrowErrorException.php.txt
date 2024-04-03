@@ -52,8 +52,12 @@ class ThrowErrorException
      *
      * @throws ErrorException if `error_reporting` is set to report the error
      */
-    public function __invoke(int $errno = E_USER_ERROR, string $errstr = '', ?string $errfile = null, ?int $errline = null): bool
-    {
+    public function __invoke(
+        int $errno = \E_USER_ERROR,
+        string $errstr = '',
+        ?string $errfile = null,
+        ?int $errline = null
+    ): bool {
         if ((error_reporting() & $errno) > 0) {
             throw new ErrorException($errstr, 0, $errno, $errfile, $errline);
         }
