@@ -25,6 +25,7 @@ namespace OCC\Basics\DataStructures;
 
 use OCC\Basics\DataStructures\Exceptions\InvalidDataTypeException;
 use OCC\Basics\DataStructures\Traits\StrictSplDoublyLinkedListTrait;
+use RuntimeException;
 use SplQueue;
 
 /**
@@ -46,6 +47,20 @@ class StrictQueue extends SplQueue
 {
     /** @use StrictSplDoublyLinkedListTrait<AllowedType> */
     use StrictSplDoublyLinkedListTrait;
+
+    /**
+     * Dequeue an item from the queue.
+     *
+     * @return AllowedType The dequeued item
+     *
+     * @throws RuntimeException if the queue is empty
+     *
+     * @api
+     */
+    public function dequeue(): mixed
+    {
+        return $this->shift();
+    }
 
     /**
      * Add an item to the queue.
