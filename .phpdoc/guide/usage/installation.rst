@@ -46,8 +46,8 @@ well:
 
 .. code-block:: shell
 
-  # This will clone the repository state at version "2.1.0" into the "basics" directory
-  git clone --branch=v2.1.0 https://github.com/opencultureconsulting/php-basics.git basics
+  # This will clone the repository state at version "2.1.1" into the "basics" directory
+  git clone --branch=v2.1.1 https://github.com/opencultureconsulting/php-basics.git basics
 
 Be aware that you also need to make the classes and traits available in your application by either adding them to your
 autoloader or by including all files individually in PHP.

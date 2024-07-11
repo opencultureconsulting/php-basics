@@ -6,6 +6,17 @@ Changelog
 .. sidebar:: Table of Contents
   .. contents::
 
+v2.1.1
+======
+
+**New Features:**
+
+* Added Composer commands for development tools (PHP_CodeSniffer, PHP-CS-Fixer, PHPStan, Psalm and phpDocumentor)
+
+**Minor Changes:**
+
+* Extended `documentation <https://opencultureconsulting.github.io/php-basics/>`_
+
 v2.1.0
 ======
 
@@ -56,6 +67,9 @@ v2.0.0
 * Added new trait :php:trait:`OCC\Basics\Traits\TypeChecker`
 * Extended API for all datastructures (see :php:trait:`OCC\Basics\DataStructures\Traits\StrictSplDoublyLinkedListTrait`)
 * Introduced :php:class:`OCC\Basics\DataStructures\Exceptions\InvalidDataTypeException` for strict datastructures
+
+**Minor Changes:**
+
 * Extended `documentation <https://opencultureconsulting.github.io/php-basics/>`_
 
 v1.1.0
@@ -77,7 +91,7 @@ v1.1.0
 v1.0.1
 ======
 
-**New Features:**
+**Minor Changes:**
 
 * Improved exception handling in :php:trait:`Singleton <OCC\Basics\Traits\Singleton>` trait
 
