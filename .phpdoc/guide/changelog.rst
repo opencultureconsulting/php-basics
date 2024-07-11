@@ -54,7 +54,7 @@ v2.0.0
 * Added new trait :php:trait:`OCC\Basics\Traits\OverloadingGetter`
 * Added new trait :php:trait:`OCC\Basics\Traits\OverloadingSetter`
 * Added new trait :php:trait:`OCC\Basics\Traits\TypeChecker`
-* Extended API for all datastructures (see :php:trait:`OCC\Basics\DataStructures\Traits\StrictSplDatastructureTrait`)
+* Extended API for all datastructures (see :php:trait:`OCC\Basics\DataStructures\Traits\StrictSplDoublyLinkedListTrait`)
 * Introduced :php:class:`OCC\Basics\DataStructures\Exceptions\InvalidDataTypeException` for strict datastructures
 * Extended `documentation <https://opencultureconsulting.github.io/php-basics/>`_
 

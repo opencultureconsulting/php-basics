@@ -10,13 +10,13 @@ The datastructures in this package are derived from their respective `Standard P
 <https://www.php.net/spl.datastructures>`_ which they extend by the option to control the data types of items those
 datastructures can hold.
 
-To restrict allowed data types for items, provide the constructor with an array of atomic types or fully qualified
-class names you want to allow as item types. Available atomic types are `array`, `bool`, `callable`, `countable`,
-`float` / `double`, `int` / `integer` / `long`, `iterable`, `null`, `numeric`, `object`, `resource`, `scalar` and
-`string`.
+To restrict allowed data types for items provide the constructor with an array of atomic types or fully qualified class
+names (FQCN) you want to allow as item types. Available atomic types are `array`, `bool`, `callable`, `countable`,
+`float` (or `double`), `int` (or `integer` or `long`), `iterable`, `null`, `numeric`, `object`, `resource`, `scalar`
+and `string`.
 
 Trying to add an item with a data type not on the list of allowed types to a strict datastructure will result in an
-:php:class:`OCC\Basics\DataStructures\Exceptions\InvalidDataTypeException`.
+:php:class:`OCC\Basics\DataStructures\Exceptions\InvalidDataTypeException` being thrown.
 
 All strict datastructures inherit the implementation of the `\ArrayAccess <https://www.php.net/arrayaccess>`_,
 `\Countable <https://www.php.net/countable>`_ and `\Serializable <https://www.php.net/serializable>`_ interfaces. All

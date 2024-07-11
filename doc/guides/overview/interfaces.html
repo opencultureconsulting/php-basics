@@ -169,24 +169,55 @@
 
             <div class="phpdocumentor-column -nine phpdocumentor-content">
                                         <div class="section" id="interface-traits">
-    <h1>Interface Traits</h1>
+            <h1>Interface Traits</h1>
 
             <div class="admonition-wrapper">
     <div class="admonition admonition-sidebar"><p class="sidebar-title">Table of Contents</p>
-        <div class="contents"><ul class="phpdocumentor-list"><li class="toc-item"><a href="guides/overview/interfaces.html#arrayaccesstrait">ArrayAccessTrait</a></li><li class="toc-item"><a href="guides/overview/interfaces.html#countabletrait">CountableTrait</a></li><li class="toc-item"><a href="guides/overview/interfaces.html#iteratoraggregatetrait">IteratorAggregateTrait</a></li><li class="toc-item"><a href="guides/overview/interfaces.html#iteratortrait">IteratorTrait</a></li></ul></div>
+        <div class="contents">
+        <ul class="phpdocumentor-list">
+    <li class="toc-item">
+    <a href="guides/overview/interfaces.html#arrayaccesstrait">ArrayAccessTrait</a>
+
+
+</li>
+
+    <li class="toc-item">
+    <a href="guides/overview/interfaces.html#countabletrait">CountableTrait</a>
+
+
+</li>
+
+    <li class="toc-item">
+    <a href="guides/overview/interfaces.html#iteratoraggregatetrait">IteratorAggregateTrait</a>
+
+
+</li>
+
+    <li class="toc-item">
+    <a href="guides/overview/interfaces.html#iteratortrait">IteratorTrait</a>
+
+
+</li>
+
+    </ul>
+</div>
+
     </div>
 </div>
 
-            <p>This package contains some traits implementing common interfaces, which can easily be used in any class that internally
+            
+    <p>This package contains some traits implementing common interfaces, which can easily be used in any class that internally
 uses an array for holding its properties or data. They also share the same internal logic to allow combining multiple
 traits within the same class.</p>
+
             <div class="phpdocumentor-admonition note">
             <svg class="phpdocumentor-admonition__icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path></svg>
                     <article>
-        <p>Internally all interface traits use the <code>$_data</code> array, the same as some <a href="guides/overview/datastructures.html">Typed Datastructures</a>
- and <a href="guides/overview/traits.html">Traits</a>
- of
+        
+    <p>Internally all interface traits use the <code>$_data</code>
+ array, the same as some <a href="guides/overview/datastructures.html">Typed Datastructures</a> and <a href="guides/overview/traits.html">Traits</a> of
 this package.</p>
+
     </article>
 </div>
 
@@ -204,14 +235,22 @@ this package.</p>
 </div>
 
             <div class="section" id="arrayaccesstrait">
-    <h2>ArrayAccessTrait</h2>
+            <h2>ArrayAccessTrait</h2>
 
-            <p><em>A generic implementation of the ArrayAccess interface.</em></p>
-            <p>The <a href="https://www.php.net/arrayaccess">\ArrayAccess</a> interface allows objects to be accessed like arrays.</p>
-            <blockquote><p>Usage:</p><pre><code class="language-php">class Foo implements ArrayAccess
+            
+    <p><em>A generic implementation of the ArrayAccess interface.</em>
+</p>
+
+            
+    <p>The <a href="https://www.php.net/arrayaccess">\ArrayAccess</a> interface allows objects to be accessed like arrays.</p>
+
+            <blockquote>
+    <p>Usage:</p>
+<pre><code class="language-php">class Foo implements ArrayAccess
 {
     use \OCC\Basics\Interfaces\ArrayAccessTrait;
-}</code></pre></blockquote>
+}</code></pre>
+</blockquote>
 
             <div class="admonition-wrapper">
     <div class="admonition admonition-sidebar"><p class="sidebar-title">API Documentation</p>
@@ -229,14 +268,22 @@ this package.</p>
     </div>
 
             <div class="section" id="countabletrait">
-    <h2>CountableTrait</h2>
+            <h2>CountableTrait</h2>
 
-            <p><em>A generic implementation of the Countable interface.</em></p>
-            <p>The <a href="https://www.php.net/countable">\Countable</a> interface allows objects to be used with the <a href="https://www.php.net/count">count()</a> function.</p>
-            <blockquote><p>Usage:</p><pre><code class="language-php">class Foo implements Countable
+            
+    <p><em>A generic implementation of the Countable interface.</em>
+</p>
+
+            
+    <p>The <a href="https://www.php.net/countable">\Countable</a> interface allows objects to be used with the <a href="https://www.php.net/count">count()</a> function.</p>
+
+            <blockquote>
+    <p>Usage:</p>
+<pre><code class="language-php">class Foo implements Countable
 {
     use \OCC\Basics\Interfaces\CountableTrait;
-}</code></pre></blockquote>
+}</code></pre>
+</blockquote>
 
             <div class="admonition-wrapper">
     <div class="admonition admonition-sidebar"><p class="sidebar-title">API Documentation</p>
@@ -254,14 +301,22 @@ this package.</p>
     </div>
 
             <div class="section" id="iteratoraggregatetrait">
-    <h2>IteratorAggregateTrait</h2>
+            <h2>IteratorAggregateTrait</h2>
 
-            <p><em>A generic implementation of the IteratorAggregate interface.</em></p>
-            <p>The <a href="https://www.php.net/iteratoraggregate">\IteratorAggregate</a> interface creates an external <a href="https://www.php.net/arrayiterator">\ArrayIterator</a> for traversing the object&#039;s internal data array.</p>
-            <blockquote><p>Usage:</p><pre><code class="language-php">class Foo implements IteratorAggregate
+            
+    <p><em>A generic implementation of the IteratorAggregate interface.</em>
+</p>
+
+            
+    <p>The <a href="https://www.php.net/iteratoraggregate">\IteratorAggregate</a> interface creates an external <a href="https://www.php.net/arrayiterator">\ArrayIterator</a> for traversing the object&#039;s internal data array.</p>
+
+            <blockquote>
+    <p>Usage:</p>
+<pre><code class="language-php">class Foo implements IteratorAggregate
 {
     use \OCC\Basics\Interfaces\IteratorAggregateTrait;
-}</code></pre></blockquote>
+}</code></pre>
+</blockquote>
 
             <div class="admonition-wrapper">
     <div class="admonition admonition-sidebar"><p class="sidebar-title">API Documentation</p>
@@ -279,15 +334,23 @@ this package.</p>
     </div>
 
             <div class="section" id="iteratortrait">
-    <h2>IteratorTrait</h2>
+            <h2>IteratorTrait</h2>
 
-            <p><em>A generic implementation of the Iterator interface.</em></p>
-            <p>The <a href="https://www.php.net/iterator">\Iterator</a> interface creates an internal iterator for traversing the object&#039;s data
+            
+    <p><em>A generic implementation of the Iterator interface.</em>
+</p>
+
+            
+    <p>The <a href="https://www.php.net/iterator">\Iterator</a> interface creates an internal iterator for traversing the object&#039;s data
 array.</p>
-            <blockquote><p>Usage:</p><pre><code class="language-php">class Foo implements Iterator
+
+            <blockquote>
+    <p>Usage:</p>
+<pre><code class="language-php">class Foo implements Iterator
 {
     use \OCC\Basics\Interfaces\IteratorTrait;
-}</code></pre></blockquote>
+}</code></pre>
+</blockquote>
 
     </div>
 
@@ -306,7 +369,7 @@ array.</p>
     </section>
 </section>
         </div>
-        <a href="guides/overview/interfaces.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 

@@ -169,18 +169,55 @@
 
             <div class="phpdocumentor-column -nine phpdocumentor-content">
                                         <div class="section" id="changelog">
-    <h1>Changelog</h1>
+            <h1>Changelog</h1>
 
             <div class="admonition-wrapper">
     <div class="admonition admonition-sidebar"><p class="sidebar-title">Table of Contents</p>
-        <div class="contents"><ul class="phpdocumentor-list"><li class="toc-item"><a href="guides/changelog.html#v2-1-0">v2.1.0</a></li><li class="toc-item"><a href="guides/changelog.html#v2-0-0">v2.0.0</a></li><li class="toc-item"><a href="guides/changelog.html#v1-1-0">v1.1.0</a></li><li class="toc-item"><a href="guides/changelog.html#v1-0-1">v1.0.1</a></li><li class="toc-item"><a href="guides/changelog.html#v1-0-0">v1.0.0</a></li></ul></div>
+        <div class="contents">
+        <ul class="phpdocumentor-list">
+    <li class="toc-item">
+    <a href="guides/changelog.html#v2-1-0">v2.1.0</a>
+
+
+</li>
+
+    <li class="toc-item">
+    <a href="guides/changelog.html#v2-0-0">v2.0.0</a>
+
+
+</li>
+
+    <li class="toc-item">
+    <a href="guides/changelog.html#v1-1-0">v1.1.0</a>
+
+
+</li>
+
+    <li class="toc-item">
+    <a href="guides/changelog.html#v1-0-1">v1.0.1</a>
+
+
+</li>
+
+    <li class="toc-item">
+    <a href="guides/changelog.html#v1-0-0">v1.0.0</a>
+
+
+</li>
+
+    </ul>
+</div>
+
     </div>
 </div>
 
             <div class="section" id="v2-1-0">
-    <h2>v2.1.0</h2>
+            <h2>v2.1.0</h2>
 
-            <p><strong>Breaking Changes:</strong></p>
+            
+    <p><strong>Breaking Changes:</strong>
+</p>
+
             
 
 <ul>
@@ -191,7 +228,10 @@
 
 </ul>
 
-            <p><strong>New Features:</strong></p>
+            
+    <p><strong>New Features:</strong>
+</p>
+
             
 
 <ul>
@@ -203,33 +243,47 @@
     </div>
 
             <div class="section" id="v2-0-0">
-    <h2>v2.0.0</h2>
+            <h2>v2.0.0</h2>
 
-            <p><strong>Breaking Changes:</strong></p>
+            
+    <p><strong>Breaking Changes:</strong>
+</p>
+
             
 
 <ul>
     <li>Raised minimum PHP version from 8.0 to 8.1 in order to use <a href="https://www.php.net/releases/8.1/">new features</a> like
 <a href="https://www.php.net/array_is_list">array_is_list()</a> and the spread operator on string-keyed arrays</li>
 
-    <li><p><a href="namespaces/occ-basics-interfaces.html"><abbr title="\OCC\Basics\Interfaces">Interfaces</abbr></a>
- traits renamed and moved to different namespace</p><pre><code class="language-">OCC\Basics\InterfaceTraits\ArrayAccess       -&gt; OCC\Basics\Interfaces\ArrayAccessTrait
+    <li>
+    <p><a href="namespaces/occ-basics-interfaces.html"><abbr title="\OCC\Basics\Interfaces">Interfaces</abbr></a>
+ traits renamed and moved to different namespace</p>
+<pre><code class="language-">OCC\Basics\InterfaceTraits\ArrayAccess       -&gt; OCC\Basics\Interfaces\ArrayAccessTrait
 OCC\Basics\InterfaceTraits\Countable         -&gt; OCC\Basics\Interfaces\CountableTrait
 OCC\Basics\InterfaceTraits\IteratorAggregate -&gt; OCC\Basics\Interfaces\IteratorAggregateTrait
-OCC\Basics\InterfaceTraits\Iterator          -&gt; OCC\Basics\Interfaces\IteratorTrait</code></pre></li>
+OCC\Basics\InterfaceTraits\Iterator          -&gt; OCC\Basics\Interfaces\IteratorTrait</code></pre>
+</li>
 
-    <li><p>Prefixed internal methods for <a href="classes/OCC-Basics-Traits-Getter.html"><abbr title="\OCC\Basics\Traits\Getter">Getter</abbr></a>
+    <li>
+    <p>Prefixed internal methods for <a href="classes/OCC-Basics-Traits-Getter.html"><abbr title="\OCC\Basics\Traits\Getter">Getter</abbr></a>
  and <a href="classes/OCC-Basics-Traits-Setter.html"><abbr title="\OCC\Basics\Traits\Setter">Setter</abbr></a>
  with
-<code>_</code> to avoid confusion with regular class methods</p><pre><code class="language-php">// old methods
+<code>_</code>
+ to avoid confusion with regular class methods</p>
+<pre><code class="language-php">// old methods
 function magicGet{Property}(): mixed
-function magicSet{Property}(mixed $value): void</code></pre><pre><code class="language-php">// new methods
+function magicSet{Property}(mixed $value): void</code></pre>
+<pre><code class="language-php">// new methods
 function _magicGet{Property}(): mixed
-function _magicSet{Property}(mixed $value): void</code></pre></li>
+function _magicSet{Property}(mixed $value): void</code></pre>
+</li>
 
 </ul>
 
-            <p><strong>New Features:</strong></p>
+            
+    <p><strong>New Features:</strong>
+</p>
+
             
 
 <ul>
@@ -251,7 +305,7 @@ function _magicSet{Property}(mixed $value): void</code></pre></li>
     <li>Added new trait <a href="classes/OCC-Basics-Traits-TypeChecker.html"><abbr title="\OCC\Basics\Traits\TypeChecker">TypeChecker</abbr></a>
 </li>
 
-    <li>Extended API for all datastructures (see <a href=""></a>
+    <li>Extended API for all datastructures (see <a href="classes/OCC-Basics-DataStructures-Traits-StrictSplDoublyLinkedListTrait.html"><abbr title="\OCC\Basics\DataStructures\Traits\StrictSplDoublyLinkedListTrait">StrictSplDoublyLinkedListTrait</abbr></a>
 )</li>
 
     <li>Introduced <a href="classes/OCC-Basics-DataStructures-Exceptions-InvalidDataTypeException.html"><abbr title="\OCC\Basics\DataStructures\Exceptions\InvalidDataTypeException">InvalidDataTypeException</abbr></a>
@@ -264,26 +318,36 @@ function _magicSet{Property}(mixed $value): void</code></pre></li>
     </div>
 
             <div class="section" id="v1-1-0">
-    <h2>v1.1.0</h2>
+            <h2>v1.1.0</h2>
 
-            <p><strong>Breaking Changes:</strong></p>
+            
+    <p><strong>Breaking Changes:</strong>
+</p>
+
             
 
 <ul>
-    <li><p>Changed the constructor&#039;s signature for all <a href="namespaces/occ-basics-datastructures.html"><abbr title="\OCC\Basics\DataStructures">DataStructures</abbr></a>
+    <li>
+    <p>Changed the constructor&#039;s signature for all <a href="namespaces/occ-basics-datastructures.html"><abbr title="\OCC\Basics\DataStructures">DataStructures</abbr></a>
  to improve compatibility with
-the corresponding <a href="https://www.php.net/spl.datastructures">SPL datastructures</a></p><pre><code class="language-php">// old constructor signature
-public function __construct(iterable $items = [], array $allowedTypes = [])</code></pre><pre><code class="language-php">// new constructor signature
-public function __construct(array $allowedTypes = [])</code></pre></li>
+the corresponding <a href="https://www.php.net/spl.datastructures">SPL datastructures</a></p>
+<pre><code class="language-php">// old constructor signature
+public function __construct(iterable $items = [], array $allowedTypes = [])</code></pre>
+<pre><code class="language-php">// new constructor signature
+public function __construct(array $allowedTypes = [])</code></pre>
+</li>
 
 </ul>
 
     </div>
 
             <div class="section" id="v1-0-1">
-    <h2>v1.0.1</h2>
+            <h2>v1.0.1</h2>
 
-            <p><strong>New Features:</strong></p>
+            
+    <p><strong>New Features:</strong>
+</p>
+
             
 
 <ul>
@@ -295,9 +359,12 @@ public function __construct(array $allowedTypes = [])</code></pre></li>
     </div>
 
             <div class="section" id="v1-0-0">
-    <h2>v1.0.0</h2>
+            <h2>v1.0.0</h2>
 
-            <p><strong>Initial Release</strong></p>
+            
+    <p><strong>Initial Release</strong>
+</p>
+
     </div>
 
     </div>
@@ -315,7 +382,7 @@ public function __construct(array $allowedTypes = [])</code></pre></li>
     </section>
 </section>
         </div>
-        <a href="guides/changelog.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 

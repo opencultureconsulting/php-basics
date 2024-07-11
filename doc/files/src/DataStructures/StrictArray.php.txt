@@ -83,7 +83,7 @@ class StrictArray extends StrictCollection implements Iterator
      */
     public function pop(): mixed
     {
-        if ($this->count() === 0) {
+        if (count($this->_data) === 0) {
             throw new RuntimeException(
                 'Cannot return last item: array is empty.'
             );
@@ -126,7 +126,7 @@ class StrictArray extends StrictCollection implements Iterator
      */
     public function shift(): mixed
     {
-        if ($this->count() === 0) {
+        if (count($this->_data) === 0) {
             throw new RuntimeException(
                 'Cannot return first item: array is empty.'
             );

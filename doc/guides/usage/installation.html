@@ -169,52 +169,91 @@
 
             <div class="phpdocumentor-column -nine phpdocumentor-content">
                                         <div class="section" id="installation">
-    <h1>Installation</h1>
+            <h1>Installation</h1>
 
             <div class="admonition-wrapper">
     <div class="admonition admonition-sidebar"><p class="sidebar-title">Table of Contents</p>
-        <div class="contents"><ul class="phpdocumentor-list"><li class="toc-item"><a href="guides/usage/installation.html#composer">Composer</a></li><li class="toc-item"><a href="guides/usage/installation.html#git">Git</a></li><li class="toc-item"><a href="guides/usage/installation.html#download">Download</a></li></ul></div>
+        <div class="contents">
+        <ul class="phpdocumentor-list">
+    <li class="toc-item">
+    <a href="guides/usage/installation.html#composer">Composer</a>
+
+
+</li>
+
+    <li class="toc-item">
+    <a href="guides/usage/installation.html#git">Git</a>
+
+
+</li>
+
+    <li class="toc-item">
+    <a href="guides/usage/installation.html#download">Download</a>
+
+
+</li>
+
+    </ul>
+</div>
+
     </div>
 </div>
 
             <div class="section" id="composer">
-    <h2>Composer</h2>
+            <h2>Composer</h2>
 
-            <p>The intended and recommended way of re-using this package is via <a href="https://getcomposer.org/">Composer</a>. The following
+            
+    <p>The intended and recommended way of using this package is via <a href="https://getcomposer.org/">Composer</a>. The following
 command will get you the latest version and make it a dependency of your project. It will also register all classes and
 traits with the autoloader to make them available inside the application.</p>
+
             <pre><code class="language-shell"># This will install the latest stable version suitable for your project
 composer require &quot;opencultureconsulting/basics&quot;</code></pre>
-            <p>If you want to use a specific version other than the latest available for your environment, you can do so by appending
+
+            
+    <p>If you want to use a specific version other than the latest available for your environment, you can do so by appending
 the desired version constraint:</p>
-            <pre><code class="language-shell"># This will install the latest patch level version of 2.0 (i. e. &gt;=2.0.0 &amp;&amp; &lt;2.1.0)
-composer require &quot;opencultureconsulting/basics:~2.0&quot;</code></pre>
-            <p>All available versions as well as further information about <a href="guides/usage/requirements.html">Requirements</a>
- and dependencies can be found on
+
+            <pre><code class="language-shell"># This will install the latest patch level version of 2.1 (i. e. &gt;=2.1.0 &amp;&amp; &lt;2.2.0)
+composer require &quot;opencultureconsulting/basics:~2.1&quot;</code></pre>
+
+            
+    <p>All available versions as well as further information about <a href="guides/usage/requirements.html">Requirements</a> and dependencies can be found on
 <a href="https://packagist.org/packages/opencultureconsulting/basics">Packagist</a>.</p>
+
     </div>
 
             <div class="section" id="git">
-    <h2>Git</h2>
+            <h2>Git</h2>
 
-            <p>Alternatively, you can fetch the files from <a href="https://github.com/opencultureconsulting/php-basics">GitHub</a> and add
+            
+    <p>Alternatively, you can fetch the files from <a href="https://github.com/opencultureconsulting/php-basics">GitHub</a> and add
 them to your project manually. The best way is by cloning the repository, because then you can easily update to a newer
 version by just pulling the changes and checking out a different version tag.</p>
+
             <pre><code class="language-shell"># This will clone the repository into the &quot;basics&quot; directory
 git clone https://github.com/opencultureconsulting/php-basics.git basics</code></pre>
-            <p>If you want to use a specific version other than the latest development state, you have to specify the desired tag as
+
+            
+    <p>If you want to use a specific version other than the latest development state, you have to specify the desired tag as
 well:</p>
-            <pre><code class="language-shell"># This will clone the repository state at version &quot;2.0.0&quot; into the &quot;basics&quot; directory
-git clone --branch=v2.0.0 https://github.com/opencultureconsulting/php-basics.git basics</code></pre>
-            <p>Be aware that you also need to make the classes and traits available in your application by either adding them to your
+
+            <pre><code class="language-shell"># This will clone the repository state at version &quot;2.1.0&quot; into the &quot;basics&quot; directory
+git clone --branch=v2.1.0 https://github.com/opencultureconsulting/php-basics.git basics</code></pre>
+
+            
+    <p>Be aware that you also need to make the classes and traits available in your application by either adding them to your
 autoloader or by including all files individually in PHP.</p>
+
     </div>
 
             <div class="section" id="download">
-    <h2>Download</h2>
+            <h2>Download</h2>
 
-            <p>As a last resort you can also just download the files. You can find all available versions as well as the current
+            
+    <p>As a last resort you can also just download the files. You can find all available versions as well as the current
 development state on the <a href="https://github.com/opencultureconsulting/php-basics/releases">GitHub release page</a>.</p>
+
     </div>
 
     </div>
@@ -232,7 +271,7 @@ development state on the <a href="https://github.com/opencultureconsulting/php-b
     </section>
 </section>
         </div>
-        <a href="guides/usage/installation.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 

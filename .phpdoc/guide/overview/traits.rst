@@ -23,7 +23,7 @@ reading. Replace `{Property}` in the method's name with the name of the actual p
 letter).
 
 Trying to access an undefined property or a property without corresponding "magic" getter method will result in an
-`\InvalidArgumentException <https://www.php.net/invalidargumentexception>`_.
+`\InvalidArgumentException <https://www.php.net/invalidargumentexception>`_ being thrown.
 
   Example: If the property is named `$fooBar`, the "magic" method has to be `_magicGetFooBar()`. This method is then
   called when `$fooBar` is read in a context where it normally would not be accessible.
@@ -41,7 +41,7 @@ writing. Replace `{Property}` in the method's name with the name of the actual p
 letter).
 
 Trying to access an undefined property or a property without corresponding "magic" setter method will result in an
-`\InvalidArgumentException <https://www.php.net/invalidargumentexception>`_.
+`\InvalidArgumentException <https://www.php.net/invalidargumentexception>`_ being thrown.
 
   Example: If the property is named `$fooBar`, the "magic" method has to be `_magicSetFooBar()`. This method is then
   called when `$fooBar` is written to in a context where it normally would not be accessible.
@@ -109,5 +109,5 @@ TypeChecker
 This allows to set a list of allowed atomic data types and fully qualified class names. It also provides a method to
 check if a value's data type matches at least one of these types.
 
-Available atomic types are `array`, `bool`, `callable`, `countable`, `float` / `double`, `int` / `integer` / `long`,
-`iterable`, `null`, `numeric`, `object`, `resource`, `scalar` and `string`.
+Available atomic types are `array`, `bool`, `callable`, `countable`, `float` (or `double`), `int` (or `integer` or
+`long`), `iterable`, `null`, `numeric`, `object`, `resource`, `scalar` and `string`.

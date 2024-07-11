@@ -169,29 +169,92 @@
 
             <div class="phpdocumentor-column -nine phpdocumentor-content">
                                         <div class="section" id="typed-datastructures">
-    <h1>Typed Datastructures</h1>
+            <h1>Typed Datastructures</h1>
 
             <div class="admonition-wrapper">
     <div class="admonition admonition-sidebar"><p class="sidebar-title">Table of Contents</p>
-        <div class="contents"><ul class="phpdocumentor-list"><li class="toc-item"><a href="guides/overview/datastructures.html#strictcollection">StrictCollection</a></li><li class="toc-item"><a href="guides/overview/datastructures.html#strictarray">StrictArray</a></li><li class="toc-item"><a href="guides/overview/datastructures.html#strictlist">StrictList</a></li><li class="toc-item"><a href="guides/overview/datastructures.html#strictqueue">StrictQueue</a></li><li class="toc-item"><a href="guides/overview/datastructures.html#strictstack">StrictStack</a></li></ul></div>
+        <div class="contents">
+        <ul class="phpdocumentor-list">
+    <li class="toc-item">
+    <a href="guides/overview/datastructures.html#strictcollection">StrictCollection</a>
+
+
+</li>
+
+    <li class="toc-item">
+    <a href="guides/overview/datastructures.html#strictarray">StrictArray</a>
+
+
+</li>
+
+    <li class="toc-item">
+    <a href="guides/overview/datastructures.html#strictlist">StrictList</a>
+
+
+</li>
+
+    <li class="toc-item">
+    <a href="guides/overview/datastructures.html#strictqueue">StrictQueue</a>
+
+
+</li>
+
+    <li class="toc-item">
+    <a href="guides/overview/datastructures.html#strictstack">StrictStack</a>
+
+
+</li>
+
+    </ul>
+</div>
+
     </div>
 </div>
 
-            <p>The datastructures in this package are derived from their respective <a href="https://www.php.net/spl.datastructures">Standard PHP Library (SPL) counterparts</a> which they extend by the option to control the data types of items those
+            
+    <p>The datastructures in this package are derived from their respective <a href="https://www.php.net/spl.datastructures">Standard PHP Library (SPL) counterparts</a> which they extend by the option to control the data types of items those
 datastructures can hold.</p>
-            <p>To restrict allowed data types for items, provide the constructor with an array of atomic types or fully qualified
-class names you want to allow as item types. Available atomic types are <code>array</code>, <code>bool</code>, <code>callable</code>, <code>countable</code>,
-<code>float</code> / <code>double</code>, <code>int</code> / <code>integer</code> / <code>long</code>, <code>iterable</code>, <code>null</code>, <code>numeric</code>, <code>object</code>, <code>resource</code>, <code>scalar</code> and
-<code>string</code>.</p>
-            <p>Trying to add an item with a data type not on the list of allowed types to a strict datastructure will result in an
-<a href="classes/OCC-Basics-DataStructures-Exceptions-InvalidDataTypeException.html"><abbr title="\OCC\Basics\DataStructures\Exceptions\InvalidDataTypeException">InvalidDataTypeException</abbr></a>
+
+            
+    <p>To restrict allowed data types for items provide the constructor with an array of atomic types or fully qualified class
+names (FQCN) you want to allow as item types. Available atomic types are <code>array</code>
+, <code>bool</code>
+, <code>callable</code>
+, <code>countable</code>
+,
+<code>float</code>
+ (or <code>double</code>
+), <code>int</code>
+ (or <code>integer</code>
+ or <code>long</code>
+), <code>iterable</code>
+, <code>null</code>
+, <code>numeric</code>
+, <code>object</code>
+, <code>resource</code>
+, <code>scalar</code>
+
+and <code>string</code>
 .</p>
-            <p>All strict datastructures inherit the implementation of the <a href="https://www.php.net/arrayaccess">\ArrayAccess</a>,
+
+            
+    <p>Trying to add an item with a data type not on the list of allowed types to a strict datastructure will result in an
+<a href="classes/OCC-Basics-DataStructures-Exceptions-InvalidDataTypeException.html"><abbr title="\OCC\Basics\DataStructures\Exceptions\InvalidDataTypeException">InvalidDataTypeException</abbr></a>
+ being thrown.</p>
+
+            
+    <p>All strict datastructures inherit the implementation of the <a href="https://www.php.net/arrayaccess">\ArrayAccess</a>,
 <a href="https://www.php.net/countable">\Countable</a> and <a href="https://www.php.net/serializable">\Serializable</a> interfaces. All
-but <code>StrictCollection</code> also implement a <a href="https://www.php.net/traversable">\Traversable</a> interface.</p>
-            <blockquote><p>Examples:</p><pre><code class="language-php">// create a collection of strings
-$stringCollection = new StrictCollection([&#039;string&#039;]);</code></pre><pre><code class="language-php">// create a queue of PSR-15 middlewares
-$middlewareQueue = new StrictQueue([&#039;Psr\Http\Server\MiddlewareInterface&#039;]);</code></pre></blockquote>
+but <code>StrictCollection</code>
+ also implement a <a href="https://www.php.net/traversable">\Traversable</a> interface.</p>
+
+            <blockquote>
+    <p>Examples:</p>
+<pre><code class="language-php">// create a collection of strings
+$stringCollection = new StrictCollection([&#039;string&#039;]);</code></pre>
+<pre><code class="language-php">// create a queue of PSR-15 middlewares
+$middlewareQueue = new StrictQueue([&#039;Psr\Http\Server\MiddlewareInterface&#039;]);</code></pre>
+</blockquote>
 
             <div class="admonition-wrapper">
     <div class="admonition admonition-sidebar"><p class="sidebar-title">API Documentation</p>
@@ -207,18 +270,24 @@ $middlewareQueue = new StrictQueue([&#039;Psr\Http\Server\MiddlewareInterface&#0
 </div>
 
             <div class="section" id="strictcollection">
-    <h2>StrictCollection</h2>
+            <h2>StrictCollection</h2>
 
-            <p><em>A type-sensitive, unsorted collection of items.</em></p>
-            <p>Holds items as key/value pairs where keys identify the items and have to be valid array keys while values can be of any
+            
+    <p><em>A type-sensitive, unsorted collection of items.</em>
+</p>
+
+            
+    <p>Holds items as key/value pairs where keys identify the items and have to be valid array keys while values can be of any
 controlled type. The collection can be accessed like an array, but not traversed because it has no particular order.</p>
+
             <div class="phpdocumentor-admonition note">
             <svg class="phpdocumentor-admonition__icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path></svg>
                     <article>
-        <p>Internally it holds the items in the <code>$_data</code> array, the same as most <a href="guides/overview/interfaces.html">Interface Traits</a>
- and <a href="guides/overview/traits.html">Traits</a>
- of this
+        
+    <p>Internally it holds the items in the <code>$_data</code>
+ array, the same as most <a href="guides/overview/interfaces.html">Interface Traits</a> and <a href="guides/overview/traits.html">Traits</a> of this
 package.</p>
+
     </article>
 </div>
 
@@ -238,18 +307,24 @@ package.</p>
     </div>
 
             <div class="section" id="strictarray">
-    <h2>StrictArray</h2>
+            <h2>StrictArray</h2>
 
-            <p><em>A type-sensitive, traversable array of items.</em></p>
-            <p>Holds items as key/value pairs where keys identify the items and have to be valid array keys while values can be of any
+            
+    <p><em>A type-sensitive, traversable array of items.</em>
+</p>
+
+            
+    <p>Holds items as key/value pairs where keys identify the items and have to be valid array keys while values can be of any
 controlled type. The array can be accessed and traversed just like any other array.</p>
+
             <div class="phpdocumentor-admonition note">
             <svg class="phpdocumentor-admonition__icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path></svg>
                     <article>
-        <p>Internally it holds the items in the <code>$_data</code> array, the same as most <a href="guides/overview/interfaces.html">Interface Traits</a>
- and <a href="guides/overview/traits.html">Traits</a>
- of this
+        
+    <p>Internally it holds the items in the <code>$_data</code>
+ array, the same as most <a href="guides/overview/interfaces.html">Interface Traits</a> and <a href="guides/overview/traits.html">Traits</a> of this
 package.</p>
+
     </article>
 </div>
 
@@ -269,11 +344,16 @@ package.</p>
     </div>
 
             <div class="section" id="strictlist">
-    <h2>StrictList</h2>
+            <h2>StrictList</h2>
 
-            <p><em>A type-sensitive, taversable list of items.</em></p>
-            <p>Extends <a href="https://www.php.net/spldoublylinkedlist">\SplDoublyLinkedList</a> with an option to restrict the allowed data
+            
+    <p><em>A type-sensitive, taversable list of items.</em>
+</p>
+
+            
+    <p>Extends <a href="https://www.php.net/spldoublylinkedlist">\SplDoublyLinkedList</a> with an option to restrict the allowed data
 types for list items. The list can be accessed and traversed like an array, but has only consecutive numerical keys.</p>
+
             <div class="admonition-wrapper">
     <div class="admonition admonition-sidebar"><p class="sidebar-title">API Documentation</p>
         
@@ -290,14 +370,23 @@ types for list items. The list can be accessed and traversed like an array, but 
     </div>
 
             <div class="section" id="strictqueue">
-    <h2>StrictQueue</h2>
+            <h2>StrictQueue</h2>
 
-            <p><em>A type-sensitive, taversable queue (FIFO) of items.</em></p>
-            <p>Extends <a href="https://www.php.net/splqueue">\SplQueue</a> with an option to restrict the allowed data types for queue items.
+            
+    <p><em>A type-sensitive, taversable queue (FIFO) of items.</em>
+</p>
+
+            
+    <p>Extends <a href="https://www.php.net/splqueue">\SplQueue</a> with an option to restrict the allowed data types for queue items.
 The queue can be accessed and traversed like an array, but has only consecutive numerical keys. Traversal follows the
 first-in, first-out (FIFO) principle meaning that items are returned in the same order they were added to the queue.</p>
-            <p>It is recommended to use the <code>StrictQueue::enqueue()</code> and <code>StrictQueue::dequeue()</code> alias methods when working with a
+
+            
+    <p>It is recommended to use the <code>StrictQueue::enqueue()</code>
+ and <code>StrictQueue::dequeue()</code>
+ alias methods when working with a
 queue, because those will ensure proper FIFO behavior and remove items while traversing.</p>
+
             <div class="admonition-wrapper">
     <div class="admonition admonition-sidebar"><p class="sidebar-title">API Documentation</p>
         
@@ -314,14 +403,23 @@ queue, because those will ensure proper FIFO behavior and remove items while tra
     </div>
 
             <div class="section" id="strictstack">
-    <h2>StrictStack</h2>
+            <h2>StrictStack</h2>
 
-            <p><em>A type-sensitive, taversable stack (LIFO) of items.</em></p>
-            <p>Extends <a href="https://www.php.net/splstack">\SplStack</a> with an option to restrict the allowed data types for stack items.
+            
+    <p><em>A type-sensitive, taversable stack (LIFO) of items.</em>
+</p>
+
+            
+    <p>Extends <a href="https://www.php.net/splstack">\SplStack</a> with an option to restrict the allowed data types for stack items.
 The stack can be accessed and traversed like an array, but has only consecutive numerical keys. Traversal follows the
 last-in, first-out (LIFO) principle meaning that items are returned in the reversed order they were added to the stack.</p>
-            <p>It is recommended to use the <code>StrictStack::stack()</code> and <code>StrictStack::unstack()</code> alias methods when working with a
+
+            
+    <p>It is recommended to use the <code>StrictStack::stack()</code>
+ and <code>StrictStack::unstack()</code>
+ alias methods when working with a
 stack, because those will ensure proper LIFO behavior and remove items while traversing.</p>
+
     </div>
 
     </div>
@@ -339,7 +437,7 @@ stack, because those will ensure proper LIFO behavior and remove items while tra
     </section>
 </section>
         </div>
-        <a href="guides/overview/datastructures.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 

@@ -9,7 +9,7 @@ Installation
 Composer
 ========
 
-The intended and recommended way of re-using this package is via `Composer <https://getcomposer.org/>`_. The following
+The intended and recommended way of using this package is via `Composer <https://getcomposer.org/>`_. The following
 command will get you the latest version and make it a dependency of your project. It will also register all classes and
 traits with the autoloader to make them available inside the application.
 
@@ -23,8 +23,8 @@ the desired version constraint:
 
 .. code-block:: shell
 
-  # This will install the latest patch level version of 2.0 (i. e. >=2.0.0 && <2.1.0)
-  composer require "opencultureconsulting/basics:~2.0"
+  # This will install the latest patch level version of 2.1 (i. e. >=2.1.0 && <2.2.0)
+  composer require "opencultureconsulting/basics:~2.1"
 
 All available versions as well as further information about :doc:`requirements` and dependencies can be found on
 `Packagist <https://packagist.org/packages/opencultureconsulting/basics>`_.
@@ -46,8 +46,8 @@ well:
 
 .. code-block:: shell
 
-  # This will clone the repository state at version "2.0.0" into the "basics" directory
-  git clone --branch=v2.0.0 https://github.com/opencultureconsulting/php-basics.git basics
+  # This will clone the repository state at version "2.1.0" into the "basics" directory
+  git clone --branch=v2.1.0 https://github.com/opencultureconsulting/php-basics.git basics
 
 Be aware that you also need to make the classes and traits available in your application by either adding them to your
 autoloader or by including all files individually in PHP.
