@@ -8,7 +8,9 @@ The package currently contains classes for [type-sensitive data structures](src/
 
 The intended and recommended way of using this package is via [Composer](https://getcomposer.org/). The following command will get you the latest version:
 
-    composer require opencultureconsulting/basics
+```shell
+composer require opencultureconsulting/basics
+```
 
 All available versions as well as further information about requirements and dependencies can be found on [Packagist](https://packagist.org/packages/opencultureconsulting/basics).
 
