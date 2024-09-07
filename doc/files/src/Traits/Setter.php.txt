@@ -85,6 +85,7 @@ trait Setter
         try {
             $this->__set($property, null);
         } catch (InvalidArgumentException) {
+            // Unsetting an invalid property should not lead to an error.
         }
     }
 }

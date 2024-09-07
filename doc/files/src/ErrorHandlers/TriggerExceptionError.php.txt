@@ -36,8 +36,6 @@ use function trigger_error;
  *
  * > Usage: `set_exception_handler(new TriggerExceptionError());`
  *
- * @api
- *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package Basics\ErrorHandlers
  */

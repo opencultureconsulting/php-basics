@@ -68,7 +68,7 @@ trait OverloadingGetter
      */
     public function __isset(string $property): bool
     {
-        $value = $this->__get($property);
+        $value = $this->_data[$property] ?? null;
         return boolval($value) !== false;
     }
 }

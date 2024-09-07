@@ -96,10 +96,10 @@ trait TypeChecker
      */
     public function hasAllowedType(mixed $value): bool
     {
-        if (count($this->getAllowedTypes()) === 0) {
+        if (count($this->_allowedTypes) === 0) {
             return true;
         }
-        foreach ($this->getAllowedTypes() as $type) {
+        foreach ($this->_allowedTypes as $type) {
             $function = 'is_' . $type;
             if (function_exists($function) && $function($value)) {
                 return true;
@@ -124,7 +124,7 @@ trait TypeChecker
      */
     public function isAllowedType(string $type): bool
     {
-        return in_array($type, $this->getAllowedTypes(), true);
+        return in_array($type, $this->_allowedTypes, true);
     }
 
     /**

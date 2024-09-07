@@ -35,8 +35,6 @@ use function error_reporting;
  *
  * > Usage: `set_error_handler(new ThrowErrorException());`
  *
- * @api
- *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package Basics\ErrorHandlers
  */

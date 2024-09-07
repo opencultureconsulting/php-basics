@@ -6,6 +6,13 @@ Changelog
 .. sidebar:: Table of Contents
   .. contents::
 
+v2.1.2
+======
+
+**New Features:**
+
+* Added Composer commands for development tools (PHP Mess Detector, Psalm Taint Analysis)
+
 v2.1.1
 ======
 

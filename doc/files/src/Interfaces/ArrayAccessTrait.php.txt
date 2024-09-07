@@ -23,8 +23,6 @@ declare(strict_types=1);
 
 namespace OCC\Basics\Interfaces;
 
-use ArrayAccess;
-
 use function is_null;
 
 /**
@@ -38,8 +36,7 @@ use function is_null;
  * @api
  *
  * @template TValue of mixed
- * @implements ArrayAccess<array-key, TValue>
- * @phpstan-require-implements ArrayAccess
+ * @phpstan-require-implements \ArrayAccess
  */
 trait ArrayAccessTrait
 {
