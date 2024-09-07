@@ -28,6 +28,17 @@ use OCC\Basics\DataStructures\Exceptions\InvalidDataTypeException;
 use OCC\Basics\Interfaces\IteratorTrait;
 use RuntimeException;
 
+use function array_key_first;
+use function array_key_last;
+use function array_pop;
+use function array_push;
+use function array_shift;
+use function array_unshift;
+use function count;
+use function get_debug_type;
+use function is_null;
+use function sprintf;
+
 /**
  * A type-sensitive, traversable array.
  *

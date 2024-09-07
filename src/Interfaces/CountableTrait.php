@@ -23,8 +23,6 @@ declare(strict_types=1);
 
 namespace OCC\Basics\Interfaces;
 
-use Countable;
-
 use function count;
 
 /**
@@ -38,8 +36,7 @@ use function count;
  * @api
  *
  * @template TValue of mixed
- * @implements Countable<TValue>
- * @phpstan-require-implements Countable
+ * @phpstan-require-implements \Countable
  */
 trait CountableTrait
 {

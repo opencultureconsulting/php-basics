@@ -24,7 +24,6 @@ declare(strict_types=1);
 namespace OCC\Basics\Interfaces;
 
 use ArrayIterator;
-use IteratorAggregate;
 
 /**
  * A generic implementation of the IteratorAggregate interface.
@@ -37,8 +36,7 @@ use IteratorAggregate;
  * @api
  *
  * @template TValue of mixed
- * @implements IteratorAggregate<TValue>
- * @phpstan-require-implements IteratorAggregate
+ * @phpstan-require-implements \IteratorAggregate
  */
 trait IteratorAggregateTrait
 {

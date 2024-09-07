@@ -362,8 +362,6 @@ class StrictCollection implements ArrayAccess, Countable, Serializable
      * @return void
      *
      * @internal
-     *
-     * @hpsalm-suppress MethodSignatureMismatch
      */
     public function __unserialize(array $data): void
     {

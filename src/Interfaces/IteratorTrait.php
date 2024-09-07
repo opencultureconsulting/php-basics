@@ -23,8 +23,6 @@ declare(strict_types=1);
 
 namespace OCC\Basics\Interfaces;
 
-use Iterator;
-
 use function current;
 use function is_null;
 use function key;
@@ -43,8 +41,7 @@ use function reset;
  * @api
  *
  * @template TValue of mixed
- * @implements Iterator<TValue>
- * @phpstan-require-implements Iterator
+ * @phpstan-require-implements \Iterator
  */
 trait IteratorTrait
 {
