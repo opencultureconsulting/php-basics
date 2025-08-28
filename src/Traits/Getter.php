@@ -25,7 +25,6 @@ namespace OCC\Basics\Traits;
 
 use InvalidArgumentException;
 
-use function boolval;
 use function method_exists;
 use function property_exists;
 use function sprintf;
@@ -60,9 +59,7 @@ trait Getter
     public function __get(string $property): mixed
     {
         $method = '_magicGet' . ucfirst($property);
-        if (property_exists(static::class, $property) && method_exists(static::class, $method)) {
-            return $this->$method();
-        } else {
+        if (!property_exists(static::class, $property) || !method_exists(static::class, $method)) {
             throw new InvalidArgumentException(
                 sprintf(
                     'Invalid property or missing getter method for property: %s::$%s.',
@@ -71,24 +68,24 @@ trait Getter
                 )
             );
         }
+        return $this->$method();
     }
 
     /**
-     * Check if an inaccessible property is set and not empty.
+     * Check if an inaccessible property is set.
      *
      * @param string $property The class property to check
      *
-     * @return bool Whether the class property is set and not empty
+     * @return bool Whether the class property is set
      */
     public function __isset(string $property): bool
     {
         try {
-            /** @var mixed $value */
             $value = $this->__get($property);
         } catch (InvalidArgumentException) {
             $value = null;
         } finally {
-            return boolval($value ?? null) !== false;
+            return !is_null($value);
         }
     }
 }

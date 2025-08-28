@@ -23,8 +23,6 @@ declare(strict_types=1);
 
 namespace OCC\Basics\Traits;
 
-use function boolval;
-
 /**
  * Overloads a class with readable magic properties.
  *
@@ -60,15 +58,14 @@ trait OverloadingGetter
     }
 
     /**
-     * Check if an overloaded property is set and not empty.
+     * Check if an overloaded property is set.
      *
      * @param string $property The class property to check
      *
-     * @return bool Whether the class property is set and not empty
+     * @return bool Whether the class property is set
      */
     public function __isset(string $property): bool
     {
-        $value = $this->_data[$property] ?? null;
-        return boolval($value) !== false;
+        return isset($this->_data[$property]);
     }
 }
