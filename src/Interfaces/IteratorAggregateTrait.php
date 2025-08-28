@@ -35,15 +35,17 @@ use ArrayIterator;
  *
  * @api
  *
+ * @template TKey of array-key
  * @template TValue of mixed
- * @phpstan-require-implements \IteratorAggregate
+ *
+ * @phpstan-require-implements \IteratorAggregate<TKey, TValue>
  */
 trait IteratorAggregateTrait
 {
     /**
      * Holds the iterable data.
      *
-     * @var TValue[]
+     * @var array<TKey, TValue>
      *
      * @internal
      */
@@ -52,7 +54,7 @@ trait IteratorAggregateTrait
     /**
      * Retrieve an external iterator.
      *
-     * @return ArrayIterator<array-key, TValue> New iterator for the data array
+     * @return ArrayIterator<TKey, TValue> New iterator for the data array
      *
      * @api
      */
