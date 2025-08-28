@@ -7,8 +7,11 @@ includes:
     - vendor/phpstan/phpstan-strict-rules/rules.neon
 
 parameters:
-    level: 9
+    level: 10
     strictRules:
         noVariableVariables: false
     paths:
         - src/
+    treatPhpDocTypesAsCertain: false
+    ignoreErrors:
+        - identifier: trait.unused
