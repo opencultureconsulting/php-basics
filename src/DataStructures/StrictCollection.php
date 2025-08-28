@@ -57,15 +57,18 @@ use function unserialize;
  *
  * @api
  *
+ * @template Index of array-key
  * @template AllowedType of mixed
- * @implements ArrayAccess<array-key, AllowedType>
+ *
+ * @implements ArrayAccess<Index, AllowedType>
  */
 class StrictCollection implements ArrayAccess, Countable, Serializable
 {
-    /** @use ArrayAccessTrait<AllowedType> */
+    /** @use ArrayAccessTrait<Index, AllowedType> */
     use ArrayAccessTrait;
     /** @use CountableTrait<AllowedType> */
     use CountableTrait;
+    /** @use TypeChecker<AllowedType, array<string|class-string<AllowedType>>> */
     use TypeChecker {
         setAllowedTypes as protected;
     }
@@ -73,7 +76,7 @@ class StrictCollection implements ArrayAccess, Countable, Serializable
     /**
      * Holds the collection's items.
      *
-     * @var array<array-key, AllowedType>
+     * @var array<Index, AllowedType>
      *
      * @internal
      */
@@ -82,7 +85,7 @@ class StrictCollection implements ArrayAccess, Countable, Serializable
     /**
      * Add/insert a item at the specified index.
      *
-     * @param array-key $offset The item's index
+     * @param Index $offset The item's index
      * @param AllowedType $value The item
      *
      * @return void
@@ -111,7 +114,7 @@ class StrictCollection implements ArrayAccess, Countable, Serializable
     /**
      * Get the item at the specified index.
      *
-     * @param array-key $offset The item's index
+     * @param Index $offset The item's index
      *
      * @return AllowedType The item
      *
@@ -121,7 +124,7 @@ class StrictCollection implements ArrayAccess, Countable, Serializable
      */
     public function get(int|string $offset): mixed
     {
-        if (!$this->offsetExists($offset)) {
+        if (!isset($this->_data[$offset])) {
             throw new OutOfRangeException(
                 sprintf(
                     'Offset %s is not a valid index key for this collection.',
@@ -129,9 +132,7 @@ class StrictCollection implements ArrayAccess, Countable, Serializable
                 )
             );
         }
-        /** @var AllowedType $value */
-        $value = $this->offsetGet($offset);
-        return $value;
+        return $this->_data[$offset];
     }
 
     /**
@@ -157,6 +158,8 @@ class StrictCollection implements ArrayAccess, Countable, Serializable
      * @api
      *
      * @see StrictCollection::toStrictList()
+     *
+     * @phpstan-assert-if-true static<int, AllowedType> $this
      */
     public function isList(): bool
     {
@@ -166,7 +169,7 @@ class StrictCollection implements ArrayAccess, Countable, Serializable
     /**
      * Set the item at the specified offset.
      *
-     * @param ?array-key $offset The offset being set
+     * @param ?Index $offset The offset being set
      * @param AllowedType $value The new item for the offset
      *
      * @return void
@@ -176,6 +179,7 @@ class StrictCollection implements ArrayAccess, Countable, Serializable
      *
      * @api
      */
+    #[\Override]
     public function offsetSet(mixed $offset, mixed $value): void
     {
         if (!is_integer($offset) && !is_string($offset)) {
@@ -200,7 +204,7 @@ class StrictCollection implements ArrayAccess, Countable, Serializable
     /**
      * Remove an item from the collection.
      *
-     * @param array-key $offset The item's key
+     * @param Index $offset The item's key
      *
      * @return void
      *
@@ -210,7 +214,7 @@ class StrictCollection implements ArrayAccess, Countable, Serializable
      */
     public function remove(int|string $offset): void
     {
-        if (!$this->offsetExists($offset)) {
+        if (!isset($this->_data[$offset])) {
             throw new OutOfRangeException(
                 sprintf(
                     'Offset %s is not a valid index key for this collection.',
@@ -218,7 +222,7 @@ class StrictCollection implements ArrayAccess, Countable, Serializable
                 )
             );
         }
-        $this->offsetUnset($offset);
+        unset($this->_data[$offset]);
     }
 
     /**
@@ -226,6 +230,7 @@ class StrictCollection implements ArrayAccess, Countable, Serializable
      *
      * @return string The string representation
      */
+    #[\Override]
     public function serialize(): string
     {
         return serialize($this->__serialize());
@@ -234,7 +239,7 @@ class StrictCollection implements ArrayAccess, Countable, Serializable
     /**
      * Set an item at the specified index.
      *
-     * @param array-key $offset The item's index
+     * @param Index $offset The item's index
      * @param AllowedType $value The item
      *
      * @return void
@@ -251,7 +256,7 @@ class StrictCollection implements ArrayAccess, Countable, Serializable
     /**
      * Return array representation of collection.
      *
-     * @return array<array-key, AllowedType> Array of collection items
+     * @return array<Index, AllowedType> Array of collection items
      *
      * @api
      */
@@ -278,6 +283,7 @@ class StrictCollection implements ArrayAccess, Countable, Serializable
                 'Cannot convert into StrictList: collection contains non-integer and/or non-consecutive keys.'
             );
         }
+        /** @var StrictList<AllowedType> $strictList */
         $strictList = new StrictList($this->getAllowedTypes());
         $strictList->append(...$this->toArray());
         return $strictList;
@@ -290,6 +296,7 @@ class StrictCollection implements ArrayAccess, Countable, Serializable
      *
      * @return void
      */
+    #[\Override]
     public function unserialize($data): void
     {
         /** @var mixed[] $dataArray */
@@ -300,7 +307,7 @@ class StrictCollection implements ArrayAccess, Countable, Serializable
     /**
      * Create a type-sensitive collection of items.
      *
-     * @param string[] $allowedTypes Allowed data types of items (optional)
+     * @param array<string|class-string<AllowedType>> $allowedTypes Allowed data types of items
      *
      *                               If empty, all types are allowed.
      *                               Possible values are:
@@ -317,8 +324,6 @@ class StrictCollection implements ArrayAccess, Countable, Serializable
      *                               - "resource"
      *                               - "scalar"
      *                               - "string"
-     *
-     * @return void
      *
      * @throws InvalidArgumentException if any value of `$allowedTypes` is not a string
      */
@@ -365,10 +370,10 @@ class StrictCollection implements ArrayAccess, Countable, Serializable
      */
     public function __unserialize(array $data): void
     {
-        /** @var string[] $allowedTypes */
+        /** @var array<string|class-string<AllowedType>> $allowedTypes */
         $allowedTypes = $data['StrictCollection::allowedTypes'];
         $this->setAllowedTypes($allowedTypes);
-        /** @var array<array-key, AllowedType> $items */
+        /** @var array<Index, AllowedType> $items */
         $items = $data['StrictCollection::items'];
         foreach ($items as $offset => $value) {
             $this->offsetSet($offset, $value);

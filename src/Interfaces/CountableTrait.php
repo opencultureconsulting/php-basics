@@ -36,6 +36,7 @@ use function count;
  * @api
  *
  * @template TValue of mixed
+ *
  * @phpstan-require-implements \Countable
  */
 trait CountableTrait
@@ -52,7 +53,7 @@ trait CountableTrait
     /**
      * Count the data items.
      *
-     * @return int<0, max> The number of data items
+     * @return non-negative-int The number of data items
      *
      * @api
      */

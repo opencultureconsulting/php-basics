@@ -23,10 +23,14 @@ declare(strict_types=1);
 
 namespace OCC\Basics\DataStructures;
 
+use ArrayAccess;
+use Countable;
 use Iterator;
 use OCC\Basics\DataStructures\Exceptions\InvalidDataTypeException;
 use OCC\Basics\Interfaces\IteratorTrait;
 use RuntimeException;
+use Serializable;
+use Traversable;
 
 use function array_key_first;
 use function array_key_last;
@@ -54,13 +58,17 @@ use function sprintf;
  *
  * @api
  *
+ * @template Index of array-key
  * @template AllowedType of mixed
- * @extends StrictCollection<AllowedType>
- * @implements Iterator<AllowedType>
+ *
+ * @extends StrictCollection<Index, AllowedType>
+ * @implements ArrayAccess<Index, AllowedType>
+ * @implements Iterator<Index, AllowedType>
+ * @implements Traversable<Index, AllowedType>
  */
-class StrictArray extends StrictCollection implements Iterator
+class StrictArray extends StrictCollection implements ArrayAccess, Countable, Iterator, Serializable, Traversable
 {
-    /** @use IteratorTrait<AllowedType> */
+    /** @use IteratorTrait<Index, AllowedType> */
     use IteratorTrait;
 
     /**

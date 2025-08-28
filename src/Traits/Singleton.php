@@ -71,8 +71,6 @@ trait Singleton
     /**
      * This is a singleton class, thus the constructor is private.
      *
-     * @return void
-     *
      * @see Singleton::getInstance() to get an singleton object of the class
      */
     abstract private function __construct();

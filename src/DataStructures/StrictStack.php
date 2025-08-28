@@ -23,10 +23,15 @@ declare(strict_types=1);
 
 namespace OCC\Basics\DataStructures;
 
+use ArrayAccess;
+use Countable;
+use Iterator;
 use OCC\Basics\DataStructures\Exceptions\InvalidDataTypeException;
 use OCC\Basics\DataStructures\Traits\StrictSplDoublyLinkedListTrait;
 use RuntimeException;
+use Serializable;
 use SplStack;
+use Traversable;
 
 /**
  * A type-sensitive, taversable stack (LIFO).
@@ -41,9 +46,13 @@ use SplStack;
  * @api
  *
  * @template AllowedType of mixed
+ *
  * @extends SplStack<AllowedType>
+ * @implements ArrayAccess<int, AllowedType>
+ * @implements Iterator<int, AllowedType>
+ * @implements Traversable<int, AllowedType>
  */
-class StrictStack extends SplStack
+class StrictStack extends SplStack implements ArrayAccess, Countable, Iterator, Serializable, Traversable
 {
     /** @use StrictSplDoublyLinkedListTrait<AllowedType> */
     use StrictSplDoublyLinkedListTrait;

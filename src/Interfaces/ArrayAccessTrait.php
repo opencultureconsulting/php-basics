@@ -35,15 +35,17 @@ use function is_null;
  *
  * @api
  *
+ * @template TKey of array-key
  * @template TValue of mixed
- * @phpstan-require-implements \ArrayAccess
+ *
+ * @phpstan-require-implements \ArrayAccess<TKey, TValue>
  */
 trait ArrayAccessTrait
 {
     /**
      * Holds the array-accessible data.
      *
-     * @var TValue[]
+     * @var array<TKey, TValue>
      *
      * @internal
      */
@@ -52,7 +54,7 @@ trait ArrayAccessTrait
     /**
      * Check if the specified offset exists.
      *
-     * @param array-key $offset The offset to check for
+     * @param TKey $offset The offset to check for
      *
      * @return bool Whether the offset exists
      *
@@ -66,7 +68,7 @@ trait ArrayAccessTrait
     /**
      * Retrieve data at the specified offset.
      *
-     * @param array-key $offset The offset to retrieve
+     * @param TKey $offset The offset to retrieve
      *
      * @return ?TValue The value at the offset or NULL if invalid
      *
@@ -80,7 +82,7 @@ trait ArrayAccessTrait
     /**
      * Assign a value to the specified offset.
      *
-     * @param ?array-key $offset The offset to assign to or NULL to append
+     * @param ?TKey $offset The offset to assign to or NULL to append
      * @param TValue $value The value to set
      *
      * @return void
@@ -99,7 +101,7 @@ trait ArrayAccessTrait
     /**
      * Unset the specified offset.
      *
-     * @param array-key $offset The offset to unset
+     * @param TKey $offset The offset to unset
      *
      * @return void
      *

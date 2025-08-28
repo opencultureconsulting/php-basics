@@ -23,10 +23,15 @@ declare(strict_types=1);
 
 namespace OCC\Basics\DataStructures;
 
+use ArrayAccess;
+use Countable;
+use Iterator;
 use OCC\Basics\DataStructures\Exceptions\InvalidDataTypeException;
 use OCC\Basics\DataStructures\Traits\StrictSplDoublyLinkedListTrait;
 use RuntimeException;
+use Serializable;
 use SplQueue;
+use Traversable;
 
 /**
  * A type-sensitive, taversable queue (FIFO).
@@ -41,9 +46,13 @@ use SplQueue;
  * @api
  *
  * @template AllowedType of mixed
+ *
  * @extends SplQueue<AllowedType>
+ * @implements ArrayAccess<int, AllowedType>
+ * @implements Iterator<int, AllowedType>
+ * @implements Traversable<int, AllowedType>
  */
-class StrictQueue extends SplQueue
+class StrictQueue extends SplQueue implements ArrayAccess, Countable, Iterator, Serializable, Traversable
 {
     /** @use StrictSplDoublyLinkedListTrait<AllowedType> */
     use StrictSplDoublyLinkedListTrait;
@@ -57,6 +66,7 @@ class StrictQueue extends SplQueue
      *
      * @api
      */
+    #[\Override]
     public function dequeue(): mixed
     {
         return $this->shift();
@@ -73,6 +83,7 @@ class StrictQueue extends SplQueue
      *
      * @api
      */
+    #[\Override]
     public function enqueue(mixed $value): void
     {
         $this->push($value);
