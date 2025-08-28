@@ -66,7 +66,7 @@ class StrictCollection implements ArrayAccess, Countable, Serializable
 {
     /** @use ArrayAccessTrait<Index, AllowedType> */
     use ArrayAccessTrait;
-    /** @use CountableTrait<AllowedType> */
+    /** @use CountableTrait<Index, AllowedType> */
     use CountableTrait;
     /** @use TypeChecker<AllowedType, array<string|class-string<AllowedType>>> */
     use TypeChecker {

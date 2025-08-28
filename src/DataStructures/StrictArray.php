@@ -25,12 +25,11 @@ namespace OCC\Basics\DataStructures;
 
 use ArrayAccess;
 use Countable;
-use Iterator;
+use IteratorAggregate;
 use OCC\Basics\DataStructures\Exceptions\InvalidDataTypeException;
-use OCC\Basics\Interfaces\IteratorTrait;
+use OCC\Basics\Interfaces\IteratorAggregateTrait;
 use RuntimeException;
 use Serializable;
-use Traversable;
 
 use function array_key_first;
 use function array_key_last;
@@ -63,13 +62,12 @@ use function sprintf;
  *
  * @extends StrictCollection<Index, AllowedType>
  * @implements ArrayAccess<Index, AllowedType>
- * @implements Iterator<Index, AllowedType>
- * @implements Traversable<Index, AllowedType>
+ * @implements IteratorAggregate<Index, AllowedType>
  */
-class StrictArray extends StrictCollection implements ArrayAccess, Countable, Iterator, Serializable, Traversable
+class StrictArray extends StrictCollection implements ArrayAccess, Countable, IteratorAggregate, Serializable
 {
-    /** @use IteratorTrait<Index, AllowedType> */
-    use IteratorTrait;
+    /** @use IteratorAggregateTrait<Index, AllowedType> */
+    use IteratorAggregateTrait;
 
     /**
      * Peek at the first item of the array.
@@ -131,6 +129,7 @@ class StrictArray extends StrictCollection implements ArrayAccess, Countable, It
                 )
             );
         }
+        /** @psalm-suppress InvalidPropertyAssignmentValue */
         array_push($this->_data, $value);
     }
 
@@ -194,6 +193,7 @@ class StrictArray extends StrictCollection implements ArrayAccess, Countable, It
                 )
             );
         }
+        /** @psalm-suppress InvalidPropertyAssignmentValue */
         array_unshift($this->_data, $value);
     }
 }

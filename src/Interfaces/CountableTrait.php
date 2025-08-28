@@ -35,6 +35,7 @@ use function count;
  *
  * @api
  *
+ * @template TKey of array-key
  * @template TValue of mixed
  *
  * @phpstan-require-implements \Countable
@@ -44,7 +45,7 @@ trait CountableTrait
     /**
      * Holds the countable data.
      *
-     * @var TValue[]
+     * @var array<TKey, TValue>
      *
      * @internal
      */

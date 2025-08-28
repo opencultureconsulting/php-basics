@@ -40,15 +40,17 @@ use function reset;
  *
  * @api
  *
+ * @template TKey of array-key
  * @template TValue of mixed
- * @phpstan-require-implements \Iterator
+ *
+ * @phpstan-require-implements \Iterator<TKey, TValue>
  */
 trait IteratorTrait
 {
     /**
      * Holds the iterable data.
      *
-     * @var TValue[]
+     * @var array<TKey, TValue>
      *
      * @internal
      */
@@ -57,26 +59,24 @@ trait IteratorTrait
     /**
      * Return the current item.
      *
-     * @return ?TValue The current item or NULL if invalid
+     * @return TValue|false The current item or FALSE if invalid
      *
      * @api
      */
+    #[\ReturnTypeWillChange]
     public function current(): mixed
     {
-        if ($this->valid()) {
-            /** @var TValue */
-            return current($this->_data);
-        }
-        return null;
+        return current($this->_data);
     }
 
     /**
      * Return the current key.
      *
-     * @return ?array-key The current key or NULL if invalid
+     * @return ?TKey The current key or NULL if invalid
      *
      * @api
      */
+    #[\ReturnTypeWillChange]
     public function key(): mixed
     {
         return key($this->_data);
@@ -124,6 +124,9 @@ trait IteratorTrait
      * @return bool Whether the current position is valid
      *
      * @api
+     *
+     * @phpstan-assert-if-true TValue $this->current()
+     * @phpstan-assert-if-true !null $this->key()
      */
     public function valid(): bool
     {

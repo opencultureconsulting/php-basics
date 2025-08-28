@@ -46,10 +46,12 @@ use function unserialize;
  * @package Basics\DataStructures
  *
  * @template AllowedType of mixed
- * @phpstan-require-extends \SplDoublyLinkedList
+ *
+ * @phpstan-require-extends \SplDoublyLinkedList<AllowedType>
  */
 trait StrictSplDoublyLinkedListTrait
 {
+    /** @use TypeChecker<AllowedType, array<string|class-string<AllowedType>>> */
     use TypeChecker {
         setAllowedTypes as protected;
     }
@@ -85,13 +87,12 @@ trait StrictSplDoublyLinkedListTrait
      */
     public function append(mixed ...$values): void
     {
-        /** @var array<int, AllowedType> $values */
         foreach ($values as $count => $value) {
             if (!$this->hasAllowedType($value)) {
                 throw new InvalidDataTypeException(
                     sprintf(
                         'Parameter %d must be an allowed type, %s given.',
-                        $count + 1,
+                        (int) $count + 1,
                         get_debug_type($value)
                     )
                 );
@@ -185,13 +186,12 @@ trait StrictSplDoublyLinkedListTrait
      */
     public function prepend(mixed ...$values): void
     {
-        /** @var array<int, AllowedType> $values */
         foreach ($values as $count => $value) {
             if (!$this->hasAllowedType($value)) {
                 throw new InvalidDataTypeException(
                     sprintf(
                         'Parameter %d must be an allowed type, %s given.',
-                        $count + 1,
+                        (int) $count + 1,
                         get_debug_type($value)
                     )
                 );
@@ -274,24 +274,25 @@ trait StrictSplDoublyLinkedListTrait
     /**
      * Return array representation of list.
      *
-     * @return array<int, AllowedType> Array of list items
+     * @return list<AllowedType> Array of list items
      *
      * @api
      */
     public function toArray(): array
     {
-        return iterator_to_array($this, true);
+        return iterator_to_array($this, false);
     }
 
     /**
      * Turn list into a type-sensitive collection.
      *
-     * @return StrictCollection<AllowedType> A type-sensitive collection of the list's items
+     * @return StrictCollection<int, AllowedType> A type-sensitive collection of the list's items
      *
      * @api
      */
     public function toStrictCollection(): StrictCollection
     {
+        /** @var StrictCollection<int, AllowedType> $strictCollection */
         $strictCollection = new StrictCollection($this->getAllowedTypes());
         foreach ($this->toArray() as $offset => $value) {
             $strictCollection[$offset] = $value;
@@ -342,7 +343,7 @@ trait StrictSplDoublyLinkedListTrait
     /**
      * Create a type-sensitive, traversable list of items.
      *
-     * @param string[] $allowedTypes Allowed data types of items (optional)
+     * @param array<string|class-string<AllowedType>> $allowedTypes Allowed data types of items
      *
      *                               If empty, all types are allowed.
      *                               Possible values are:
@@ -359,8 +360,6 @@ trait StrictSplDoublyLinkedListTrait
      *                               - "resource"
      *                               - "scalar"
      *                               - "string"
-     *
-     * @return void
      *
      * @throws InvalidArgumentException if any value of `$allowedTypes` is not a string
      */
@@ -410,10 +409,10 @@ trait StrictSplDoublyLinkedListTrait
      */
     public function __unserialize(array $data): void
     {
-        /** @var string[] $allowedTypes */
+        /** @var array<string|class-string<AllowedType>> $allowedTypes */
         $allowedTypes = $data['StrictSplDatastructure::allowedTypes'];
         $this->setAllowedTypes($allowedTypes);
-        /** @var array<int, AllowedType> $values */
+        /** @var list<AllowedType> $values */
         $values = $data['StrictSplDatastructure::dllist'];
         $this->append(...$values);
         /** @var int $flags */

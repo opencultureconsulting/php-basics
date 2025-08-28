@@ -44,10 +44,10 @@ use function is_iterable;
 use function is_long;
 use function is_null;
 use function is_numeric;
+use function is_object;
 use function is_resource;
 use function is_scalar;
 use function is_string;
-use function is_object;
 use function ltrim;
 
 /**
@@ -61,13 +61,16 @@ use function ltrim;
  * @package Basics\Traits
  *
  * @api
+ *
+ * @template AllowedType of mixed
+ * @template AllowedTypes of array<string|class-string<AllowedType>>
  */
 trait TypeChecker
 {
     /**
      * The allowed data types.
      *
-     * @var string[]
+     * @var AllowedTypes
      *
      * @internal
      */
@@ -76,7 +79,7 @@ trait TypeChecker
     /**
      * Get allowed data types.
      *
-     * @return string[] The list of allowed data types
+     * @return AllowedTypes The list of allowed data types
      *
      * @api
      */
@@ -104,7 +107,6 @@ trait TypeChecker
             if (function_exists($function) && $function($value)) {
                 return true;
             }
-            /** @var class-string $fqcn */
             $fqcn = ltrim($type, '\\');
             if (is_object($value) && is_a($value, $fqcn)) {
                 return true;
@@ -130,7 +132,7 @@ trait TypeChecker
     /**
      * Set allowed data types.
      *
-     * @param string[] $allowedTypes Allowed data types
+     * @param AllowedTypes $allowedTypes Allowed data types
      *
      * @return void
      *
@@ -140,6 +142,7 @@ trait TypeChecker
      */
     public function setAllowedTypes(array $allowedTypes = []): void
     {
+        /** @psalm-suppress RedundantCondition */
         if (array_sum(array_map('is_string', $allowedTypes)) !== count($allowedTypes)) {
             throw new InvalidArgumentException(
                 'Allowed types must be array of strings or empty array.'

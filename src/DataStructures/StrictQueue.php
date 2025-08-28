@@ -31,7 +31,6 @@ use OCC\Basics\DataStructures\Traits\StrictSplDoublyLinkedListTrait;
 use RuntimeException;
 use Serializable;
 use SplQueue;
-use Traversable;
 
 /**
  * A type-sensitive, taversable queue (FIFO).
@@ -50,9 +49,8 @@ use Traversable;
  * @extends SplQueue<AllowedType>
  * @implements ArrayAccess<int, AllowedType>
  * @implements Iterator<int, AllowedType>
- * @implements Traversable<int, AllowedType>
  */
-class StrictQueue extends SplQueue implements ArrayAccess, Countable, Iterator, Serializable, Traversable
+class StrictQueue extends SplQueue implements ArrayAccess, Countable, Iterator, Serializable
 {
     /** @use StrictSplDoublyLinkedListTrait<AllowedType> */
     use StrictSplDoublyLinkedListTrait;
