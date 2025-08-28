@@ -182,9 +182,9 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Interfaces/IteratorAggregateTrait.php"><a href="files/src-interfaces-iteratoraggregatetrait.html"><abbr title="src/Interfaces/IteratorAggregateTrait.php">IteratorAggregateTrait.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">41</span>
+    <span class="phpdocumentor-element-found-in__line">43</span>
 
-            <a href="classes/OCC-Basics-Interfaces-IteratorAggregateTrait.html#source-view.41" class="phpdocumentor-element-found-in__source" data-line="41" data-modal="source-view" data-src="files/src/Interfaces/IteratorAggregateTrait.php.txt"></a>
+            <a href="classes/OCC-Basics-Interfaces-IteratorAggregateTrait.html#source-view.43" class="phpdocumentor-element-found-in__source" data-line="43" data-modal="source-view" data-src="files/src/Interfaces/IteratorAggregateTrait.php.txt"></a>
     </aside>
 
             <p class="phpdocumentor-summary">A generic implementation of the IteratorAggregate interface.</p>
@@ -214,11 +214,16 @@
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
                                                                                 
-                                                 <section class="phpdocumentor-description"><p>TValue of mixed</p>
-</section>
-
+                                             
                                     </dd>
-                                                                </dl>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">template</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                             
+                                    </dd>
+                                            </dl>
 
 
 
@@ -248,7 +253,7 @@
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/OCC-Basics-Interfaces-IteratorAggregateTrait.html#method_getIterator">getIterator()</a>
     <span>
-                                &nbsp;: <abbr title="\ArrayIterator">ArrayIterator</abbr>&lt;string|int, <abbr title="\OCC\Basics\Interfaces\TValue">TValue</abbr>&gt;    </span>
+                                &nbsp;: <abbr title="\ArrayIterator">ArrayIterator</abbr>&lt;<abbr title="\OCC\Basics\Interfaces\TKey">TKey</abbr>, <abbr title="\OCC\Basics\Interfaces\TValue">TValue</abbr>&gt;    </span>
 </dt>
 <dd>Retrieve an external iterator.</dd>
 
@@ -281,16 +286,16 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Interfaces/IteratorAggregateTrait.php"><a href="files/src-interfaces-iteratoraggregatetrait.html"><abbr title="src/Interfaces/IteratorAggregateTrait.php">IteratorAggregateTrait.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">59</span>
+    <span class="phpdocumentor-element-found-in__line">61</span>
 
-            <a href="classes/OCC-Basics-Interfaces-IteratorAggregateTrait.html#source-view.59" class="phpdocumentor-element-found-in__source" data-line="59" data-modal="source-view" data-src="files/src/Interfaces/IteratorAggregateTrait.php.txt"></a>
+            <a href="classes/OCC-Basics-Interfaces-IteratorAggregateTrait.html#source-view.61" class="phpdocumentor-element-found-in__source" data-line="61" data-modal="source-view" data-src="files/src/Interfaces/IteratorAggregateTrait.php.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Retrieve an external iterator.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getIterator</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\ArrayIterator">ArrayIterator</abbr>&lt;string|int, <abbr title="\OCC\Basics\Interfaces\TValue">TValue</abbr>&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">getIterator</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\ArrayIterator">ArrayIterator</abbr>&lt;<abbr title="\OCC\Basics\Interfaces\TKey">TKey</abbr>, <abbr title="\OCC\Basics\Interfaces\TValue">TValue</abbr>&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
             <div class="phpdocumentor-label phpdocumentor-label--success"><span>API</span><span>Yes</span></div>
@@ -305,7 +310,7 @@
 
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><abbr title="\ArrayIterator">ArrayIterator</abbr>&lt;string|int, <abbr title="\OCC\Basics\Interfaces\TValue">TValue</abbr>&gt;</span>
+        <span class="phpdocumentor-signature__response_type"><abbr title="\ArrayIterator">ArrayIterator</abbr>&lt;<abbr title="\OCC\Basics\Interfaces\TKey">TKey</abbr>, <abbr title="\OCC\Basics\Interfaces\TValue">TValue</abbr>&gt;</span>
                     &mdash;
                 <section class="phpdocumentor-description"><p>New iterator for the data array</p>
 </section>
@@ -351,6 +356,8 @@
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

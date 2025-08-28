@@ -182,9 +182,9 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Interfaces/IteratorTrait.php"><a href="files/src-interfaces-iteratortrait.html"><abbr title="src/Interfaces/IteratorTrait.php">IteratorTrait.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">46</span>
+    <span class="phpdocumentor-element-found-in__line">48</span>
 
-            <a href="classes/OCC-Basics-Interfaces-IteratorTrait.html#source-view.46" class="phpdocumentor-element-found-in__source" data-line="46" data-modal="source-view" data-src="files/src/Interfaces/IteratorTrait.php.txt"></a>
+            <a href="classes/OCC-Basics-Interfaces-IteratorTrait.html#source-view.48" class="phpdocumentor-element-found-in__source" data-line="48" data-modal="source-view" data-src="files/src/Interfaces/IteratorTrait.php.txt"></a>
     </aside>
 
             <p class="phpdocumentor-summary">A generic implementation of the Iterator interface.</p>
@@ -214,11 +214,16 @@
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
                                                                                 
-                                                 <section class="phpdocumentor-description"><p>TValue of mixed</p>
-</section>
-
+                                             
                                     </dd>
-                                                                </dl>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">template</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                             
+                                    </dd>
+                                            </dl>
 
 
 
@@ -248,14 +253,14 @@
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/OCC-Basics-Interfaces-IteratorTrait.html#method_current">current()</a>
     <span>
-                                &nbsp;: <abbr title="\OCC\Basics\Interfaces\TValue">TValue</abbr>|null    </span>
+                                &nbsp;: <abbr title="\OCC\Basics\Interfaces\TValue">TValue</abbr>|false    </span>
 </dt>
 <dd>Return the current item.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/OCC-Basics-Interfaces-IteratorTrait.html#method_key">key()</a>
     <span>
-                                &nbsp;: string|int|null    </span>
+                                &nbsp;: <abbr title="\OCC\Basics\Interfaces\TKey">TKey</abbr>|null    </span>
 </dt>
 <dd>Return the current key.</dd>
 
@@ -316,16 +321,16 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Interfaces/IteratorTrait.php"><a href="files/src-interfaces-iteratortrait.html"><abbr title="src/Interfaces/IteratorTrait.php">IteratorTrait.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">64</span>
+    <span class="phpdocumentor-element-found-in__line">66</span>
 
-            <a href="classes/OCC-Basics-Interfaces-IteratorTrait.html#source-view.64" class="phpdocumentor-element-found-in__source" data-line="64" data-modal="source-view" data-src="files/src/Interfaces/IteratorTrait.php.txt"></a>
+            <a href="classes/OCC-Basics-Interfaces-IteratorTrait.html#source-view.66" class="phpdocumentor-element-found-in__source" data-line="66" data-modal="source-view" data-src="files/src/Interfaces/IteratorTrait.php.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Return the current item.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">current</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\OCC\Basics\Interfaces\TValue">TValue</abbr>|null</span></code>
+                    <span class="phpdocumentor-signature__name">current</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\OCC\Basics\Interfaces\TValue">TValue</abbr>|false</span></code>
 
     <div class="phpdocumentor-label-line">
             <div class="phpdocumentor-label phpdocumentor-label--success"><span>API</span><span>Yes</span></div>
@@ -337,12 +342,23 @@
     
 
     
+    <section class="phpdocumentor-attributes">
+        <h5 class="phpdocumentor-elements__header" id="attributes">
+            Attributes <a href="classes/OCC-Basics-Interfaces-IteratorTrait.html#method_current#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+
+        </h5>
+                    <dl class="phpdocumentor-argument-list">
+    <dt class="phpdocumentor-argument-list__entry">
+        #[<abbr title="\ReturnTypeWillChange">ReturnTypeWillChange</abbr>]
+    </dt>
+    </dl>
+            </section>
 
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><abbr title="\OCC\Basics\Interfaces\TValue">TValue</abbr>|null</span>
+        <span class="phpdocumentor-signature__response_type"><abbr title="\OCC\Basics\Interfaces\TValue">TValue</abbr>|false</span>
                     &mdash;
-                <section class="phpdocumentor-description"><p>The current item or NULL if invalid</p>
+                <section class="phpdocumentor-description"><p>The current item or FALSE if invalid</p>
 </section>
 
             </section>
@@ -362,16 +378,16 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Interfaces/IteratorTrait.php"><a href="files/src-interfaces-iteratortrait.html"><abbr title="src/Interfaces/IteratorTrait.php">IteratorTrait.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">80</span>
+    <span class="phpdocumentor-element-found-in__line">79</span>
 
-            <a href="classes/OCC-Basics-Interfaces-IteratorTrait.html#source-view.80" class="phpdocumentor-element-found-in__source" data-line="80" data-modal="source-view" data-src="files/src/Interfaces/IteratorTrait.php.txt"></a>
+            <a href="classes/OCC-Basics-Interfaces-IteratorTrait.html#source-view.79" class="phpdocumentor-element-found-in__source" data-line="79" data-modal="source-view" data-src="files/src/Interfaces/IteratorTrait.php.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Return the current key.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">key</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string|int|null</span></code>
+                    <span class="phpdocumentor-signature__name">key</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\OCC\Basics\Interfaces\TKey">TKey</abbr>|null</span></code>
 
     <div class="phpdocumentor-label-line">
             <div class="phpdocumentor-label phpdocumentor-label--success"><span>API</span><span>Yes</span></div>
@@ -383,10 +399,21 @@
     
 
     
+    <section class="phpdocumentor-attributes">
+        <h5 class="phpdocumentor-elements__header" id="attributes">
+            Attributes <a href="classes/OCC-Basics-Interfaces-IteratorTrait.html#method_key#attributes" class="headerlink"><i class="fas fa-link"></i></a>
+
+        </h5>
+                    <dl class="phpdocumentor-argument-list">
+    <dt class="phpdocumentor-argument-list__entry">
+        #[<abbr title="\ReturnTypeWillChange">ReturnTypeWillChange</abbr>]
+    </dt>
+    </dl>
+            </section>
 
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">string|int|null</span>
+        <span class="phpdocumentor-signature__response_type"><abbr title="\OCC\Basics\Interfaces\TKey">TKey</abbr>|null</span>
                     &mdash;
                 <section class="phpdocumentor-description"><p>The current key or NULL if invalid</p>
 </section>
@@ -522,9 +549,9 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Interfaces/IteratorTrait.php"><a href="files/src-interfaces-iteratortrait.html"><abbr title="src/Interfaces/IteratorTrait.php">IteratorTrait.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">128</span>
+    <span class="phpdocumentor-element-found-in__line">131</span>
 
-            <a href="classes/OCC-Basics-Interfaces-IteratorTrait.html#source-view.128" class="phpdocumentor-element-found-in__source" data-line="128" data-modal="source-view" data-src="files/src/Interfaces/IteratorTrait.php.txt"></a>
+            <a href="classes/OCC-Basics-Interfaces-IteratorTrait.html#source-view.131" class="phpdocumentor-element-found-in__source" data-line="131" data-modal="source-view" data-src="files/src/Interfaces/IteratorTrait.php.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Check if current position is valid.</p>
@@ -541,6 +568,31 @@
     
     
     
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/OCC-Basics-Interfaces-IteratorTrait.html#method_valid#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">phpstan-assert-if-true</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>TValue $this-&gt;current()</p>
+</section>
+
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">phpstan-assert-if-true</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>!null $this-&gt;key()</p>
+</section>
+
+                                    </dd>
+                                            </dl>
 
     
 
@@ -592,6 +644,8 @@
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

@@ -38,7 +38,7 @@ use function error_reporting;
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package Basics\ErrorHandlers
  */
-class ThrowErrorException
+final class ThrowErrorException
 {
     /**
      * Convert an internal PHP error into an ErrorException.

@@ -6,6 +6,16 @@ Changelog
 .. sidebar:: Table of Contents
   .. contents::
 
+v2.1.3
+======
+
+**Maintenance:**
+
+* Updated development dependencies
+* Raised PHPStan rule level to 10
+* Updated links to `documentation <https://code.opencultureconsulting.com/php-basics/>`_
+* Used more generics in PHPStan and Psalm type-hints
+
 v2.1.2
 ======
 
@@ -22,7 +32,7 @@ v2.1.1
 
 **Minor Changes:**
 
-* Extended `documentation <https://opencultureconsulting.github.io/php-basics/>`_
+* Extended `documentation <https://code.opencultureconsulting.com/php-basics/>`_
 
 v2.1.0
 ======
@@ -77,7 +87,7 @@ v2.0.0
 
 **Minor Changes:**
 
-* Extended `documentation <https://opencultureconsulting.github.io/php-basics/>`_
+* Extended `documentation <https://code.opencultureconsulting.com/php-basics/>`_
 
 v1.1.0
 ======

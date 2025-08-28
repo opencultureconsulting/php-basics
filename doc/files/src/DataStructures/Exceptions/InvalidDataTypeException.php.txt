@@ -34,6 +34,6 @@ use DomainException;
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package Basics\DataStructures
  */
-class InvalidDataTypeException extends DomainException
+final class InvalidDataTypeException extends DomainException
 {
 }

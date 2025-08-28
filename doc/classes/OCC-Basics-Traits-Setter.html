@@ -217,7 +217,7 @@ to in a context where it normally would not be accessible.</p>
 </section>
 
                                     </dd>
-                                                                </dl>
+                                            </dl>
 
 
 
@@ -433,6 +433,8 @@ to in a context where it normally would not be accessible.</p>
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

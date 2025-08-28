@@ -31,7 +31,7 @@ use function trigger_error;
 /**
  * Triggers errors for uncaught exceptions.
  *
- * If registered as exception handler, this catches an uncaught exception and
+ * If registered as exception handler, this catches any uncaught exception and
  * converts it into an internal PHP error of severity `E_USER_ERROR`.
  *
  * > Usage: `set_exception_handler(new TriggerExceptionError());`
@@ -39,7 +39,7 @@ use function trigger_error;
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package Basics\ErrorHandlers
  */
-class TriggerExceptionError
+final class TriggerExceptionError
 {
     /**
      * Convert an uncaught exception into an PHP error.

@@ -333,7 +333,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\OCC\\Basics\\Traits\\Getter\u003A\u003A__isset\u0028\u0029",
             "name": "__isset",
-            "summary": "Check\u0020if\u0020an\u0020inaccessible\u0020property\u0020is\u0020set\u0020and\u0020not\u0020empty.",
+            "summary": "Check\u0020if\u0020an\u0020inaccessible\u0020property\u0020is\u0020set.",
             "url": "classes/OCC-Basics-Traits-Getter.html#method___isset"
         },                {
             "fqsen": "\\OCC\\Basics\\Traits\\OverloadingGetter",
@@ -348,7 +348,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\OCC\\Basics\\Traits\\OverloadingGetter\u003A\u003A__isset\u0028\u0029",
             "name": "__isset",
-            "summary": "Check\u0020if\u0020an\u0020overloaded\u0020property\u0020is\u0020set\u0020and\u0020not\u0020empty.",
+            "summary": "Check\u0020if\u0020an\u0020overloaded\u0020property\u0020is\u0020set.",
             "url": "classes/OCC-Basics-Traits-OverloadingGetter.html#method___isset"
         },                {
             "fqsen": "\\OCC\\Basics\\Traits\\OverloadingSetter",

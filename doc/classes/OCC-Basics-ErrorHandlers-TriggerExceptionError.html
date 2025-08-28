@@ -192,6 +192,8 @@
 
 <div class="phpdocumentor-label-line">
 
+    <div class="phpdocumentor-label phpdocumentor-label--success"><span>Final</span><span>Yes</span></div>
+
 
 </div>
 
@@ -206,7 +208,7 @@
             <p class="phpdocumentor-summary">Triggers errors for uncaught exceptions.</p>
 
 
-    <section class="phpdocumentor-description"><p>If registered as exception handler, this catches an uncaught exception and
+    <section class="phpdocumentor-description"><p>If registered as exception handler, this catches any uncaught exception and
 converts it into an internal PHP error of severity <code class="prettyprint">E_USER_ERROR</code>.</p>
 <blockquote>
 <p>Usage: <code class="prettyprint">set_exception_handler(new TriggerExceptionError());</code></p>
@@ -363,6 +365,8 @@ converts it into an internal PHP error of severity <code class="prettyprint">E_U
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

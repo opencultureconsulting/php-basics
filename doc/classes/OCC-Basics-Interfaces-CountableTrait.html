@@ -182,9 +182,9 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Interfaces/CountableTrait.php"><a href="files/src-interfaces-countabletrait.html"><abbr title="src/Interfaces/CountableTrait.php">CountableTrait.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">41</span>
+    <span class="phpdocumentor-element-found-in__line">43</span>
 
-            <a href="classes/OCC-Basics-Interfaces-CountableTrait.html#source-view.41" class="phpdocumentor-element-found-in__source" data-line="41" data-modal="source-view" data-src="files/src/Interfaces/CountableTrait.php.txt"></a>
+            <a href="classes/OCC-Basics-Interfaces-CountableTrait.html#source-view.43" class="phpdocumentor-element-found-in__source" data-line="43" data-modal="source-view" data-src="files/src/Interfaces/CountableTrait.php.txt"></a>
     </aside>
 
             <p class="phpdocumentor-summary">A generic implementation of the Countable interface.</p>
@@ -214,11 +214,16 @@
                 </dt>
                 <dd class="phpdocumentor-tag-list__definition">
                                                                                 
-                                                 <section class="phpdocumentor-description"><p>TValue of mixed</p>
-</section>
-
+                                             
                                     </dd>
-                                                                </dl>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">template</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                             
+                                    </dd>
+                                            </dl>
 
 
 
@@ -248,7 +253,7 @@
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/OCC-Basics-Interfaces-CountableTrait.html#method_count">count()</a>
     <span>
-                                &nbsp;: int<0, max>    </span>
+                                &nbsp;: int    </span>
 </dt>
 <dd>Count the data items.</dd>
 
@@ -281,16 +286,16 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Interfaces/CountableTrait.php"><a href="files/src-interfaces-countabletrait.html"><abbr title="src/Interfaces/CountableTrait.php">CountableTrait.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">59</span>
+    <span class="phpdocumentor-element-found-in__line">61</span>
 
-            <a href="classes/OCC-Basics-Interfaces-CountableTrait.html#source-view.59" class="phpdocumentor-element-found-in__source" data-line="59" data-modal="source-view" data-src="files/src/Interfaces/CountableTrait.php.txt"></a>
+            <a href="classes/OCC-Basics-Interfaces-CountableTrait.html#source-view.61" class="phpdocumentor-element-found-in__source" data-line="61" data-modal="source-view" data-src="files/src/Interfaces/CountableTrait.php.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Count the data items.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">count</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int<0, max></span></code>
+                    <span class="phpdocumentor-signature__name">count</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
 
     <div class="phpdocumentor-label-line">
             <div class="phpdocumentor-label phpdocumentor-label--success"><span>API</span><span>Yes</span></div>
@@ -305,11 +310,7 @@
 
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">int<0, max></span>
-                    &mdash;
-                <section class="phpdocumentor-description"><p>The number of data items</p>
-</section>
-
+        <span class="phpdocumentor-signature__response_type">int</span>
             </section>
 
 </article>
@@ -351,6 +352,8 @@
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

@@ -23,7 +23,11 @@ declare(strict_types=1);
 
 namespace OCC\Basics\DataStructures;
 
+use ArrayAccess;
+use Countable;
+use Iterator;
 use OCC\Basics\DataStructures\Traits\StrictSplDoublyLinkedListTrait;
+use Serializable;
 use SplDoublyLinkedList;
 
 /**
@@ -39,9 +43,12 @@ use SplDoublyLinkedList;
  * @api
  *
  * @template AllowedType of mixed
+ *
  * @extends SplDoublyLinkedList<AllowedType>
+ * @implements ArrayAccess<int, AllowedType>
+ * @implements Iterator<int, AllowedType>
  */
-class StrictList extends SplDoublyLinkedList
+class StrictList extends SplDoublyLinkedList implements ArrayAccess, Countable, Iterator, Serializable
 {
     /** @use StrictSplDoublyLinkedListTrait<AllowedType> */
     use StrictSplDoublyLinkedListTrait;

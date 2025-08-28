@@ -182,9 +182,9 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Traits/OverloadingGetter.php"><a href="files/src-traits-overloadinggetter.html"><abbr title="src/Traits/OverloadingGetter.php">OverloadingGetter.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">39</span>
+    <span class="phpdocumentor-element-found-in__line">37</span>
 
-            <a href="classes/OCC-Basics-Traits-OverloadingGetter.html#source-view.39" class="phpdocumentor-element-found-in__source" data-line="39" data-modal="source-view" data-src="files/src/Traits/OverloadingGetter.php.txt"></a>
+            <a href="classes/OCC-Basics-Traits-OverloadingGetter.html#source-view.37" class="phpdocumentor-element-found-in__source" data-line="37" data-modal="source-view" data-src="files/src/Traits/OverloadingGetter.php.txt"></a>
     </aside>
 
             <p class="phpdocumentor-summary">Overloads a class with readable magic properties.</p>
@@ -213,7 +213,7 @@ as property names.</p>
 </section>
 
                                     </dd>
-                                                                </dl>
+                                            </dl>
 
 
 
@@ -252,7 +252,7 @@ as property names.</p>
     <span>
                                 &nbsp;: bool    </span>
 </dt>
-<dd>Check if an overloaded property is set and not empty.</dd>
+<dd>Check if an overloaded property is set.</dd>
 
     </dl>
 
@@ -283,9 +283,9 @@ as property names.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Traits/OverloadingGetter.php"><a href="files/src-traits-overloadinggetter.html"><abbr title="src/Traits/OverloadingGetter.php">OverloadingGetter.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">57</span>
+    <span class="phpdocumentor-element-found-in__line">55</span>
 
-            <a href="classes/OCC-Basics-Traits-OverloadingGetter.html#source-view.57" class="phpdocumentor-element-found-in__source" data-line="57" data-modal="source-view" data-src="files/src/Traits/OverloadingGetter.php.txt"></a>
+            <a href="classes/OCC-Basics-Traits-OverloadingGetter.html#source-view.55" class="phpdocumentor-element-found-in__source" data-line="55" data-modal="source-view" data-src="files/src/Traits/OverloadingGetter.php.txt"></a>
     </aside>
 
         <p class="phpdocumentor-summary">Read data from an overloaded property.</p>
@@ -339,12 +339,12 @@ as property names.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Traits/OverloadingGetter.php"><a href="files/src-traits-overloadinggetter.html"><abbr title="src/Traits/OverloadingGetter.php">OverloadingGetter.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">69</span>
+    <span class="phpdocumentor-element-found-in__line">67</span>
 
-            <a href="classes/OCC-Basics-Traits-OverloadingGetter.html#source-view.69" class="phpdocumentor-element-found-in__source" data-line="69" data-modal="source-view" data-src="files/src/Traits/OverloadingGetter.php.txt"></a>
+            <a href="classes/OCC-Basics-Traits-OverloadingGetter.html#source-view.67" class="phpdocumentor-element-found-in__source" data-line="67" data-modal="source-view" data-src="files/src/Traits/OverloadingGetter.php.txt"></a>
     </aside>
 
-        <p class="phpdocumentor-summary">Check if an overloaded property is set and not empty.</p>
+        <p class="phpdocumentor-summary">Check if an overloaded property is set.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -375,7 +375,7 @@ as property names.</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">bool</span>
                     &mdash;
-                <section class="phpdocumentor-description"><p>Whether the class property is set and not empty</p>
+                <section class="phpdocumentor-description"><p>Whether the class property is set</p>
 </section>
 
             </section>
@@ -419,6 +419,8 @@ as property names.</p>
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 
