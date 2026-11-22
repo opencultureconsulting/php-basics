@@ -39,16 +39,16 @@
         "docs": "https://code.opencultureconsulting.com/php-basics/"
     },
     "require": {
-        "php": "^8.1"
+        "php": "^8.2"
     },
     "require-dev": {
-        "phpdocumentor/shim": "^3.8",
-        "phpmd/phpmd": "^2.15",
-        "phpstan/phpstan": "^2.1",
-        "phpstan/phpstan-strict-rules": "^2.0",
-        "friendsofphp/php-cs-fixer": "^3.85",
-        "squizlabs/php_codesniffer": "^4.0",
-        "vimeo/psalm": "^6.13"
+        "phpdocumentor/shim": "~3.10.0",
+        "phpmd/phpmd": "~3.0.0",
+        "phpstan/phpstan": "~2.3.7",
+        "phpstan/phpstan-strict-rules": "~2.1.1",
+        "friendsofphp/php-cs-fixer": "~3.95.32",
+        "squizlabs/php_codesniffer": "~4.0.4",
+        "vimeo/psalm": "~7.16.0"
     },
     "autoload": {
         "psr-4": {
@@ -75,7 +75,7 @@
         ],
         "phpmd:check": [
             "@php -r \"if (!file_exists('./.phpmd.xml')) { copy('./.phpmd.dist.xml', './.phpmd.xml'); }\"",
-            "@php vendor/bin/phpmd src/ ansi .phpmd.xml --cache --ignore-violations-on-exit"
+            "@php vendor/bin/phpmd analyze src/ --format ansi --ruleset .phpmd.xml --cache --ignore-violations-on-exit"
         ],
         "phpstan:check": [
             "@php vendor/bin/phpstan"

@@ -22,17 +22,18 @@ jobs:
       - name: Checkout Source Code
         uses: actions/checkout@v7
 
-      - name: Setup Environment
-        uses: php-actions/composer@v6
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
         with:
-          command: update
-          php_version: "8.1"
+          php-version: "8.2"
+          coverage: none
+          tools: composer
+
+      - name: Install Dependencies
+        run: composer update --no-interaction --no-progress --prefer-dist
 
       - name: Run Psalm
-        uses: docker://ghcr.io/psalm/psalm-github-actions
-        with:
-          security_analysis: true
-          report_file: psalm-results.sarif
+        run: vendor/bin/psalm --no-progress --taint-analysis --report=psalm-results.sarif
 
       - name: Upload Analysis Results
         uses: github/codeql-action/upload-sarif@v4.39.1

@@ -9,11 +9,20 @@ Changelog
 Unreleased
 ==========
 
+**Breaking Changes:**
+
+* Raised minimum PHP version from 8.1 to 8.2, as PHP 8.1 reached end of life
+
+**Maintenance:**
+
+* Updated Psalm to version 7 and PHP Mess Detector to version 3
+* Imported the `Override` and `ReturnTypeWillChange` attributes instead of using their fully qualified names
+
 **Bug Fixes:**
 
 * `TypeChecker` no longer calls arbitrary `is_*()` functions for class names (e.g. a class `File` caused a `TypeError`
   from `is_file()`, and `Countable` accepted arrays via `is_countable()`). Atomic type keywords are now matched exactly
-  and must be lowercase; everything else is checked with `is_a()`
+  and must be lowercase; everything else is checked with `instanceof`
 * `StrictArray` now supports appending with `$array[] = $value`
 * `StrictCollection::get()` and `StrictCollection::remove()` now work for items with value `null`
 * `TriggerExceptionError` no longer uses `E_USER_ERROR` (deprecated since PHP 8.4), but triggers an `E_USER_WARNING`
