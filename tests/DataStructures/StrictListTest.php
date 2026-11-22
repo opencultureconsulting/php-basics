@@ -32,6 +32,7 @@ use SplDoublyLinkedList;
 
 use function iterator_to_array;
 use function serialize;
+use function str_replace;
 use function unserialize;
 
 final class StrictListTest extends TestCase
@@ -183,5 +184,18 @@ final class StrictListTest extends TestCase
         $copy->unserialize($list->serialize());
         $this->assertSame([1, 2], $copy->toArray());
         $this->assertSame(['int'], $copy->getAllowedTypes());
+    }
+
+    public function testLegacySerializableInterfaceChecksTypes(): void
+    {
+        // SplDoublyLinkedList implements Serializable, so the type-checking
+        // override must not be bypassed by calling unserialize() directly.
+        $list = new StrictList();
+        $list->append(1, 'two');
+        $payload = $list->serialize();
+        $payload = str_replace('a:0:{}', 'a:1:{i:0;s:3:"int";}', $payload);
+        $copy = new StrictList();
+        $this->expectException(InvalidDataTypeException::class);
+        $copy->unserialize($payload);
     }
 }

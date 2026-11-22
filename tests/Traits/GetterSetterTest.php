@@ -26,6 +26,7 @@ namespace OCC\Basics\Tests\Traits;
 use InvalidArgumentException;
 use OCC\Basics\Tests\Fixtures\GetterSetterFixture;
 use PHPUnit\Framework\TestCase;
+use RuntimeException;
 
 final class GetterSetterTest extends TestCase
 {
@@ -94,6 +95,14 @@ final class GetterSetterTest extends TestCase
         $this->assertFalse(isset($object->undefined));
         $object->setReadOnlyToNull();
         $this->assertFalse(isset($object->readOnly));
+    }
+
+    public function testIssetDoesNotSwallowGetterExceptions(): void
+    {
+        $object = new GetterSetterFixture();
+        $this->expectException(RuntimeException::class);
+        $this->expectExceptionMessage('Getter failed.');
+        isset($object->broken);
     }
 
     public function testUnsetCallsSetterWithNull(): void

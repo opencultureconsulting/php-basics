@@ -25,6 +25,7 @@ namespace OCC\Basics\Traits;
 
 use InvalidArgumentException;
 
+use function is_null;
 use function method_exists;
 use function property_exists;
 use function sprintf;
@@ -80,12 +81,10 @@ trait Getter
      */
     public function __isset(string $property): bool
     {
-        try {
-            $value = $this->__get($property);
-        } catch (InvalidArgumentException) {
-            $value = null;
-        } finally {
-            return !is_null($value);
+        $method = '_magicGet' . ucfirst($property);
+        if (!property_exists(static::class, $property) || !method_exists(static::class, $method)) {
+            return false;
         }
+        return !is_null($this->$method());
     }
 }
