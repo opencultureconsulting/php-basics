@@ -16,8 +16,6 @@ Unreleased
 **Maintenance:**
 
 * Updated Psalm to version 7 and PHP Mess Detector to version 3
-* Restricted development tools to patch-level updates (e.g. `~2.3.7`), so new minor versions arrive via Dependabot
-* Switched CI workflows to `shivammathur/setup-php` and run all tools from `vendor/bin`
 * Imported the `Override` and `ReturnTypeWillChange` attributes instead of using their fully qualified names
 
 **Bug Fixes:**
