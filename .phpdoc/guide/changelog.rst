@@ -6,8 +6,8 @@ Changelog
 .. sidebar:: Table of Contents
   .. contents::
 
-Unreleased
-==========
+v3.0.0
+======
 
 **New Features:**
 
@@ -20,6 +20,8 @@ Unreleased
 **Breaking Changes:**
 
 * Raised minimum PHP version from 8.1 to 8.2, as PHP 8.1 reached end of life
+* Atomic type keywords for `TypeChecker` (and thus all datastructures) are now case-sensitive and must be lowercase
+  (e.g. `'Int'` or `'STRING'` are now treated as class names and therefore never match scalar values)
 * `StrictCollection` and `StrictArray` no longer implement the legacy `\Serializable` interface (and thus no longer
   have `serialize()` and `unserialize()` methods). Serializing them with PHP's `serialize()` and `unserialize()`
   functions works as before. `StrictList`, `StrictQueue` and `StrictStack` still implement it, because their SPL parent
@@ -38,8 +40,8 @@ Unreleased
 **Bug Fixes:**
 
 * `TypeChecker` no longer calls arbitrary `is_*()` functions for class names (e.g. a class `File` caused a `TypeError`
-  from `is_file()`, and `Countable` accepted arrays via `is_countable()`). Atomic type keywords are now matched exactly
-  and must be lowercase; everything else is checked with `instanceof`
+  from `is_file()`, and `Countable` accepted arrays via `is_countable()`). Everything but the atomic type keywords is
+  now checked with `instanceof`
 * `StrictArray` now supports appending with `$array[] = $value`
 * `StrictCollection::get()` and `StrictCollection::remove()` now work for items with value `null`
 * `TriggerExceptionError` no longer uses `E_USER_ERROR` (deprecated since PHP 8.4), but triggers an `E_USER_WARNING`
