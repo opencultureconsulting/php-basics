@@ -174,4 +174,63 @@ final class TypeCheckerTest extends TestCase
         /** @phpstan-ignore argument.type */
         $checker->setAllowedTypes(['int', 1]);
     }
+
+    public function testMixedAllowsEverything(): void
+    {
+        $checker = new TypeCheckerFixture();
+        $checker->setAllowedTypes(['mixed']);
+        $this->assertTrue($checker->hasAllowedType(null));
+        $this->assertTrue($checker->hasAllowedType(1));
+        $this->assertTrue($checker->hasAllowedType(new stdClass()));
+    }
+
+    public function testUnionTypes(): void
+    {
+        $checker = new TypeCheckerFixture();
+        $checker->setAllowedTypes(['int|string', ' float | ' . ArrayObject::class . ' ']);
+        $this->assertSame(['int', 'string', 'float', ArrayObject::class], $checker->getAllowedTypes());
+        $this->assertTrue($checker->hasAllowedType(1));
+        $this->assertTrue($checker->hasAllowedType('a'));
+        $this->assertTrue($checker->hasAllowedType(1.5));
+        $this->assertTrue($checker->hasAllowedType(new ArrayObject()));
+        $this->assertFalse($checker->hasAllowedType(null));
+    }
+
+    public function testNullableTypes(): void
+    {
+        $checker = new TypeCheckerFixture();
+        $checker->setAllowedTypes(['?int', '?string']);
+        $this->assertSame(['null', 'int', 'string'], $checker->getAllowedTypes());
+        $this->assertTrue($checker->hasAllowedType(null));
+        $this->assertTrue($checker->hasAllowedType(1));
+        $this->assertFalse($checker->hasAllowedType(1.5));
+    }
+
+    public function testIsAllowedTypeWithUnionTypes(): void
+    {
+        $checker = new TypeCheckerFixture();
+        $checker->setAllowedTypes(['int', 'null']);
+        $this->assertTrue($checker->isAllowedType('?int'));
+        $this->assertTrue($checker->isAllowedType('null|int'));
+        $this->assertFalse($checker->isAllowedType('int|string'));
+    }
+
+    /**
+     * @return iterable<string, array{string}>
+     */
+    public static function emptyTypeProvider(): iterable
+    {
+        yield 'empty string' => [''];
+        yield 'whitespace' => [' '];
+        yield 'trailing pipe' => ['int|'];
+        yield 'question mark only' => ['?'];
+    }
+
+    #[DataProvider('emptyTypeProvider')]
+    public function testSetAllowedTypesRejectsEmptyTypes(string $type): void
+    {
+        $checker = new TypeCheckerFixture();
+        $this->expectException(InvalidArgumentException::class);
+        $checker->setAllowedTypes([$type]);
+    }
 }

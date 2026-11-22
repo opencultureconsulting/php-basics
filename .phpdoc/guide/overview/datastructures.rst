@@ -12,8 +12,10 @@ datastructures can hold.
 
 To restrict allowed data types for items provide the constructor with an array of atomic types or fully qualified class
 names (FQCN) you want to allow as item types. Available atomic types are `array`, `bool`, `callable`, `countable`,
-`float` (or `double`), `int` (or `integer` or `long`), `iterable`, `null`, `numeric`, `object`, `resource`, `scalar`
-and `string`.
+`float` (or `double`), `int` (or `integer` or `long`), `iterable`, `mixed`, `null`, `numeric`, `object`, `resource`,
+`scalar` and `string`. Union types (e.g. `int|string`) and nullable types (e.g. `?int`) are supported, too.
+
+To create a datastructure from existing items, use the static `fromArray()` method with the items and allowed types.
 
 Trying to add an item with a data type not on the list of allowed types to a strict datastructure will result in an
 :php:class:`OCC\Basics\DataStructures\Exceptions\InvalidDataTypeException` being thrown.
@@ -32,6 +34,10 @@ All strict datastructures inherit the implementation of the `\ArrayAccess <https
   .. code-block:: php
     // create a queue of PSR-15 middlewares
     $middlewareQueue = new StrictQueue(['Psr\Http\Server\MiddlewareInterface']);
+
+  .. code-block:: php
+    // create a list of nullable integers from existing items
+    $intList = StrictList::fromArray([1, null, 3], ['?int']);
 
 .. sidebar:: API Documentation
   * :php:class:`OCC\Basics\DataStructures\StrictCollection`

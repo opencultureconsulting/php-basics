@@ -71,4 +71,12 @@ final class StrictStackTest extends TestCase
         $this->assertSame('b', $copy->unstack());
         $this->assertSame('a', $copy->unstack());
     }
+
+    public function testFromArray(): void
+    {
+        $stack = StrictStack::fromArray(['a', 'b'], ['string']);
+        $this->assertInstanceOf(StrictStack::class, $stack);
+        $this->assertSame('b', $stack->unstack());
+        $this->assertSame('a', $stack->unstack());
+    }
 }

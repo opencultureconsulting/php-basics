@@ -12,6 +12,10 @@ Unreleased
 **New Features:**
 
 * Added a PHPUnit test suite (`composer phpunit:test`), running on PHP 8.2 to 8.5 in CI
+* Added static `fromArray()` constructors to all datastructures (e.g. `StrictList::fromArray([1, 2], ['int'])`),
+  which also let PHPStan and Psalm infer the item types
+* `TypeChecker` (and thus all datastructures) now supports union types (e.g. `int|string`), nullable types (e.g. `?int`)
+  and `mixed`
 
 **Breaking Changes:**
 
@@ -21,6 +25,8 @@ Unreleased
   functions works as before. `StrictList`, `StrictQueue` and `StrictStack` still implement it, because their SPL parent
   classes do
 * `Getter::__isset()` no longer swallows exceptions thrown by `_magicGet*()` methods
+* `TypeChecker::setAllowedTypes()` splits union and nullable types into separate types and throws an
+  `\InvalidArgumentException` for empty types (e.g. `''` or `'int|'`)
 
 **Maintenance:**
 

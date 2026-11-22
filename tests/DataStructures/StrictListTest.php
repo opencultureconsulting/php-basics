@@ -198,4 +198,28 @@ final class StrictListTest extends TestCase
         $this->expectException(InvalidDataTypeException::class);
         $copy->unserialize($payload);
     }
+
+    public function testFromArray(): void
+    {
+        $list = StrictList::fromArray(['a' => 1, 'b' => 2, 'c' => 3], ['int']);
+        $this->assertInstanceOf(StrictList::class, $list);
+        $this->assertSame([1, 2, 3], $list->toArray());
+        $this->assertSame(['int'], $list->getAllowedTypes());
+    }
+
+    public function testFromArrayChecksTypes(): void
+    {
+        $this->expectException(InvalidDataTypeException::class);
+        $this->expectExceptionMessage('Parameter 1 must be an allowed type, string given.');
+        StrictList::fromArray([1, 'two'], ['int']);
+    }
+
+    public function testUnionTypes(): void
+    {
+        $list = new StrictList(['int|string']);
+        $list->append(1, 'two');
+        $this->assertSame([1, 'two'], $list->toArray());
+        $this->expectException(InvalidDataTypeException::class);
+        $list->push(3.0);
+    }
 }
