@@ -49,7 +49,6 @@ use SplQueue;
  *
  * @phpstan-consistent-constructor
  * @psalm-consistent-constructor
- * @psalm-consistent-templates
  *
  * @psalm-suppress ImmutableDependency SPL data structures are mutable by design
  * @extends SplQueue<AllowedType>

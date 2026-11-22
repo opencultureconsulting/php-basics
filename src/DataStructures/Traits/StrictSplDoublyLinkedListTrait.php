@@ -137,7 +137,10 @@ trait StrictSplDoublyLinkedListTrait
      */
     public static function fromArray(array $items, array $allowedTypes = []): static
     {
-        /** @var static<TAllowedType> $list */
+        /**
+         * @var static<TAllowedType> $list
+         * @psalm-suppress UnsafeGenericInstantiation Subclasses may fix the item type
+         */
         $list = new static($allowedTypes);
         foreach ($items as $value) {
             $list->push($value);

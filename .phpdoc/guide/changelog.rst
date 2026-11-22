@@ -6,6 +6,14 @@ Changelog
 .. sidebar:: Table of Contents
   .. contents::
 
+v3.0.1
+======
+
+**Bug Fixes:**
+
+* Removed `@psalm-consistent-templates` from `StrictCollection`, `StrictList`, `StrictQueue` and `StrictStack`, because
+  it made Psalm reject subclasses with a fixed item type (e.g. `class MyQueue extends StrictQueue<Foo>`)
+
 v3.0.0
 ======
 
