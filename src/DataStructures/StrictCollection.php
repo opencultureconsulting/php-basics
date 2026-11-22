@@ -35,8 +35,9 @@ use OutOfRangeException;
 use Serializable;
 
 use function array_is_list;
+use function array_key_exists;
 use function get_debug_type;
-use function is_integer;
+use function is_int;
 use function is_string;
 use function serialize;
 use function sprintf;
@@ -124,7 +125,7 @@ class StrictCollection implements ArrayAccess, Countable, Serializable
      */
     public function get(int|string $offset): mixed
     {
-        if (!isset($this->_data[$offset])) {
+        if (!array_key_exists($offset, $this->_data)) {
             throw new OutOfRangeException(
                 sprintf(
                     'Offset %s is not a valid index key for this collection.',
@@ -182,7 +183,7 @@ class StrictCollection implements ArrayAccess, Countable, Serializable
     #[\Override]
     public function offsetSet(mixed $offset, mixed $value): void
     {
-        if (!is_integer($offset) && !is_string($offset)) {
+        if (!is_int($offset) && !is_string($offset)) {
             throw new InvalidArgumentException(
                 sprintf(
                     'Parameter 1 must be an integer or string, %s given.',
@@ -214,7 +215,7 @@ class StrictCollection implements ArrayAccess, Countable, Serializable
      */
     public function remove(int|string $offset): void
     {
-        if (!isset($this->_data[$offset])) {
+        if (!array_key_exists($offset, $this->_data)) {
             throw new OutOfRangeException(
                 sprintf(
                     'Offset %s is not a valid index key for this collection.',
@@ -283,7 +284,7 @@ class StrictCollection implements ArrayAccess, Countable, Serializable
                 'Cannot convert into StrictList: collection contains non-integer and/or non-consecutive keys.'
             );
         }
-        /** @var StrictList<AllowedType> $strictList */
+        /** @phpstan-var StrictList<AllowedType> $strictList */
         $strictList = new StrictList($this->getAllowedTypes());
         $strictList->append(...$this->toArray());
         return $strictList;

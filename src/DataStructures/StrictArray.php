@@ -25,9 +25,11 @@ namespace OCC\Basics\DataStructures;
 
 use ArrayAccess;
 use Countable;
+use InvalidArgumentException;
 use IteratorAggregate;
 use OCC\Basics\DataStructures\Exceptions\InvalidDataTypeException;
 use OCC\Basics\Interfaces\IteratorAggregateTrait;
+use Override;
 use RuntimeException;
 use Serializable;
 
@@ -90,6 +92,32 @@ class StrictArray extends StrictCollection implements ArrayAccess, Countable, It
     }
 
     /**
+     * Set the item at the specified offset.
+     *
+     * If `$offset` is `null`, the item is appended to the array (i.e. the
+     * `$array[] = $value` syntax is supported).
+     *
+     * @param ?Index $offset The offset being set or `null` to append
+     * @param AllowedType $value The new item for the offset
+     *
+     * @return void
+     *
+     * @throws InvalidDataTypeException if `$value` is not of allowed type
+     * @throws InvalidArgumentException if `$offset` is not a valid array key
+     *
+     * @api
+     */
+    #[Override]
+    public function offsetSet(mixed $offset, mixed $value): void
+    {
+        if (is_null($offset)) {
+            $this->push($value);
+        } else {
+            parent::offsetSet($offset, $value);
+        }
+    }
+
+    /**
      * Pop the item from the end of the array.
      *
      * @return AllowedType The last item of the array
@@ -130,7 +158,7 @@ class StrictArray extends StrictCollection implements ArrayAccess, Countable, It
             );
         }
         /** @psalm-suppress InvalidPropertyAssignmentValue */
-        array_push($this->_data, $value);
+        array_push($this->_data, $value); // @phpstan-ignore assign.propertyType
     }
 
     /**
@@ -194,6 +222,6 @@ class StrictArray extends StrictCollection implements ArrayAccess, Countable, It
             );
         }
         /** @psalm-suppress InvalidPropertyAssignmentValue */
-        array_unshift($this->_data, $value);
+        array_unshift($this->_data, $value); // @phpstan-ignore assign.propertyType
     }
 }
