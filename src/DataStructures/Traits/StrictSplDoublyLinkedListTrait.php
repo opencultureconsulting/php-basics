@@ -31,10 +31,8 @@ use OutOfRangeException;
 use SplDoublyLinkedList;
 
 use function array_reverse;
-use function get_debug_type;
 use function iterator_to_array;
 use function serialize;
-use function sprintf;
 use function unserialize;
 
 /**
@@ -75,12 +73,7 @@ trait StrictSplDoublyLinkedListTrait
     public function add(int $offset, mixed $value): void
     {
         if (!$this->hasAllowedType($value)) {
-            throw new InvalidDataTypeException(
-                sprintf(
-                    'Parameter 2 must be an allowed type, %s given.',
-                    get_debug_type($value)
-                )
-            );
+            throw InvalidDataTypeException::forParameter(2, $value);
         }
         parent::add($offset, $value);
     }
@@ -100,13 +93,7 @@ trait StrictSplDoublyLinkedListTrait
     {
         foreach ($values as $count => $value) {
             if (!$this->hasAllowedType($value)) {
-                throw new InvalidDataTypeException(
-                    sprintf(
-                        'Parameter %d must be an allowed type, %s given.',
-                        (int) $count + 1,
-                        get_debug_type($value)
-                    )
-                );
+                throw InvalidDataTypeException::forParameter((int) $count + 1, $value);
             }
         }
         foreach ($values as $value) {
@@ -173,12 +160,7 @@ trait StrictSplDoublyLinkedListTrait
     public function offsetSet(mixed $offset, mixed $value): void
     {
         if (!$this->hasAllowedType($value)) {
-            throw new InvalidDataTypeException(
-                sprintf(
-                    'Parameter 2 must be an allowed type, %s given.',
-                    get_debug_type($value)
-                )
-            );
+            throw InvalidDataTypeException::forParameter(2, $value);
         }
         /** @psalm-suppress PossiblyNullArgument */
         parent::offsetSet($offset, $value);
@@ -202,13 +184,7 @@ trait StrictSplDoublyLinkedListTrait
     {
         foreach ($values as $count => $value) {
             if (!$this->hasAllowedType($value)) {
-                throw new InvalidDataTypeException(
-                    sprintf(
-                        'Parameter %d must be an allowed type, %s given.',
-                        (int) $count + 1,
-                        get_debug_type($value)
-                    )
-                );
+                throw InvalidDataTypeException::forParameter((int) $count + 1, $value);
             }
         }
         foreach (array_reverse($values) as $value) {
@@ -230,12 +206,7 @@ trait StrictSplDoublyLinkedListTrait
     public function push(mixed $value): void
     {
         if (!$this->hasAllowedType($value)) {
-            throw new InvalidDataTypeException(
-                sprintf(
-                    'Parameter 1 must be an allowed type, %s given.',
-                    get_debug_type($value)
-                )
-            );
+            throw InvalidDataTypeException::forParameter(1, $value);
         }
         parent::push($value);
     }
@@ -344,12 +315,7 @@ trait StrictSplDoublyLinkedListTrait
     public function unshift(mixed $value): void
     {
         if (!$this->hasAllowedType($value)) {
-            throw new InvalidDataTypeException(
-                sprintf(
-                    'Parameter 1 must be an allowed type, %s given.',
-                    get_debug_type($value)
-                )
-            );
+            throw InvalidDataTypeException::forParameter(1, $value);
         }
         parent::unshift($value);
     }

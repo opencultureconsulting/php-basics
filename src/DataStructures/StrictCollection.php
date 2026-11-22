@@ -190,12 +190,7 @@ class StrictCollection implements ArrayAccess, Countable
             );
         }
         if (!$this->hasAllowedType($value)) {
-            throw new InvalidDataTypeException(
-                sprintf(
-                    'Parameter 2 must be an allowed type, %s given.',
-                    get_debug_type($value)
-                )
-            );
+            throw InvalidDataTypeException::forParameter(2, $value);
         }
         $this->_data[$offset] = $value;
     }
