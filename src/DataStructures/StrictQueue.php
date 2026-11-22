@@ -28,6 +28,7 @@ use Countable;
 use Iterator;
 use OCC\Basics\DataStructures\Exceptions\InvalidDataTypeException;
 use OCC\Basics\DataStructures\Traits\StrictSplDoublyLinkedListTrait;
+use Override;
 use RuntimeException;
 use Serializable;
 use SplQueue;
@@ -65,7 +66,7 @@ class StrictQueue extends SplQueue implements ArrayAccess, Countable, Iterator, 
      *
      * @api
      */
-    #[\Override]
+    #[Override]
     public function dequeue(): mixed
     {
         return $this->shift();
@@ -82,7 +83,7 @@ class StrictQueue extends SplQueue implements ArrayAccess, Countable, Iterator, 
      *
      * @api
      */
-    #[\Override]
+    #[Override]
     public function enqueue(mixed $value): void
     {
         $this->push($value);

@@ -26,16 +26,10 @@ jobs:
         uses: php-actions/composer@v6
         with:
           command: update
-          php_version: "8.1"
+          php_version: "8.2"
 
       - name: Run PHP Mess Detector
-        uses: php-actions/phpmd@v2
-        with:
-          path: src/
-          php_version: "8.1"
-          ruleset: .phpmd.dist.xml
-          output: sarif
-          reportfile: phpmd-results.sarif
+        run: php vendor/bin/phpmd analyze src/ --ruleset .phpmd.dist.xml --reportfile-sarif phpmd-results.sarif
 
       - name: Upload Analysis Results
         uses: github/codeql-action/upload-sarif@v4.39.1

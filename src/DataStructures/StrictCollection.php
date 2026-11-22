@@ -32,6 +32,7 @@ use OCC\Basics\Interfaces\ArrayAccessTrait;
 use OCC\Basics\Interfaces\CountableTrait;
 use OCC\Basics\Traits\TypeChecker;
 use OutOfRangeException;
+use Override;
 use Serializable;
 
 use function array_is_list;
@@ -180,7 +181,7 @@ class StrictCollection implements ArrayAccess, Countable, Serializable
      *
      * @api
      */
-    #[\Override]
+    #[Override]
     public function offsetSet(mixed $offset, mixed $value): void
     {
         if (!is_int($offset) && !is_string($offset)) {
@@ -231,7 +232,7 @@ class StrictCollection implements ArrayAccess, Countable, Serializable
      *
      * @return string The string representation
      */
-    #[\Override]
+    #[Override]
     public function serialize(): string
     {
         return serialize($this->__serialize());
@@ -297,7 +298,7 @@ class StrictCollection implements ArrayAccess, Countable, Serializable
      *
      * @return void
      */
-    #[\Override]
+    #[Override]
     public function unserialize($data): void
     {
         /** @var mixed[] $dataArray */

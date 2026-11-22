@@ -23,6 +23,8 @@ declare(strict_types=1);
 
 namespace OCC\Basics\Interfaces;
 
+use ReturnTypeWillChange;
+
 use function current;
 use function is_null;
 use function key;
@@ -63,7 +65,7 @@ trait IteratorTrait
      *
      * @api
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function current(): mixed
     {
         return current($this->_data);
@@ -76,7 +78,7 @@ trait IteratorTrait
      *
      * @api
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function key(): mixed
     {
         return key($this->_data);
