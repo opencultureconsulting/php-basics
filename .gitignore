@@ -13,3 +13,4 @@ psalm.xml
 TODO
 /.phpunit.cache/
 phpunit.xml
+/doc/
