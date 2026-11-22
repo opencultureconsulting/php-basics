@@ -35,6 +35,7 @@ use OutOfRangeException;
 use Serializable;
 
 use function array_is_list;
+use function array_key_exists;
 use function get_debug_type;
 use function is_integer;
 use function is_string;
@@ -124,7 +125,7 @@ class StrictCollection implements ArrayAccess, Countable, Serializable
      */
     public function get(int|string $offset): mixed
     {
-        if (!isset($this->_data[$offset])) {
+        if (!array_key_exists($offset, $this->_data)) {
             throw new OutOfRangeException(
                 sprintf(
                     'Offset %s is not a valid index key for this collection.',
@@ -214,7 +215,7 @@ class StrictCollection implements ArrayAccess, Countable, Serializable
      */
     public function remove(int|string $offset): void
     {
-        if (!isset($this->_data[$offset])) {
+        if (!array_key_exists($offset, $this->_data)) {
             throw new OutOfRangeException(
                 sprintf(
                     'Offset %s is not a valid index key for this collection.',

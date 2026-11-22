@@ -33,7 +33,8 @@ TriggerExceptionError
 *Triggers errors for uncaught exceptions.*
 
 If registered as exception handler, this catches an uncaught exception and converts it into an internal PHP error of
-severity `E_USER_ERROR`.
+severity `E_USER_WARNING`, then terminates the script with exit status `255` (just like a fatal error). `E_USER_ERROR`
+is not used anymore, because passing it to `trigger_error()` is deprecated since PHP 8.4.
 
   Usage:
 

@@ -32,7 +32,8 @@ use function trigger_error;
  * Triggers errors for uncaught exceptions.
  *
  * If registered as exception handler, this catches any uncaught exception and
- * converts it into an internal PHP error of severity `E_USER_ERROR`.
+ * converts it into an internal PHP error of severity `E_USER_WARNING`, then
+ * terminates the script with exit status `255` (just like a fatal error).
  *
  * > Usage: `set_exception_handler(new TriggerExceptionError());`
  *
@@ -46,9 +47,9 @@ final class TriggerExceptionError
      *
      * @param Throwable $exception The exception
      *
-     * @return void
+     * @return never
      */
-    public function __invoke(Throwable $exception): void
+    public function __invoke(Throwable $exception): never
     {
         $message = sprintf(
             'Uncaught Exception [%d] in file %s on line %d: %s',
@@ -57,6 +58,7 @@ final class TriggerExceptionError
             $exception->getLine(),
             $exception->getMessage()
         );
-        trigger_error($message, \E_USER_ERROR);
+        trigger_error($message, \E_USER_WARNING);
+        exit(255);
     }
 }

@@ -25,9 +25,11 @@ namespace OCC\Basics\DataStructures;
 
 use ArrayAccess;
 use Countable;
+use InvalidArgumentException;
 use IteratorAggregate;
 use OCC\Basics\DataStructures\Exceptions\InvalidDataTypeException;
 use OCC\Basics\Interfaces\IteratorAggregateTrait;
+use Override;
 use RuntimeException;
 use Serializable;
 
@@ -87,6 +89,32 @@ class StrictArray extends StrictCollection implements ArrayAccess, Countable, It
             );
         }
         return $this->_data[$key];
+    }
+
+    /**
+     * Set the item at the specified offset.
+     *
+     * If `$offset` is `null`, the item is appended to the array (i.e. the
+     * `$array[] = $value` syntax is supported).
+     *
+     * @param ?Index $offset The offset being set or `null` to append
+     * @param AllowedType $value The new item for the offset
+     *
+     * @return void
+     *
+     * @throws InvalidDataTypeException if `$value` is not of allowed type
+     * @throws InvalidArgumentException if `$offset` is not a valid array key
+     *
+     * @api
+     */
+    #[Override]
+    public function offsetSet(mixed $offset, mixed $value): void
+    {
+        if (is_null($offset)) {
+            $this->push($value);
+        } else {
+            parent::offsetSet($offset, $value);
+        }
     }
 
     /**

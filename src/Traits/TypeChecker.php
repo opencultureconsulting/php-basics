@@ -29,19 +29,15 @@ use function array_map;
 use function array_sum;
 use function array_values;
 use function count;
-use function function_exists;
 use function in_array;
 use function is_a;
 use function is_array;
 use function is_bool;
 use function is_callable;
 use function is_countable;
-use function is_double;
 use function is_float;
 use function is_int;
-use function is_integer;
 use function is_iterable;
-use function is_long;
 use function is_null;
 use function is_numeric;
 use function is_object;
@@ -56,6 +52,12 @@ use function ltrim;
  * This allows to set a list of allowed atomic data types and fully qualified
  * class names. It also provides a method to check if a value's data type
  * matches at least one of these types.
+ *
+ * The following lowercase keywords are recognized as atomic data types:
+ * `array`, `bool`, `callable`, `countable`, `double`, `float`, `int`,
+ * `integer`, `iterable`, `long`, `null`, `numeric`, `object`, `resource`,
+ * `scalar` and `string`. Any other value is treated as the name of a class
+ * or interface the value has to be an instance of.
  *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package Basics\Traits
@@ -103,12 +105,23 @@ trait TypeChecker
             return true;
         }
         foreach ($this->_allowedTypes as $type) {
-            $function = 'is_' . $type;
-            if (function_exists($function) && $function($value)) {
-                return true;
-            }
-            $fqcn = ltrim($type, '\\');
-            if (is_object($value) && is_a($value, $fqcn)) {
+            $isAllowed = match ($type) {
+                'array' => is_array($value),
+                'bool' => is_bool($value),
+                'callable' => is_callable($value),
+                'countable' => is_countable($value),
+                'double', 'float' => is_float($value),
+                'int', 'integer', 'long' => is_int($value),
+                'iterable' => is_iterable($value),
+                'null' => is_null($value),
+                'numeric' => is_numeric($value),
+                'object' => is_object($value),
+                'resource' => is_resource($value),
+                'scalar' => is_scalar($value),
+                'string' => is_string($value),
+                default => is_object($value) && is_a($value, ltrim($type, '\\'))
+            };
+            if ($isAllowed) {
                 return true;
             }
         }

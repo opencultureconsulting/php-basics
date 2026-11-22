@@ -6,6 +6,19 @@ Changelog
 .. sidebar:: Table of Contents
   .. contents::
 
+Unreleased
+==========
+
+**Bug Fixes:**
+
+* `TypeChecker` no longer calls arbitrary `is_*()` functions for class names (e.g. a class `File` caused a `TypeError`
+  from `is_file()`, and `Countable` accepted arrays via `is_countable()`). Atomic type keywords are now matched exactly
+  and must be lowercase; everything else is checked with `is_a()`
+* `StrictArray` now supports appending with `$array[] = $value`
+* `StrictCollection::get()` and `StrictCollection::remove()` now work for items with value `null`
+* `TriggerExceptionError` no longer uses `E_USER_ERROR` (deprecated since PHP 8.4), but triggers an `E_USER_WARNING`
+  and exits with status `255`
+
 v2.1.3
 ======
 
