@@ -9,6 +9,10 @@ Changelog
 Unreleased
 ==========
 
+**New Features:**
+
+* Added a PHPUnit test suite (`composer phpunit:test`), running on PHP 8.2 to 8.5 in CI
+
 **Breaking Changes:**
 
 * Raised minimum PHP version from 8.1 to 8.2, as PHP 8.1 reached end of life
@@ -27,6 +31,11 @@ Unreleased
 * `StrictCollection::get()` and `StrictCollection::remove()` now work for items with value `null`
 * `TriggerExceptionError` no longer uses `E_USER_ERROR` (deprecated since PHP 8.4), but triggers an `E_USER_WARNING`
   and exits with status `255`
+* `StrictList::add()`, `StrictQueue::add()` and `StrictStack::add()` now insert the item at the given offset instead of
+  replacing the existing item
+* `StrictList::prepend()`, `StrictQueue::prepend()` and `StrictStack::prepend()` now keep the order of the given items
+  (like `array_unshift()`) instead of reversing them
+* Unserializing a `StrictStack` (or any list in LIFO iteration mode) no longer reverses the order of its items
 
 v2.1.3
 ======

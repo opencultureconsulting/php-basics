@@ -28,7 +28,9 @@ use OCC\Basics\DataStructures\Exceptions\InvalidDataTypeException;
 use OCC\Basics\DataStructures\StrictCollection;
 use OCC\Basics\Traits\TypeChecker;
 use OutOfRangeException;
+use SplDoublyLinkedList;
 
+use function array_reverse;
 use function get_debug_type;
 use function iterator_to_array;
 use function serialize;
@@ -72,7 +74,15 @@ trait StrictSplDoublyLinkedListTrait
      */
     public function add(int $offset, mixed $value): void
     {
-        $this->offsetSet($offset, $value);
+        if (!$this->hasAllowedType($value)) {
+            throw new InvalidDataTypeException(
+                sprintf(
+                    'Parameter 2 must be an allowed type, %s given.',
+                    get_debug_type($value)
+                )
+            );
+        }
+        parent::add($offset, $value);
     }
 
     /**
@@ -177,6 +187,9 @@ trait StrictSplDoublyLinkedListTrait
     /**
      * Prepend items at the start of the list.
      *
+     * The items keep their order, i.e. `prepend(1, 2)` on a list `[3]`
+     * results in `[1, 2, 3]` (just like `array_unshift()`).
+     *
      * @param AllowedType ...$values One or more items to prepend
      *
      * @return void
@@ -198,7 +211,7 @@ trait StrictSplDoublyLinkedListTrait
                 );
             }
         }
-        foreach ($values as $value) {
+        foreach (array_reverse($values) as $value) {
             parent::unshift($value);
         }
     }
@@ -415,9 +428,13 @@ trait StrictSplDoublyLinkedListTrait
         $this->setAllowedTypes($allowedTypes);
         /** @var list<AllowedType> $values */
         $values = $data['StrictSplDatastructure::dllist'];
-        $this->append(...$values);
         /** @var int $flags */
         $flags = $data['StrictSplDatastructure::flags'];
+        // Items are serialized in iteration order, which is reversed in LIFO mode.
+        if (($flags & SplDoublyLinkedList::IT_MODE_LIFO) !== 0) {
+            $values = array_reverse($values);
+        }
+        $this->append(...$values);
         $this->setIteratorMode($flags);
     }
 }
