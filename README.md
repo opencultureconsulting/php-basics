@@ -20,6 +20,7 @@ The full documentation is available on [GitHub Pages](https://code.opencultureco
 
 ## Quality Gates
 
+[![PHPUnit](https://github.com/opencultureconsulting/php-basics/actions/workflows/phpunit.yml/badge.svg)](https://github.com/opencultureconsulting/php-basics/actions/workflows/phpunit.yml)
 [![PHPCS](https://github.com/opencultureconsulting/php-basics/actions/workflows/phpcs.yml/badge.svg)](https://github.com/opencultureconsulting/php-basics/actions/workflows/phpcs.yml)
 [![PHPMD](https://github.com/opencultureconsulting/php-basics/actions/workflows/phpmd.yml/badge.svg)](https://github.com/opencultureconsulting/php-basics/actions/workflows/phpmd.yml)
 
