@@ -26,10 +26,8 @@ Unreleased
 
 * Updated Psalm to version 7 and PHP Mess Detector to version 3
 * Imported the `Override` and `ReturnTypeWillChange` attributes instead of using their fully qualified names
-* Deduplicated the type-check error handling of all datastructures
 * The documentation is now built and deployed by GitHub Actions on every new release instead of being committed to
   the repository
-* Excluded all development files from distribution archives
 
 **Bug Fixes:**
 
