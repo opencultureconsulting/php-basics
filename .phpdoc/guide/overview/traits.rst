@@ -110,4 +110,5 @@ This allows to set a list of allowed atomic data types and fully qualified class
 check if a value's data type matches at least one of these types.
 
 Available atomic types are `array`, `bool`, `callable`, `countable`, `float` (or `double`), `int` (or `integer` or
-`long`), `iterable`, `null`, `numeric`, `object`, `resource`, `scalar` and `string`.
+`long`), `iterable`, `null`, `numeric`, `object`, `resource`, `scalar` and `string`. These keywords are
+case-sensitive and must be lowercase; any other value is treated as the name of a class or interface.

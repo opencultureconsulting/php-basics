@@ -47,6 +47,7 @@ use function unserialize;
  *
  * @template AllowedType of mixed
  *
+ * @psalm-suppress ImmutableDependency SPL data structures are mutable by design
  * @phpstan-require-extends \SplDoublyLinkedList<AllowedType>
  */
 trait StrictSplDoublyLinkedListTrait
