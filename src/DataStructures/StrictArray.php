@@ -39,9 +39,7 @@ use function array_push;
 use function array_shift;
 use function array_unshift;
 use function count;
-use function get_debug_type;
 use function is_null;
-use function sprintf;
 
 /**
  * A type-sensitive, traversable array.
@@ -149,12 +147,7 @@ class StrictArray extends StrictCollection implements ArrayAccess, Countable, It
     public function push(mixed $value): void
     {
         if (!$this->hasAllowedType($value)) {
-            throw new InvalidDataTypeException(
-                sprintf(
-                    'Parameter 1 must be an allowed type, %s given.',
-                    get_debug_type($value)
-                )
-            );
+            throw InvalidDataTypeException::forParameter(1, $value);
         }
         /** @psalm-suppress InvalidPropertyAssignmentValue */
         array_push($this->_data, $value); // @phpstan-ignore assign.propertyType
@@ -213,12 +206,7 @@ class StrictArray extends StrictCollection implements ArrayAccess, Countable, It
     public function unshift(mixed $value): void
     {
         if (!$this->hasAllowedType($value)) {
-            throw new InvalidDataTypeException(
-                sprintf(
-                    'Parameter 1 must be an allowed type, %s given.',
-                    get_debug_type($value)
-                )
-            );
+            throw InvalidDataTypeException::forParameter(1, $value);
         }
         /** @psalm-suppress InvalidPropertyAssignmentValue */
         array_unshift($this->_data, $value); // @phpstan-ignore assign.propertyType

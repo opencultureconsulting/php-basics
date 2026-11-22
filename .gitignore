@@ -1,5 +1,7 @@
 /.phpdoc/cache/
+/.phpunit.cache/
 /.vscode/
+/doc/
 /vendor/
 .php-cs-fixer.cache
 .php-cs-fixer.php
@@ -9,7 +11,6 @@ composer.lock
 phpcs.xml
 phpdoc.xml
 phpstan.neon
+phpunit.xml
 psalm.xml
 TODO
-/.phpunit.cache/
-phpunit.xml

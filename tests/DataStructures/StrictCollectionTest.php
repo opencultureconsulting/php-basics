@@ -59,6 +59,7 @@ final class StrictCollectionTest extends TestCase
     {
         $collection = new StrictCollection(['int']);
         $this->expectException(InvalidDataTypeException::class);
+        $this->expectExceptionMessage('Parameter 2 must be an allowed type, string given.');
         $collection['a'] = 'string';
     }
 

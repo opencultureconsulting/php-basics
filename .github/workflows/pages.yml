@@ -1,37 +1,64 @@
 name: Deploy Documentation
+
 on:
-  push:
+  release:
+    types: [ "published" ]
+  pull_request:
     branches: [ "main" ]
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
-  group: "pages"
+  group: "pages-${{ github.ref }}"
   cancel-in-progress: false
 
 jobs:
-  GitHubPages:
-    name: GitHub Pages
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  Build:
+    name: Build Documentation
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout Source Code
         uses: actions/checkout@v7
 
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
+          coverage: none
+          tools: composer
+
+      - name: Install Dependencies
+        run: composer update --no-interaction --no-progress --prefer-dist
+
+      - name: Run phpDocumentor
+        run: vendor/bin/phpdoc --config=phpdoc.dist.xml --no-interaction
+
       - name: Setup Pages
+        if: github.event_name == 'release'
         uses: actions/configure-pages@v6
 
       - name: Upload Artifact
+        if: github.event_name == 'release'
         uses: actions/upload-pages-artifact@v5
         with:
           path: doc/
 
+  GitHubPages:
+    name: GitHub Pages
+    if: github.event_name == 'release'
+    needs: Build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5

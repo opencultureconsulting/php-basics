@@ -25,6 +25,9 @@ namespace OCC\Basics\DataStructures\Exceptions;
 
 use DomainException;
 
+use function get_debug_type;
+use function sprintf;
+
 /**
  * Common exception for type-sensitive datastructures.
  *
@@ -36,4 +39,24 @@ use DomainException;
  */
 final class InvalidDataTypeException extends DomainException
 {
+    /**
+     * Create an exception for a parameter whose value is not of allowed type.
+     *
+     * @param int $position The parameter's position (starting at `1`)
+     * @param mixed $value The parameter's value
+     *
+     * @return self The exception
+     *
+     * @internal
+     */
+    public static function forParameter(int $position, mixed $value): self
+    {
+        return new self(
+            sprintf(
+                'Parameter %d must be an allowed type, %s given.',
+                $position,
+                get_debug_type($value)
+            )
+        );
+    }
 }
