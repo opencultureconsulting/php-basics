@@ -33,16 +33,13 @@ use OCC\Basics\Interfaces\CountableTrait;
 use OCC\Basics\Traits\TypeChecker;
 use OutOfRangeException;
 use Override;
-use Serializable;
 
 use function array_is_list;
 use function array_key_exists;
 use function get_debug_type;
 use function is_int;
 use function is_string;
-use function serialize;
 use function sprintf;
-use function unserialize;
 
 /**
  * A type-sensitive, unsorted collection.
@@ -64,7 +61,7 @@ use function unserialize;
  *
  * @implements ArrayAccess<Index, AllowedType>
  */
-class StrictCollection implements ArrayAccess, Countable, Serializable
+class StrictCollection implements ArrayAccess, Countable
 {
     /** @use ArrayAccessTrait<Index, AllowedType> */
     use ArrayAccessTrait;
@@ -228,17 +225,6 @@ class StrictCollection implements ArrayAccess, Countable, Serializable
     }
 
     /**
-     * Get string representation of $this.
-     *
-     * @return string The string representation
-     */
-    #[Override]
-    public function serialize(): string
-    {
-        return serialize($this->__serialize());
-    }
-
-    /**
      * Set an item at the specified index.
      *
      * @param Index $offset The item's index
@@ -289,21 +275,6 @@ class StrictCollection implements ArrayAccess, Countable, Serializable
         $strictList = new StrictList($this->getAllowedTypes());
         $strictList->append(...$this->toArray());
         return $strictList;
-    }
-
-    /**
-     * Restore $this from string representation.
-     *
-     * @param string $data The string representation
-     *
-     * @return void
-     */
-    #[Override]
-    public function unserialize($data): void
-    {
-        /** @var mixed[] $dataArray */
-        $dataArray = unserialize($data);
-        $this->__unserialize($dataArray);
     }
 
     /**

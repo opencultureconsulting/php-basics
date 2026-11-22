@@ -16,6 +16,11 @@ Unreleased
 **Breaking Changes:**
 
 * Raised minimum PHP version from 8.1 to 8.2, as PHP 8.1 reached end of life
+* `StrictCollection` and `StrictArray` no longer implement the legacy `\Serializable` interface (and thus no longer
+  have `serialize()` and `unserialize()` methods). Serializing them with PHP's `serialize()` and `unserialize()`
+  functions works as before. `StrictList`, `StrictQueue` and `StrictStack` still implement it, because their SPL parent
+  classes do
+* `Getter::__isset()` no longer swallows exceptions thrown by `_magicGet*()` methods
 
 **Maintenance:**
 

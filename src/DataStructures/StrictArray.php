@@ -31,7 +31,6 @@ use OCC\Basics\DataStructures\Exceptions\InvalidDataTypeException;
 use OCC\Basics\Interfaces\IteratorAggregateTrait;
 use Override;
 use RuntimeException;
-use Serializable;
 
 use function array_key_first;
 use function array_key_last;
@@ -66,7 +65,7 @@ use function sprintf;
  * @implements ArrayAccess<Index, AllowedType>
  * @implements IteratorAggregate<Index, AllowedType>
  */
-class StrictArray extends StrictCollection implements ArrayAccess, Countable, IteratorAggregate, Serializable
+class StrictArray extends StrictCollection implements ArrayAccess, Countable, IteratorAggregate
 {
     /** @use IteratorAggregateTrait<Index, AllowedType> */
     use IteratorAggregateTrait;

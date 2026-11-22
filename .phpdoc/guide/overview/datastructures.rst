@@ -18,9 +18,10 @@ and `string`.
 Trying to add an item with a data type not on the list of allowed types to a strict datastructure will result in an
 :php:class:`OCC\Basics\DataStructures\Exceptions\InvalidDataTypeException` being thrown.
 
-All strict datastructures inherit the implementation of the `\ArrayAccess <https://www.php.net/arrayaccess>`_,
-`\Countable <https://www.php.net/countable>`_ and `\Serializable <https://www.php.net/serializable>`_ interfaces. All
-but `StrictCollection` also implement a `\Traversable <https://www.php.net/traversable>`_ interface.
+All strict datastructures inherit the implementation of the `\ArrayAccess <https://www.php.net/arrayaccess>`_ and
+`\Countable <https://www.php.net/countable>`_ interfaces. All but `StrictCollection` also implement a
+`\Traversable <https://www.php.net/traversable>`_ interface. All of them can be serialized using PHP's
+`serialize() <https://www.php.net/serialize>`_ and `unserialize() <https://www.php.net/unserialize>`_ functions.
 
   Examples:
 

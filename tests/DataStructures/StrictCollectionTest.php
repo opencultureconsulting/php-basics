@@ -26,10 +26,12 @@ namespace OCC\Basics\Tests\DataStructures;
 use DomainException;
 use InvalidArgumentException;
 use OCC\Basics\DataStructures\Exceptions\InvalidDataTypeException;
+use OCC\Basics\DataStructures\StrictArray;
 use OCC\Basics\DataStructures\StrictCollection;
 use OCC\Basics\DataStructures\StrictList;
 use OutOfRangeException;
 use PHPUnit\Framework\TestCase;
+use Serializable;
 use stdClass;
 
 use function serialize;
@@ -162,14 +164,10 @@ final class StrictCollectionTest extends TestCase
         $copy['b'] = 'string';
     }
 
-    public function testLegacySerializableInterface(): void
+    public function testDoesNotImplementSerializableInterface(): void
     {
-        $collection = new StrictCollection(['int']);
-        $collection['a'] = 1;
-        $copy = new StrictCollection();
-        $copy->unserialize($collection->serialize());
-        $this->assertSame(['a' => 1], $copy->toArray());
-        $this->assertSame(['int'], $copy->getAllowedTypes());
+        $this->assertNotInstanceOf(Serializable::class, new StrictCollection());
+        $this->assertNotInstanceOf(Serializable::class, new StrictArray());
     }
 
     public function testDebugInfo(): void

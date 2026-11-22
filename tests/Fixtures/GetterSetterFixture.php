@@ -25,6 +25,7 @@ namespace OCC\Basics\Tests\Fixtures;
 
 use OCC\Basics\Traits\Getter;
 use OCC\Basics\Traits\Setter;
+use RuntimeException;
 
 use function strtoupper;
 
@@ -33,6 +34,7 @@ use function strtoupper;
  *
  * @property string $name
  * @property-read ?string $readOnly
+ * @property-read string $broken
  * @property-write string $writeOnly
  */
 final class GetterSetterFixture
@@ -49,6 +51,9 @@ final class GetterSetterFixture
     /** A property without magic methods. */
     protected string $hidden = 'hidden';
 
+    /** A property whose getter throws an exception. */
+    protected string $broken = 'broken';
+
     protected function _magicGetName(): string
     {
         return $this->name;
@@ -57,6 +62,11 @@ final class GetterSetterFixture
     protected function _magicSetName(?string $value): void
     {
         $this->name = strtoupper((string) $value);
+    }
+
+    protected function _magicGetBroken(): string
+    {
+        throw new RuntimeException('Getter failed.');
     }
 
     protected function _magicGetReadOnly(): ?string
