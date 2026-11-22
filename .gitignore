@@ -11,3 +11,5 @@ phpdoc.xml
 phpstan.neon
 psalm.xml
 TODO
+/.phpunit.cache/
+phpunit.xml
