@@ -71,4 +71,12 @@ final class StrictQueueTest extends TestCase
         $this->assertSame('a', $copy->dequeue());
         $this->assertSame('b', $copy->dequeue());
     }
+
+    public function testFromArray(): void
+    {
+        $queue = StrictQueue::fromArray(['a', 'b'], ['string']);
+        $this->assertInstanceOf(StrictQueue::class, $queue);
+        $this->assertSame('a', $queue->dequeue());
+        $this->assertSame('b', $queue->dequeue());
+    }
 }

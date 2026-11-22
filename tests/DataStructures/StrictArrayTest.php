@@ -134,4 +134,13 @@ final class StrictArrayTest extends TestCase
         $this->assertSame([1, 2], $copy->toArray());
         $this->assertSame(['int'], $copy->getAllowedTypes());
     }
+
+    public function testFromArrayReturnsStrictArray(): void
+    {
+        $array = StrictArray::fromArray(['x' => 'a', 'y' => 'b']);
+        $this->assertInstanceOf(StrictArray::class, $array);
+        $this->assertSame([], $array->getAllowedTypes());
+        $this->assertSame('b', $array->pop());
+        $this->assertSame(['x' => 'a'], $array->toArray());
+    }
 }

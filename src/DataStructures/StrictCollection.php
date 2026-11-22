@@ -59,6 +59,10 @@ use function sprintf;
  * @template Index of array-key
  * @template AllowedType of mixed
  *
+ * @phpstan-consistent-constructor
+ * @psalm-consistent-constructor
+ * @psalm-consistent-templates
+ *
  * @implements ArrayAccess<Index, AllowedType>
  */
 class StrictCollection implements ArrayAccess, Countable
@@ -108,6 +112,35 @@ class StrictCollection implements ArrayAccess, Countable
     public function clear(): void
     {
         $this->_data = [];
+    }
+
+    /**
+     * Create a type-sensitive collection from an array of items.
+     *
+     * Keys of `$items` are preserved.
+     *
+     * @template TIndex of array-key
+     * @template TAllowedType of mixed
+     *
+     * @param array<TIndex, TAllowedType> $items The items
+     * @param array<string|class-string<TAllowedType>> $allowedTypes Allowed data types of items
+     *                                                     (see `__construct()`)
+     *
+     * @return static<TIndex, TAllowedType> The new collection
+     *
+     * @throws InvalidArgumentException if any value of `$allowedTypes` is not a string or contains an empty type
+     * @throws InvalidDataTypeException if any of `$items` is not of allowed type
+     *
+     * @api
+     */
+    public static function fromArray(array $items, array $allowedTypes = []): static
+    {
+        /** @var static<TIndex, TAllowedType> $collection */
+        $collection = new static($allowedTypes);
+        foreach ($items as $offset => $value) {
+            $collection->offsetSet($offset, $value);
+        }
+        return $collection;
     }
 
     /**
@@ -292,8 +325,11 @@ class StrictCollection implements ArrayAccess, Countable
      *                               - "resource"
      *                               - "scalar"
      *                               - "string"
+     *                               - "mixed"
+     *                               Union and nullable types like "int|string"
+     *                               or "?int" are supported, too.
      *
-     * @throws InvalidArgumentException if any value of `$allowedTypes` is not a string
+     * @throws InvalidArgumentException if any value of `$allowedTypes` is not a string or contains an empty type
      */
     public function __construct(array $allowedTypes = [])
     {

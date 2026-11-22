@@ -117,6 +117,35 @@ trait StrictSplDoublyLinkedListTrait
     }
 
     /**
+     * Create a type-sensitive list from an array of items.
+     *
+     * The items are pushed in the given order (like `append()`), while their
+     * keys are discarded.
+     *
+     * @template TAllowedType of mixed
+     *
+     * @param array<TAllowedType> $items The items
+     * @param array<string|class-string<TAllowedType>> $allowedTypes Allowed data types of items
+     *                                                     (see `__construct()`)
+     *
+     * @return static<TAllowedType> The new list
+     *
+     * @throws InvalidArgumentException if any value of `$allowedTypes` is not a string or contains an empty type
+     * @throws InvalidDataTypeException if any of `$items` is not of allowed type
+     *
+     * @api
+     */
+    public static function fromArray(array $items, array $allowedTypes = []): static
+    {
+        /** @var static<TAllowedType> $list */
+        $list = new static($allowedTypes);
+        foreach ($items as $value) {
+            $list->push($value);
+        }
+        return $list;
+    }
+
+    /**
      * Get the item at the specified index.
      *
      * @param int $offset The item's index
@@ -340,8 +369,11 @@ trait StrictSplDoublyLinkedListTrait
      *                               - "resource"
      *                               - "scalar"
      *                               - "string"
+     *                               - "mixed"
+     *                               Union and nullable types like "int|string"
+     *                               or "?int" are supported, too.
      *
-     * @throws InvalidArgumentException if any value of `$allowedTypes` is not a string
+     * @throws InvalidArgumentException if any value of `$allowedTypes` is not a string or contains an empty type
      */
     public function __construct(array $allowedTypes = [])
     {

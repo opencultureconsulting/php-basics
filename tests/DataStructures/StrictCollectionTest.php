@@ -180,4 +180,18 @@ final class StrictCollectionTest extends TestCase
             $collection->__debugInfo()
         );
     }
+
+    public function testFromArray(): void
+    {
+        $collection = StrictCollection::fromArray(['a' => 1, 5 => null], ['?int']);
+        $this->assertInstanceOf(StrictCollection::class, $collection);
+        $this->assertSame(['a' => 1, 5 => null], $collection->toArray());
+        $this->assertSame(['null', 'int'], $collection->getAllowedTypes());
+    }
+
+    public function testFromArrayChecksTypes(): void
+    {
+        $this->expectException(InvalidDataTypeException::class);
+        StrictCollection::fromArray(['a' => 1, 'b' => 'two'], ['int']);
+    }
 }

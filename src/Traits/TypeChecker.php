@@ -27,8 +27,10 @@ use InvalidArgumentException;
 
 use function array_map;
 use function array_sum;
+use function array_unique;
 use function array_values;
 use function count;
+use function explode;
 use function in_array;
 use function is_array;
 use function is_bool;
@@ -44,6 +46,9 @@ use function is_resource;
 use function is_scalar;
 use function is_string;
 use function ltrim;
+use function str_starts_with;
+use function substr;
+use function trim;
 
 /**
  * A generic data type checker.
@@ -56,7 +61,12 @@ use function ltrim;
  * `array`, `bool`, `callable`, `countable`, `double`, `float`, `int`,
  * `integer`, `iterable`, `long`, `null`, `numeric`, `object`, `resource`,
  * `scalar` and `string`. Any other value is treated as the name of a class
- * or interface the value has to be an instance of.
+ * or interface the value has to be an instance of. Additionally, `mixed`
+ * allows any value.
+ *
+ * Like in PHP's own type declarations, union types (e.g. `int|string`) and
+ * nullable types (e.g. `?int`) are supported. They are split into separate
+ * types when set (e.g. `?int` becomes `null` and `int`).
  *
  * @author Sebastian Meyer <sebastian.meyer@opencultureconsulting.com>
  * @package Basics\Traits
@@ -113,6 +123,7 @@ trait TypeChecker
                 'double', 'float' => is_float($value),
                 'int', 'integer', 'long' => is_int($value),
                 'iterable' => is_iterable($value),
+                'mixed' => true,
                 'null' => is_null($value),
                 'numeric' => is_numeric($value),
                 'object' => is_object($value),
@@ -131,15 +142,24 @@ trait TypeChecker
     /**
      * Check if a data type is allowed.
      *
+     * For union and nullable types, all of their types have to be allowed.
+     *
      * @param string $type The type to check
      *
      * @return bool Whether the data type is allowed
+     *
+     * @throws InvalidArgumentException if `$type` contains an empty type
      *
      * @api
      */
     public function isAllowedType(string $type): bool
     {
-        return in_array($type, $this->_allowedTypes, true);
+        foreach ($this->normalizeTypes([$type]) as $atomicType) {
+            if (!in_array($atomicType, $this->_allowedTypes, true)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -149,7 +169,7 @@ trait TypeChecker
      *
      * @return void
      *
-     * @throws InvalidArgumentException if any value of `$allowedTypes` is not a string
+     * @throws InvalidArgumentException if any value of `$allowedTypes` is not a string or contains an empty type
      *
      * @api
      */
@@ -161,6 +181,40 @@ trait TypeChecker
                 'Allowed types must be array of strings or empty array.'
             );
         }
-        $this->_allowedTypes = array_values($allowedTypes);
+        /** @var AllowedTypes $normalizedTypes */
+        $normalizedTypes = $this->normalizeTypes($allowedTypes);
+        $this->_allowedTypes = $normalizedTypes;
+    }
+
+    /**
+     * Split union and nullable types into their atomic types.
+     *
+     * @param string[] $types The types to normalize
+     *
+     * @return list<string> The atomic types without duplicates
+     *
+     * @throws InvalidArgumentException if any type is empty
+     *
+     * @internal
+     */
+    private function normalizeTypes(array $types): array
+    {
+        $atomicTypes = [];
+        foreach ($types as $type) {
+            foreach (explode('|', $type) as $atomicType) {
+                $atomicType = trim($atomicType);
+                if (str_starts_with($atomicType, '?')) {
+                    $atomicTypes[] = 'null';
+                    $atomicType = trim(substr($atomicType, 1));
+                }
+                if ($atomicType === '') {
+                    throw new InvalidArgumentException(
+                        'Allowed types must not be empty.'
+                    );
+                }
+                $atomicTypes[] = $atomicType;
+            }
+        }
+        return array_values(array_unique($atomicTypes));
     }
 }
