@@ -22,14 +22,18 @@ jobs:
       - name: Checkout Source Code
         uses: actions/checkout@v7
 
-      - name: Setup Environment
-        uses: php-actions/composer@v6
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
         with:
-          command: update
-          php_version: "8.2"
+          php-version: "8.2"
+          coverage: none
+          tools: composer
+
+      - name: Install Dependencies
+        run: composer update --no-interaction --no-progress --prefer-dist
 
       - name: Run PHP Mess Detector
-        run: php vendor/bin/phpmd analyze src/ --ruleset .phpmd.dist.xml --reportfile-sarif phpmd-results.sarif
+        run: vendor/bin/phpmd analyze src/ --ruleset .phpmd.dist.xml --reportfile-sarif phpmd-results.sarif
 
       - name: Upload Analysis Results
         uses: github/codeql-action/upload-sarif@v4.39.1
