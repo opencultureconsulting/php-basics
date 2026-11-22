@@ -61,7 +61,6 @@ use function sprintf;
  *
  * @phpstan-consistent-constructor
  * @psalm-consistent-constructor
- * @psalm-consistent-templates
  *
  * @implements ArrayAccess<Index, AllowedType>
  */
@@ -135,7 +134,10 @@ class StrictCollection implements ArrayAccess, Countable
      */
     public static function fromArray(array $items, array $allowedTypes = []): static
     {
-        /** @var static<TIndex, TAllowedType> $collection */
+        /**
+         * @var static<TIndex, TAllowedType> $collection
+         * @psalm-suppress UnsafeGenericInstantiation Subclasses may fix the item type
+         */
         $collection = new static($allowedTypes);
         foreach ($items as $offset => $value) {
             $collection->offsetSet($offset, $value);
