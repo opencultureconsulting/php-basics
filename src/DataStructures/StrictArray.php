@@ -158,7 +158,7 @@ class StrictArray extends StrictCollection implements ArrayAccess, Countable, It
             );
         }
         /** @psalm-suppress InvalidPropertyAssignmentValue */
-        array_push($this->_data, $value);
+        array_push($this->_data, $value); // @phpstan-ignore assign.propertyType
     }
 
     /**
@@ -222,6 +222,6 @@ class StrictArray extends StrictCollection implements ArrayAccess, Countable, It
             );
         }
         /** @psalm-suppress InvalidPropertyAssignmentValue */
-        array_unshift($this->_data, $value);
+        array_unshift($this->_data, $value); // @phpstan-ignore assign.propertyType
     }
 }

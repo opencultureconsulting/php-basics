@@ -30,7 +30,6 @@ use function array_sum;
 use function array_values;
 use function count;
 use function in_array;
-use function is_a;
 use function is_array;
 use function is_bool;
 use function is_callable;
@@ -105,6 +104,7 @@ trait TypeChecker
             return true;
         }
         foreach ($this->_allowedTypes as $type) {
+            $fqcn = ltrim($type, '\\');
             $isAllowed = match ($type) {
                 'array' => is_array($value),
                 'bool' => is_bool($value),
@@ -119,7 +119,7 @@ trait TypeChecker
                 'resource' => is_resource($value),
                 'scalar' => is_scalar($value),
                 'string' => is_string($value),
-                default => is_object($value) && is_a($value, ltrim($type, '\\'))
+                default => $value instanceof $fqcn
             };
             if ($isAllowed) {
                 return true;

@@ -48,6 +48,8 @@ final class TriggerExceptionError
      * @param Throwable $exception The exception
      *
      * @return never
+     *
+     * @SuppressWarnings("PHPMD.ExitExpression")
      */
     public function __invoke(Throwable $exception): never
     {

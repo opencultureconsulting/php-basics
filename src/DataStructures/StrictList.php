@@ -44,6 +44,7 @@ use SplDoublyLinkedList;
  *
  * @template AllowedType of mixed
  *
+ * @psalm-suppress ImmutableDependency SPL data structures are mutable by design
  * @extends SplDoublyLinkedList<AllowedType>
  * @implements ArrayAccess<int, AllowedType>
  * @implements Iterator<int, AllowedType>
